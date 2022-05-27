@@ -7,8 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
+<h1>aside</h1>
+
 
 </body>
 </html>
