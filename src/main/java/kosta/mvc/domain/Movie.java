@@ -22,14 +22,25 @@ public class Movie {
 	@NonNull
 	private String movieCode;
 	
+	@NonNull
 	private String movieName;
+	
+	@NonNull
 	private String movieSummary;
+	
+	@NonNull
 	private int movieRunningtime;
+	
+	@NonNull
 	private LocalDateTime movieStartdate;
+	
+	@NonNull
 	private LocalDateTime movieEnddate;
 	
+	@NonNull
 	private int movieRated;
 	
+	@NonNull
 	private String movieGenre;
 	
 	

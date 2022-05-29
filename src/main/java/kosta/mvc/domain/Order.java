@@ -1,7 +1,11 @@
 package kosta.mvc.domain;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,20 +16,23 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Food {
+@NoArgsConstructor
+public class Order {
 
 	@Id
 	@NonNull
-	private String foodCode;
+	private String orderCode;
+	
+	@OneToOne
+	private String id;
 	
 	@NonNull
-	private String foodName;
+	private LocalDateTime orderDate;
+
+	private int pointPrice;
 	
 	@NonNull
-	private String foodContent;
+	private int totalPrice;
 	
-	@NonNull
-	private String foodPrice;
 }
