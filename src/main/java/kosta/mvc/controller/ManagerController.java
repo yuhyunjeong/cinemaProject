@@ -9,4 +9,7 @@ public class ManagerController {
 
 	@RequestMapping("/managerMain")
 	public void main() {}
+	
+	@RequestMapping("/product")
+	public void product() {}
 }
