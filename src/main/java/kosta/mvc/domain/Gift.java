@@ -1,6 +1,7 @@
 package kosta.mvc.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -21,7 +22,7 @@ public class Gift {
 	@NonNull
 	private String giftCode;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private String movieCode;
 	
 	@NonNull
