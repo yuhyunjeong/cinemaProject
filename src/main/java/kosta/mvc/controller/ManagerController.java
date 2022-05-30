@@ -12,4 +12,13 @@ public class ManagerController {
 	
 	@RequestMapping("/product")
 	public void product() {}
+	
+	@RequestMapping("/productDetail")
+	public void productDetail() {}
+	
+	@RequestMapping("/payment")
+	public void payment() {}
+	
+	@RequestMapping("/paymentComplete")
+	public void paymentComplete() {}
 }
