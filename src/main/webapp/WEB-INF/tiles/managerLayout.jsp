@@ -6,23 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	table{width: 2000px; height: 1000px; border: 1px red solid;}
+	th{border: 1px gray solid;}
+	.a{height: 700px; background-color: blue}
+	.b{height: 200px; background-color: orange}
+	.aside{width: 200px}
+</style>
 </head>
 <body>
-	
-	<div id="container">
-		<div id="header">
-			<tiles:insertAttribute name="header" />
-		</div>
-		<div id="aside">
-		<tiles:insertAttribute name="aside" />
-		</div>
-		<div id="content">
-			<tiles:insertAttribute name="content" />
-		</div>
-		<div id="footer">
-			<tiles:insertAttribute name="footer" />
-		</div>
-
-	</div>
+	<table>
+		<tr class="a">
+			<th colspan="2"><tiles:insertAttribute name="header" /></th>
+		</tr>
+		<tr>
+			
+			<th class="aside"><tiles:insertAttribute name="aside" /></th>
+			<th><tiles:insertAttribute name="content" /></th>
+		</tr>
+		<tr class="b">
+			<th colspan="2"><tiles:insertAttribute name="footer" /></th>
+		</tr>
+		
+	</table>
 </body>
 </html>
