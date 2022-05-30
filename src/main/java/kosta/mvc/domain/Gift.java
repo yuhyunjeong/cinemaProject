@@ -23,7 +23,7 @@ public class Gift {
 	@NonNull
 	private String giftCode;
 	
-	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private String movieCode;
 	
 	@NonNull

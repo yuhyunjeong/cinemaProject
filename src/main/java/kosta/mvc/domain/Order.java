@@ -26,7 +26,7 @@ public class Order {
 	@NonNull
 	private String orderCode;
 	
-	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private String id;
 	
 	@NonNull
