@@ -29,22 +29,16 @@
     background-color: rgba(255,255,255,0.5);
 }
 
-#login{
-  display: inline-block;
-  vertical-align: middle;
-  color: white;
-  margin: 0.5rem;
-  padding: 0;
-}
+
 </style>
 </head>
 <body>
 	<p>
 	<div style="text-align: right;">
 	<p>
-		<button name="login" type="button" class="btn btn-secondary my-2 my-sm-0" title="" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="Popover Title">마이페이지</button>&nbsp;&nbsp;&nbsp;
+		<button name="mypage" type="button" class="btn btn-secondary my-2 my-sm-0" title="" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="Popover Title">마이페이지</button>&nbsp;&nbsp;&nbsp;
 		<button name="login" type="button" class="btn btn-secondary my-2 my-sm-0" title="" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="Popover Title">로그인</button>&nbsp;&nbsp;&nbsp;
-		<button name="login" type="button" class="btn btn-secondary my-2 my-sm-0" title="" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="Popover Title">고객센터</button>&nbsp;&nbsp;&nbsp;  
+		<button name="center" type="button" class="btn btn-secondary my-2 my-sm-0" title="" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="Popover Title">고객센터</button>&nbsp;&nbsp;&nbsp;  
 	</div>
 		<nav class="navbar navbar-expand-lg" name="aa">
 			<div class="container-fluid">
