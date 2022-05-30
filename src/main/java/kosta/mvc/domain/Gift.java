@@ -1,5 +1,6 @@
 package kosta.mvc.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Gift {
 	@NonNull
 	private String giftCode;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private String movieCode;
 	
 	@NonNull

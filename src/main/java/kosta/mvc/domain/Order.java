@@ -2,6 +2,7 @@ package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class Order {
 	@NonNull
 	private String orderCode;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private String id;
 	
 	@NonNull
