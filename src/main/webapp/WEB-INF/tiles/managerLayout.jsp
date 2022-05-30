@@ -8,12 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<div id="container">
 		<div id="header">
 			<tiles:insertAttribute name="header" />
 		</div>
 		<div id="aside">
-			<tiles:insertAttribute name="aside" />
+		<tiles:insertAttribute name="aside" />
 		</div>
 		<div id="content">
 			<tiles:insertAttribute name="content" />

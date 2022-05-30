@@ -1,17 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-<h1>managerMain입니다</h1>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
-</body>
-</html>
+<aside>연습</aside>
+<h1>managerMain입니다</h1>
+테스트테스트테스트테스트테스트테스트
+테스트테스트테스트테스트테스트테스트
+테스트테스트테스트테스트테스트테스트
+테스트테스트테스트테스트테스트테스트
