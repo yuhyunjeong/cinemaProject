@@ -9,9 +9,8 @@
 <style type="text/css">
 	table{width:100%}
 	#aside{text-align: center;
+		    vertical-align: top;
 		    width: 320px;
-		    position: relative;
-		    top: -250px;
 		    padding-right: 40px;
 		    padding-left: 40px;}
 </style>
