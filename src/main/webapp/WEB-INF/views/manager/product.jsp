@@ -15,9 +15,18 @@
 </head>
 <body>
 	<h1>상품관리 page입니다.</h1>
-	
-	
-<table class="table table-hover">
+
+	<div class="form-group">
+		<label for="exampleSelect1" class="form-label mt-4 col-lg-12">상품 종류</label> 
+		<select class="form-select" id="exampleSelect1">
+			<option>영화</option>
+			<option>먹거리</option>
+			<option>사은품</option>
+		</select>
+	</div>
+
+
+	<table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Type</th>
