@@ -32,7 +32,7 @@
 	    </div><p><p>
 		
 		<div class="col-lg-6 col-sm-12 text-lg-end text-center">
-		  <button type="button" class="btn btn-primary">수정하기</button>
+		  <input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productDetail'" value="수정하기"/>
 		</div><p><p>
 	  </fieldset>
 	</form>

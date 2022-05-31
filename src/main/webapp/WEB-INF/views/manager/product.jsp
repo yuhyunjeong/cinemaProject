@@ -10,10 +10,7 @@
 	h1 {
 		text-align: center;
 	}
-	
-	.pagination {
-		justify-content: center;
-	}
+
 </style>
 </head>
 <body>
