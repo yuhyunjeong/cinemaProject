@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-/* .form-group{
-	display: inline;
+/* #aa{
+	display : flex;
+	flex-flow : row nowrap;
+	justify-content: center;
 	
 } */
-
 
 </style>
 
@@ -22,10 +23,8 @@
 
 <form>
   <fieldset>
-   <div class="col-lg-12">
-   <div class="form-group col-lg-4">
-    <!-- <div class="form-group" style="display: inline;"> -->
-    <div class="form-group" style="display: inline;">
+   <div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+    <div class="form-group col-lg-4" style="display: inline-block; width: 300px;">
       <label for="exampleSelect2" class="form-label mt-4">영화</label>
       <select multiple="" class="form-select" id="exampleSelect2">
         <option>1</option>
@@ -35,9 +34,8 @@
         <option>5</option>
       </select>
     </div>
-    
-    
-    <div class="form-group" style="display: inline;">
+  
+    <div class="form-group col-lg-4" style="display: inline-block; width: 300px;">
       <label for="exampleSelect2" class="form-label mt-4">날짜</label>
       <select multiple="" class="form-select" id="exampleSelect2">
         <option>1</option>
@@ -47,9 +45,9 @@
         <option>5</option>
       </select>
     </div>
+   
     
-    
-    <div class="form-group" style="display: inline;">
+    <div class="form-group col-lg-4" style="display: inline-block; width: 300px;">
       <label for="exampleSelect2" class="form-label mt-4">시간</label>
       <select multiple="" class="form-select" id="exampleSelect2">
         <option>1</option>
@@ -63,20 +61,37 @@
   </div>
     
     <p>
-요기다가는 영화 포스터를 보여줄 예정임당..ㅎ
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">영화이름</h4>
-    <h6 class="card-subtitle mb-2 text-muted">일시 : </h6>
-    <h6 class="card-subtitle mb-2 text-muted">상영관 : </h6>
-    <h6 class="card-subtitle mb-2 text-muted">인원 : </h6>
-  </div>
+    
+    
+<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+	<div class="form-group col-lg-4" style="display: inline-block; width: 200px;">
+		<div class="card" style="display: inline-block;">
+			<div class="card-body">
+			<h6 class="card-subtitle mb-2 text-muted">영화이미지</h6>
+			</div>
+		</div>
+	</div>
+		
+		
+	<div class="form-group col-lg-4" style="display: inline-block; width: 200px;">
+		<div class="card">
+		  <div class="card-body">
+		    <h4 class="card-title">영화이름</h4>
+		    <h6 class="card-subtitle mb-2 text-muted">일시 : </h6>
+		    <h6 class="card-subtitle mb-2 text-muted">상영관 : </h6>
+		    <h6 class="card-subtitle mb-2 text-muted">인원 : </h6>
+		  </div>
+		</div>
+	</div>
+		
+	<div class="form-group col-lg-4" style="display: inline-block; width: 200px;">
+    	<button type="submit" class="btn btn-primary">좌석선택 <p> >> </button>
+	</div>
 </div>
-    
-    
 
-    <button type="submit" class="btn btn-primary">좌석선택 <p> >> </button>
-  </fieldset>
+    
+    
+</fieldset>
 </form>
 
 </body>
