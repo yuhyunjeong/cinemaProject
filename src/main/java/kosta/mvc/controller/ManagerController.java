@@ -31,8 +31,11 @@ public class ManagerController {
 	@RequestMapping("/tickets")
 	public void tickets() {}
 	
-	@RequestMapping("/sales")
-	public void sales() {}
+	@RequestMapping("/salesByMonth")
+	public void salesByMonth() {}
+	
+	@RequestMapping("/salesByMovie")
+	public void salesByMovie() {}
 	
 	@RequestMapping("/members")
 	public void members() {}
