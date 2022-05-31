@@ -16,6 +16,9 @@ public class ManagerController {
 	@RequestMapping("/productDetail")
 	public void productDetail() {}
 	
+	@RequestMapping("/productUpdate")
+	public void productUpdate() {}
+	
 	@RequestMapping("/payment")
 	public void payment() {}
 	
@@ -30,4 +33,5 @@ public class ManagerController {
 	
 	@RequestMapping("/members")
 	public void members() {}
+	
 }
