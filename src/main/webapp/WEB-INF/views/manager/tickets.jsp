@@ -13,10 +13,11 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
+      <th scope="col">예매 코드</th>
+      <th scope="col">예매 상태</th>
+      <th scope="col">영화 이름</th>
+      <th scope="col">결제 일시</th>
+      <th scope="col">결제 금액</th>
     </tr>
   </thead>
   <tbody>
@@ -25,21 +26,11 @@
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
-    </tr>
-        <tr class="table-active">
-      <th scope="row">Active</th>
-      <td>Column content</td>
-      <td>Column content</td>
       <td>Column content</td>
     </tr>
         <tr class="table-active">
       <th scope="row">Active</th>
       <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-        <tr class="table-active">
-      <th scope="row">Active</th>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
@@ -49,15 +40,32 @@
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+        <tr class="table-active">
+      <th scope="row">Active</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
     </tr>
         <tr class="table-active">
       <th scope="row">Active</th>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
+      <td>Column content</td>
     </tr>
         <tr class="table-active">
       <th scope="row">Active</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+        <tr class="table-active">
+      <th scope="row">Active</th>
+      <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
@@ -67,11 +75,6 @@
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
-    </tr>
-    <tr class="table-active">
-      <th scope="row">Active</th>
-      <td>Column content</td>
-      <td>Column content</td>
       <td>Column content</td>
     </tr>
     <tr class="table-active">
@@ -79,15 +82,25 @@
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-active">
+      <th scope="row">Active</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
     </tr>
     <tr class="table-active">
       <th scope="row">Active</th>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
+      <td>Column content</td>
     </tr>
     <tr class="table-active">
       <th scope="row">Active</th>
+      <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
@@ -97,9 +110,11 @@
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
+      <td>Column content</td>
     </tr>
     <tr class="table-active">
       <th scope="row">Active</th>
+      <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>

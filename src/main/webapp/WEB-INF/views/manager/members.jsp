@@ -13,10 +13,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
+      <th scope="col">회원 아이디</th>
+      <th scope="col">회원 등급</th>
+      <th scope="col">가입 일시</th>
+      <th scope="col">휴면회원 여부</th>
     </tr>
   </thead>
   <tbody>
