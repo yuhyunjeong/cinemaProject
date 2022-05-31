@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style type="text/css">
 	h1 {
 		text-align: center;
@@ -116,7 +114,13 @@
   </tbody>
 </table>
 
+	
+<div class="col-lg-12 col-sm-12 text-lg-end">
+  <button type="button" class="btn btn-secondary">등록하기</button>
+</div><p><p>
+
 <div>
+
   <ul class="pagination">
     <li class="page-item disabled">
       <a class="page-link" href="#">&laquo;</a>
@@ -140,7 +144,10 @@
       <a class="page-link" href="#">&raquo;</a>
     </li>
   </ul>
+  
 </div>
+
+
 	
 </body>
 </html>
