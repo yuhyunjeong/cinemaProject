@@ -8,19 +8,20 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table{width:100%}
+	#aside{width: 200px; float: top}
 </style>
 </head>
 <body>
 	<table>
-		<tr class="a">
-			<th colspan="2"><tiles:insertAttribute name="header" /></th>
+		<tr id="a">
+			<td colspan="2"><tiles:insertAttribute name="header" /></td>
 		</tr>
 		<tr>
-			<th class="aside"><tiles:insertAttribute name="aside" /></th>
-			<th><tiles:insertAttribute name="content" /></th>
+			<td id = "aside"><tiles:insertAttribute name="aside" /></td>
+			<td><tiles:insertAttribute name="content" /></td>
 		</tr>
-		<tr class="b">
-			<th colspan="2"><tiles:insertAttribute name="footer" /></th>
+		<tr id="b">
+			<td colspan="2"><tiles:insertAttribute name="footer" /></td>
 		</tr>
 		
 	</table>
