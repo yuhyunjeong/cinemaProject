@@ -12,9 +12,6 @@ public class HomeController {
 		return "cinema/main";
 	}
 	
-	@RequestMapping("/ticketing")
-	public String ticketing() {
-		return "cinema/ticketing";
-	}
+	
 	
 }
