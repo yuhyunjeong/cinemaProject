@@ -11,6 +11,9 @@
 		text-align: center;
 	}
 	
+	.pagination {
+		justify-content: center;
+	}
 </style>
 </head>
 <body>
@@ -119,8 +122,7 @@
   <input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/>
 </div><p><p>
 
-<div>
-
+<div class="text-center">
   <ul class="pagination">
     <li class="page-item disabled">
       <a class="page-link" href="#">&laquo;</a>
@@ -144,7 +146,7 @@
       <a class="page-link" href="#">&raquo;</a>
     </li>
   </ul>
-  
+
 </div>
 
 
