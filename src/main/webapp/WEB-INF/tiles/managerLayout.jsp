@@ -6,13 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	table{width: 2000px; height: 1000px; border: 1px red solid;}
-	th{border: 1px gray solid;}
-	.a{height: 700px; background-color: blue}
-	.b{height: 200px; background-color: orange}
-	.aside{width: 200px}
-</style>
 </head>
 <body>
 	<table>
@@ -20,7 +13,6 @@
 			<th colspan="2"><tiles:insertAttribute name="header" /></th>
 		</tr>
 		<tr>
-			
 			<th class="aside"><tiles:insertAttribute name="aside" /></th>
 			<th><tiles:insertAttribute name="content" /></th>
 		</tr>
