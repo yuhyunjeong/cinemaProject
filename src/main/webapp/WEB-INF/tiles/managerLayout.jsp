@@ -8,7 +8,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table{width:100%}
-	#aside{width: 200px; float: top}
+	#aside{text-align: center;
+		    width: 320px;
+		    position: relative;
+		    top: -250px;
+		    padding-right: 40px;
+		    padding-left: 40px;}
 </style>
 </head>
 <body>
