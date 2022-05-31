@@ -10,9 +10,10 @@
 </head>
 <body>
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active">Cras justo odio</a>
-  <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-  <a href="#" class="list-group-item list-group-item-action disabled">Morbi leo risus</a>
+  <a href="#" class="list-group-item list-group-item-action active">★관리하기★</a>
+  <a href="${pageContext.request.contextPath}/manager/tickets" id = "tickets" class="list-group-item list-group-item-action">예매내역 조회</a>
+  <a href="${pageContext.request.contextPath}/manager/sales" id = "sales" class="list-group-item list-group-item-action">매출 조회</a>
+  <a href="${pageContext.request.contextPath}/manager/members" id = "members" class="list-group-item list-group-item-action">회원 조회</a>
 </div>
 
 </body>

@@ -21,4 +21,13 @@ public class ManagerController {
 	
 	@RequestMapping("/paymentComplete")
 	public void paymentComplete() {}
+	
+	@RequestMapping("/tickets")
+	public void tickets() {}
+	
+	@RequestMapping("/sales")
+	public void sales() {}
+	
+	@RequestMapping("/members")
+	public void members() {}
 }
