@@ -8,18 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>상품 수정하기 페이지 입니다.</h1>
-	
-	<form>
-	  <fieldset>
+	<h1>상품 등록 페이지 입니다.</h1>
+
+	<form>	
+		<fieldset>
 		<div class="form-group">
 		
 		    <label class="form-label mt-4" for="form-label">상품명</label>
 		    <input class="form-control" type="text" placeholder="상품명을 입력해주세요">
 		    
-		    <label class="form-label mt-4" for="readOnlyInput">상품코드</label>
-		    <input class="form-control" id="readOnlyInput" type="text" readonly="">
-	
+		    <label class="form-label mt-4" for="form-label">상품코드</label>
+		    <input class="form-control" type="text" placeholder="상품코드를 입력해주세요">
 		 
 		</div>
 	    <div class="form-group">
@@ -32,7 +31,7 @@
 	    </div><p><p>
 		
 		<div class="col-lg-6 col-sm-12 text-lg-end text-center">
-		  <button type="button" class="btn btn-primary">수정하기</button>
+		  <button type="button" class="btn btn-primary">등록하기</button>
 		</div><p><p>
 	  </fieldset>
 	</form>

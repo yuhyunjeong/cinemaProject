@@ -19,6 +19,9 @@ public class ManagerController {
 	@RequestMapping("/productUpdate")
 	public void productUpdate() {}
 	
+	@RequestMapping("productWrite")
+	public void productWrite() {}
+	
 	@RequestMapping("/payment")
 	public void payment() {}
 	

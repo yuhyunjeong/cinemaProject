@@ -116,7 +116,7 @@
 
 	
 <div class="col-lg-12 col-sm-12 text-lg-end">
-  <button type="button" class="btn btn-secondary">등록하기</button>
+  <input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/>
 </div><p><p>
 
 <div>
