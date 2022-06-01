@@ -44,8 +44,10 @@
 	<div class="container" style="margin: 5px;">
 		<div class="row" style="position: relative;">
 			<div class="col-md-8">
-				<img src="${pageContext.request.contextPath}/img/KLJ로고.png"
+				<a href="${pageContext.request.contextPath}/"> <img
+					src="${pageContext.request.contextPath}/img/KLJ로고.png"
 					width="130px" height="100px" />
+				</a>
 			</div>
 			<div class="col-md-4" style="text-align: right;">
 
@@ -61,7 +63,8 @@
 					data-bs-container="body" data-bs-toggle="popover"
 					data-bs-placement="right"
 					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					data-bs-original-title="Popover Title">로그인</button>
+					data-bs-original-title="Popover Title"
+					onclick="location.href='${pageContext.request.contextPath}/member/login'">로그인</button>
 				&nbsp;&nbsp;&nbsp;
 				<button name="center" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
@@ -80,7 +83,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link active" href="#">영화
+					<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/cinema/movie">영화
 							<span class="visually-hidden">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">예매</a></li>
