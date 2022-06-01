@@ -41,7 +41,7 @@
 </style>
 </head>
 <body>
-	<div class="container" style="margin: 5px;">
+	<div class="container" >
 		<div class="row" style="position: relative;">
 			<div class="col-md-8">
 				<a href="${pageContext.request.contextPath}/"> <img
@@ -49,7 +49,7 @@
 					width="130px" height="100px" />
 				</a>
 			</div>
-			<div class="col-md-4" style="text-align: right;">
+			<div class="col-md-4" style="text-align: right; position: absolute; bottom: 0; right: 0;">
 
 				<button name="mypage" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
@@ -72,7 +72,7 @@
 					data-bs-placement="right"
 					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 					data-bs-original-title="Popover Title">고객센터</button>
-				&nbsp;&nbsp;&nbsp;
+				
 			</div>
 		</div>
 	</div>
