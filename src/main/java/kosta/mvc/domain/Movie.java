@@ -45,7 +45,8 @@ public class Movie {
 	@NonNull
 	private String movieGenre;
 	
-	
+	@CreationTimestamp
+	private LocalDateTime movieInsertdate;
 	
 	
 }

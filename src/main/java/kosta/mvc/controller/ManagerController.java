@@ -3,6 +3,7 @@ package kosta.mvc.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.mvc.domain.Movie;
@@ -20,11 +21,12 @@ public class ManagerController {
 	public void main() {}
 	
 	@RequestMapping("/product")
-	public void product() {
+	public void product(Model model) {
 		
 		// service에서 호출해서 영화검색
-		List<Movie> list = movieService.selectAll();
+		List<Movie> movieList = movieService.selectAll();
 		
+		model.addAttribute("movieList", movieList);
 	}
 	
 	@RequestMapping("/productDetail")
