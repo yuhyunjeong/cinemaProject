@@ -42,8 +42,8 @@ public class ManagerController {
 	@RequestMapping("/paymentComplete")
 	public void paymentComplete() {}
 	
-	@RequestMapping("/tickets")
-	public void tickets() {}
+	@RequestMapping("/orderList")
+	public void orderList() {}
 	
 	@RequestMapping("/salesByMonth")
 	public void salesByMonth() {}
