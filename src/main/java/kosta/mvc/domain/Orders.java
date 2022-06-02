@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -40,9 +41,8 @@ public class Orders {
 
 	private int pointPrice;
 	
-	//@Column(nullable=false)
+	@Column(nullable=false)
 	private int totalPrice;
 	
-	//@Column(columnDefinition = "0")
 	private int orderState;
 }
