@@ -40,9 +40,9 @@ public class Orders {
 
 	private int pointPrice;
 	
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private int totalPrice;
 	
-	@Column(columnDefinition = "0")
+	//@Column(columnDefinition = "0")
 	private int orderState;
 }
