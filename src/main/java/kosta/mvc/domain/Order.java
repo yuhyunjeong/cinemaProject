@@ -2,12 +2,16 @@ package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,18 +27,22 @@ import lombok.Setter;
 public class Order {
 
 	@Id
-	@NonNull
-	private String orderCode;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_pk")
+	@SequenceGenerator(name = "order_pk", allocationSize = 1, sequenceName = "order_pk")
+	private Long orderCode;
 	
-//	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private String id;
+	@ManyToOne
+	@JoinColumn(name="id")
+	private Member memberId;
 	
-	@NonNull
+	@CreationTimestamp
 	private LocalDateTime orderDate;
 
 	private int pointPrice;
 	
-	@NonNull
+	@Column(nullable=false)
 	private int totalPrice;
 	
+	@Column(columnDefinition = "0")
+	private int orderState;
 }
