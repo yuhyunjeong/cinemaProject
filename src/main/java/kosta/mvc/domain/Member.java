@@ -47,7 +47,6 @@ public class Member {
 	@CreationTimestamp
 	private LocalDateTime regdate;
 	
-	//예매 내역
-	//@OneToMany(mappedBy = "memberId")
-	//private List<Order> orderList;
+	
+
 }
