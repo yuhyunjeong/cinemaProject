@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,10 +33,10 @@ public class Movie {
 	@NonNull
 	private int movieRunningtime;
 	
-	@NonNull
+	@CreationTimestamp
 	private LocalDateTime movieStartdate;
 	
-	@NonNull
+	@CreationTimestamp
 	private LocalDateTime movieEnddate;
 	
 	@NonNull
