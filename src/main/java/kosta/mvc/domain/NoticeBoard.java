@@ -26,15 +26,13 @@ import lombok.Setter;
 @Table(name = "noticeboard")
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+
 public class NoticeBoard {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_bno_seq")
 	@SequenceGenerator(sequenceName = "notice_bno_seq", allocationSize = 1, name = "notice_bno_seq")
-	@NonNull
 	private Long bno; //글번호
 	
 	@ManyToOne

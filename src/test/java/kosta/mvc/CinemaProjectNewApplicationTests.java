@@ -36,7 +36,7 @@ class CinemaProjectNewApplicationTests {
 	@Test
 	void test2223() {
 		for(int i=0;i<10;i++) {
-			noriceBoardRepository.save(new NoticeBoard(null, new Member("test0") ,  "title" + i , "content" + i , 0, null));
+			noriceBoardRepository.save(new NoticeBoard(null, new Member("test200") ,  "title" + i , "content" + i , 0, null));
 		}
 	}
 
