@@ -25,7 +25,8 @@
 		</select>
 	</div> 
 	
-<!-- 	<ul class="nav nav-tabs">
+<!-- <div class="col-lg-12">
+ 	<ul class="nav nav-tabs">
 		<li class="nav-item">
 			<a class="nav-link active" data-bs-toggle="tab" href="#movie">영화</a>
 		</li>
@@ -46,8 +47,8 @@
 		<div class="tab-pane fade" id="goods">
 			사은품
 		</div>
-	</div> -->
-	
+	</div>
+</div> -->
 
 
 	<table class="table table-hover">
