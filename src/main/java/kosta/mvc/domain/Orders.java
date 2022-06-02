@@ -16,7 +16,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Entity
@@ -43,6 +42,5 @@ public class Orders {
 	@Column(nullable=false)
 	private int totalPrice;
 	
-	@Column(columnDefinition = "0")
 	private int orderState;
 }
