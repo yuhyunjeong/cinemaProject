@@ -95,7 +95,7 @@
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">예매</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
 						<li class="nav-item">
 							<button type="button" class="btn btn-primary">관리</button>
 						</li>

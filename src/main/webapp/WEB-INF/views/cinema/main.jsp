@@ -65,10 +65,7 @@
         height: 300px;
         object-fit: cover;
       }
-      img{
-      	width: 100%;
-      	height: 100%;
-      }
+      
       
       .movie_container {
       	width:100%;height:100%;

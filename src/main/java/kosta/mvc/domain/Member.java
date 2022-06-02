@@ -37,4 +37,9 @@ public class Member {
 	
 	@CreationTimestamp
 	private LocalDateTime regdate;
+	
+	
+	public Member(String id) {
+		this.id=id;
+	}
 }
