@@ -14,7 +14,10 @@ public class CinemaController {
 	public void movieDetail() {}
 	
 	@RequestMapping("/ticketing")
-	public String ticketing() {
-		return "cinema/ticketing";
+	public void ticketing() {
+	}
+	
+	@RequestMapping("/seat")
+	public void seat() {
 	}
 }
