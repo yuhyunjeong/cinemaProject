@@ -23,6 +23,10 @@ public class ManagerMemberSalesController {
 		List<Orders> list = orderService.selectAll();
 		model.addAttribute("orderList", list);
 	}
+	@RequestMapping("/orderDetail")
+	public void orderList(Long orderCode) {
+		
+	}
 	
 	@RequestMapping("/salesByMonth")
 	public void salesByMonth() {}

@@ -31,7 +31,7 @@
   			
   			<c:forEach items="${requestScope.orderList}" var="order">
 			    <tr class="table-active">
-			      <th scope="row">${order.orderCode}</th>
+			      <th scope="row"><a href="/manager/orderDetail">${order.orderCode}</a></th>
 			      <td>${order.orderState}</td>
 			      <td>영화이름</td>
 			      <td>${order.orderDate}</td>
