@@ -97,7 +97,8 @@
 						<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
 						<li class="nav-item">
-							<button type="button" class="btn btn-primary">관리</button>
+							<button type="button" class="btn btn-primary"
+							onclick= "location.href='${pageContext.request.contextPath}/manager/orderList'">관리</button>
 						</li>
 					</ul>
 					<form class="d-flex">
