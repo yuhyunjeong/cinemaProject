@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.mvc.domain.Movie;
+import kosta.mvc.domain.Orders;
 import kosta.mvc.service.MovieService;
+import kosta.mvc.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -16,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class ManagerController {
 
 	private final MovieService movieService;
+	
+	private final OrderService orderService;
 	
 	@RequestMapping("/managerMain")
 	public void main() {}
@@ -45,7 +49,11 @@ public class ManagerController {
 	public void paymentComplete() {}
 	
 	@RequestMapping("/orderList")
-	public void orderList() {}
+	public void orderList(Model model) {
+		
+		List<Orders> list = orderService.selectAll();
+		model.addAttribute("orderList", list);
+	}
 	
 	@RequestMapping("/salesByMonth")
 	public void salesByMonth() {}
