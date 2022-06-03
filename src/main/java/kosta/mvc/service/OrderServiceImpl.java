@@ -22,4 +22,12 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepo.findAll();
 	}
 
+	@Override
+	public Orders selectByOrderCode(Long orderCode) {
+		// TODO Auto-generated method stub
+		Orders order = orderRepo.findById(orderCode).orElse(null);
+		if(order==null) throw new RuntimeException("예매 내역 상세정보를 불러올 수 없습니다.");
+		return order;
+	}
+
 }

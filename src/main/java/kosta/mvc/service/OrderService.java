@@ -7,4 +7,6 @@ import kosta.mvc.domain.Orders;
 public interface OrderService {
 	
 	List<Orders> selectAll();
+
+	Orders selectByOrderCode(Long orderCode);
 }

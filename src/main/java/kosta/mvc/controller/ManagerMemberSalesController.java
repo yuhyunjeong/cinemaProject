@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Orders;
 import kosta.mvc.service.OrderService;
@@ -23,9 +25,11 @@ public class ManagerMemberSalesController {
 		List<Orders> list = orderService.selectAll();
 		model.addAttribute("orderList", list);
 	}
-	@RequestMapping("/orderDetail")
-	public void orderList(Long orderCode) {
-		
+	@RequestMapping("/orderDetail/{orderCode}")
+	public ModelAndView orderList(@PathVariable Long orderCode) {
+		Orders order = orderService.selectByOrderCode(orderCode);
+		System.out.println("order = " + order);
+		return new ModelAndView("manager/orderDetail","order", order);
 	}
 	
 	@RequestMapping("/salesByMonth")
