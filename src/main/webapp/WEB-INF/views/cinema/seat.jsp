@@ -82,7 +82,7 @@
 	
 	<div class="form-group col-lg-4" style="display: inline-block; width: 560px;">
 		<div class="card">
-		  <div class="card-body">
+		  <div class="card-body" style="justify-content: center;">
 		   <div class="seat-wrapper"></div>
 		  </div>
 		</div>
@@ -236,7 +236,7 @@
     let clicked = "";
     let div = "";
 
-    for (let i = 0; i < 8; i++) {
+     for (let i = 0; i < 8; i++) {
         div = document.createElement("div");
         seatWrapper.append(div);
         for (let j = 1; j < 11; j++) {
@@ -273,6 +273,7 @@
         }
     }
 
+    //상영관 코드 1이명 (일반)80
     function mapping(input, i, j) {
         if (i === 0) {
             input.value = "A" + j;
@@ -291,7 +292,69 @@
         } else if (i === 7) {
             input.value = "H" + j;
         }
+    } 
+    
+    //상영관 코드 2이명 (특별관) 64석
+    
+   /* for (let i = 0; i < 8; i++) {
+        div = document.createElement("div");
+        seatWrapper.append(div);
+        for (let j = 1; j < 9; j++) {
+            const input = document.createElement('input');
+            input.type = "button";
+            input.name = "seats"
+            input.classList = "seat";
+            
+            mapping(input, i, j);
+            div.append(input);
+            input.addEventListener('click', function(e) {
+                console.log(e.target.value);
+                //중복방지 함수
+                selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
+
+                //click class가 존재할때(제거해주는 toggle)
+                if (input.classList.contains("clicked")) {
+                    input.classList.remove("clicked");
+                    clicked = document.querySelectorAll(".clicked");
+                    selectedSeats.splice(selectedSeats.indexOf(e.target.value), 1);
+                    clicked.forEach((data) => {
+                        selectedSeats.push(data.value);
+                    });
+                    //click class가 존재하지 않을때 (추가해주는 toggle)
+                } else {
+                    input.classList.add("clicked");
+                    clicked = document.querySelectorAll(".clicked");
+                    clicked.forEach((data) => {
+                        selectedSeats.push(data.value);
+                    })
+                }
+                console.log(selectedSeats);
+            })
+        }
     }
+
+    //상영관 코드 1이명 (일반)80
+    function mapping(input, i, j) {
+        if (i === 0) {
+            input.value = "A" + j;
+        } else if (i === 1) {
+            input.value = "B" + j;
+        } else if (i === 2) {
+            input.value = "C" + j;
+        } else if (i === 3) {
+            input.value = "D" + j;
+        } else if (i === 4) {
+            input.value = "E" + j;
+        } else if (i === 5) {
+            input.value = "F" + j;
+        } else if (i === 6) {
+            input.value = "G" + j;
+        } else if (i === 7) {
+            input.value = "H" + j;
+        }
+        
+    }
+     */
 </script>
 
 </body>

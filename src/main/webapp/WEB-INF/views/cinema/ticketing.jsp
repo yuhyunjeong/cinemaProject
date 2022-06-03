@@ -39,9 +39,6 @@
     height: 250px;
     overflow: scroll;
     overflow-x: hidden;
-    /* background-color: none; */
-    /* border-collapse: collapse; */
-    border-style: none;
 }
 
 <!-- 여기부턴 데이터 넣고 확인 -->
