@@ -19,8 +19,7 @@ public class Screen {
 	@Id
 	private int screenCode;
 	
-	@Column(length = 3)
-	private String screenRow;
+	private int screenRow;
 	
 	private int screenCol;
 	
