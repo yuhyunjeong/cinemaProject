@@ -42,12 +42,6 @@ public class ManagerController {
 	@RequestMapping("productWrite")
 	public void productWrite() {}
 	
-	@RequestMapping("/payment")
-	public void payment() {}
-	
-	@RequestMapping("/paymentComplete")
-	public void paymentComplete() {}
-	
 	@RequestMapping("/orderList")
 	public void orderList(Model model) {
 		

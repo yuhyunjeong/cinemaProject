@@ -12,4 +12,10 @@ public class MemberController {
 	
 	@RequestMapping("/join")
 	public void join() {}
+	
+	@RequestMapping("/payment")
+	public void payment() {}
+	
+	@RequestMapping("/paymentComplete")
+	public void paymentComplete() {}
 }
