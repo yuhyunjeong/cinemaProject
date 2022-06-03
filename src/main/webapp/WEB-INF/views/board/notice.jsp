@@ -1,15 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>
+	<style>
+		table {
+		    margin-left:auto; 
+		    margin-right:auto;
+		}
+		td, th {
+			text-align: center;
+		}
+	</style>
 	<body>
-		<h2>공지사항 게시판</h2>
-		<table class="table table-hover">
+		<h2>&nbsp;&nbsp;공지사항 게시판</h2>
+		<table class="table table-hover" style="width: 1000px;">
 		  <thead>
 		    <tr>
 		      <th scope="col">글번호</th>
@@ -32,9 +42,12 @@
 			  		<c:forEach items="${requestScope.list}" var="notice">
 			  			<tr class="table-active">
 					      <th scope="row">${notice.bno}</th>
-					      <td>${notice.title}</td>
+					      <td style="width: 300;"><a href="${pageContext.request.contextPath}/board/noticeDetail/${notice.bno}">${notice.title}</a></td>
 					      <td>${notice.member.id}</td>
-					      <td>${notice.insertDate}</td>
+					      <td>
+						      <fmt:parseDate value="${notice.insertDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parseIdateInsert"/>
+						      <fmt:formatDate value="${parseIdateInsert}" pattern="yyyy-MM-dd HH:mm"/>
+					      </td>
 					      <td>${notice.readnum}</td>
 			  			</tr>
 			  		</c:forEach>
