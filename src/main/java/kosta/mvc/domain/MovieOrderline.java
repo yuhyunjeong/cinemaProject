@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -25,19 +26,13 @@ public class MovieOrderline {
 	@SequenceGenerator(name="movieorderline_pk", allocationSize = 1, sequenceName = "movieorderline_pk")
 	private Long movieOrderlineCode;
 	
-	@ManyToOne
-	@JoinColumn(name="seat_code", nullable = false)
-	private Seat seatCode;
+	@OneToOne
+	@JoinColumn(name="seat_performance_code", nullable = false)
+	private SeatPerformance seatPerformanceCode;
 	
 	@ManyToOne
 	@JoinColumn(name="order_code", nullable = false)
 	private Orders orderCode;
-	
-	@ManyToOne
-	@JoinColumn(name="time_code", nullable = false)
-	private Time timeCode;
-	
-	private boolean isBooked;
 	
 	private boolean isWithGift;
 }
