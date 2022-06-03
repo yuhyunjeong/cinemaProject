@@ -18,21 +18,26 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SeatPerformance {
+public class MovieOrderline {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seatperformance_pk")
-	@SequenceGenerator(name="seatperformance_pk", allocationSize = 1, sequenceName = "seatperformance_pk")
-	private Long seatPerformanceCode;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movieorderline_pk")
+	@SequenceGenerator(name="movieorderline_pk", allocationSize = 1, sequenceName = "movieorderline_pk")
+	private Long movieOrderlineCode;
 	
 	@ManyToOne
-	@JoinColumn(name="seat_code")
+	@JoinColumn(name="seat_code", nullable = false)
 	private Seat seatCode;
 	
 	@ManyToOne
-	@JoinColumn(name="time_code")
+	@JoinColumn(name="order_code", nullable = false)
+	private Orders orderCode;
+	
+	@ManyToOne
+	@JoinColumn(name="time_code", nullable = false)
 	private Time timeCode;
 	
 	private boolean isBooked;
 	
+	private boolean isWithGift;
 }
