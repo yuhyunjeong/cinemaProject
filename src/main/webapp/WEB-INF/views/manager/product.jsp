@@ -75,7 +75,9 @@
   			<tr class="table-active">
 		      <th scope="row">${movie.movieCode}</th>
 		      <td>
-		      	${movie.movieName}
+		      	<a href="${pageContext.request.contextPath}/manager/productDetail">
+		      		${movie.movieName}
+		      	</a>
 		      </td>
 		      <td>${movie.movieInsertdate}</td>
   			</tr>
@@ -92,31 +94,54 @@
   <input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/>
 </div><p><p>
 
-<div class="text-center">
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">&laquo;</a>
-    </li>
-    <li class="page-item active">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">&raquo;</a>
-    </li>
-  </ul>
 
+
+<div class="text-center">
+	<nav class="pagination-container">
+	  <ul class="pagination">
+	  <c:set var="doneLoop" value="false"/>
+	  	<c:if test="${(startPage-blockCount) > 0}"> <!-- (-2) > 0  -->
+			<li class="page-item disabled">
+		      <a class="page-link" href="${pageContext.request.contextPath}/manager/product?nowPage=${startPage-1}">&laquo;</a>
+		    </li>
+		</c:if>
+		
+		
+			<c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+				  
+				<c:if test="${(i-1)>=pageList.getTotalPages()}">
+					<c:set var="doneLoop" value="true"/>
+				</c:if> 
+				    
+				<c:if test="${not doneLoop}">
+					<li class="page-item" style="float: left">
+	     				<a class="page-link ${i==nowPage?'pagination-active':page}" href="${pageContext.request.contextPath}/manager/product?nowPage=${i}">${i}</a>
+	   				</li> 
+				</c:if>
+				   
+			</c:forEach>
+		
+
+<%-- 	    <li class="page-item active">
+	      <a class="page-link ${i==nowPage?'pagination-active':page}" href="${pageContext.request.contextPath}/manager/product?nowPage=${i}">${i}</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" href="#">2</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" href="#">3</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" href="#">4</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" href="#">5</a>
+	    </li> --%>
+	    <li class="page-item">
+	      <a class="page-link" href="#">&raquo;</a>
+	    </li>
+	  </ul>
+	</nav>
 </div>
 
 
