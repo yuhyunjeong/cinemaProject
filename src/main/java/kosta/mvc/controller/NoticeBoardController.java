@@ -17,10 +17,11 @@ public class NoticeBoardController {
 	private final NoticeBoardService noticeBoardService;
 
 	@RequestMapping("/notice")
-	public String notice(Model model) {
+	public void notice(Model model) {
+		System.out.println(1111);
 		List<NoticeBoard> list = noticeBoardService.selectAll();
+		System.out.println(2222);
 		model.addAttribute("list", list);
 
-		return "board/notice";
 	}
 }

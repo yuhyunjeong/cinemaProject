@@ -9,9 +9,6 @@
 	</head>
 	<body>
 		<h2>공지사항 게시판</h2>
-		<c:forEach items="${list}" var="board">
-			<h2>board.bno</h2>
-		</c:forEach>
 		<table class="table table-hover">
 		  <thead>
 		    <tr>
@@ -23,13 +20,26 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr class="table-active">
-		      <th scope="row">Active</th>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
+			  <c:choose>
+			  	<c:when test="${empty requestScope.list}">
+			  		<tr>
+			  			<td colspan="5" style="text-align: center;">
+			  				<b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b>
+			  			</td>
+			  		</tr>
+			  	</c:when>
+			  	<c:otherwise>
+			  		<c:forEach items="${requestScope.list}" var="notice">
+			  			<tr class="table-active">
+					      <th scope="row">${notice.bno}</th>
+					      <td>${notice.title}</td>
+					      <td>${notice.member.id}</td>
+					      <td>${notice.insertDate}</td>
+					      <td>${notice.readnum}</td>
+			  			</tr>
+			  		</c:forEach>
+			  	</c:otherwise>
+			  </c:choose>
 		  </tbody>
 		</table>
 	</body>
