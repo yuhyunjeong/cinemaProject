@@ -18,9 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class ManagerController {
 
 	private final MovieService movieService;
-	
-	private final OrderService orderService;
-	
+
 	@RequestMapping("/managerMain")
 	public void main() {}
 	
@@ -41,21 +39,5 @@ public class ManagerController {
 	
 	@RequestMapping("productWrite")
 	public void productWrite() {}
-	
-	@RequestMapping("/orderList")
-	public void orderList(Model model) {
-		
-		List<Orders> list = orderService.selectAll();
-		model.addAttribute("orderList", list);
-	}
-	
-	@RequestMapping("/salesByMonth")
-	public void salesByMonth() {}
-	
-	@RequestMapping("/salesByMovie")
-	public void salesByMovie() {}
-	
-	@RequestMapping("/members")
-	public void members() {}
 	
 }
