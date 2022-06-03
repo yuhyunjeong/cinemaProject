@@ -1,5 +1,6 @@
 package kosta.mvc.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,7 +19,8 @@ public class Screen {
 	@Id
 	private int screenCode;
 	
-	private int screenRow;
+	@Column(length = 3)
+	private String screenRow;
 	
 	private int screenCol;
 	
