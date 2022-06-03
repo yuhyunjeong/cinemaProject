@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -18,19 +19,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Movie {
 
 	@Id
 	@NonNull
 	private String movieCode;
 	
-	@NonNull
 	private String movieName;
 	
-	@NonNull
 	private String movieSummary;
 	
-	@NonNull
 	private int movieRunningtime;
 	
 	@CreationTimestamp
@@ -39,10 +38,8 @@ public class Movie {
 	@CreationTimestamp
 	private LocalDateTime movieEnddate;
 	
-	@NonNull
 	private int movieRated;
 	
-	@NonNull
 	private String movieGenre;
 	
 	@CreationTimestamp
