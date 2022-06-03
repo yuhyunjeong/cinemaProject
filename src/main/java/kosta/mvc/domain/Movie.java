@@ -45,5 +45,7 @@ public class Movie {
 	@CreationTimestamp
 	private LocalDateTime movieInsertdate;
 	
+	private String movieImage;
+	
 	
 }
