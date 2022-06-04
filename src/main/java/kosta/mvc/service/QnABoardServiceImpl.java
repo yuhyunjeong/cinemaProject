@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class QnABoardServiceImpl implements QnABoardService {
-	private QnABoardRepository qnABoardRepository;
+	private final QnABoardRepository qnABoardRepository;
 
 	@Override
 	public List<QnABoard> selectAll() {
