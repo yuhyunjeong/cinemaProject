@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import kosta.mvc.domain.NoticeBoard;
+import kosta.mvc.domain.QnABoard;
 import kosta.mvc.service.NoticeBoardService;
+import kosta.mvc.service.QnABoardService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BoardController {
 	private final NoticeBoardService noticeBoardService;
+	private final QnABoardService qnABoardService;
 
 	@RequestMapping("/notice")
 	public void notice(Model model) {
@@ -27,8 +30,13 @@ public class BoardController {
 	
 	@RequestMapping("/noticeDetail/{bno}")
 	public ModelAndView noticeDetail(@PathVariable Long bno) {
-		System.out.println(bno);
 		NoticeBoard board = noticeBoardService.selectBy(bno);
 		return new ModelAndView("board/noticeDetail", "board", board);
+	}
+	
+	@RequestMapping("/qna")
+	public void qna(Model model) {
+		List<QnABoard> list = qnABoardService.selectAll();
+		model.addAttribute("list", list);
 	}
 }
