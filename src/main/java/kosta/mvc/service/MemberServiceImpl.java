@@ -2,6 +2,7 @@ package kosta.mvc.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -28,15 +29,19 @@ public class MemberServiceImpl implements MemberService {
 
 	
 	@Override
-	public String join(Member member) {
+	public void join(Member member) {
 		idCheck(member);
 		memberRepo.save(member);
-		return member.getId();
+	
 	}
 	
 	private void idCheck(Member member) {
-		//List<Member> findMembers = 
-				//memberRepo.findById(member.getId());
+		Optional<Member> findMembers = 
+				memberRepo.findById(member.getId());
+		
+		if(!findMembers.isEmpty()) {
+			throw new IllegalStateException("이미 존재하는 회원입니다.");
+		}
 
 	}
 

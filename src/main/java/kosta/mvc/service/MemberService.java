@@ -12,7 +12,7 @@ public interface MemberService {
 	/**
 	 * 회원가입
 	 * */
-	String join(Member member);
+	void join(Member member);
 	
 	/**
 	 * 아이디 중복 확인

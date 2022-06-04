@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +35,8 @@ public class Member {
 	@Column(nullable=false)
 	private String name;
 	private int grade;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 	
 	@Column(length = 13)
