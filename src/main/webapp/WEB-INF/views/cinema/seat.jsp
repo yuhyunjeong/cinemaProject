@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 .seat {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: rgba( 255, 255, 255, 0.5 );
     color: white;
     border: 1px solid white; 
