@@ -1,6 +1,7 @@
 package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -32,18 +33,15 @@ public class Movie {
 	
 	private int movieRunningtime;
 	
-	@CreationTimestamp
-	private LocalDateTime movieStartdate;
+	private Date movieStartdate;
 	
-	@CreationTimestamp
-	private LocalDateTime movieEnddate;
+	private Date movieEnddate;
 	
 	private int movieRated;
 	
 	private String movieGenre;
 	
-	@CreationTimestamp
-	private LocalDateTime movieInsertdate;
+	private Date movieInsertdate;
 	
 	private String movieImage;
 	
