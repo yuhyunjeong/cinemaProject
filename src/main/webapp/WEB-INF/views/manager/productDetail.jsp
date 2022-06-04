@@ -10,5 +10,18 @@
 <body>
 	<h1>productDetail 페이지 입니다.</h1>
 	
+	<table>
+		<tr>
+			<td>상품코드</td>
+		</tr>
+		<tr>
+			<td>상품이름</td>
+		</tr>
+		<tr>
+			<td>상품설명(영화줄거리)</td>
+		</tr>		
+		
+	</table>
+	
 </body>
 </html>

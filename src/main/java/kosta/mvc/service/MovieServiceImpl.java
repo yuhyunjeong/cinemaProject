@@ -33,7 +33,8 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void insert(Movie movie) {
-		// TODO Auto-generated method stub
+		Movie saveMovie = movieRepo.save(movie);
+		System.out.println("saveMovie : " + saveMovie);
 
 	}
 

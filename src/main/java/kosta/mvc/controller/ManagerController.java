@@ -1,5 +1,7 @@
 package kosta.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,24 +29,27 @@ public class ManagerController {
 	public void main() {}
 	
 	@RequestMapping("/product")
-	public void product(Model model, @RequestParam(defaultValue = "1") int nowPage) {
+//	public void product(Model model, @RequestParam(defaultValue = "1") int nowPage) {
+	public void product(Model model) {	
 		
 		// service에서 호출해서 영화검색
-//		List<Movie> movieList = movieService.selectAll();
+		List<Movie> movieList = movieService.selectAll();
+		model.addAttribute("movieList", movieList);
+
 		
 		// 페이징 처리하기
-		Pageable page = PageRequest.of((nowPage-1), PAGE_COUNT, Direction.DESC, "movieCode");
-		Page<Movie> moviePageList = movieService.selectAll(page);
-		
-		model.addAttribute("moviePageList", moviePageList);
-		
-		int blockCount = 3;
-		int temp = (nowPage-1)%BLOCK_COUNT; // 나머지는 항상 0 1 2 => blockCount가 3이므로 3보다 작은값 
-		int startPage = nowPage-temp;
-		
-		model.addAttribute("blockCount", BLOCK_COUNT);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("nowPage", nowPage);
+//		Pageable page = PageRequest.of((nowPage-1), PAGE_COUNT, Direction.DESC, "movieCode");
+//		Page<Movie> moviePageList = movieService.selectAll(page);
+//		
+//		model.addAttribute("moviePageList", moviePageList);
+//		
+//		int blockCount = 3;
+//		int temp = (nowPage-1)%BLOCK_COUNT; // 나머지는 항상 0 1 2 => blockCount가 3이므로 3보다 작은값 
+//		int startPage = nowPage-temp;
+//		
+//		model.addAttribute("blockCount", BLOCK_COUNT);
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("nowPage", nowPage);
 	}
 	
 	@RequestMapping("/productDetail")
