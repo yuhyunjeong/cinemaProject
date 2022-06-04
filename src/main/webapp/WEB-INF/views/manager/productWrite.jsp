@@ -12,20 +12,18 @@
 
 	<form>	
 		<fieldset>
-		<div class="form-group">
+		<div class="form-group" style="width: 1000px">
 		
 		    <label class="form-label mt-4" for="form-label">상품명</label>
 		    <input class="form-control" type="text" placeholder="상품명을 입력해주세요">
 		    
-		    <label class="form-label mt-4" for="form-label">상품코드</label>
-		    <input class="form-control" type="text" placeholder="상품코드를 입력해주세요">
 		 
 		</div>
-	    <div class="form-group">
+	    <div class="form-group" style="width: 1000px">
 	      <label for="exampleTextarea" class="form-label mt-4">상품설명</label>
 	      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
 	    </div>
-	    <div class="form-group">
+	    <div class="form-group" style="width: 1000px">
 	      <label for="formFile" class="form-label mt-4">이미지</label>
 	      <input class="form-control" type="file" id="formFile">
 	    </div><p><p>

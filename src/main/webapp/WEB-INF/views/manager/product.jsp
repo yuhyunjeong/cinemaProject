@@ -6,19 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 	h1 {
 		text-align: center;
 	}
-
+	
+	table { 
+		margin-left: auto; 
+		margin-right: auto;
+	}
+	
+	.form-group {
+		margin-left: auto; 
+		margin-right: auto; 
+	}
 </style>
+<script type="text/javascript">
+	$(function() {
+		
+		// 전체검색
+		$("#exampleSelect1").click(function() {
+			$.ajax({
+				url:"product", // 서버요청주소 
+				type:"post", // 요청방식 
+				dataType:"text" // 서버가 보내온 데이터(응답)타입 
+				success: function(result) {
+					alert(result)	
+				}
+			});
+		}
+		
+	
+	
+	}) // ready End
+	
+</script>
 </head>
 <body>
 	<h1>상품관리 page입니다.</h1>
 
- 	<div class="form-group">
+ 	<div class="form-group" style="width: 1000px">
 		<label for="exampleSelect1" class="form-label mt-4 col-lg-12">상품 종류</label> 
-		<select class="form-select" id="exampleSelect1">
+		<select class="form-select" id="exampleSelect1" style="width: 150px; height:50px">
 			<option>영화</option>
 			<option>먹거리</option>
 			<option>사은품</option>
@@ -51,38 +81,38 @@
 </div> -->
 
 
-	<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">상품코드</th>
-      <th scope="col">상품이름</th>
-      <th scope="col">상품등록일</th>
-    </tr>
-  </thead>
+	<table class="table table-hover" style="width: 1000px">
+	  <thead>
+	    <tr>
+	      <th scope="col">상품코드</th>
+	      <th scope="col">상품이름</th>
+	      <th scope="col">상품등록일</th>
+	    </tr>
+	  </thead>
 
   
   <tbody>
   <c:choose>
-  	<c:when test="${empty requestScope.movieList}">
-  		<tr>
-  			<td>
-  				<b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b>
-  			</td>
-  		</tr>
-  	</c:when>
-  	<c:otherwise>
-  		<c:forEach items="${requestScope.movieList}" var="movie">
-  			<tr class="table-active">
-		      <th scope="row">${movie.movieCode}</th>
-		      <td>
-		      	<a href="${pageContext.request.contextPath}/manager/productDetail">
-		      		${movie.movieName}
-		      	</a>
-		      </td>
-		      <td>${movie.movieInsertdate}</td>
-  			</tr>
-  		</c:forEach>
-  	</c:otherwise>
+ 		<c:when test="${empty requestScope.movieList}">
+	  		<tr>
+	  			<td colspan="3" style="text-align: center">
+	  				<b><span>등록된 게시물이 없습니다.</span></b>
+	  			</td>
+	  		</tr>
+  		</c:when>
+	  	<c:otherwise>
+	  		<c:forEach items="${requestScope.movieList}" var="movie">
+	  			<tr class="table-active">
+			      <th scope="row">${movie.movieCode}</th>
+			      <td>
+			      	<a href="${pageContext.request.contextPath}/manager/productDetail">
+			      		${movie.movieName}
+			      	</a>
+			      </td>
+			      <td>${movie.movieInsertdate}</td>
+	  			</tr>
+	  		</c:forEach>
+	  	</c:otherwise>
   </c:choose>
     
 
@@ -90,13 +120,15 @@
 </table>
 
 	
-<div class="col-lg-12 col-sm-12 text-lg-end">
-  <input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/>
+<div class="col-lg-12 col-sm-12 text-lg-end" style="width:1000px">
+  	<div class="text-lg-end">
+  		<input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/>
+  	</div>
 </div><p><p>
 
 
-
-<div class="text-center">
+<!-- 페이징처리 -->
+<%-- <div class="text-center">
 	<nav class="pagination-container">
 	  <ul class="pagination">
 	  <c:set var="doneLoop" value="false"/>
@@ -119,7 +151,7 @@
 	   				</li> 
 				</c:if>
 				   
-			</c:forEach>
+			</c:forEach> --%>
 		
 
 <%-- 	    <li class="page-item active">
