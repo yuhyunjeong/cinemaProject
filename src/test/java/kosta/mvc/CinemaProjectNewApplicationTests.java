@@ -55,19 +55,5 @@ class CinemaProjectNewApplicationTests {
         }
         
 	}
-	
-	@Test
-	void selectMemberByIdPwd() {
-		Member m = memberRepo.loginCheck("test0", "1234");
-		System.out.println(m.getName());
-	}
 
 }
-
-
-
-
-
-
-
-
