@@ -18,4 +18,6 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	 * */
 	@Query("select id from Member m where id=?1")
 	String idCheck(String id);
+	
+	
 }

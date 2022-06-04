@@ -1,6 +1,8 @@
 package kosta.mvc.service;
 
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -24,10 +26,20 @@ public class MemberServiceImpl implements MemberService {
 	    
 	}
 
+	
 	@Override
-	public void idCheck(String id) {
-		// TODO Auto-generated method stub
+	public String join(Member member) {
+		idCheck(member);
+		memberRepo.save(member);
+		return member.getId();
+	}
+	
+	private void idCheck(Member member) {
+		//List<Member> findMembers = 
+				//memberRepo.findById(member.getId());
 
 	}
+
+	
 
 }

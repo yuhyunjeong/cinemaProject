@@ -10,9 +10,14 @@ public interface MemberService {
 	Member loginCheck(String id, String password);
 	
 	/**
+	 * 회원가입
+	 * */
+	String join(Member member);
+	
+	/**
 	 * 아이디 중복 확인
 	 * */
-	void idCheck(String id);
+	//void idCheck(String id);
 	
 	/**
 	 * 아이디 찾기
@@ -22,9 +27,7 @@ public interface MemberService {
 	 * 비밀번호 찾기
 	 * */
 	
-	/**
-	 * 회원가입
-	 * */
+	
 	
 	
 	
