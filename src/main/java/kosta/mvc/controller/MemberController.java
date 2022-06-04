@@ -30,11 +30,19 @@ public class MemberController {
 		if(member != null) {
 			session.setAttribute("member", member);
 		}
-		return "redirect:/";
+		return "/";
 	}
 	
-	@RequestMapping("/join")
-	public void join() {}
+	@RequestMapping("/joinForm")
+	public void joinForm() {}
+	
+	@PostMapping("/join")
+	public String join(Member member) {
+		memService.join(member);
+		
+		return "redirect:/";
+		
+	}
 	
 	@RequestMapping("/payment")
 	public void payment() {}
