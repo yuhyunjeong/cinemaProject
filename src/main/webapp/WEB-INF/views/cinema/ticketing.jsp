@@ -8,28 +8,6 @@
 
 <style>
 
-.sort-wrapper {
-    margin: 10px 6px 6px 10px;
-    display: flex;
-    font-size: 12px;
-}
-
-.sort-wrapper>div {
-    padding: 3px;
-}
-
-.sort-wrapper>div:hover {
-    border-bottom: 1px solid white;
-}
-
-.sort-selected {
-    font-weight: bold;
-    border-bottom: 1px solid white;
-}
-
-.sort-korean {
-    margin-left: 6px;
-}
 
 
 .reserve-date {
@@ -41,31 +19,46 @@
     overflow-x: hidden;
 }
 
-<!-- 여기부턴 데이터 넣고 확인 -->
+
+.reserve-date::-webkit-scrollbar { /*스크롤바 전체 */
+	background: none;
+}
+.reserve-date::-webkit-scrollbar-thumb { /*스크롤 막대 */
+    background: rgba( 255, 255, 255, 0.3 );
+    
+}
+.reserve-date::-webkit-scrollbar-track { /*스크롤 막대 외부 */
+    background: none;
+}
+
+
 .movie-date-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px 2px;
+    background-color: rgba( 255, 255, 255, 0 );
+    border: white 1px;
+    
 }
 
 .movie-week-of-day {
     margin-left: 5px;
-    font-size: 10px;
+    font-size: 15px;
     width: 12px;
     height: 22px;
-    line-height: 22px;
+    line-height: 30px;
 }
 
 .movie-day {
     text-align: center;
-    width: 34px;
-    height: 22px;
+    width: 30px;
+    height: 20px;
     font-size: 17px;
     font-weight: bold;
+    border-collapse: collapse;
 }
 
-<!-- -->
 .saturday {
     color: #39CBFB;
     font-weight: bold;
@@ -77,7 +70,7 @@
 }
 
 .movie-date-wrapper-active>* {
-    color: pink;
+    color: white;
 }
 
 
@@ -92,12 +85,8 @@
 <div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
 	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
 		<div class="card">
-				<div class="movie-part">
-					<h4 class="card-title">영화</h4>
-					<div class="sort-wrapper">
-						<div class="sort-rate sort-selected">예매율순</div>
-						<div class="sort-korean">가나다순</div>
-					</div>
+				<div class="movie-part"><p>
+					<h4 class="card-title">&nbsp;&nbsp;영화</h4>
 					<div class="movie-list">영화 목록 가져오기</div>
 			</div>
 		</div>
@@ -106,8 +95,8 @@
 	
 	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
 		<div class="card">
-			<div class="day-part">
-				<h4 class="card-title">날짜</h4>
+			<div class="day-part"><p>
+				<h4 class="card-title">&nbsp;&nbsp;날짜</h4>
 				<div class="reserve-date"></div>
 			</div>
 		</div>
@@ -116,13 +105,13 @@
 	
 	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
 		<div class="card">
-			<div class="time-part">
-			<h4 class="card-title">시간</h4>
+			<div class="time-part"><p>
+			<h4 class="card-title">&nbsp;&nbsp;시간</h4>
 			</div>
 		</div>
 	</div>
 </div>
-<p><p>
+<p><p><p><p>
 
 <!-- 영화예약정보 -->    
     
@@ -148,7 +137,7 @@
 	&nbsp;&nbsp;
 	
 	<div class="form-group col-lg-4" style="display: inline-block; width: 200px; height: 150px;">
-    	<button type="submit" class="btn btn-primary btn-lg" style="width: 200px; height: 150px;">좌석선택 <p> >> </button>
+    	<button type="button" class="btn btn-primary btn-lg" style="width: 200px; height: 150px;" onclick="${pageContext.request.contextPath}/cinema/seat">좌석선택 <p> >> </button>
 	</div>
 	
 </div>

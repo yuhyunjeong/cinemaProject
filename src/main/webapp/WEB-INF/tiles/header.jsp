@@ -94,14 +94,14 @@
 							href="${pageContext.request.contextPath}/cinema/movie">영화 <span
 								class="visually-hidden">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">예매</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cinema/ticketing">예매</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
+
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/qna">문의사항</a></li>
-						<li class="nav-item">
-							<button type="button" class="btn btn-primary"
-							onclick= "location.href='${pageContext.request.contextPath}/manager/orderList'">관리</button>
-						</li>
+
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/manager/orderList">관리</a></li>
+
 					</ul>
 					<form class="d-flex">
 						<input class="form-control me-sm-2" type="text"
