@@ -61,7 +61,8 @@
 					data-bs-container="body" data-bs-toggle="popover"
 					data-bs-placement="right"
 					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					data-bs-original-title="Popover Title">마이페이지</button>
+					data-bs-original-title="Popover Title"
+					onclick="location.href='${pageContext.request.contextPath}/member/join'">회원가입</button>
 				&nbsp;&nbsp;&nbsp;
 				<button name="login" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
@@ -69,7 +70,7 @@
 					data-bs-placement="right"
 					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 					data-bs-original-title="Popover Title"
-					onclick="location.href='${pageContext.request.contextPath}/member/login'">로그인</button>
+					onclick="location.href='${pageContext.request.contextPath}/member/loginForm'">로그인</button>
 				&nbsp;&nbsp;&nbsp;
 				<button name="center" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
