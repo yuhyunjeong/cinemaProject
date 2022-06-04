@@ -10,36 +10,40 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <style type="text/css">
-
 </style>
 </head>
 <body>
-<div class="col-sm-6, container" style="text-align: center;">
-	<h1>로그인</h1>
+	<div class="col-sm-6, container" style="text-align: center;">
+		<h1>카드 가운데 정렬 해야함</h1>
 
-	<form th:action="login" method="post">
-		
-			
-			<div class="form-group">
-				<label th:for="exampleInputId1" class="form-label mt-4">아이디</label> 
-				<input type="id" class="form-control"
-					id="exampleInputId1" aria-describedby="idHelp"
-					placeholder="아이디를 입력해주세요."> <small id="idHelp"
-					class="form-text text-muted">We'll never share your email
-					with anyone else.</small>
+		<div class="card border-secondary mb-3" style="max-width: 40rem;"
+			display:inline-block;>
+			<div class="card-header">로그인</div>
+			<div class="card-body">
+				<form th:action="login" method="post">
+
+
+					<div class="form-group">
+						<label th:for="exampleInputId1" class="form-label mt-4">아이디</label>
+						<input type="id" class="form-control" id="exampleInputId1"
+							aria-describedby="idHelp" placeholder="아이디를 입력해주세요."> <small
+							id="idHelp" class="form-text text-muted">We'll never
+							share your email with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<label th:for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
+						<input type="password" class="form-control"
+							id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요.">
+
+					</div>
+					<br>
+					<div>
+						<button type="submit" class="btn btn-primary">로그인</button>
+					</div>
+					<br>
+				</form>
 			</div>
-			<div class="form-group">
-				<label th:for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
-				<input type="password" class="form-control"
-					id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요.">
-					
-			</div>
-			<br>
-			<div>
-			<button type="submit" class="btn btn-primary">로그인</button>
-			</div>
-			<br>
-	</form>
-</div>
+		</div>
+	</div>
 </body>
 </html>
