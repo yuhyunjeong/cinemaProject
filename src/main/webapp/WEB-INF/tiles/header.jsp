@@ -62,7 +62,7 @@
 					data-bs-placement="right"
 					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 					data-bs-original-title="Popover Title"
-					onclick="location.href='${pageContext.request.contextPath}/member/join'">회원가입</button>
+					onclick="location.href='${pageContext.request.contextPath}/member/joinForm'">회원가입</button>
 				&nbsp;&nbsp;&nbsp;
 				<button name="login" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
