@@ -10,7 +10,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 </head>
-<script type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 <body>
 	<div class="col-sm-6, container" style="text-align: center;">
 		<h1>카드 가운데 정렬 해야함</h1>
@@ -29,7 +30,9 @@
 							<input
 							class="form-control form-control-lg" type="text"
 							placeholder="아이디를 입력해주세요." id="id"
-							name="id" onclick="idCheck()" required="required">
+							name="id"  required="required">
+							<input type="button" class="btn btn-success" id="check" name="check" value="중복체크">
+							<div id="idCheck" name="idCheck"></div>
 					</div>
 					
 					<div class="form-group">
@@ -87,5 +90,63 @@
 			</div>
 		</form>
 	</div>
+	
+	<script type="text/javascript">
+$(function(){
+	
+	var idx = false;
+	
+	$("#check").click(function(){
+		//alert(1);
+		$.ajax({
+			url:"idCheck",
+			type:"post",
+			data:{
+				"id":$("#id").val()
+			},
+			success: function(data){
+				console.log(data);
+				if($.trim(data)=="YES"){
+					if($("#id").val()!=''){
+						
+						idx=true;
+						$("#id").attr("readonly",true);
+						var html="<div>사용 가능</div>";
+						$("#idCheck").empty();
+						$("#idCheck").append(html);
+					}
+				}else{
+					if($("#id").val()!=''){
+						var html="<div>사용 불가능한 아이디 입니다.</div>";
+						$("#idCheck").empty();
+						$("#idCheck").append(html);
+					}
+				}
+			},
+			
+			
+			
+			
+		});
+		
+		
+	});
+	
+	$("#pwdCheck").blur(function(){
+		  if($('#password').val() != $('#pwdCheck').val()){
+			   	if($('#pwdCheck').val()!=''){
+				   alert("비밀번호가 일치하지 않습니다.");
+				   	    $('#pwdCheck').val('');
+				         $('#pwdCheck').focus();	
+				      }	
+			   }
+		})  
+
+	
+	
+});
+
+</script>
+	
 </body>
 </html>

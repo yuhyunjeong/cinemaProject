@@ -10,13 +10,13 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	/**
 	 * 로그인 체크
 	 * */
-	@Query("select m from Member m where id=?1 and password=?2")
+	@Query("select m from Member m where m.id=?1 and m.password=?2")
 	Member loginCheck(String id, String password);
 	
 	/**
 	 * 아이디 중복 확인
 	 * */
-	@Query("select count(m) from Member m where id=?1")
-	int idCheck(String id);
+	@Query("select m.id from Member m where m.id=?1")
+	String idCheck(String id);
 	
 }

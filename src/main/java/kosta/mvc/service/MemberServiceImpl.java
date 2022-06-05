@@ -48,9 +48,10 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int idCheck(String id) {
+	public String idCheck(String id) {
 		
-		return memberRepo.idCheck(id);
+		String result = memberRepo.idCheck(id);
+		return result;
 	}
 
 	
