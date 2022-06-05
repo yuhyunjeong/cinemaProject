@@ -35,7 +35,7 @@ public class SeatPerformance {
 	
 	@ManyToOne
 	@JoinColumn(name="time_code", nullable = false)
-	private Time timeCode;
+	private Time time;
 	
 	private boolean isBooked;
 	

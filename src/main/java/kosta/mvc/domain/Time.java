@@ -38,7 +38,7 @@ public class Time {
 	
 	@ManyToOne
 	@JoinColumn(name="movie_code")
-	private Movie movieCode;
+	private Movie movie;
 	
 	private LocalTime timeStart;
 	

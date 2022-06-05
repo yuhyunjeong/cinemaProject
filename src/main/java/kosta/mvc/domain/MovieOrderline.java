@@ -28,11 +28,11 @@ public class MovieOrderline {
 	
 	@OneToOne
 	@JoinColumn(name="seat_performance_code", nullable = false)
-	private SeatPerformance seatPerformanceCode;
+	private SeatPerformance seatPerformance;
 	
 	@ManyToOne
 	@JoinColumn(name="order_code", nullable = false)
-	private Orders orderCode;
+	private Orders order;
 	
 	private boolean isWithGift;
 }
