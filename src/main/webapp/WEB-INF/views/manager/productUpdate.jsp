@@ -36,5 +36,7 @@
 		</div><p><p>
 	  </fieldset>
 	</form>
+	
+	<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/manager/product">상품목록 리스트로 돌아가기</a>&gt;</span></div>
 </body>
 </html>

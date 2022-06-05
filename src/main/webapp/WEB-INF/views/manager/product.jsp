@@ -26,7 +26,7 @@
 	$(function() {
 		
 		// 전체검색
-		$("#exampleSelect1").click(function() {
+/* 		$("#exampleSelect1").click(function() {
 			$.ajax({
 				url:"product", // 서버요청주소 
 				type:"post", // 요청방식 
@@ -35,8 +35,22 @@
 					alert(result)	
 				}
 			});
-		}
-		
+		} */
+	
+		$("#exampleSelect1").on("change", function() {
+			/* alert(this.value) */
+			$.ajax({
+				url: "product", // 서버요청주소 
+				type: "post", // 요청방식(get, post, delete, patch),
+				dataType: "text", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
+				/* data: "value=movie", // 서버에게 보낼 parameter 정보 */
+				success: function(result) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
+					alert(result)
+				}, error: function(err) {
+					
+				}
+			});
+		});
 	
 	
 	}) // ready End
@@ -48,10 +62,10 @@
 
  	<div class="form-group" style="width: 1000px">
 		<label for="exampleSelect1" class="form-label mt-4 col-lg-12">상품 종류</label> 
-		<select class="form-select" id="exampleSelect1" style="width: 150px; height:50px">
-			<option>영화</option>
-			<option>먹거리</option>
-			<option>사은품</option>
+		<select class="form-select" id="exampleSelect1" name="productSelect" style="width: 150px; height:50px">
+			<option value="movie" selected="selected">영화</option>
+			<option value="food">먹거리</option>
+			<option value="gift">사은품</option>
 		</select>
 	</div> 
 	

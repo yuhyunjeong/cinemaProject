@@ -25,6 +25,11 @@ public interface MovieService {
 	void insert(Movie movie);
 	
 	/**
+	 * 코드번호 검색 
+	 */
+	Movie selectBy(String movieCode);
+	
+	/**
 	 * 영화 수정하기  
 	 */
 	Movie update(Movie movie);

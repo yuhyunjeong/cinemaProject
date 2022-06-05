@@ -39,6 +39,17 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
+	public Movie selectBy(String movieCode) {
+		
+		Movie movie = movieRepo.findById(movieCode).orElse(null);
+		if(movie.equals(null)) {
+			new RuntimeException("상세보기 오류가 발생했습니다.");
+		}
+		
+		return movie;
+	}
+	
+	@Override
 	public Movie update(Movie movie) {
 		// TODO Auto-generated method stub
 		return null;
@@ -49,6 +60,8 @@ public class MovieServiceImpl implements MovieService {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 
 }

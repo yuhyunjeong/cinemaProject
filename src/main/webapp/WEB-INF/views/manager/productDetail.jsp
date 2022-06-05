@@ -23,5 +23,11 @@
 		
 	</table>
 	
+<%-- 	<c:choose>
+		<c:when test="${requestScope.movieList}" var="movie">
+		
+		</c:when>
+	</c:choose> --%>
+	
 </body>
 </html>
