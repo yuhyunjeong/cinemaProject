@@ -1,11 +1,18 @@
 package kosta.mvc.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import kosta.mvc.domain.Food;
 
 public interface FoodService {
+	
+	/**
+	 * 먹거리 전체검색 
+	 */
+	List<Food> selectAll();
 	
 	/**
 	 * 먹거리 전체검색 - paging처리 
