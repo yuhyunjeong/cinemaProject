@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -21,9 +23,11 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Time {
 	
 	@Id
+	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "time_pk")
 	@SequenceGenerator(name = "time_pk", allocationSize = 1, sequenceName = "time_pk")
 	private Long timeCode;
