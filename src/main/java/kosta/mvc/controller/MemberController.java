@@ -38,6 +38,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping("logout")
+	public String logout(Member member , HttpSession session) {
+		session.removeAttribute("member");
+		return "redirect:/";
+	}
+	
 	@RequestMapping("/joinForm")
 	public void joinForm() {}
 	

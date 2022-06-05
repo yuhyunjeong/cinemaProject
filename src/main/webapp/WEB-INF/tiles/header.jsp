@@ -89,7 +89,7 @@
 							data-bs-placement="right"
 							data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 							data-bs-original-title="Popover Title"
-							onclick="location.href='#'">로그아웃</button>
+							onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
 				&nbsp;&nbsp;&nbsp;
 				</c:when>
 					<c:otherwise>
