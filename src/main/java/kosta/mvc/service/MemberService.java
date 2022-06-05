@@ -17,7 +17,7 @@ public interface MemberService {
 	/**
 	 * 아이디 중복 확인
 	 * */
-	//void idCheck(String id);
+	int idCheck(String id);
 	
 	/**
 	 * 아이디 찾기

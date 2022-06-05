@@ -16,7 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	/**
 	 * 아이디 중복 확인
 	 * */
-	@Query("select id from Member m where id=?1")
-	String idCheck(String id);
+	@Query("select count(m) from Member m where id=?1")
+	int idCheck(String id);
 	
 }

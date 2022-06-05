@@ -48,5 +48,4 @@ public class Member {
 	private LocalDateTime regdate;
 	
 	
-
 }

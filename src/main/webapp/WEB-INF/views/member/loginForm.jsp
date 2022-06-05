@@ -25,14 +25,14 @@
 
 					<div class="form-group">
 						<label for="exampleInputId1" class="form-label mt-4">아이디</label>
-						<input type="id" class="form-control" id="exampleInputId1"
+						<input type="id" class="form-control" id="exampleInputId1" name="id"
 							aria-describedby="idHelp" placeholder="아이디를 입력해주세요."> <small
 							id="idHelp" class="form-text text-muted">We'll never
 							share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
-						<input type="password" class="form-control"
+						<input type="password" class="form-control" name="password"
 							id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요.">
 
 					</div>

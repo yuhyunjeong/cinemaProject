@@ -22,27 +22,35 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member loginCheck(String id, String password) {
 		
-		
-		  return memberRepo.loginCheck(id, password);
+		Member mem = memberRepo.loginCheck(id, password);
+		System.out.println(mem);
+		  return mem;
 	    
 	}
 
 	
 	@Override
 	public void join(Member member) {
-		idCheck(member);
+		//idCheck(member);
 		memberRepo.save(member);
 	
 	}
 	
-	private void idCheck(Member member) {
-		Optional<Member> findMembers = 
-				memberRepo.findById(member.getId());
-		
-		if(!findMembers.isEmpty()) {
-			throw new IllegalStateException("이미 존재하는 회원입니다.");
-		}
+//	private void idCheck(Member member) {
+//		Optional<Member> findMembers = 
+//				memberRepo.findById(member.getId());
+//		
+//		if(!findMembers.isEmpty()) {
+//			throw new IllegalStateException("이미 존재하는 회원입니다.");
+//		}
+//
+//	}
 
+
+	@Override
+	public int idCheck(String id) {
+		
+		return memberRepo.idCheck(id);
 	}
 
 	

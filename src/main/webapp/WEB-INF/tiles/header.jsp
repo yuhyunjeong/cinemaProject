@@ -38,14 +38,15 @@
 .pagination {
 	justify-content: center;
 }
-.nav-item, .d-flex{
+
+.nav-item, .d-flex {
 	padding-left: 20px;
 	padding-right: 20px;
 }
 </style>
 </head>
 <body>
-	<div class="container" >
+	<div class="container">
 		<div class="row" style="position: relative;">
 			<div class="col-md-8">
 				<a href="${pageContext.request.contextPath}/"> <img
@@ -55,23 +56,55 @@
 			</div>
 			<div class="col-md-4"
 				style="text-align: right; position: absolute; bottom: 0; right: 0;">
+				<c:choose>
+					<c:when test="${not empty member}">
+						<button name="myPage" type="button"
+							class="btn btn-secondary my-2 my-sm-0" title=""
+							data-bs-container="body" data-bs-toggle="popover"
+							data-bs-placement="right"
+							data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+							data-bs-original-title="Popover Title"
+							onclick="location.href='#'">마이페이지</button>
+				&nbsp;&nbsp;&nbsp;
+				</c:when>
+					<c:otherwise>
+						<c:if test="${empty member}">
+							<button name="join" type="button"
+								class="btn btn-secondary my-2 my-sm-0" title=""
+								data-bs-container="body" data-bs-toggle="popover"
+								data-bs-placement="right"
+								data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+								data-bs-original-title="Popover Title"
+								onclick="location.href='${pageContext.request.contextPath}/member/joinForm'">회원가입</button>
+				&nbsp;&nbsp;&nbsp;
+					</c:if>
+					</c:otherwise>
+				</c:choose>
 
-				<button name="mypage" type="button"
-					class="btn btn-secondary my-2 my-sm-0" title=""
-					data-bs-container="body" data-bs-toggle="popover"
-					data-bs-placement="right"
-					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					data-bs-original-title="Popover Title"
-					onclick="location.href='${pageContext.request.contextPath}/member/joinForm'">회원가입</button>
+				<c:choose>
+					<c:when test="${not empty member}">
+						<button name="logout" type="button"
+							class="btn btn-secondary my-2 my-sm-0" title=""
+							data-bs-container="body" data-bs-toggle="popover"
+							data-bs-placement="right"
+							data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+							data-bs-original-title="Popover Title"
+							onclick="location.href='#'">로그아웃</button>
 				&nbsp;&nbsp;&nbsp;
-				<button name="login" type="button"
-					class="btn btn-secondary my-2 my-sm-0" title=""
-					data-bs-container="body" data-bs-toggle="popover"
-					data-bs-placement="right"
-					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					data-bs-original-title="Popover Title"
-					onclick="location.href='${pageContext.request.contextPath}/member/loginForm'">로그인</button>
+				</c:when>
+					<c:otherwise>
+						<c:if test="${empty member}">
+							<button name="login" type="button"
+								class="btn btn-secondary my-2 my-sm-0" title=""
+								data-bs-container="body" data-bs-toggle="popover"
+								data-bs-placement="right"
+								data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+								data-bs-original-title="Popover Title"
+								onclick="location.href='${pageContext.request.contextPath}/member/loginForm'">로그인</button>
 				&nbsp;&nbsp;&nbsp;
+					</c:if>
+					</c:otherwise>
+				</c:choose>
 				<button name="center" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
 					data-bs-container="body" data-bs-toggle="popover"
@@ -82,34 +115,38 @@
 			</div>
 		</div>
 	</div>
-	
-		<nav class="navbar navbar-expand-lg" name="aa">
-			<div class="container-fluid">
+
+	<nav class="navbar navbar-expand-lg" name="aa">
+		<div class="container-fluid">
 
 
 
-				<div class="collapse navbar-collapse" id="navbarColor03">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link active"
-							href="${pageContext.request.contextPath}/cinema/movie">영화 <span
-								class="visually-hidden">(current)</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cinema/ticketing">예매</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
+			<div class="collapse navbar-collapse" id="navbarColor03">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						href="${pageContext.request.contextPath}/cinema/movie">영화 <span
+							class="visually-hidden">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/cinema/ticketing">예매</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
 
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/qna">문의사항</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/board/qna">문의사항</a></li>
 
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/manager/orderList">관리</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/manager/orderList">관리</a></li>
 
-					</ul>
-					<form class="d-flex">
-						<input class="form-control me-sm-2" type="text"
-							placeholder="Search">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-					</form>
-				</div>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-sm-2" type="text"
+						placeholder="Search">
+					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+				</form>
 			</div>
-		</nav>
+		</div>
+	</nav>
 </body>
 </html>

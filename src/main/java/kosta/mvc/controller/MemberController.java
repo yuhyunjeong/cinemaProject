@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.service.MemberService;
@@ -21,16 +23,19 @@ public class MemberController {
 	@RequestMapping("/loginForm")
 	public void login() {}
 	
-	@GetMapping("login")
-	public void loginCheck() {}
 	
-	@PostMapping("login")
+	@RequestMapping("login")
 	public String loginCheck(String id, String password, HttpSession session) {
+		
+		System.out.println(id + password);
 		Member member = memService.loginCheck(id, password);
+		System.out.println(member);
 		if(member != null) {
 			session.setAttribute("member", member);
 		}
-		return "/";
+		
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/joinForm")
@@ -40,8 +45,16 @@ public class MemberController {
 	public String join(Member member) {
 		memService.join(member);
 		
-		return "redirect:/";
+		return "redirect:/member/loginForm";
 		
+	}
+	
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public int idCheck(@RequestBody String id) {
+		int count = 0;
+		count = memService.idCheck(id);
+		return count;
 	}
 	
 	@RequestMapping("/payment")

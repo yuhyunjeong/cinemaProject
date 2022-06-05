@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 </head>
-
+<script type="text/javascript"></script>
 <body>
 	<div class="col-sm-6, container" style="text-align: center;">
 		<h1>카드 가운데 정렬 해야함</h1>
@@ -64,7 +64,7 @@
 							for="inputLarge">생년월일</label> 
 							<input
 							class="form-control form-control-lg" type="text"
-							placeholder="생년월일을 입력해주세요." id="birth"
+							placeholder="0000-00-00 형식으로 입력해주세요." id="birth"
 							name="birth" required="required">
 					</div>
 					
