@@ -19,6 +19,7 @@
 	</head>
 	<body>
 		<h2>&nbsp;&nbsp;문의게시판</h2>
+		<div>
 		<table class="table table-hover" style="width: 1000px;">
 		  <thead>
 		    <tr>
@@ -41,7 +42,7 @@
 			  		<c:forEach items="${requestScope.list}" var="qna">
 			  			<tr class="table-active">
 					      <th scope="row">${qna.bno}</th>
-					      <td style="width: 300;"><a href="#">${qna.title}</a></td>
+					      <td style="width: 300;"><a href="${pageContext.request.contextPath}/board/qnaDetail/${qna.bno}">${qna.title}</a></td>
 					      <td>${qna.member.id}</td>
 					      <td>
 						      <fmt:parseDate value="${qna.insertDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parseIdateInsert"/>
@@ -53,5 +54,11 @@
 			  </c:choose>
 		  </tbody>
 		</table>
+		
+		</div>
+		<div style="width: 1000px; margin: 0 auto; text-align: right; ">
+			<input type="button" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">
+		</div>
+		
 	</body>
 </html>

@@ -11,4 +11,6 @@ public interface QnABoardService {
 	List<QnABoard> selectAll();
 	
 	QnABoard selectBy(Long bno);
+	
+	void insert(QnABoard qnaBoard);
 }

@@ -2,13 +2,16 @@ package kosta.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import kosta.mvc.domain.Member;
 import kosta.mvc.domain.NoticeBoard;
 import kosta.mvc.domain.QnABoard;
 import kosta.mvc.service.NoticeBoardService;
@@ -34,9 +37,28 @@ public class BoardController {
 		return new ModelAndView("board/noticeDetail", "board", board);
 	}
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping("/qna")
 	public void qna(Model model) {
 		List<QnABoard> list = qnABoardService.selectAll();
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/qnaDetail/{bno}")
+	public ModelAndView qnaDetail(@PathVariable Long bno) {
+		QnABoard board = qnABoardService.selectBy(bno);
+		return new ModelAndView("board/qnaDetail", "board", board);
+	}
+	@RequestMapping("/qnaWrite")
+	public void qnaWrite() {}
+	
+	@RequestMapping("/qnaInsert")
+	public String qnaInsert(HttpServletRequest request, QnABoard qnaBoard) {
+		HttpSession session = request.getSession();
+		qnaBoard.setMember((Member) session.getAttribute("member"));
+		qnABoardService.insert(qnaBoard);
+		
+		return "redirect:/board/qna";
 	}
 }
