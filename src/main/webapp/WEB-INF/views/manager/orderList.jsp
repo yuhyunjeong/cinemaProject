@@ -33,8 +33,20 @@
   			<c:forEach items="${requestScope.orderList}" var="order">
 			    <tr class="table-active">
 			      <th scope="row"><a href="/manager/orderDetail/${order.orderCode}">${order.orderCode}</a></th>
-			      <td>${order.orderState}</td>
-			      <td>영화이름</td>
+			      <td>
+			        <c:choose>
+		    		<c:when test="${order.orderState==0}">
+		    			결제 완료
+		    		</c:when>
+		    		<c:when test="${order.orderState==1}">
+		    			환불 요청
+		    		</c:when>
+		    		<c:when test="${order.orderState==2}">
+		    			환불 완료
+		    		</c:when>
+		    		</c:choose>
+			      </td>
+			      <td>${order.movieOrderline[0].seatPerformance.time.movie.movieName}</td>
 			      <td>
 			      	<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
     				<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
