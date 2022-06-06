@@ -33,20 +33,49 @@ public class GiftServiceImpl implements GiftService {
 
 	@Override
 	public void insert(Gift gift) {
-		// TODO Auto-generated method stub
+		Gift saveGift = giftRepo.save(gift);
+		System.out.println("saveGift : " + saveGift);
 
 	}
 
+	@Override
+	public Gift selectBy(String giftCode) {
+		
+		Gift gift = giftRepo.findById(giftCode).orElse(null);
+		if(gift.equals(null)) {
+			throw new RuntimeException("상세보기 오류가 발생했습니다.");
+		}
+		
+		return gift;
+	}
+	
 	@Override
 	public Gift update(Gift gift) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Gift dbGift = giftRepo.findById(gift.getGiftCode()).orElse(null);
+		if(dbGift == null) {
+			throw new RuntimeException("사은품코드 오류로 수정할 수 없습니다.");
+		}
+		
+		// 수정완료 
+		dbGift.setGiftName(gift.getGiftName());
+		dbGift.setGiftQTY(gift.getGiftQTY());
+		
+		return dbGift;
 	}
 
 	@Override
-	public void delete(Gift gift) {
-		// TODO Auto-generated method stub
-
+	public void delete(String giftCode) {
+		
+		Gift dbGift = giftRepo.findById(giftCode).orElse(null);
+		if(dbGift == null) {
+			throw new RuntimeException("사은품코드 오류로 삭제할 수 없습니다.");
+		}
+		
+		giftRepo.deleteById(giftCode);
+		
 	}
+
+
 
 }

@@ -27,26 +27,58 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public Page<Food> selectAll(Pageable pageable) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void insert(Food food) {
-		// TODO Auto-generated method stub
+		
+		Food saveFood = foodRepo.save(food);
+		System.out.println("saveFood : " + saveFood);
 
 	}
+	
+	@Override
+	public Food selectBy(String foodCode) {
+		
+		Food food = foodRepo.findById(foodCode).orElse(null);
+		if(food.equals(null)) {
+			throw new RuntimeException("상세보기 오류가 발생했습니다.");
+		}
+		
+		return food;
+	}
+
 
 	@Override
 	public Food update(Food food) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Food dbFood = foodRepo.findById(food.getFoodCode()).orElse(null);
+		if(dbFood == null) {
+			throw new RuntimeException("먹거리코드 오류로 수정할 수 없습니다.");
+		}
+		
+		// 수정완료 
+		dbFood.setFoodName(food.getFoodName());
+		dbFood.setFoodContent(food.getFoodContent());
+		dbFood.setFoodPrice(food.getFoodPrice());
+		dbFood.setFoodImage(food.getFoodImage());
+		
+		return dbFood;
 	}
 
 	@Override
 	public void delete(String foodCode) {
-		// TODO Auto-generated method stub
+		
+		Food dbFood = foodRepo.findById(foodCode).orElse(null);
+		if(dbFood == null) {
+			throw new RuntimeException("먹거리코드 오류로 삭제할 수 없습니다.");
+		}
+		
+		foodRepo.deleteById(foodCode);
 
 	}
+
 
 }

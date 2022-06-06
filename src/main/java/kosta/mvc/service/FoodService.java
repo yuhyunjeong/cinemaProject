@@ -25,6 +25,11 @@ public interface FoodService {
 	void insert(Food food);
 	
 	/**
+	 * 코드번호 검색 
+	 */
+	Food selectBy(String foodCode);
+	
+	/**
 	 * 먹거리 수정하기 
 	 */
 	Food update(Food food);

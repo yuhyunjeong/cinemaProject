@@ -43,7 +43,7 @@ public class MovieServiceImpl implements MovieService {
 		
 		Movie movie = movieRepo.findById(movieCode).orElse(null);
 		if(movie.equals(null)) {
-			new RuntimeException("상세보기 오류가 발생했습니다.");
+			throw new RuntimeException("상세보기 오류가 발생했습니다.");
 		}
 		
 		return movie;
@@ -51,13 +51,34 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public Movie update(Movie movie) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Movie dbMovie = movieRepo.findById(movie.getMovieCode()).orElse(null);
+		if(dbMovie == null) {
+			throw new RuntimeException("영화코드 오류로 수정할 수 없습니다.");
+		}
+		
+		// 수정완료
+		dbMovie.setMovieName(movie.getMovieName());
+		dbMovie.setMovieSummary(movie.getMovieSummary());
+		dbMovie.setMovieRunningtime(movie.getMovieRunningtime());
+		dbMovie.setMovieStartdate(movie.getMovieStartdate());
+		dbMovie.setMovieEnddate(movie.getMovieEnddate());
+		dbMovie.setMovieRated(movie.getMovieRated());
+		dbMovie.setMovieGenre(movie.getMovieGenre());
+		dbMovie.setMovieImage(movie.getMovieImage());
+		
+		return dbMovie;
 	}
 
 	@Override
 	public void delete(String movieCode) {
-		// TODO Auto-generated method stub
+		
+		Movie dbMovie = movieRepo.findById(movieCode).orElse(null);
+		if(dbMovie == null) {
+			throw new RuntimeException("영화코드 오류로 삭제할 수 없습니다.");
+		}
+		
+		movieRepo.deleteById(movieCode);
 
 	}
 

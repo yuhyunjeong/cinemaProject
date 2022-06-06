@@ -20,12 +20,13 @@ public class Food {
 	@NonNull
 	private String foodCode;
 	
-	@NonNull
 	private String foodName;
 	
-	@NonNull
 	private String foodContent;
 	
-	@NonNull
 	private String foodPrice;
+	
+	private String foodImage;
+	
+	
 }

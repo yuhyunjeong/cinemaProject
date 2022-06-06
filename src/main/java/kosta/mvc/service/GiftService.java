@@ -25,6 +25,11 @@ public interface GiftService {
 	void insert(Gift gift);
 	
 	/**
+	 * 코드번호 검색 
+	 */
+	Gift selectBy(String giftCode);
+	
+	/**
 	 * 사은품 수정하기 
 	 */
 	Gift update(Gift gift);
@@ -32,6 +37,6 @@ public interface GiftService {
 	/**
 	 * 사은품 삭제하기 
 	 */
-	void delete(Gift gift);
+	void delete(String giftCode);
 
 }

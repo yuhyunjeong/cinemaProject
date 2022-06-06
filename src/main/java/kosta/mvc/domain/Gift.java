@@ -23,10 +23,8 @@ public class Gift {
 //	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private String movieCode;
 	
-	@NonNull
 	private String giftName;
 	
-	@NonNull
 	private int giftQTY;
-
+	
 }
