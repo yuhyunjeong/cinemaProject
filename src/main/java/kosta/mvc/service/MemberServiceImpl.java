@@ -8,7 +8,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.BooleanBuilder;
+
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.QMember;
 import kosta.mvc.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -49,9 +52,17 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String idCheck(String id) {
+		QMember member = QMember.member;
+		BooleanBuilder builder = new BooleanBuilder();
+		//조건을 만들고고
+		builder.and(member.id.equalsIgnoreCase(id));
 		
-		String result = memberRepo.idCheck(id);
-		return result;
+		///그조건을 원하는 메소드에 적용하자
+		Optional<Member> result= memberRepo.findOne(builder);
+		String id2 = result.get().getId();
+		
+		//String result = memberRepo.idCheck(id);
+		return id2;
 	}
 
 	
