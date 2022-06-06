@@ -26,4 +26,5 @@ public class Screen {
 	
 	private int screenCol;
 	
+	private String screenName;
 }
