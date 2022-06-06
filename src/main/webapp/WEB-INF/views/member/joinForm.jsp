@@ -51,6 +51,7 @@
 							class="form-control form-control-lg" type="password"
 							placeholder="비밀번호를 다시 입력해주세요." id="pwdCheck"
 							name="pwdCheck" required="required">
+							<div id="pCheck" name="pCheck"></div>
 					</div>
 					
 					<div class="form-group">
@@ -135,11 +136,18 @@ $(function(){
 	$("#pwdCheck").blur(function(){
 		  if($('#password').val() != $('#pwdCheck').val()){
 			   	if($('#pwdCheck').val()!=''){
-				   alert("비밀번호가 일치하지 않습니다.");
+				   var html="<div>비밀번호가 일치하지 않습니다.</div>";
+						$("#pCheck").empty();
+						$("#pCheck").append(html);
+				
 				   	    $('#pwdCheck').val('');
 				         $('#pwdCheck').focus();	
-				      }	
-			   }
+				    }
+			   }else{
+				var html="<div>비밀번호가 일치합니다.</div>";
+				$("#pCheck").empty();
+				$("#pCheck").append(html);
+			}
 		})  
 
 	
