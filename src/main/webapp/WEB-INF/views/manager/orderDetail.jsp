@@ -47,14 +47,18 @@
     </c:choose>
   </svg>
   <div class="card-body">
-    <p class="card-text">매출 정보</p>
+    <p class="card-text">영화 이름 : ${requestScope.order.movieOrderline[0].seatPerformance.time.movie.movieName}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">포인트 사용 금액 : ${requestScope.order.pointPrice}</li>
-    <li class="list-group-item">최종 결제 금액 : ${requestScope.order.totalPrice}</li>
-    <li class="list-group-item">결제 일시 : 
-    	<fmt:parseDate value="${requestScope.order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
-    	<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" /></li>
+    <li class="list-group-item">상영일자 : 
+    	<fmt:formatDate value="${requestScope.order.movieOrderline[0].seatPerformance.time.timeDate}" type="date" />
+    </li>
+    <li class="list-group-item">상영관 : ${requestScope.order.movieOrderline[0].seatPerformance.time.screen.screenName}</li>
+    <li class="list-group-item">좌석 :
+    	<c:forEach items="${requestScope.order.movieOrderline}" var="movieOrderline" varStatus="status">
+    	${movieOrderline.seatPerformance.seat.seatRow}${movieOrderline.seatPerformance.seat.seatCol}<c:if test="${status.last eq false}">, </c:if>
+  		</c:forEach>
+  	</li>
   </ul>
   <div class="card-body">
     <a href="${pageContext.request.contextPath}/manager/members" class="card-link">회원 아이디 : ${requestScope.order.member.id}</a>
@@ -66,9 +70,15 @@
 </div>
 <div class="card" style="width: 40rem; display: inline-block; vertical-align: top">
   <div class="card-body">
-    <h4 class="card-title">Card title</h4>
+    <h4 class="card-title">매출 정보</h4>
     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">
+    	포인트 사용 금액 : ${requestScope.order.pointPrice}<p>
+    	최종 결제 금액 : ${requestScope.order.totalPrice}<p>
+		결제 일시 : 
+    	<fmt:parseDate value="${requestScope.order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
+    	<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+	</p>
     <a href="#" class="card-link">ㅇㅇㅇㅇㅇ</a>
     <a href="#" class="card-link">Another link</a>
   </div>
