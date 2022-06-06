@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -16,6 +18,7 @@
 <!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- Demo styles -->
+
 <style>
 .swiper mySwiper {
 	position: relative;
@@ -83,9 +86,9 @@
 
 .movie_list {
 	width: 100%;
-	height: 150px;
-	background-color: red;
+	height: 100%;
 	float: left;
+	
 }
 
 .event_notice_container {
@@ -145,48 +148,17 @@
 	float: left;
 }
 
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.card-img-top {
+	width: 100%;
+	height: 100%;
 }
-
-body {
-  width: 100%;
-  padding: 4rem 0;
-  overflow: hidden;
-}
-
-.list {
-  padding: 1rem 0;
-  width: 100%;
-  display: flex;
-  transform: translate(0, 0);
-}
-
-.item {
-  padding-right: 1rem;
-  list-style: none;
-  user-select: none;
-}
-
-.item:first-child {
-  padding-left: 1rem;
-}
-
-.link {
-  display: block;
-  -webkit-user-drag: none;
-}
-
-.image {
-  display: block;
-  width: 200px;
-  height: 200px;
-  -webkit-user-drag: none;
+.card-text{
+	text-align: center;
 }
 </style>
+
+
+
 <script type="text/javascript">
 	$(function() {
 		var swiper = new Swiper(".mySwiper", {
@@ -205,87 +177,8 @@ body {
 				prevEl : ".swiper-button-prev",
 			},
 		});
+
 	});
-	
-	
-	//터치스크롤
-	// 요소
-const list = document.querySelector('.list');
-// 사이즈
-const listScrollWidth = list.scrollWidth;
-const listClientWidth = list.clientWidth;
-// 필요한 변수
-let startX = 0;
-let nowX = 0;
-let endX = 0;
-let listX = 0;
-
-const onScrollStart = (e) => {
-  startX = getClientX(e);
-  window.addEventListener('mousemove', onScrollMove);
-  window.addEventListener('touchmove', onScrollMove);
-  window.addEventListener('mouseup', onScrollEnd);
-  window.addEventListener('touchend', onScrollEnd);
-};
-
-const onScrollMove = (e) => {
-  nowX = getClientX(e);
-  setTranslateX(listX + nowX - startX);
-};
-
-const onScrollEnd = (e) => {
-  endX = getClientX(e);
-  listX = getTranslateX();
-  if (listX > 0) {
-    setTranslateX(0);
-    list.style.transition = `all 0.3s ease`;
-    listX = 0;
-  } else if (listX < listClientWidth - listScrollWidth) {
-    setTranslateX(listClientWidth - listScrollWidth);
-    list.style.transition = `all 0.3s ease`;
-    listX = listClientWidth - listScrollWidth;
-  }
-
-  window.removeEventListener('mousedown', onScrollStart);
-  window.removeEventListener('touchstart', onScrollStart);
-  window.removeEventListener('mousemove', onScrollMove);
-  window.removeEventListener('touchmove', onScrollMove);
-  window.removeEventListener('mouseup', onScrollEnd);
-  window.removeEventListener('touchend', onScrollEnd);
-  window.removeEventListener('click', onClick);
-
-  setTimeout(() => {
-    bindEvents();
-    list.style.transition = '';
-  }, 300);
-};
-
-const onClick = (e) => {
-  if (startX - endX !== 0) {
-    e.preventDefault();
-  }
-};
-
-const getClientX = (e) => {
-  const isTouches = e.touches ? true : false;
-  return isTouches ? e.touches[0].clientX : e.clientX;
-};
-
-const getTranslateX = () => {
-  return parseInt(getComputedStyle(list).transform.split(/[^\-0-9]+/g)[5]);
-};
-
-const setTranslateX = (x) => {
-  list.style.transform = `translateX(${x}px)`;
-};
-
-const bindEvents = () => {
-  list.addEventListener('mousedown', onScrollStart);
-  list.addEventListener('touchstart', onScrollStart);
-  list.addEventListener('click', onClick);
-};
-
-bindEvents();
 </script>
 
 </head>
@@ -317,22 +210,60 @@ bindEvents();
 			<a href="#">전체보기</a>
 		</div>
 		<div class="movie_list">
-			<ul class="list">
-				<li class="item"><a class="link" href="#"> <img
-						class="image" src="./img/poster/test1.jpg"/>
-				</a></li>
-				<li class="item"><a class="link" href="#"> <img
-						class="image" src="./img/poster/test2.jpg"/>
-				</a></li>
-				<li class="item"><a class="link" href="#"> <img
-						class="image" src="./img/poster/test3.jpg"/>
-				</a></li>
-				<li class="item"><a class="link" href="#"> <img
-						class="image" src="./img/poster/test4.jpg"/>
-				</a></li>
-				
-			</ul>
-
+		
+					
+						<div class='row row-cols-1 row-cols-md-3' style="justify-content: center;">
+							
+								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
+									
+										<a class="card-link" href="#"> <img class="card-img-top"
+											src="./img/poster/test1.jpg" /></a>
+											
+										<br>
+										
+										<div class="card-footer">영화 제목</div>		
+											
+								</div>
+							
+							
+								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
+									
+										<a class="card-link" href="#"> <img class="card-img-top"
+											src="./img/poster/test2.jpg" /></a>
+											<div class="card-body">
+										<hr>
+										
+										<p class="card-text">영화 제목</p>		
+										</div>	
+								</div>
+							
+							
+								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
+									
+										<a class="card-link" href="#"> <img class="card-img-top"
+											src="./img/poster/test3.jpg" /></a>
+											<div class="card-body">
+										<hr>
+										
+										<p class="card-text">영화 제목</p>		
+										</div>		
+								</div>
+							
+							
+								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
+									
+										<a class="card-link" href="#"> <img class="card-img-top"
+											src="./img/poster/test4.jpg" /></a>
+											<div class="card-body">
+										<hr>
+										
+										<p class="card-text">영화 제목</p>			
+										</div>	
+								</div>
+							
+						</div>
+					
+					
 
 		</div>
 		<br>
@@ -360,9 +291,6 @@ bindEvents();
 			<div class="notice_list">리스트</div>
 		</div>
 	</div>
-
-
-
 
 
 
