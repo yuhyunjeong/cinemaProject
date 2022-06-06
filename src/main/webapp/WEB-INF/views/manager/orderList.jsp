@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,9 @@
 			      <th scope="row"><a href="/manager/orderDetail/${order.orderCode}">${order.orderCode}</a></th>
 			      <td>${order.orderState}</td>
 			      <td>영화이름</td>
-			      <td>${order.orderDate}</td>
+			      <td>
+			      	<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
+    				<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 			      <td>${order.totalPrice}</td>
 			    </tr>
 		    </c:forEach>

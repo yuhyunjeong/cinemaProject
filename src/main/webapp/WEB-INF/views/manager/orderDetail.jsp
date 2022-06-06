@@ -16,10 +16,35 @@
   <h3 class="card-header">티켓 정보</h3>
   <div class="card-body">
     <h5 class="card-title">예매 코드 : ${requestScope.order.orderCode}</h5>
-    <h6 class="card-subtitle text-muted">예매 상태 : </h6>
+    <h6 class="card-subtitle text-muted">예매 상태 : 
+    	<c:choose>
+    		<c:when test="${requestScope.order.orderState==0}">
+    			결제 완료
+    		</c:when>
+    		<c:when test="${requestScope.order.orderState==1}">
+    			환불 요청
+    		</c:when>
+    		<c:when test="${requestScope.order.orderState==2}">
+    			환불 완료
+    		</c:when>
+    	</c:choose>
+    </h6>
   </div>
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="500" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+    <rect width="100%" height="100%" fill="#868e96"></rect>
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em"></text>
     
+    <c:choose>
+    <c:when test="${empty requestScope.order.movieOrderline[0].seatPerformance.time.movie.movieImage}">
+    	<rect width="100%" height="100%" fill="#868e96"></rect>
+    	<text x="50%" y="50%" fill="#dee2e6" dy=".3em">이미지가 없습니다</text>
+    </c:when>
+    <c:otherwise>
+    	<rect width="100%" height="100%" fill="#868e96"></rect>
+    	<text x="50%" y="50%" fill="#dee2e6" dy=".3em"></text>
+    	<image href="${pageContext.request.contextPath}/img/HarryPotter/${requestScope.order.movieOrderline[0].seatPerformance.time.movie.movieImage}.jpeg" height="100%" width="100%"/>
+    </c:otherwise>
+    </c:choose>
   </svg>
   <div class="card-body">
     <p class="card-text">매출 정보</p>
