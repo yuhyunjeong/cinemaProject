@@ -10,8 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>orderDetail.jsp 예매 상세정보입니다.</h1>
-
 <div class="card mb-3" style="width: 40rem; display: inline-block">
   <h3 class="card-header">티켓 정보</h3>
   <div class="card-body">
@@ -50,8 +48,9 @@
     <p class="card-text">영화 이름 : ${requestScope.order.movieOrderline[0].seatPerformance.time.movie.movieName}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">상영일자 : 
+    <li class="list-group-item">상영일시 : 
     	<fmt:formatDate value="${requestScope.order.movieOrderline[0].seatPerformance.time.timeDate}" type="date" />
+    	<fmt:formatDate value="${requestScope.order.movieOrderline[0].seatPerformance.time.timeStart}" pattern="HH:mm"/> - <fmt:formatDate value="${requestScope.order.movieOrderline[0].seatPerformance.time.timeEnd}" pattern="HH:mm"/>
     </li>
     <li class="list-group-item">상영관 : ${requestScope.order.movieOrderline[0].seatPerformance.time.screen.screenName}</li>
     <li class="list-group-item">좌석 :
