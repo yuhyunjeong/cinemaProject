@@ -2,11 +2,12 @@ package kosta.mvc.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Entity
@@ -17,14 +18,14 @@ import lombok.Setter;
 public class Gift {
 	
 	@Id
-	@NonNull
 	private String giftCode;
 	
-//	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private String movieCode;
+	@OneToOne
+	@JoinColumn(name="movie_code")
+	private Movie movie;
 	
 	private String giftName;
 	
-	private int giftQTY;
+	private int giftQty;
 	
 }
