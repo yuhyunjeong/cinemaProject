@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +43,7 @@ public class Movie {
 	
 	private String movieGenre;
 	
+	@CreationTimestamp
 	private Date movieInsertdate;
 	
 	private String movieImage;
