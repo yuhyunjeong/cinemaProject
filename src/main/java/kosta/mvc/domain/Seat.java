@@ -32,7 +32,7 @@ public class Seat {
 	
 	@ManyToOne
 	@JoinColumn(name="screen_code")
-	private Screen screenCode;
+	private Screen screen;
 	
 	@Column(nullable = false, length = 3)
 	private String seatRow;

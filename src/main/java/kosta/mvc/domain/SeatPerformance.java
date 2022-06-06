@@ -31,7 +31,7 @@ public class SeatPerformance {
 	
 	@ManyToOne
 	@JoinColumn(name="seat_code", nullable = false)
-	private Seat seatCode;
+	private Seat seat;
 	
 	@ManyToOne
 	@JoinColumn(name="time_code", nullable = false)
