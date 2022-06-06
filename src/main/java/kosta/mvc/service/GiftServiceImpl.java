@@ -59,7 +59,7 @@ public class GiftServiceImpl implements GiftService {
 		
 		// 수정완료 
 		dbGift.setGiftName(gift.getGiftName());
-		dbGift.setGiftQTY(gift.getGiftQTY());
+		dbGift.setGiftQty(gift.getGiftQty());
 		
 		return dbGift;
 	}
