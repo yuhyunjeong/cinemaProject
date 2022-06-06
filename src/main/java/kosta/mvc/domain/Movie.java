@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,8 +34,10 @@ public class Movie {
 	
 	private int movieRunningtime;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date movieStartdate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date movieEnddate;
 	
 	private int movieRated;

@@ -1,7 +1,9 @@
 package kosta.mvc.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,11 +27,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
+
 public class Time {
 	
 	@Id
-	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "time_pk")
 	@SequenceGenerator(name = "time_pk", allocationSize = 1, sequenceName = "time_pk")
 	private Long timeCode;
@@ -40,9 +43,12 @@ public class Time {
 	@JoinColumn(name="movie_code")
 	private Movie movie;
 	
-	private LocalTime timeStart;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timeStart;
 	
-	private LocalTime timeEnd;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timeEnd;
 	
-	private LocalDate timeDate;
+	private Date timeDate;
+	
 }

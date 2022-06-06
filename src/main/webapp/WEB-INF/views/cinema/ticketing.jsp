@@ -3,12 +3,29 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <head>
 <meta charset="UTF-8">
 
-<style>
+<style type="text/css">
 
+.movie-list {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
 
+.time-list {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
 
 .reserve-date {
     padding-top: 5px;
@@ -31,13 +48,34 @@
     background: none;
 }
 
+.movie-list::-webkit-scrollbar { /*스크롤바 전체 */
+	background: none;
+}
+.movie-list::-webkit-scrollbar-thumb { /*스크롤 막대 */
+    background: rgba( 255, 255, 255, 0.3 );
+    
+}
+.movie-list::-webkit-scrollbar-track { /*스크롤 막대 외부 */
+    background: none;
+}
+
+.time-list::-webkit-scrollbar { /*스크롤바 전체 */
+	background: none;
+}
+.time-list::-webkit-scrollbar-thumb { /*스크롤 막대 */
+    background: rgba( 255, 255, 255, 0.3 );
+    
+}
+.time-list::-webkit-scrollbar-track { /*스크롤 막대 외부 */
+    background: none;
+}
 
 .movie-date-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px 2px;
-    background-color: rgba( 255, 255, 255, 0 );
+    background-color: transparent;
     border: white 1px;
     
 }
@@ -73,6 +111,24 @@
     color: white;
 }
 
+.btn2{
+	width: 280px; 
+	height: 200px; 
+	background-color: transparent; 
+	font-size: 17px; 
+	border: white;
+
+}
+
+.btn2:active {
+	font-style: white;
+	font-weight: bold;
+}
+
+.btn2 {
+	font-style: white;
+	font-weight: bold;
+}
 
 </style>
     
@@ -87,7 +143,20 @@
 		<div class="card">
 				<div class="movie-part"><p>
 					<h4 class="card-title">&nbsp;&nbsp;영화</h4>
-					<div class="movie-list">영화 목록 가져오기</div>
+						<div class="movie-list">
+						<c:choose>
+					 		<c:when test="${empty requestScope.movieList}">
+						  		<div>등록된 영화가 없습니다.</div>
+					  		</c:when>
+						  	<c:otherwise>
+						  	<!-- 조건 -->
+						  		<c:forEach items="${requestScope.movieList}" var="movie">
+									<button type="button" class="btn2" value="${movie.movieName}">${movie.movieName}</button>
+						  		</c:forEach>
+						  	</c:otherwise>
+				  		</c:choose>
+					
+					</div>
 			</div>
 		</div>
 	</div>
@@ -106,7 +175,20 @@
 	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
 		<div class="card">
 			<div class="time-part"><p>
-			<h4 class="card-title">&nbsp;&nbsp;시간</h4>
+			<h4 class="card-title">&nbsp;&nbsp;시간</h4> <!-- time 상영시작시간 데이터 가져오기.. -->
+				<div class="time-list">
+					<%-- <c:choose>
+				 		<c:when test="${empty 상영관시간가져오기}">
+					  		<div>이 영화는 시간이 등록되지 않았습니다.</div>
+				  		</c:when>
+					  	<c:otherwise>
+					  	<!-- 조건 -->
+					  		<c:forEach items="${requestScope.movieList}" var="movie">
+								
+					  		</c:forEach>
+					  	</c:otherwise>
+			  		</c:choose> --%>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -145,6 +227,7 @@
 
 
 <script>
+    //날짜
     const date = new Date();
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const reserveDate = document.querySelector(".reserve-date");
@@ -195,6 +278,14 @@
             button.classList.add("movie-date-wrapper-active");
         })
     }
+    
+    //버튼클릭시 밑에 영화정보 박스에 값 넣어주기
+    $(function() {
+    $('.moviebtn').on('click', function() {
+        
+	    });
+	});
+    
 </script>
 
 
