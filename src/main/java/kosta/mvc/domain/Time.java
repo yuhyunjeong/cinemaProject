@@ -32,7 +32,7 @@ public class Time {
 	
 	@ManyToOne
 	@JoinColumn(name="screen_code")
-	private Screen screenCode;
+	private Screen screen;
 	
 	@ManyToOne
 	@JoinColumn(name="movie_code")
