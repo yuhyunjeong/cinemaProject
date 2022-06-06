@@ -27,8 +27,20 @@ public interface MemberService {
 	 * 비밀번호 찾기
 	 * */
 	
+	/**
+	 * id로 조회
+	 * */
+	Member selectBy(String id);
 	
+	/**
+	 * 회원정보 수정
+	 * */
+	Member update(Member member);
 	
+	/**
+	 * 회원 탈퇴
+	 * */
+	void delete(String id, String password);
 	
 	
 	

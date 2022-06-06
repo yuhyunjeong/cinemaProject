@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 
 import kosta.mvc.domain.Member;
-import kosta.mvc.domain.QMember;
+//import kosta.mvc.domain.QMember;
 import kosta.mvc.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -52,18 +52,49 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String idCheck(String id) {
-		QMember member = QMember.member;
-		BooleanBuilder builder = new BooleanBuilder();
+		//QMember member = QMember.member;
+		//BooleanBuilder builder = new BooleanBuilder();
 		//조건을 만들고고
-		builder.and(member.id.equalsIgnoreCase(id));
+		//builder.and(member.id.equalsIgnoreCase(id));
 		
 		///그조건을 원하는 메소드에 적용하자
-		Optional<Member> result= memberRepo.findOne(builder);
-		String id2 = result.get().getId();
+		//Optional<Member> result= memberRepo.findOne(builder);
+		//String id2 = result.get().getId();
 		
-		//String result = memberRepo.idCheck(id);
-		return id2;
+		String result = memberRepo.idCheck(id);
+		return result;
 	}
+
+
+	@Override
+	public Member selectBy(String id) {
+		
+		Member member = memberRepo.findById(id).orElse(null);
+		
+		return member;
+	}
+	
+	
+	@Override
+	public Member update(Member member) {
+		Member mem = memberRepo.findById(member.getId()).orElse(null);
+		
+		mem.setPassword(member.getPassword());
+		mem.setName(member.getName());
+		mem.setPhone(member.getPhone());
+		
+		
+		return mem;
+	}
+
+
+	@Override
+	public void delete(String id, String password) {
+		
+	}
+
+
+	
 
 	
 

@@ -64,7 +64,7 @@
 							data-bs-placement="right"
 							data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 							data-bs-original-title="Popover Title"
-							onclick="location.href='#'">마이페이지</button>
+							onclick="location.href='${pageContext.request.contextPath}/member/myPage'">마이페이지</button>
 				&nbsp;&nbsp;&nbsp;
 				</c:when>
 					<c:otherwise>

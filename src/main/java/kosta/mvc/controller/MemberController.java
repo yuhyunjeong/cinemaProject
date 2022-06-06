@@ -1,5 +1,7 @@
 package kosta.mvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
+
 
 @Controller
 @RequestMapping("/member")
@@ -77,4 +81,34 @@ public class MemberController {
 	
 	@RequestMapping("/paymentComplete")
 	public void paymentComplete() {}
+	
+	@RequestMapping("/myPage")
+	public void myPage() {}
+	
+	@RequestMapping("/updateForm")
+	public ModelAndView updateForm(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		
+		
+		Member member = (Member) session.getAttribute("member");
+		System.out.println("update "+member.getId());
+		member = memService.selectBy(member.getId());
+		return new ModelAndView("member/update","member",member);
+	}
+	
+	@RequestMapping("/update")
+	public ModelAndView update(Member member) {
+		
+		Member mem = memService.update(member);
+		
+		return new ModelAndView("member/myPage","member",mem);
+	}
+	
+	@RequestMapping("/delete")
+	public void delete() {
+		
+	}
+	
 }
