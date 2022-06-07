@@ -48,7 +48,7 @@ public class QGift extends EntityPathBase<Gift> {
 
     public QGift(Class<? extends Gift> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.movie = inits.isInitialized("movie") ? new QMovie(forProperty("movie")) : null;
+        this.movie = inits.isInitialized("movie") ? new QMovie(forProperty("movie"), inits.get("movie")) : null;
     }
 
 }

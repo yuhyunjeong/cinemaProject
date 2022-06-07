@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -17,7 +18,11 @@ public class QMovie extends EntityPathBase<Movie> {
 
     private static final long serialVersionUID = -25911188L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QMovie movie = new QMovie("movie");
+
+    public final QGift gift;
 
     public final StringPath movieCode = createString("movieCode");
 
@@ -40,15 +45,24 @@ public class QMovie extends EntityPathBase<Movie> {
     public final StringPath movieSummary = createString("movieSummary");
 
     public QMovie(String variable) {
-        super(Movie.class, forVariable(variable));
+        this(Movie.class, forVariable(variable), INITS);
     }
 
     public QMovie(Path<? extends Movie> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QMovie(PathMetadata metadata) {
-        super(Movie.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QMovie(PathMetadata metadata, PathInits inits) {
+        this(Movie.class, metadata, inits);
+    }
+
+    public QMovie(Class<? extends Movie> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.gift = inits.isInitialized("gift") ? new QGift(forProperty("gift"), inits.get("gift")) : null;
     }
 
 }

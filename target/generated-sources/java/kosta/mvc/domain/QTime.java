@@ -52,7 +52,7 @@ public class QTime extends EntityPathBase<Time> {
 
     public QTime(Class<? extends Time> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.movie = inits.isInitialized("movie") ? new QMovie(forProperty("movie")) : null;
+        this.movie = inits.isInitialized("movie") ? new QMovie(forProperty("movie"), inits.get("movie")) : null;
         this.screen = inits.isInitialized("screen") ? new QScreen(forProperty("screen")) : null;
     }
 
