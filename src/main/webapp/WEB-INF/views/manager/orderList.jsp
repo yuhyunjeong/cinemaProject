@@ -16,7 +16,7 @@
     <tr>
       <th scope="col">예매 코드</th>
       <th scope="col">예매 상태</th>
-      <th scope="col">영화 이름</th>
+      <th scope="col">예매 내용</th>
       <th scope="col">결제 일시</th>
       <th scope="col">결제 금액</th>
     </tr>
@@ -46,7 +46,13 @@
 		    		</c:when>
 		    		</c:choose>
 			      </td>
-			      <td>${order.movieOrderline[0].seatPerformance.time.movie.movieName}</td>
+			      <td>${order.movieOrderline[0].seatPerformance.time.movie.movieName}
+			      	<c:if test="${not empty order.foodOrderline}">
+			      		<c:forEach items="${order.foodOrderline}" varStatus="status">
+			      		외 ${status.count}건
+			      		</c:forEach>
+			      	</c:if>
+			      </td>
 			      <td>
 			      	<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
     				<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
