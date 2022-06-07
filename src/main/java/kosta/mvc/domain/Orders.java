@@ -54,4 +54,7 @@ public class Orders {
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<MovieOrderline> movieOrderline;
+	
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	private List<FoodOrderline> foodOrderline;
 }
