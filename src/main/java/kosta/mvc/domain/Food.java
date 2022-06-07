@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Food {
 
 	@Id
@@ -24,7 +26,7 @@ public class Food {
 	
 	private String foodContent;
 	
-	private String foodPrice;
+	private int foodPrice;
 	
 	private String foodImage;
 	
