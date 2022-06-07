@@ -1,6 +1,7 @@
 package kosta.mvc.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,11 +30,11 @@ public class SeatPerformance {
 	@NonNull
 	private Long seatPerformanceCode;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="seat_code", nullable = false)
 	private Seat seat;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="time_code", nullable = false)
 	private Time time;
 	

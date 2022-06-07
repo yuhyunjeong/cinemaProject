@@ -3,6 +3,7 @@ package kosta.mvc.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,11 +31,11 @@ public class Time {
 	@SequenceGenerator(name = "time_pk", allocationSize = 1, sequenceName = "time_pk")
 	private Long timeCode;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")
 	private Screen screen;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="movie_code")
 	private Movie movie;
 	

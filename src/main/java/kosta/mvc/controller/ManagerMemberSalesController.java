@@ -25,10 +25,11 @@ public class ManagerMemberSalesController {
 		List<Orders> list = orderService.selectAll();
 		model.addAttribute("orderList", list);
 	}
+	
 	@RequestMapping("/orderDetail/{orderCode}")
-	public ModelAndView orderList(@PathVariable Long orderCode) {
+	public ModelAndView orderDetail(@PathVariable Long orderCode) {
 		Orders order = orderService.selectByOrderCode(orderCode);
-		System.out.println("order = " + order);
+		//System.out.println(order.getMovieOrderline().g);
 		return new ModelAndView("manager/orderDetail","order", order);
 	}
 	

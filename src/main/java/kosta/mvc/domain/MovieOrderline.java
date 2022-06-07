@@ -1,6 +1,7 @@
 package kosta.mvc.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class MovieOrderline {
 	@SequenceGenerator(name="movieorderline_pk", allocationSize = 1, sequenceName = "movieorderline_pk")
 	private Long movieOrderlineCode;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="seat_performance_code", nullable = false)
 	private SeatPerformance seatPerformance;
 	

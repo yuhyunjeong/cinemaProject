@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -51,6 +52,6 @@ public class Movie {
 	
 	private String movieImage;
 	
-	@OneToOne(mappedBy="movie")
+	@OneToOne(mappedBy="movie" , fetch = FetchType.LAZY)
 	private Gift gift;
 }

@@ -2,6 +2,7 @@ package kosta.mvc.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class Seat {
 	@SequenceGenerator(name = "seat_pk", allocationSize = 1, sequenceName = "seat_pk")
 	private Integer seatcode;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")
 	private Screen screen;
 	
