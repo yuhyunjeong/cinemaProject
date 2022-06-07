@@ -63,7 +63,7 @@
 			        </tbody>
 		    	</table>
 		    	<div style="width: 1000px; margin: 0 auto; text-align: right; ">
-				<input class="write" type="submit" value="문의하기">
+				<input class="write" type="submit" value="작성하기">
 				</div>
 		    </form>
 		</div>

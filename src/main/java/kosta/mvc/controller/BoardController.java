@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.NoticeBoard;
 import kosta.mvc.domain.QnABoard;
+import kosta.mvc.domain.QnAReply;
 import kosta.mvc.service.NoticeBoardService;
 import kosta.mvc.service.QnABoardService;
+import kosta.mvc.service.QnAReplyService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -24,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	private final NoticeBoardService noticeBoardService;
 	private final QnABoardService qnABoardService;
+	private final QnAReplyService qnAReplyService;
 
 	@RequestMapping("/notice")
 	public void notice(Model model) {
@@ -61,4 +64,29 @@ public class BoardController {
 		
 		return "redirect:/board/qna";
 	}
+	
+	@RequestMapping("/qnaReplyInsert")
+	public String qnaReplyInsert(HttpServletRequest request, QnAReply qnaReply, Long bno) {
+		qnaReply.setQnaBoard(new QnABoard(bno));
+		HttpSession session = request.getSession();
+		qnaReply.setMember((Member) session.getAttribute("member"));
+		qnAReplyService.insert(qnaReply);
+		return "redirect:/board/qnaDetail/"+bno;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

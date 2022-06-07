@@ -42,7 +42,7 @@
 			  		<c:forEach items="${requestScope.list}" var="qna">
 			  			<tr class="table-active">
 					      <th scope="row">${qna.bno}</th>
-					      <td style="width: 300;"><a href="${pageContext.request.contextPath}/board/qnaDetail/${qna.bno}">${qna.title}</a></td>
+					      <td style="width: 300;"><a href="${pageContext.request.contextPath}/board/qnaDetail/${qna.bno}">${qna.title}</a><b style="font-size: 3px; color: skyblue;">[${qna.replyList.size()}]</b></td>
 					      <td>${qna.member.id}</td>
 					      <td>
 						      <fmt:parseDate value="${qna.insertDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parseIdateInsert"/>

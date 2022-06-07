@@ -10,6 +10,25 @@
 		<style type="text/css">
 			td, th {
 				text-align: center;
+				width: 1000px;
+				height: 100%;
+				border: solid 1px white;
+			}
+			textarea{
+				width: 1000px;
+				height: 100px;
+				background: transparent;
+				border: solid 1px white;
+			}
+			table{
+				width: 1000px;
+				height: 100%;
+				margin-left:auto; 
+    			margin-right:auto;
+    			border: solid 1px white;
+			}
+			.board_content{
+				height: 500px;
 			}
 		</style>
 	</head>
@@ -27,9 +46,7 @@
 			        <tbody>
 			            <tr>
 			                <th>제목</th>
-			                <td>${board.title}</td>
-			                <th></th>
-			                <td></td>
+			                <td colspan="4">${board.title}</td>
 			            </tr>
 			            <tr>
 			                <th>작성자</th>
@@ -41,13 +58,39 @@
 			                </td>
 			            </tr>
 			            <tr>
-			                <th>내용</th>
-			                <td colspan="3">
+			                <th class="board_content">내용</th>
+			                <td colspan="3" style="word-break:break-all;">
 			                    ${board.content}
 			                </td>
 			            </tr>
+			            <tr>
+			            	<td colspan="4">댓글 정보</td>
+			            </tr>
+			            <tr>
+			            	<td>작성자</td><td colspan="2">내용</td>
+			            	<td>작성시간</td>
+			            </tr>
+			            <c:forEach items="${board.replyList}" var="reply">
+				            <tr>
+				            	<td>${reply.member.id}</td>
+				            	<td colspan="2">${reply.content}</td>
+				            	<td>
+				                	<fmt:parseDate value="${reply.insertDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parseIdateInsert"/>
+							      	<fmt:formatDate value="${parseIdateInsert}" pattern="yyyy-MM-dd HH:mm"/>
+				                </td>
+				            </tr>
+			            </c:forEach>
+			            <tr>
+			            	<td colspan="4">댓글 작성</td>
+			            </tr>
 			        </tbody>
 		    </table>
+		    <form action="${pageContext.request.contextPath}/board/qnaReplyInsert">
+		    	<input type="hidden" name="bno" value="${board.bno}"/>
+		    	<textarea rows="20" cols="20" name="content">
+		    	</textarea>
+		    	<input type="submit" value="작성하기">
+		    </form>
 		</div>
 	</body>
 </html>
