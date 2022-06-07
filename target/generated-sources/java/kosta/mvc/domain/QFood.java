@@ -27,7 +27,7 @@ public class QFood extends EntityPathBase<Food> {
 
     public final StringPath foodName = createString("foodName");
 
-    public final StringPath foodPrice = createString("foodPrice");
+    public final NumberPath<Integer> foodPrice = createNumber("foodPrice", Integer.class);
 
     public QFood(String variable) {
         super(Food.class, forVariable(variable));

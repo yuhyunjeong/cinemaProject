@@ -22,6 +22,8 @@ public class QOrders extends EntityPathBase<Orders> {
 
     public static final QOrders orders = new QOrders("orders");
 
+    public final ListPath<FoodOrderline, QFoodOrderline> foodOrderline = this.<FoodOrderline, QFoodOrderline>createList("foodOrderline", FoodOrderline.class, QFoodOrderline.class, PathInits.DIRECT2);
+
     public final QMember member;
 
     public final ListPath<MovieOrderline, QMovieOrderline> movieOrderline = this.<MovieOrderline, QMovieOrderline>createList("movieOrderline", MovieOrderline.class, QMovieOrderline.class, PathInits.DIRECT2);
