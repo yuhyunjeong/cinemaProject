@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,5 +55,6 @@ public class Movie {
 	private String movieImage;
 	
 	@OneToOne(mappedBy="movie" , fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Gift gift;
 }
