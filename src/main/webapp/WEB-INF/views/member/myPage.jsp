@@ -13,7 +13,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
 <body>
-	<h1>${member.name}님의마이페이지 입니다.</h1> <p>
+	<h1>${member.name}님의 마이페이지 입니다.</h1> <p>
 	잔여 포인트 : ${member.point} <p>
 	아이디 : ${member.id} <p>
 	비밀번호 : ${member.password} <p> 

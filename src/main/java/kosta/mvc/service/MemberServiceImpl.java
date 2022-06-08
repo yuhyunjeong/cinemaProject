@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void delete(String id, String password) {
-		
+		memberRepo.deleteById(id);
 	}
 
 

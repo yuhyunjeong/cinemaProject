@@ -85,30 +85,47 @@ public class MemberController {
 	@RequestMapping("/myPage")
 	public void myPage() {}
 	
+//	@RequestMapping("/updateForm")
+//	public ModelAndView updateForm(HttpServletRequest request) {
+//		
+//		HttpSession session = request.getSession();
+//		
+//		
+//		
+//		Member member = (Member) session.getAttribute("member");
+//		System.out.println("update "+member.getId());
+//		member = memService.selectBy(member.getId());
+//		return new ModelAndView("member/update","member",member);
+//	}
+	
 	@RequestMapping("/updateForm")
-	public ModelAndView updateForm(HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		
-		
-		
-		Member member = (Member) session.getAttribute("member");
-		System.out.println("update "+member.getId());
-		member = memService.selectBy(member.getId());
-		return new ModelAndView("member/update","member",member);
-	}
+	public void updateForm() {}
+	
+//	@RequestMapping("/update")
+//	public ModelAndView update(Member member, HttpSession session) {
+//		
+//		Member mem = memService.update(member);
+//		
+//		session.invalidate();
+//		
+//		return new ModelAndView("member/myPage","member",mem);
+//	}
 	
 	@RequestMapping("/update")
-	public ModelAndView update(Member member) {
+	public String update(Member member, HttpSession session) {
 		
-		Member mem = memService.update(member);
+		memService.update(member);
 		
-		return new ModelAndView("member/myPage","member",mem);
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/delete")
-	public void delete() {
+	public String delete(String id, String password) {
+		memService.delete(id, password);
 		
+		return "redirect:/";
 	}
 	
 }
