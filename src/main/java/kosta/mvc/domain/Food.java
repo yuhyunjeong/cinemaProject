@@ -1,7 +1,10 @@
 package kosta.mvc.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +23,8 @@ public class Food {
 
 	@Id
 	@NonNull
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "food_pk")
+	@SequenceGenerator(name = "food_pk", allocationSize = 1, sequenceName = "food_pk")
 	private String foodCode;
 	
 	private String foodName;
