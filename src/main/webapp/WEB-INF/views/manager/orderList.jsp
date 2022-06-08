@@ -19,6 +19,7 @@
       <th scope="col">예매 내용</th>
       <th scope="col">결제 일시</th>
       <th scope="col">결제 금액</th>
+      <th scope="col">회원 아이디</th>
     </tr>
   </thead>
   <tbody>
@@ -57,6 +58,9 @@
 			      	<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
     				<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 			      <td>${order.totalPrice}</td>
+			      <td>
+			      	${order.member.id}
+			      </td>
 			    </tr>
 		    </c:forEach>
   		</c:otherwise>
