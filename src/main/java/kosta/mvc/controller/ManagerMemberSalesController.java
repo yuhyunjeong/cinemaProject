@@ -50,4 +50,9 @@ public class ManagerMemberSalesController {
 		model.addAttribute("memberList", memberList);
 	}
 	
+	@RequestMapping("/memberDetail/{memberId}")
+	public ModelAndView memberDetail(@PathVariable String memberId) {
+		Member member = memberService.selectBy(memberId);
+		return new ModelAndView("manager/memberDetail","member", member);
+	}
 }
