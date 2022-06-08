@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Orders;
+import kosta.mvc.repository.MemberRepository;
+import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 public class ManagerMemberSalesController {
 
 	private final OrderService orderService;
+	
+	private final MemberService memberService;
 	
 	@RequestMapping("/orderList")
 	public void orderList(Model model) {
@@ -40,6 +45,9 @@ public class ManagerMemberSalesController {
 	public void salesByMovie() {}
 	
 	@RequestMapping("/members")
-	public void members() {}
+	public void members(Model model) {
+		List<Member> memberList = memberService.selectAll();
+		model.addAttribute("memberList", memberList);
+	}
 	
 }

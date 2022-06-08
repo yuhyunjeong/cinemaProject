@@ -1,5 +1,7 @@
 package kosta.mvc.service;
 
+import java.util.List;
+
 import kosta.mvc.domain.Member;
 
 public interface MemberService {
@@ -42,7 +44,9 @@ public interface MemberService {
 	 * */
 	void delete(String id, String password);
 	
-	
-	
+	/**
+	 * 전체검색
+	 * */
+	List<Member> selectAll();
 	
 }

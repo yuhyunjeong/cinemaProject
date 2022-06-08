@@ -94,6 +94,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public List<Member> selectAll() {
+		return memberRepo.findAll();
+	}
+
+
 	
 
 	
