@@ -45,7 +45,7 @@ public class QnABoard {
 
 	private String title;
 	
-	@Column(length = 5000)
+	@Column(length = 500)
 	private String content; //내용
 	
 	@CreationTimestamp

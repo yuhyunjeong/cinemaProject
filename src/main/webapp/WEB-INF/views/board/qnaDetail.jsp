@@ -31,6 +31,21 @@
 				height: 500px;
 			}
 		</style>
+		<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			
+			$(function() {
+				$("input[value=삭제하기]").click(function() {
+					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/qnaDelete");
+					$("#changeForm").submit();
+				})
+				$("input[value=수정하기]").click(function() {
+					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/qnaUpdateForm");
+					$("#changeForm").submit();
+				})
+			})
+		
+		</script>
 	</head>
 	<body>
 		<div class="container">
@@ -46,7 +61,14 @@
 			        <tbody>
 			            <tr>
 			                <th>제목</th>
-			                <td colspan="4">${board.title}</td>
+			                <td colspan="2">${board.title}</td>
+			                <td>
+				                <form id="changeForm" action="#">
+				                	<input type="hidden" name="bno" value="${board.bno}">
+				                	<input type="button" value="수정하기">
+				                	<input type="button" value="삭제하기">
+				                </form>
+			                </td>
 			            </tr>
 			            <tr>
 			                <th>작성자</th>

@@ -13,4 +13,8 @@ public interface QnABoardService {
 	QnABoard selectBy(Long bno);
 	
 	void insert(QnABoard qnaBoard);
+	
+	void delete(Long bno);
+	
+	QnABoard update(QnABoard qnaBoard);
 }

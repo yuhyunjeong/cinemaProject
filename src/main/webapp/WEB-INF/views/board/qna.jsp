@@ -16,6 +16,7 @@
 				text-align: center;
 			}
 		</style>
+		
 	</head>
 	<body>
 		<h2>&nbsp;&nbsp;문의게시판</h2>

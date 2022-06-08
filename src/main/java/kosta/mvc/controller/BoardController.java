@@ -73,6 +73,24 @@ public class BoardController {
 		qnAReplyService.insert(qnaReply);
 		return "redirect:/board/qnaDetail/"+bno;
 	}
+	
+	@RequestMapping("/qnaDelete")
+	public String qnaDelete(Long bno) {
+		qnABoardService.delete(bno);
+		return "redirect:/board/qna";
+	}
+	
+	@RequestMapping("/qnaUpdateForm")
+	public ModelAndView qnaUpdateForm(Long bno) {
+		QnABoard board = qnABoardService.selectBy(bno);
+		return new ModelAndView("board/qnaUpdate", "board", board);
+	}
+	
+	@RequestMapping("/qnaUpdate")
+	public ModelAndView qnaUpdate(QnABoard qnaBoard) {
+		QnABoard board = qnABoardService.update(qnaBoard);
+		return new ModelAndView("board/qnaDetail", "board", board); 
+	}
 }
 
 

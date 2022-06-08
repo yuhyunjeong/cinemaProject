@@ -41,7 +41,7 @@ public class NoticeBoard {
 
 	private String title;
 	
-	@Column(length = 5000)
+	@Column(length = 500)
 	private String content; //내용
 	
 	private int readnum; //조회수

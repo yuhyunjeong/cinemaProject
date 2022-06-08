@@ -35,4 +35,19 @@ public class QnABoardServiceImpl implements QnABoardService {
 		
 	}
 
+	@Override
+	public void delete(Long bno) {
+		qnABoardRepository.deleteById(bno);
+		
+	}
+
+	@Override
+	public QnABoard update(QnABoard qnaBoard) {
+		QnABoard board = qnABoardRepository.getById(qnaBoard.getBno());
+		board.setTitle(qnaBoard.getTitle());
+		board.setContent(qnaBoard.getContent());
+		return board;
+		
+	}
+
 }
