@@ -30,6 +30,8 @@ public class QQnABoard extends EntityPathBase<QnABoard> {
 
     public final QMember member;
 
+    public final ListPath<QnAReply, QQnAReply> replyList = this.<QnAReply, QQnAReply>createList("replyList", QnAReply.class, QQnAReply.class, PathInits.DIRECT2);
+
     public final StringPath title = createString("title");
 
     public QQnABoard(String variable) {
