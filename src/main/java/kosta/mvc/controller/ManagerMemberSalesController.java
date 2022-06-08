@@ -44,7 +44,7 @@ public class ManagerMemberSalesController {
 	@RequestMapping("/salesByMovie")
 	public void salesByMovie() {}
 	
-	@RequestMapping("/members")
+	@RequestMapping("/memberList")
 	public void members(Model model) {
 		List<Member> memberList = memberService.selectAll();
 		model.addAttribute("memberList", memberList);
