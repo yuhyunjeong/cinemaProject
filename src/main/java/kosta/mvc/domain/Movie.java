@@ -45,14 +45,13 @@ public class Movie {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date movieEnddate;
 	
-	private int movieRated;
-	
 	private String movieGenre;
 	
-	@CreationTimestamp
-	private Date movieInsertdate;
+	private int movieAge;
 	
 	private String movieImage;
+	
+	private String actorList;
 	
 	@OneToOne(mappedBy="movie" , fetch = FetchType.LAZY)
 	@JsonIgnore
