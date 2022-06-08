@@ -11,18 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QQnABoard is a Querydsl query type for QnABoard
+ * QQnAReply is a Querydsl query type for QnAReply
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QQnABoard extends EntityPathBase<QnABoard> {
+public class QQnAReply extends EntityPathBase<QnAReply> {
 
-    private static final long serialVersionUID = 1409714374L;
+    private static final long serialVersionUID = 1424207050L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QQnABoard qnABoard = new QQnABoard("qnABoard");
-
-    public final NumberPath<Long> bno = createNumber("bno", Long.class);
+    public static final QQnAReply qnAReply = new QQnAReply("qnAReply");
 
     public final StringPath content = createString("content");
 
@@ -30,29 +28,30 @@ public class QQnABoard extends EntityPathBase<QnABoard> {
 
     public final QMember member;
 
-    public final ListPath<QnAReply, QQnAReply> replyList = this.<QnAReply, QQnAReply>createList("replyList", QnAReply.class, QQnAReply.class, PathInits.DIRECT2);
+    public final QQnABoard qnaBoard;
 
-    public final StringPath title = createString("title");
+    public final NumberPath<Long> rno = createNumber("rno", Long.class);
 
-    public QQnABoard(String variable) {
-        this(QnABoard.class, forVariable(variable), INITS);
+    public QQnAReply(String variable) {
+        this(QnAReply.class, forVariable(variable), INITS);
     }
 
-    public QQnABoard(Path<? extends QnABoard> path) {
+    public QQnAReply(Path<? extends QnAReply> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QQnABoard(PathMetadata metadata) {
+    public QQnAReply(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QQnABoard(PathMetadata metadata, PathInits inits) {
-        this(QnABoard.class, metadata, inits);
+    public QQnAReply(PathMetadata metadata, PathInits inits) {
+        this(QnAReply.class, metadata, inits);
     }
 
-    public QQnABoard(Class<? extends QnABoard> type, PathMetadata metadata, PathInits inits) {
+    public QQnAReply(Class<? extends QnAReply> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.qnaBoard = inits.isInitialized("qnaBoard") ? new QQnABoard(forProperty("qnaBoard"), inits.get("qnaBoard")) : null;
     }
 
 }
