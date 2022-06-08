@@ -151,7 +151,8 @@
 						  	<c:otherwise>
 						  	<!-- 조건 -->
 						  		<c:forEach items="${requestScope.movieList}" var="movie">
-									<button type="button" class="btn2" value="${movie.movieName}">${movie.movieName}</button>
+									<button type="button" class="btn2" id="moviebtn" value="${movie.movieCode}">${movie.movieName}</button>
+									
 						  		</c:forEach>
 						  	</c:otherwise>
 				  		</c:choose>
@@ -177,17 +178,6 @@
 			<div class="time-part"><p>
 			<h4 class="card-title">&nbsp;&nbsp;시간</h4> <!-- time 상영시작시간 데이터 가져오기.. -->
 				<div class="time-list">
-					<%-- <c:choose>
-				 		<c:when test="${empty 상영관시간가져오기}">
-					  		<div>이 영화는 시간이 등록되지 않았습니다.</div>
-				  		</c:when>
-					  	<c:otherwise>
-					  	<!-- 조건 -->
-					  		<c:forEach items="${requestScope.movieList}" var="movie">
-								
-					  		</c:forEach>
-					  	</c:otherwise>
-			  		</c:choose> --%>
 				</div>
 			</div>
 		</div>
@@ -232,59 +222,80 @@
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const reserveDate = document.querySelector(".reserve-date");
 
-  
-        const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        for (i = date.getDate(); i <= lastDay.getDate(); i++) {
+    const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
 
-            const button = document.createElement("button");
-            const spanWeekOfDay = document.createElement("span");
-            const spanDay = document.createElement("span");
+        const button = document.createElement("button");
+        const spanWeekOfDay = document.createElement("span");
+        const spanDay = document.createElement("span");
 
-            //class넣기
-            button.classList = "movie-date-wrapper"
-            spanWeekOfDay.classList = "movie-week-of-day";
-            spanDay.classList = "movie-day";
+        //class넣기
+        button.classList = "movie-date-wrapper"
+        spanWeekOfDay.classList = "movie-week-of-day";
+        spanDay.classList = "movie-day";
 
-            //weekOfDay[new Date(2021-06-03)]
-            const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
+        //weekOfDay[new Date(2021-06-03)]
+        const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
 
-            //요일 넣기
-            if (dayOfWeek === "토") {
-                spanWeekOfDay.classList.add("saturday");
-                spanDay.classList.add("saturday");
-            } else if (dayOfWeek === "일") {
-                spanWeekOfDay.classList.add("sunday");
-                spanDay.classList.add("sunday");
-            }
-            spanWeekOfDay.innerHTML = dayOfWeek;
-            button.append(spanWeekOfDay);
-            //날짜 넣기
-            spanDay.innerHTML = i;
-            button.append(spanDay);
-            
-            reserveDate.append(button);
-
-            dayClickEvent(button);
+        //요일 넣기
+        if (dayOfWeek === "토") {
+            spanWeekOfDay.classList.add("saturday");
+            spanDay.classList.add("saturday");
+        } else if (dayOfWeek === "일") {
+            spanWeekOfDay.classList.add("sunday");
+            spanDay.classList.add("sunday");
         }
-
-    function dayClickEvent(button) {
-        button.addEventListener("click", function() {
-            const movieDateWrapperActive = document.querySelectorAll(".movie-date-wrapper-active");
-            movieDateWrapperActive.forEach((list) => {
-                list.classList.remove("movie-date-wrapper-active");
-            })
-            button.classList.add("movie-date-wrapper-active");
-        })
-    }
-    
-    //버튼클릭시 밑에 영화정보 박스에 값 넣어주기
-    $(function() {
-    $('.moviebtn').on('click', function() {
+        spanWeekOfDay.innerHTML = dayOfWeek;
+        button.append(spanWeekOfDay);
+        //날짜 넣기
+        spanDay.innerHTML = i;
+        button.append(spanDay);
         
-	    });
-	});
+        reserveDate.append(button);
+
+        dayClickEvent(button);
+    }
+
+function dayClickEvent(button) {
+    button.addEventListener("click", function() {
+        const movieDateWrapperActive = document.querySelectorAll(".movie-date-wrapper-active");
+        movieDateWrapperActive.forEach((list) => {
+            list.classList.remove("movie-date-wrapper-active");
+        })
+        button.classList.add("movie-date-wrapper-active");
+    })
+}
+    
+    //버튼클릭시 time 테이블 시간 가져오기
+   	$(function(){
+   		$(".btn2").on("click", function(){
+   			alert(this.value); //클릭한 값이 나옴..!
+   			$.ajax({
+   				type:"post",
+   				url:"/cinema/time", //서버요청주소
+   				dataType : "json", //서버가 응답해주는 데이터 타입 나중에 json으로..
+   				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
+   				success: function(timeList){ //timeList에 있는 값들 꺼내와야함..
+   					alert(timeList);
+   					var result='';
+					  $.each(timeList, function(index, item){
+				
+						  
+						  result += '<button type="button" class="btn3" id="timebtn">' + item.timeStart + '</button><p>';
+						  
+					    
+						//alert(item.timeStart);
+					 }) 
+					 
+					 $(".time-list").html(result);
+					
+
+   					}
+   			});	
+   		});	
+   	});
     
 </script>
 

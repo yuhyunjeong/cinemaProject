@@ -13,6 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +25,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Time {
 	
 	@Id
@@ -33,10 +34,12 @@ public class Time {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")
+	@JsonIgnore
 	private Screen screen;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="movie_code")
+	@JsonIgnore
 	private Movie movie;
 	
 	@Temporal(TemporalType.TIMESTAMP)

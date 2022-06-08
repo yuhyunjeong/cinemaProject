@@ -22,11 +22,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Seat {
 
 	@Id
-	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_pk")
 	@SequenceGenerator(name = "seat_pk", allocationSize = 1, sequenceName = "seat_pk")
 	private Integer seatcode;

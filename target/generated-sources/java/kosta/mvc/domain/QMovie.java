@@ -22,7 +22,11 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public static final QMovie movie = new QMovie("movie");
 
+    public final StringPath actorList = createString("actorList");
+
     public final QGift gift;
+
+    public final NumberPath<Integer> movieAge = createNumber("movieAge", Integer.class);
 
     public final StringPath movieCode = createString("movieCode");
 
@@ -32,17 +36,15 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public final StringPath movieImage = createString("movieImage");
 
-    public final DateTimePath<java.util.Date> movieInsertdate = createDateTime("movieInsertdate", java.util.Date.class);
-
     public final StringPath movieName = createString("movieName");
-
-    public final NumberPath<Integer> movieRated = createNumber("movieRated", Integer.class);
 
     public final NumberPath<Integer> movieRunningtime = createNumber("movieRunningtime", Integer.class);
 
     public final DateTimePath<java.util.Date> movieStartdate = createDateTime("movieStartdate", java.util.Date.class);
 
     public final StringPath movieSummary = createString("movieSummary");
+
+    public final ListPath<Time, QTime> timeList = this.<Time, QTime>createList("timeList", Time.class, QTime.class, PathInits.DIRECT2);
 
     public QMovie(String variable) {
         this(Movie.class, forVariable(variable), INITS);

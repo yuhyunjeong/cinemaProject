@@ -2,10 +2,12 @@ package kosta.mvc.domain;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -47,5 +49,6 @@ public class Member {
 	@CreationTimestamp
 	private LocalDateTime regdate;
 	
-	
+	@OneToMany(mappedBy="member")
+	private List<Orders> orderList;
 }
