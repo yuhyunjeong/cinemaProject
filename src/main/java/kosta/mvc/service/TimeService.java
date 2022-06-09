@@ -6,10 +6,10 @@ import kosta.mvc.domain.Time;
 
 
 public interface TimeService {
-	
-	/**
-	 * 시간 전체검색 
-	 */
-	List<Time> selectAll(String movieCode);
+    
+    /**
+     * 시간 전체검색 
+     */
+    List<Time> selectAll(String movieCode);
 
 }
