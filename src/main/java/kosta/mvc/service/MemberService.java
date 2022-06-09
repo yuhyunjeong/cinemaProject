@@ -42,7 +42,7 @@ public interface MemberService {
 	/**
 	 * 회원 탈퇴
 	 * */
-	void delete(String id, String password);
+	void delete(Member member);
 	
 	/**
 	 * 전체검색

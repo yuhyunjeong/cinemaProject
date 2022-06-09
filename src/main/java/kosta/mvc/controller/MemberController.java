@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.service.MemberService;
@@ -122,10 +123,30 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping("/deleteView")
+	public String deleteView() {
+		return "member/memberDelete";
+	}
+	
 	@RequestMapping("/delete")
-	public String delete(String id, String password) {
-		memService.delete(id, password);
+	public String delete(Member member, HttpSession session, RedirectAttributes rttr) {
 		
+		//세션에 있는 member를 가져와 mem변수에 넣어준다.
+		Member mem = (Member) session.getAttribute("member");
+		
+		//세션에 있는 비밀번호
+		String sessionPass = mem.getPassword();
+		
+		//member로 들어오는 비밀번호
+		String voPass = member.getPassword();
+		
+		if(!(sessionPass.equals(voPass))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/memberDelete";
+		}
+		
+		memService.delete(member);
+		session.invalidate();
 		return "redirect:/";
 	}
 	
