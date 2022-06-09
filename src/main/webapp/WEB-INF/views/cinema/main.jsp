@@ -217,11 +217,11 @@
 								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/poster/test1.jpg" /></a>
+											src="./img/movie/닥터스트레인지2.jpeg" /></a>
 											
 										<br>
 										
-										<div class="card-footer">영화 제목</div>		
+										<div class="card-text">영화 제목</div>		
 											
 								</div>
 							
@@ -229,7 +229,7 @@
 								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/poster/test2.jpg" /></a>
+											src="./img/movie/범죄도시2.jpeg" /></a>
 											<div class="card-body">
 										<hr>
 										
@@ -241,7 +241,7 @@
 								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/poster/test3.jpg" /></a>
+											src="./img/movie/브로커.jpeg" /></a>
 											<div class="card-body">
 										<hr>
 										
@@ -253,7 +253,7 @@
 								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/poster/test4.jpg" /></a>
+											src="./img/movie/쥬라기월드 - 도미니언.jpeg" /></a>
 											<div class="card-body">
 										<hr>
 										
