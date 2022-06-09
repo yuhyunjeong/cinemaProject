@@ -230,11 +230,11 @@
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
 											src="./img/movie/범죄도시2.jpeg" /></a>
-											<div class="card-body">
-										<hr>
+											
+										<br>
 										
-										<p class="card-text">영화 제목</p>		
-										</div>	
+										<div class="card-text">영화 제목</div>		
+										
 								</div>
 							
 							
@@ -242,11 +242,11 @@
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
 											src="./img/movie/브로커.jpeg" /></a>
-											<div class="card-body">
-										<hr>
+											
+										<br>
 										
-										<p class="card-text">영화 제목</p>		
-										</div>		
+										<div class="card-text">영화 제목</div>		
+												
 								</div>
 							
 							
@@ -254,11 +254,11 @@
 									
 										<a class="card-link" href="#"> <img class="card-img-top"
 											src="./img/movie/쥬라기월드 - 도미니언.jpeg" /></a>
-											<div class="card-body">
-										<hr>
+											
+										<br>
 										
-										<p class="card-text">영화 제목</p>			
-										</div>	
+										<div class="card-text">영화 제목</div>			
+										
 								</div>
 							
 						</div>

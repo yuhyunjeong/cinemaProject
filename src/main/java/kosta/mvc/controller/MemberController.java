@@ -123,9 +123,9 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/deleteView")
-	public String deleteView() {
-		return "member/memberDelete";
+	@RequestMapping("/memberDelete")
+	public void memberDelete() {
+		
 	}
 	
 	@RequestMapping("/delete")

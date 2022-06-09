@@ -20,10 +20,6 @@ public interface MemberRepository extends JpaRepository<Member, String>, Queryds
 	@Query("select m.id from Member m where m.id=?1")
 	String idCheck(String id);
 	
-	/**
-	 * 회원 탈퇴 (아이디, 비밀번호 체크)
-	 * */
-	@Query("delete from Member m where m.id=?1 and m.password=?2")
-	void delete(String id, String password);
+	
 	
 }

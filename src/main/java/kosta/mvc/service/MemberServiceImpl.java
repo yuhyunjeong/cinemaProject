@@ -88,7 +88,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void delete(Member member) {
 		
-		memberRepo.delete(member.getId(), member.getPassword());
+		
+		memberRepo.deleteById(member.getId());
 	}
 
 

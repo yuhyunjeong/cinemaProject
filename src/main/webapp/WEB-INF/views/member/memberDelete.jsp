@@ -52,7 +52,7 @@
 					
 					<div>
 						<button type="submit" class="btn btn-secondary" id="submit">회원 탈퇴</button>
-						<button type="button" class="cancel btn btn-warning">취소</button>
+						<button type="button" class="cancel btn btn-warning" id="reset">취소</button>
 					</div>
 					<br>
 				</form>
@@ -76,7 +76,7 @@
 
 $(document).ready(function(){
 	// 취소
-	$(".cancle").on("click", function(){
+	$("#reset").on("click", function(){
 		
 		location.href = "/";
 				    
@@ -93,6 +93,7 @@ $(document).ready(function(){
 		
 	
 })
+
 
 </script>
 </html>

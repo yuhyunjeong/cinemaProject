@@ -31,7 +31,7 @@
 				<a class="dropdown-item"
 					href="${pageContext.request.contextPath}/member/updateForm">수정</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/member/deleteView">탈퇴</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/member/memberDelete">탈퇴</a>
 			</div></li>
 	</ul>
 	
