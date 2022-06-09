@@ -25,9 +25,9 @@ import lombok.Setter;
 public class SeatPerformance {
 
 	@Id
+	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seatperformance_pk")
 	@SequenceGenerator(name="seatperformance_pk", allocationSize = 1, sequenceName = "seatperformance_pk")
-	@NonNull
 	private Long seatPerformanceCode;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
