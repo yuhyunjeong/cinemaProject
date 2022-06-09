@@ -13,6 +13,7 @@ public interface TimeRepository extends JpaRepository<Time, Long> , QuerydslPred
 	
 	  
 	  List<Time> findByMovieMovieCodeEquals(String movieCode);
-	  
+
+	  Time findByTimeCodeEquals(long timeCode);
 	  
 }

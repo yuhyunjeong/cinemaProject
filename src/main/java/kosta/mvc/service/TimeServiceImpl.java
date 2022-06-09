@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class TimeServiceImpl implements TimeService {
 	
 	private final TimeRepository timeRepo;
-	//private final MovieRepository movieRepo;
+	
 
 	@Override
 	public List<Time> selectAll(String movieCode) {
@@ -28,5 +28,15 @@ public class TimeServiceImpl implements TimeService {
 		
 		return timeList;
 	}
+	
+	@Override
+	public Time selectBy(long timeCode) {
+		
+		Time time = timeRepo.findByTimeCodeEquals(timeCode);
+	
+		return time;
+	}
+
+	
 
 }
