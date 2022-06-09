@@ -2,13 +2,10 @@ package kosta.mvc.service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-
-import com.querydsl.core.BooleanBuilder;
 
 import kosta.mvc.domain.Member;
 //import kosta.mvc.domain.QMember;
