@@ -36,7 +36,7 @@
 	<body>
 		<div class="container">
 			<h2>문의글 작성하기</h2>
-			<form method="post" action="${pageContext.request.contextPath}/board/qnaInsert">
+			<form method="post" action="${pageContext.request.contextPath}/board/noticeUpdate">
 		    	<table class="board_view">
 			        <colgroup>
 			            <col width="15%">
@@ -48,22 +48,23 @@
 			        <tbody>
 			            <tr>
 			                <th>제목</th>
-			                <td colspan="2"><input type="text" name="title"> </td>
+			                <td colspan="2"><input type="text" name="title" value="${board.title}"> </td>
 			            </tr>
 			            <tr>
 			                <th>작성자</th>
-			                <td><input type="hidden" name="id" value="${member.id}">${member.id}</td>
+			                <td>${member.id}</td>
 			            </tr>
 			            <tr class="contentForm">
 			                <th>내용</th>
 			                <td colspan="2">
-			                    <textarea rows="20" cols="20" name="content"></textarea>
+			                    <textarea rows="20" cols="20" name="content">${board.content}</textarea>
 			                </td>
 			            </tr>
 			        </tbody>
 		    	</table>
 		    	<div style="width: 1000px; margin: 0 auto; text-align: right; ">
-					<input class="write" type="submit" value="작성하기">
+		    	<input type="hidden" name="bno" value="${board.bno}">
+				<input class="write" type="submit" value="작성하기">
 				</div>
 		    </form>
 		</div>

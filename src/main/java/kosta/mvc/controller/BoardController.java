@@ -40,6 +40,35 @@ public class BoardController {
 		return new ModelAndView("board/noticeDetail", "board", board);
 	}
 	
+	@RequestMapping("/noticeWrite")
+	public void noticeWrite() {}
+	
+	@RequestMapping("/noticeInsert")
+	public String noticeInsert(HttpServletRequest request, NoticeBoard noticeBoard) {
+		HttpSession session = request.getSession();
+		noticeBoard.setMember((Member) session.getAttribute("member"));
+		noticeBoardService.insert(noticeBoard);
+		
+		return "redirect:/board/notice";
+	}
+	
+	@RequestMapping("/noticeDelete")
+	public String noticeDelete(Long bno) {
+		noticeBoardService.delete(bno);
+		return "redirect:/board/notice";
+	}
+	
+	@RequestMapping("/noticeUpdateForm")
+	public ModelAndView noticeUpdateForm(Long bno) {
+		NoticeBoard board = noticeBoardService.selectBy(bno);
+		return new ModelAndView("board/noticeUpdate", "board", board);
+	}
+	
+	@RequestMapping("/noticeUpdate")
+	public ModelAndView noticeUpdate(NoticeBoard noticeBoard) {
+		NoticeBoard board = noticeBoardService.update(noticeBoard);
+		return new ModelAndView("board/noticeDetail", "board", board); 
+	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/qna")

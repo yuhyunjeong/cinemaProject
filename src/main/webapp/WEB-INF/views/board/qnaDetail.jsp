@@ -23,8 +23,7 @@
 			table{
 				width: 1000px;
 				height: 100%;
-				margin-left:auto; 
-    			margin-right:auto;
+    			margin:0 auto;
     			border: solid 1px white;
 			}
 			.board_content{
@@ -107,12 +106,14 @@
 			            </tr>
 			        </tbody>
 		    </table>
-		    <form action="${pageContext.request.contextPath}/board/qnaReplyInsert">
-		    	<input type="hidden" name="bno" value="${board.bno}"/>
-		    	<textarea rows="20" cols="20" name="content">
-		    	</textarea>
-		    	<input type="submit" value="작성하기">
-		    </form>
+		    <div style="text-align: center;">
+			    <form action="${pageContext.request.contextPath}/board/qnaReplyInsert">
+			    	<input type="hidden" name="bno" value="${board.bno}"/>
+			    	<textarea rows="20" cols="20" name="content"></textarea>
+			    	<br>
+			    	<input type="submit" value="작성하기">
+			    </form>
+		    </div>
 		</div>
 	</body>
 </html>

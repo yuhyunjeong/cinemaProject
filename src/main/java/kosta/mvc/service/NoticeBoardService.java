@@ -10,4 +10,10 @@ public interface NoticeBoardService {
 	List<NoticeBoard> selectAll();
 	
 	NoticeBoard selectBy(Long bno);
+	
+	void insert(NoticeBoard noticeBoard);
+	
+	void delete(Long bno);
+	
+	NoticeBoard update(NoticeBoard noticeBoard);
 }

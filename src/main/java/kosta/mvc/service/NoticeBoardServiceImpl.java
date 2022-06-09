@@ -26,5 +26,22 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		if(noticeBoard==null)new RuntimeException("상세보기에 오류가 발생했습니다.");
 		return noticeBoard;
 	}
+	@Override
+	public void insert(NoticeBoard noticeBoard) {
+		noticeBoardRepository.save(noticeBoard);
+		
+	}
+	@Override
+	public void delete(Long bno) {
+		noticeBoardRepository.deleteById(bno);
+		
+	}
+	@Override
+	public NoticeBoard update(NoticeBoard noticeBoard) {
+		NoticeBoard board = noticeBoardRepository.getById(noticeBoard.getBno());
+		board.setTitle(noticeBoard.getTitle());
+		board.setContent(noticeBoard.getContent());
+		return board;
+	}
 
 }

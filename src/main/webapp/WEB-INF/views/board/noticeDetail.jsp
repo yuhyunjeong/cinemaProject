@@ -10,8 +10,41 @@
 		<style type="text/css">
 			td, th {
 				text-align: center;
+				width: 1000px;
+				height: 100%;
+				border: solid 1px white;
+			}
+			textarea{
+				width: 1000px;
+				height: 100px;
+				background: transparent;
+				border: solid 1px white;
+			}
+			table{
+				width: 1000px;
+				height: 100%;
+    			margin:0 auto;
+    			border: solid 1px white;
+			}
+			.board_content{
+				height: 500px;
 			}
 		</style>
+		<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			
+			$(function() {
+				$("input[value=삭제하기]").click(function() {
+					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/noticeDelete");
+					$("#changeForm").submit();
+				})
+				$("input[value=수정하기]").click(function() {
+					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/noticeUpdateForm");
+					$("#changeForm").submit();
+				})
+			})
+		
+		</script>
 	</head>
 	<body>
 		<div class="container">
@@ -40,7 +73,7 @@
 						      	<fmt:formatDate value="${parseIdateInsert}" pattern="yyyy-MM-dd HH:mm"/>
 			                </td>
 			            </tr>
-			            <tr>
+			            <tr class="board_content">
 			                <th>내용</th>
 			                <td colspan="3">
 			                    ${board.content}
@@ -48,7 +81,11 @@
 			            </tr>
 			        </tbody>
 		    </table>
-		    
+		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: right; ">
+               	<input type="hidden" name="bno" value="${board.bno}">
+               	<input type="button" value="수정하기">
+               	<input type="button" value="삭제하기">
+            </form>
 		    
 		</div>
 	</body>

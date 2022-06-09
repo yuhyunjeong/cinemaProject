@@ -36,7 +36,7 @@
 	<body>
 		<div class="container">
 			<h2>문의글 작성하기</h2>
-			<form method="post" action="${pageContext.request.contextPath}/board/qnaInsert">
+			<form method="post" action="${pageContext.request.contextPath}/board/noticeInsert">
 		    	<table class="board_view">
 			        <colgroup>
 			            <col width="15%">
