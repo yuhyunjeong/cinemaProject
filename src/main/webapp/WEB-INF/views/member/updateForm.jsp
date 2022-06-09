@@ -29,7 +29,7 @@
 			<div class="dropdown-menu" style="">
 				<a class="dropdown-item" href="#">수정</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#">탈퇴</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/member/deleteView">탈퇴</a>
 			</div></li>
 	</ul>
 	<div class="col-sm-6, container" style="text-align: center;">
