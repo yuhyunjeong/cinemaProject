@@ -2,13 +2,10 @@ package kosta.mvc.service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-
-import com.querydsl.core.BooleanBuilder;
 
 import kosta.mvc.domain.Member;
 //import kosta.mvc.domain.QMember;
@@ -89,8 +86,10 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public void delete(String id, String password) {
+	public void delete(Member member) {
 		
+		
+		memberRepo.deleteById(member.getId());
 	}
 
 

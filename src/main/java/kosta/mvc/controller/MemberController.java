@@ -1,17 +1,15 @@
 package kosta.mvc.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.service.MemberService;
@@ -82,33 +80,74 @@ public class MemberController {
 	@RequestMapping("/paymentComplete")
 	public void paymentComplete() {}
 	
-	@RequestMapping("/myPage")
-	public void myPage() {}
-	
-	@RequestMapping("/updateForm")
-	public ModelAndView updateForm(HttpServletRequest request) {
+	@RequestMapping("/myPage/{id}")
+	public ModelAndView myPage(@PathVariable String id) {
 		
-		HttpSession session = request.getSession();
-		
-		
-		
-		Member member = (Member) session.getAttribute("member");
-		System.out.println("update "+member.getId());
-		member = memService.selectBy(member.getId());
-		return new ModelAndView("member/update","member",member);
+		Member mem = memService.selectBy(id);
+		return new ModelAndView("member/myPage","member", mem);
 	}
 	
+//	@RequestMapping("/updateForm")
+//	public ModelAndView updateForm(HttpServletRequest request) {
+//		
+//		HttpSession session = request.getSession();
+//		
+//		
+//		
+//		Member member = (Member) session.getAttribute("member");
+//		System.out.println("update "+member.getId());
+//		member = memService.selectBy(member.getId());
+//		return new ModelAndView("member/update","member",member);
+//	}
+	
+	@RequestMapping("/updateForm")
+	public void updateForm() {}
+	
+//	@RequestMapping("/update")
+//	public ModelAndView update(Member member, HttpSession session) {
+//		
+//		Member mem = memService.update(member);
+//		
+//		session.invalidate();
+//		
+//		return new ModelAndView("member/myPage","member",mem);
+//	}
+	
 	@RequestMapping("/update")
-	public ModelAndView update(Member member) {
+	public String update(Member member, HttpSession session) {
 		
-		Member mem = memService.update(member);
+		memService.update(member);
 		
-		return new ModelAndView("member/myPage","member",mem);
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/memberDelete")
+	public void memberDelete() {
+		
 	}
 	
 	@RequestMapping("/delete")
-	public void delete() {
+	public String delete(Member member, HttpSession session, RedirectAttributes rttr) {
 		
+		//세션에 있는 member를 가져와 mem변수에 넣어준다.
+		Member mem = (Member) session.getAttribute("member");
+		
+		//세션에 있는 비밀번호
+		String sessionPass = mem.getPassword();
+		
+		//member로 들어오는 비밀번호
+		String voPass = member.getPassword();
+		
+		if(!(sessionPass.equals(voPass))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/memberDelete";
+		}
+		
+		memService.delete(member);
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 }

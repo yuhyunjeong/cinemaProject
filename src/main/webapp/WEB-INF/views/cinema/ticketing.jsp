@@ -117,6 +117,8 @@
 	background-color: transparent; 
 	font-size: 17px; 
 	border: white;
+	font-style: white;
+	font-weight: bold;
 
 }
 
@@ -125,10 +127,22 @@
 	font-weight: bold;
 }
 
-.btn2 {
+.btn3{
+	width: 280px; 
+	height: 30px; 
+	background-color: transparent; 
+	font-size: 17px; 
+	border: white;
+	font-weight: bold;
+
+}
+
+.btn3:active {
 	font-style: white;
 	font-weight: bold;
 }
+
+
 
 </style>
     
@@ -176,7 +190,7 @@
 	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
 		<div class="card">
 			<div class="time-part"><p>
-			<h4 class="card-title">&nbsp;&nbsp;시간</h4> <!-- time 상영시작시간 데이터 가져오기.. -->
+			<h4 class="card-title">&nbsp;&nbsp;시간</h4>
 				<div class="time-list">
 				</div>
 			</div>
@@ -192,7 +206,13 @@
 	<div class="form-group col-lg-4" style="display: inline-block; width: 200px; height: 150px; background-color: none;">
 		<div class="card">
 			<div class="card-body" style="height: 150px;">
-			<h6 class="card-subtitle mb-2 text-muted" style="width: 200px; height: 150px;"></h6>
+			<h6 class="card-subtitle mb-2 text-muted" style="width: 200px; height: 150px; justify-content: center;">
+				<div class="movieImg"></div>
+			</h6>
+						
+						 
+						
+			
 			</div>
 		</div>
 	</div>&nbsp;&nbsp;
@@ -200,9 +220,9 @@
 	<div class="form-group col-lg-4" style="display: inline-block; width: 600px; height: 150px;">
 		<div class="card">
 		  <div class="card-body" style="height: 150px;">
-		    <h4 class="card-title">영화이름</h4>
-		    <h6 class="card-subtitle mb-2 text-muted">일시 : </h6>
-		    <h6 class="card-subtitle mb-2 text-muted">상영관 : </h6>
+		    <h4 class="card-title"><div class="movieNameInfo"></div></h4>
+		    <h6 class="card-subtitle mb-2 text-muted">일시 :  <div class="dateInfo" style="display: inline-block;"></div><div class="timeInfo" style="display: inline-block;"></div></h6>
+		    <h6 class="card-subtitle mb-2 text-muted">상영관 : <div class="screenInfo" style="display: inline-block;"></div> </h6>
 		  </div>
 		</div>
 	</div>
@@ -268,34 +288,80 @@ function dayClickEvent(button) {
     })
 }
     
-    //버튼클릭시 time 테이블 시간 가져오기
+    /*영화 클릭시 time 테이블 시간 가져오기*/
    	$(function(){
    		$(".btn2").on("click", function(){
-   			alert(this.value); //클릭한 값이 나옴..!
+   			//alert(this.value); //클릭한 값이 나옴..!
    			$.ajax({
    				type:"post",
    				url:"/cinema/time", //서버요청주소
    				dataType : "json", //서버가 응답해주는 데이터 타입 나중에 json으로..
    				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
    				success: function(timeList){ //timeList에 있는 값들 꺼내와야함..
-   					alert(timeList);
+   					//alert(timeList);
    					var result='';
+   					var movieName = '';
 					  $.each(timeList, function(index, item){
-				
-						  
-						  result += '<button type="button" class="btn3" id="timebtn">' + item.timeStart + '</button><p>';
-						  
-					    
-						//alert(item.timeStart);
+						  result += '<button type="button" class="btn3" id="timebtn" value="'+item.timeCode+'">' + item.timeStart + '</button><p>';
+						
 					 }) 
 					 
 					 $(".time-list").html(result);
-					
 
    					}
    			});	
    		});	
    	});
+    
+    
+    /* 영화 클릭 시 영화이름 예매창에 띄우기*/
+    $(function() {
+		$(".btn2").on("click", function() {
+			//alert(this.value) //movieCode나옴
+			$.ajax({
+   				type:"post",
+   				url:"/cinema/ticketingInfo",
+   				dataType : "json", //나중에 json으로..
+   				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
+   				success: function(movie){ //movie에 있는 값들 꺼내와야함..
+   					//alert(movie.movieImage);
+   					$(".timeInfo").empty();
+   	   				$(".screenInfo").empty();
+   					$(".movieNameInfo").html(movie.movieName);
+   					
+   					var result ='';
+   					result += '<img class="card-img" src="./img/poster/'+movie.movieImage+'" />'; //무비 이미지 들어가면 여기!!
+   					//alert(result)
+   					$(".movieImg").html(result);
+   					
+				}
+
+   			});	
+		});
+	});
+    
+    
+    /* 시간 클릭 시 상영관, 상영시간 예매창에 띄우기*/
+    $(function() {
+		$("body").on("click", "[class=btn3]" , function() {
+			//alert(this.value); //timeCode나옴
+			 $.ajax({
+   				type:"post",
+   				url:"/cinema/ticketingInfo2",
+   				dataType : "json", //나중에 json으로..
+   				data:{ "timeCode" : this.value }, //서버에 보낼 parameter정보
+   				success: function(result){ 
+	   				//alert(result.time.timeStart) 
+	   				//alert(result.screenName) //screenName가져오기
+	   				$(".timeInfo").html(result.time.timeStart);	
+	   				$(".screenInfo").html(result.screenName);	
+				}
+
+   			});	 
+		});
+	}); 
+    
+
     
 </script>
 
