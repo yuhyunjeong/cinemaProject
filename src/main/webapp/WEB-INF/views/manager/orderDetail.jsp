@@ -37,7 +37,7 @@
     	<text x="50%" y="50%" fill="#dee2e6" dy=".3em">이미지가 없습니다</text>
     </c:when>
     <c:otherwise>
-    	<image href="${pageContext.request.contextPath}/img/movie/${time.movie.movieImage}.jpeg" height="100%" width="100%"/>
+    	<image href="${pageContext.request.contextPath}/img/movie/${time.movie.movieImage}" height="100%" width="100%"/>
     </c:otherwise>
     </c:choose>
   </svg>
@@ -138,7 +138,7 @@
     	좌석 가격 : ${ticketPrice*ticketQty}원 <br>
     	먹거리 가격 : ${foodTotalPrice}원 <br>
     	포인트 사용 금액 : -${requestScope.order.pointPrice}원<p>
-    	<b>최종 결제 금액 : ${(ticketPrice*ticketQty)+foodTotalPrice}원</b>
+    	<b>최종 결제 금액 : ${(ticketPrice*ticketQty)+foodTotalPrice-requestScope.order.pointPrice}원</b>
     </p>
 	<hr>
     <a href="${pageContext.request.contextPath}/manager/members" class="card-link">결제 회원 아이디 : ${requestScope.order.member.id}</a>
