@@ -6,9 +6,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <head>
 <meta charset="UTF-8">
-
 <style type="text/css">
-
 .movie-list {
     padding-top: 5px;
     display: flex;
@@ -70,48 +68,7 @@
     background: none;
 }
 
-.movie-date-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 2px;
-    background-color: transparent;
-    border: white 1px;
-    
-}
 
-.movie-week-of-day {
-    margin-left: 5px;
-    font-size: 15px;
-    color: white;
-    width: 12px;
-    height: 22px;
-    line-height: 30px;
-}
-
-.movie-day {
-    text-align: center;
-    color: white;
-    width: 30px;
-    height: 20px;
-    font-size: 17px;
-    font-weight: bold;
-    border-collapse: collapse;
-}
-
-.saturday {
-    color: #39CBFB;
-    font-weight: bold;
-}
-
-.sunday {
-    color: #F2358D;
-    font-weight: bold;
-}
-
-.movie-date-wrapper-active>* {
-    color: red;
-}
 
 .btn2{
 	width: 280px; 
@@ -167,92 +124,89 @@
 <p>
 <h1>&nbsp;&nbsp;영화선택</h1>
 <p>
+
 <!-- 영화선택 -->
-<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
-	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
-		<div class="card">
-				<div class="movie-part"><p>
-					<h4 class="card-title">&nbsp;&nbsp;영화</h4>
-						<div class="movie-list">
-						<c:choose>
-					 		<c:when test="${empty requestScope.movieList}">
-						  		<div>등록된 영화가 없습니다.</div>
-					  		</c:when>
-						  	<c:otherwise>
-						  	<!-- 조건 -->
-						  		<c:forEach items="${requestScope.movieList}" var="movie">
-									<button type="button" class="btn2" id="moviebtn" style="color: white;" value="${movie.movieCode}">${movie.movieName}</button>
-									
-						  		</c:forEach>
-						  	</c:otherwise>
-				  		</c:choose>
-					
+	<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+		<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
+			<div class="card">
+					<div class="movie-part"><p>
+						<h4 class="card-title">&nbsp;&nbsp;영화</h4>
+							<div class="movie-list">
+							<c:choose>
+						 		<c:when test="${empty requestScope.movieList}">
+							  		<div>등록된 영화가 없습니다.</div>
+						  		</c:when>
+							  	<c:otherwise>
+							  		<c:forEach items="${requestScope.movieList}" var="movie">
+										<button type="button" class="btn2" id="moviebtn" style="color: white;" value="${movie.movieCode}">${movie.movieName}</button>
+							  		</c:forEach>
+							  	</c:otherwise>
+					  		</c:choose>
+						
+						</div>
+				</div>
+			</div>
+		</div>
+		&nbsp;&nbsp;
+		
+		<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
+			<div class="card">
+				<div class="day-part"><p>
+					<h4 class="card-title">&nbsp;&nbsp;날짜</h4>
+					<div class="reserve-date">
 					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	&nbsp;&nbsp;
-	
-	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
-		<div class="card">
-			<div class="day-part"><p>
-				<h4 class="card-title">&nbsp;&nbsp;날짜</h4>
-				<div class="reserve-date">
+		&nbsp;&nbsp;
+		
+		<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
+			<div class="card">
+				<div class="time-part"><p>
+				<h4 class="card-title">&nbsp;&nbsp;시간</h4>
+					<div class="time-list">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	&nbsp;&nbsp;
-	
-	<div class="form-group col-lg-4" style="display: inline-block; width: 300px; height: 300px;">
-		<div class="card">
-			<div class="time-part"><p>
-			<h4 class="card-title">&nbsp;&nbsp;시간</h4>
-				<div class="time-list">
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <p><p><p><p>
+
 
 <!-- 영화예약정보 -->    
     
-<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+	<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+		
+		<div class="form-group col-lg-4" style="display: inline-block; width: 250px; height: 300px; background-color: none;">
+			<div class="card">
+				<div class="card-body" style="height: 300px;">
+				<h6 class="card-subtitle mb-2 text-muted" style="width: 250px; height: 300px; justify-content: center;">
+					<div class="movieImg" style="width: 200px; height: 250px; justify-content: center;"></div>
+				</h6>
+				</div>
+			</div>
+		</div>&nbsp;&nbsp;
 	
-	<div class="form-group col-lg-4" style="display: inline-block; width: 250px; height: 300px; background-color: none;">
-		<div class="card">
-			<div class="card-body" style="height: 300px;">
-			<h6 class="card-subtitle mb-2 text-muted" style="width: 250px; height: 300px; justify-content: center;">
-				<div class="movieImg" style="width: 200px; height: 250px; justify-content: center;"></div>
-			</h6>
+		<div class="form-group col-lg-4" style="display: inline-block; width: 650px; height: 300px;">
+			<div class="card">
+			  <div class="card-body" style="height: 300px;">
+			    <h4 class="card-title"><div class="movieNameInfo"></div></h4>
+			    <h6 class="card-subtitle mb-2 text-muted">일시 :  <div class="dateInfo" style="display: inline-block;"></div></h6>
+			    <h6 class="card-subtitle mb-2 text-muted">상영관 : <div class="screenInfo" style="display: inline-block;"></div> </h6>
+			  </div>
 			</div>
 		</div>
-	</div>&nbsp;&nbsp;
+	</div>
+<p><p><p><p>
 
-	<div class="form-group col-lg-4" style="display: inline-block; width: 650px; height: 300px;">
-		<div class="card">
-		  <div class="card-body" style="height: 300px;">
-		    <h4 class="card-title"><div class="movieNameInfo"></div></h4>
-		    <h6 class="card-subtitle mb-2 text-muted">일시 :  <div class="dateInfo" style="display: inline-block;"></div></h6>
-		    <h6 class="card-subtitle mb-2 text-muted">상영관 : <div class="screenInfo" style="display: inline-block;"></div> </h6>
-		  </div>
+
+<!-- 버튼 -->
+	<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+		<div class="form-group col-lg-4" style="display: inline-block; width: 900px; height: 150px;">
+		<div class="goSeat"></div>
 		</div>
-	</div>
-</div>
+	</div>	
 <p><p><p><p>
-
-<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
-	<div class="form-group col-lg-4" style="display: inline-block; width: 900px; height: 150px;">
-		<!-- <div class="submitbtn"> -->
-	
-		    <button type="button" class="btn btn-primary btn-lg" style="width: 900px; height: 150px;"onclick="location.href='${pageContext.request.contextPath}/cinema/seat'">좌석선택 <p> >> </button> 
-		<!-- </div> -->
-	</div>
-</div>	
-
-<p><p><p><p>
-
 
 
 <script>
@@ -283,6 +237,7 @@
 					 $(".reserve-date").html(result);
 					 $(".dateInfo").html(dateinfo);
 					 $(".time-list").empty();
+					 $(".goSeat").empty();
    			
 					 
    					}
@@ -290,6 +245,7 @@
    		});	
    	});  
    	
+    
    	/* 날짜 클릭 시 시간 선택하기 */
     $(function() {
 		$("body").on("click", "[class=btn3]" , function() {
@@ -314,26 +270,30 @@
 					$(".dateInfo").empty();
 					$(".timeInfo").empty();
 					$(".screenInfo").empty();
+					$(".goSeat").empty();
 					
    				}
    			});	 
 		});
 	}); 
    	
-	
+    function movepage(page) {
+    	let hi = "${pageContext.request.contextPath}/cinema/seat";
+        window.document.location.href=hi; 
+      
+    }
+   	
+   	
    	/* 시간 클릭 시 상영관, 상영시간 예매창에 띄우기*/
     $(function() {
 		$("body").on("click", "[class=btn4]" , function() {
 			//alert(this.value); //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo"/"+"/"+timeinfo;
 			
 			let v = this.value.split("/");
-			
-			//alert(v[0]) //movieCode안나옴..?!
-			//alert(v[1])
-			//alert(v[2])
-			//alert(v[3])
-			//alert(v[4])
-			//alert(v[5])
+			var seatbtn ='';
+			var goCard='/cinema/seat';
+			//alert(v[0])
+
 			$.ajax({
    				type:"post",
    				url:"/cinema/ticketingInfo2",
@@ -342,14 +302,23 @@
    				success: function(result){ 
 	   				//alert(result.time.timeStart) 
 	   				//alert(result.screenName) //screenName가져오기
+	   				
+	   				let str = v[0]+","+v[1]+","+v[2]+","+v[3]+","+v[4]+","+v[5];
+	   				
+	   				seatbtn +='<button type="button" class="btn btn-primary btn-lg" id="goSeat" style="width: 910px; height: 150px;" value="'+str+'" onclick="movepage()" >좌석선택<p>>></button><p>';
+	   			
 	   				$(".dateInfo").html(v[4]+"  /  "+v[5]);	
-	   				$(".screenInfo").html(result.screenName);	
+	   				$(".screenInfo").html(result.screenName);
+	   				$(".goSeat").html(seatbtn);
+	   				
+	   				
 				}
 
    			});	 
 		});
 	}); 
     
+   	
     /* 영화 클릭 시 영화이름, 영화이미지 예매창에 띄우기*/
     /* 선택가능한 날짜만 출력해서 선택하게..?*/
     $(function() {
@@ -371,25 +340,13 @@
    					result += '<img class="card-img-top" src="${pageContext.request.contextPath}/img/movie/'+movie.movieImage+'" />'; //무비 이미지 들어가면 여기!!
    					//alert(result)
    					$(".movieImg").html(result);
-   					
 				}
 
    			});	
 		});
 	});
- 
-  
-	
-	
-   	
-   	
-    
-    
     
 
-    
 </script>
-
-
 </body>
 </html>
