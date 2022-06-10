@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,10 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.mvc.domain.EventBoard;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.NoticeBoard;
 import kosta.mvc.domain.QnABoard;
@@ -119,6 +124,34 @@ public class BoardController {
 	public ModelAndView qnaUpdate(QnABoard qnaBoard) {
 		QnABoard board = qnABoardService.update(qnaBoard);
 		return new ModelAndView("board/qnaDetail", "board", board); 
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping("/event")
+	public void event() {
+
+	}
+	
+	@RequestMapping("/eventWrite")
+	public void eventWrite() {}
+	 
+	@RequestMapping("/eventInsert")
+	public String eventInsert(@RequestPart MultipartFile file, EventBoard eventBoard, HttpSession session) throws Exception {
+		String path = ResourceUtils.getURL("classpath:").getPath()+"static/img/event";
+		File f = new File( path +"/" + file.getOriginalFilename());
+		eventBoard.setEventImg(file.getOriginalFilename());
+
+		try {
+		  file.transferTo(f);
+		  
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+		
+		
+		
+		return "redirect:/board/event";
 	}
 }
 

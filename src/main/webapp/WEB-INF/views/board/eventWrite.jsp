@@ -35,8 +35,8 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2>공지사항 작성하기</h2>
-			<form method="post" action="${pageContext.request.contextPath}/board/noticeInsert">
+			<h2>이벤트글 작성하기</h2>
+			<form method="post" action="${pageContext.request.contextPath}/board/eventInsert" enctype="multipart/form-data">
 		    	<table class="board_view">
 			        <colgroup>
 			            <col width="15%">
@@ -51,14 +51,8 @@
 			                <td colspan="2"><input type="text" name="title"> </td>
 			            </tr>
 			            <tr>
-			                <th>작성자</th>
-			                <td><input type="hidden" name="id" value="${member.id}">${member.id}</td>
-			            </tr>
-			            <tr class="contentForm">
-			                <th>내용</th>
-			                <td colspan="2">
-			                    <textarea rows="20" cols="20" name="content"></textarea>
-			                </td>
+			                <th>첨부파일</th>
+			                <td><input type="file" name="file"/></td>
 			            </tr>
 			        </tbody>
 		    	</table>

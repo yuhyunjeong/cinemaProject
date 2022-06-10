@@ -129,7 +129,7 @@
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/cinema/ticketing">예매</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/event">이벤트</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/board/notice">공지사항</a></li>
 
