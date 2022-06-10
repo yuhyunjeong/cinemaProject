@@ -17,17 +17,29 @@
 </head>
 <body>
 <h1>sales.jsp 매출 조회입니다</h1>
-<fieldset>
-	<div class="form-check form-switch" onclick="movepage('${pageContext.request.contextPath}/manager/salesByMonth')">
-	  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-	  <label class="form-check-label" for="flexSwitchCheckDefault">월별 조회하기</label>
-	</div>
-</fieldset>
-<p>
+
 
 <div class="card text-white bg-secondary mb-3" style="max-width: 40rem;">
-  <div class="card-header">영화별 매출</div>
+  <div class="card-header">
+  	<ul class="nav nav-pills">
+	  <li class="nav-item">
+	    <a class="nav-link" href="${pageContext.request.contextPath}/manager/totalSales">전체 매출</a>
+	  </li>
+	  <li class="nav-item">
+    	<a class="nav-link active" href="#">영화별 매출</a>
+  	  </li>
+  	</ul>
+  </div>
   <div class="card-body">
+    <ul class="nav nav-pills" style="float:right">
+	  <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
+		<div class="dropdown-menu">
+		  <a class="dropdown-item" href="#">월별</a>
+		  <a class="dropdown-item" href="#">연도별</a>
+		</div>
+	  </li>
+	</ul>
     <p class="card-text">
     	<canvas id="myPie"></canvas>
     </p>
