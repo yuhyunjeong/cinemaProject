@@ -38,7 +38,7 @@ public class ManagerMemberSalesController {
 		return new ModelAndView("manager/orderDetail","order", order);
 	}
 	
-	@RequestMapping("/salesByMonth")
+	@RequestMapping("/totalSales")
 	public void salesByMonth() {}
 	
 	@RequestMapping("/salesByMovie")
