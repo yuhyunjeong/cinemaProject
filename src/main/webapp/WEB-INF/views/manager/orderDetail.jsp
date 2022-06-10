@@ -85,28 +85,31 @@
     	수량 : ${ticketQty}석 <p>
     	<b>합산가 : ${ticketPrice*ticketQty}원</b>
 	</p>
+	
+	<c:set value="${requestScope.order.foodOrderline}" var="foodOrderline"/>
+	<c:set value="${requestScope.order.movieOrderline[0].withGift}" var="withGift"/>
+	
+	<c:if test="${not empty foodOrderline}">
   	<hr>
     <h5 class="card-title">먹거리 정보</h5>
     <p class="card-text">
-    	<c:set value="${requestScope.order.foodOrderline}" var="foodOrderline"/>
-    	<c:set value="${requestScope.order.movieOrderline[0].withGift}" var="withGift"/>
     	<h6 class="card-subtitle mb-2 text-muted">선택한 옵션 :
-	    	<c:if test="${not empty foodOrderline}">
-	    		${foodOrderline}
-	    	</c:if>
+    		<c:forEach items="${foodOrderline}" var="f" varStatus="status">
+	    		${f.food.foodName}
+	    		<c:if test="${status.last eq false}">, </c:if>
+    		</c:forEach>
     	</h6>
-    	<c:if test="${not empty foodOrderline}">
-    		<c:set var="foodTotalPrice" value="0"/>
-		  	<c:forEach items="${foodOrderline}" var="foodOrderline" varStatus="status">
-		  		이름 : ${foodOrderline.food.foodName}<br>
-		  		가격 : ${foodOrderline.food.foodPrice}원<br>
-		  		수량 : ${foodOrderline.qty}개<br>
-		  		<c:if test="${status.last eq false}">, </c:if>
-		  		<c:set var="foodTotalPrice" value="${foodTotalPrice + (foodOrderline.food.foodPrice)*(foodOrderline.qty) }"/>
-		  	</c:forEach><p></p>
-  			<b>합산가 : ${foodTotalPrice}원</b>
-  		</c:if>
+    	<c:set var="foodTotalPrice" value="0"/>
+	  	<c:forEach items="${foodOrderline}" var="foodOrderline" varStatus="status">
+	  		이름 : ${foodOrderline.food.foodName}<br>
+	  		가격 : ${foodOrderline.food.foodPrice}원<br>
+	  		수량 : ${foodOrderline.qty}개<br>
+	  		<c:if test="${status.last eq false}">, </c:if>
+	  		<c:set var="foodTotalPrice" value="${foodTotalPrice + (foodOrderline.food.foodPrice)*(foodOrderline.qty) }"/>
+	  	</c:forEach><p><p>
+ 		<b>합산가 : ${foodTotalPrice}원</b>
     </p>
+    </c:if>
     
     <hr>
     
@@ -136,7 +139,11 @@
 	</h6>
     <p class="card-text">
     	좌석 가격 : ${ticketPrice*ticketQty}원 <br>
-    	먹거리 가격 : ${foodTotalPrice}원 <br>
+    	<c:choose>
+    		<c:when test="${not empty foodTotalPrice}">
+    		먹거리 가격 : ${foodTotalPrice}원 <br>
+    		</c:when>
+    	</c:choose>
     	포인트 사용 금액 : -${requestScope.order.pointPrice}원<p>
     	<b>최종 결제 금액 : ${(ticketPrice*ticketQty)+foodTotalPrice-requestScope.order.pointPrice}원</b>
     </p>
