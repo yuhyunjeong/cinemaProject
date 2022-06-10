@@ -1,6 +1,7 @@
 package kosta.mvc.service;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -20,12 +21,9 @@ public class TimeServiceImpl implements TimeService {
 	
 
 	@Override
-	public List<Time> selectAll(String movieCode) {
+	public List<Time> selectBy(String movieCode) {
 
 		List<Time> timeList = timeRepo.findByMovieMovieCodeEquals(movieCode);
-		
-		System.out.println(timeList);
-		
 		return timeList;
 	}
 	
@@ -36,7 +34,11 @@ public class TimeServiceImpl implements TimeService {
 	
 		return time;
 	}
-
 	
-
+	@Override
+	public List<Time> selectByTime(Date timeDateconvert, String movieCode) {
+		List<Time> timeList = timeRepo.findByTimeDateEqualsAndMovieMovieCodeEquals(timeDateconvert, movieCode);
+		return timeList;
+	}
+	
 }

@@ -83,6 +83,7 @@
 .movie-week-of-day {
     margin-left: 5px;
     font-size: 15px;
+    color: white;
     width: 12px;
     height: 22px;
     line-height: 30px;
@@ -90,6 +91,7 @@
 
 .movie-day {
     text-align: center;
+    color: white;
     width: 30px;
     height: 20px;
     font-size: 17px;
@@ -108,7 +110,7 @@
 }
 
 .movie-date-wrapper-active>* {
-    color: white;
+    color: red;
 }
 
 .btn2{
@@ -117,14 +119,13 @@
 	background-color: transparent; 
 	font-size: 17px; 
 	border: white;
-	font-style: white;
+	color: white;
 	font-weight: bold;
 
 }
-
-.btn2:active {
-	font-style: white;
-	font-weight: bold;
+ <!-- 일안함 -->
+.btn2:visited {
+	color: red;
 }
 
 .btn3{
@@ -134,15 +135,30 @@
 	font-size: 17px; 
 	border: white;
 	font-weight: bold;
+	color: white;
 
 }
 
 .btn3:active {
-	font-style: white;
 	font-weight: bold;
+	color: red;
 }
 
+.card-img-top{
+	width: 100%;
+	height: 100%
+}
 
+.btn4{
+	width: 280px; 
+	height: 30px; 
+	background-color: transparent; 
+	font-size: 17px; 
+	border: white;
+	font-weight: bold;
+	color: white;
+
+}
 
 </style>
     
@@ -165,7 +181,7 @@
 						  	<c:otherwise>
 						  	<!-- 조건 -->
 						  		<c:forEach items="${requestScope.movieList}" var="movie">
-									<button type="button" class="btn2" id="moviebtn" value="${movie.movieCode}">${movie.movieName}</button>
+									<button type="button" class="btn2" id="moviebtn" style="color: white;" value="${movie.movieCode}">${movie.movieName}</button>
 									
 						  		</c:forEach>
 						  	</c:otherwise>
@@ -181,7 +197,8 @@
 		<div class="card">
 			<div class="day-part"><p>
 				<h4 class="card-title">&nbsp;&nbsp;날짜</h4>
-				<div class="reserve-date"></div>
+				<div class="reserve-date">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -203,118 +220,138 @@
     
 <div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
 	
-	<div class="form-group col-lg-4" style="display: inline-block; width: 200px; height: 150px; background-color: none;">
+	<div class="form-group col-lg-4" style="display: inline-block; width: 250px; height: 300px; background-color: none;">
 		<div class="card">
-			<div class="card-body" style="height: 150px;">
-			<h6 class="card-subtitle mb-2 text-muted" style="width: 200px; height: 150px; justify-content: center;">
-				<div class="movieImg"></div>
+			<div class="card-body" style="height: 300px;">
+			<h6 class="card-subtitle mb-2 text-muted" style="width: 250px; height: 300px; justify-content: center;">
+				<div class="movieImg" style="width: 200px; height: 250px; justify-content: center;"></div>
 			</h6>
-						
-						 
-						
-			
 			</div>
 		</div>
 	</div>&nbsp;&nbsp;
 
-	<div class="form-group col-lg-4" style="display: inline-block; width: 600px; height: 150px;">
+	<div class="form-group col-lg-4" style="display: inline-block; width: 650px; height: 300px;">
 		<div class="card">
-		  <div class="card-body" style="height: 150px;">
+		  <div class="card-body" style="height: 300px;">
 		    <h4 class="card-title"><div class="movieNameInfo"></div></h4>
-		    <h6 class="card-subtitle mb-2 text-muted">일시 :  <div class="dateInfo" style="display: inline-block;"></div><div class="timeInfo" style="display: inline-block;"></div></h6>
+		    <h6 class="card-subtitle mb-2 text-muted">일시 :  <div class="dateInfo" style="display: inline-block;"></div></h6>
 		    <h6 class="card-subtitle mb-2 text-muted">상영관 : <div class="screenInfo" style="display: inline-block;"></div> </h6>
 		  </div>
 		</div>
 	</div>
-	&nbsp;&nbsp;
-	
-	<div class="form-group col-lg-4" style="display: inline-block; width: 200px; height: 150px;">
-    	<button type="button" class="btn btn-primary btn-lg" style="width: 200px; height: 150px;" onclick="${pageContext.request.contextPath}/cinema/seat">좌석선택 <p> >> </button>
-	</div>
-	
 </div>
-<p>
+<p><p><p><p>
+
+<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
+	<div class="form-group col-lg-4" style="display: inline-block; width: 900px; height: 150px;">
+		<!-- <div class="submitbtn"> -->
+	
+		    <button type="button" class="btn btn-primary btn-lg" style="width: 900px; height: 150px;"onclick="location.href='${pageContext.request.contextPath}/cinema/seat'">좌석선택 <p> >> </button> 
+		<!-- </div> -->
+	</div>
+</div>	
+
+<p><p><p><p>
+
 
 
 <script>
-    //날짜
-    const date = new Date();
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    const reserveDate = document.querySelector(".reserve-date");
-
-    const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    for (i = date.getDate(); i <= lastDay.getDate(); i++) {
-
-        const button = document.createElement("button");
-        const spanWeekOfDay = document.createElement("span");
-        const spanDay = document.createElement("span");
-
-        //class넣기
-        button.classList = "movie-date-wrapper"
-        spanWeekOfDay.classList = "movie-week-of-day";
-        spanDay.classList = "movie-day";
-
-        //weekOfDay[new Date(2021-06-03)]
-        const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
-
-        //요일 넣기
-        if (dayOfWeek === "토") {
-            spanWeekOfDay.classList.add("saturday");
-            spanDay.classList.add("saturday");
-        } else if (dayOfWeek === "일") {
-            spanWeekOfDay.classList.add("sunday");
-            spanDay.classList.add("sunday");
-        }
-        spanWeekOfDay.innerHTML = dayOfWeek;
-        button.append(spanWeekOfDay);
-        //날짜 넣기
-        spanDay.innerHTML = i;
-        button.append(spanDay);
-        
-        reserveDate.append(button);
-
-        dayClickEvent(button);
-    }
-
-function dayClickEvent(button) {
-    button.addEventListener("click", function() {
-        const movieDateWrapperActive = document.querySelectorAll(".movie-date-wrapper-active");
-        movieDateWrapperActive.forEach((list) => {
-            list.classList.remove("movie-date-wrapper-active");
-        })
-        button.classList.add("movie-date-wrapper-active");
-    })
-}
-    
-    /*영화 클릭시 time 테이블 시간 가져오기*/
-   	$(function(){
+     
+    /* 영화 클릭 시 날짜 선택하는 창뜨기 */
+	$(function(){
    		$(".btn2").on("click", function(){
    			//alert(this.value); //클릭한 값이 나옴..!
+   			let mc=this.value;
    			$.ajax({
    				type:"post",
-   				url:"/cinema/time", //서버요청주소
+   				url:"/cinema/date", //서버요청주소
    				dataType : "json", //서버가 응답해주는 데이터 타입 나중에 json으로..
    				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
    				success: function(timeList){ //timeList에 있는 값들 꺼내와야함..
    					//alert(timeList);
    					var result='';
-   					var movieName = '';
+   					var dateinfo ='';
 					  $.each(timeList, function(index, item){
-						  result += '<button type="button" class="btn3" id="timebtn" value="'+item.timeCode+'">' + item.timeStart + '</button><p>';
-						
+						  let i = item.timeDate.substr(0,10).split("-");
+						  //alert(i[0]+"년"+i[1]+"월"+i[2]+"일 / ")
+						  var dateinfo = i[0]+"년"+i[1]+"월"+i[2]+"일 "
+						  let str = item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo;
+						  result += '<button type="button" class="btn3" id="datebtn" value="'+str+'">' + dateinfo +'</button><p>';
+						 
 					 }) 
 					 
-					 $(".time-list").html(result);
-
+					 $(".reserve-date").html(result);
+					 $(".dateInfo").html(dateinfo);
+					 $(".time-list").empty();
+   			
+					 
    					}
    			});	
    		});	
-   	});
+   	});  
+   	
+   	/* 날짜 클릭 시 시간 선택하기 */
+    $(function() {
+		$("body").on("click", "[class=btn3]" , function() {
+			//alert(this.value); //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo;
+			let v = this.value.split("/");
+			//alert(v[4])
+			let timeinfo ='';
+
+			 $.ajax({
+   				type:"post",
+   				url:"/cinema/time",
+   				dataType : "text", 
+   				data:{ "timeDate" : v[1] , "movieCode" : v[2]  }, 
+   				success: function(result){ 
+   					let timeinfo = v[3].substr(11,5);
+   					let str = v[0]+"/"+v[1]+"/"+v[2]+"/"+v[3]+"/"+v[4]+"/"+timeinfo; //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo"/"+"/"+timeinfo;
+   				    //alert(i)
+   					var result='';
+					result += '<button type="button" class="btn4" id="timebtn" value="'+str+'">' + timeinfo + '</button><p>';
+					
+					$(".time-list").html(result);
+					$(".dateInfo").empty();
+					$(".timeInfo").empty();
+					$(".screenInfo").empty();
+					
+   				}
+   			});	 
+		});
+	}); 
+   	
+	
+   	/* 시간 클릭 시 상영관, 상영시간 예매창에 띄우기*/
+    $(function() {
+		$("body").on("click", "[class=btn4]" , function() {
+			//alert(this.value); //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo"/"+"/"+timeinfo;
+			
+			let v = this.value.split("/");
+			
+			//alert(v[0]) //movieCode안나옴..?!
+			//alert(v[1])
+			//alert(v[2])
+			//alert(v[3])
+			//alert(v[4])
+			//alert(v[5])
+			$.ajax({
+   				type:"post",
+   				url:"/cinema/ticketingInfo2",
+   				dataType : "json", //나중에 json으로..
+   				data:{ "timeCode" : v[0] }, //서버에 보낼 parameter정보
+   				success: function(result){ 
+	   				//alert(result.time.timeStart) 
+	   				//alert(result.screenName) //screenName가져오기
+	   				$(".dateInfo").html(v[4]+"  /  "+v[5]);	
+	   				$(".screenInfo").html(result.screenName);	
+				}
+
+   			});	 
+		});
+	}); 
     
-    
-    /* 영화 클릭 시 영화이름 예매창에 띄우기*/
+    /* 영화 클릭 시 영화이름, 영화이미지 예매창에 띄우기*/
+    /* 선택가능한 날짜만 출력해서 선택하게..?*/
     $(function() {
 		$(".btn2").on("click", function() {
 			//alert(this.value) //movieCode나옴
@@ -325,12 +362,13 @@ function dayClickEvent(button) {
    				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
    				success: function(movie){ //movie에 있는 값들 꺼내와야함..
    					//alert(movie.movieImage);
+   					$(".dateInfo").empty();
    					$(".timeInfo").empty();
    	   				$(".screenInfo").empty();
    					$(".movieNameInfo").html(movie.movieName);
    					
    					var result ='';
-   					result += '<img class="card-img" src="./img/poster/'+movie.movieImage+'" />'; //무비 이미지 들어가면 여기!!
+   					result += '<img class="card-img-top" src="${pageContext.request.contextPath}/img/movie/'+movie.movieImage+'" />'; //무비 이미지 들어가면 여기!!
    					//alert(result)
    					$(".movieImg").html(result);
    					
@@ -339,27 +377,14 @@ function dayClickEvent(button) {
    			});	
 		});
 	});
+ 
+  
+	
+	
+   	
+   	
     
     
-    /* 시간 클릭 시 상영관, 상영시간 예매창에 띄우기*/
-    $(function() {
-		$("body").on("click", "[class=btn3]" , function() {
-			//alert(this.value); //timeCode나옴
-			 $.ajax({
-   				type:"post",
-   				url:"/cinema/ticketingInfo2",
-   				dataType : "json", //나중에 json으로..
-   				data:{ "timeCode" : this.value }, //서버에 보낼 parameter정보
-   				success: function(result){ 
-	   				//alert(result.time.timeStart) 
-	   				//alert(result.screenName) //screenName가져오기
-	   				$(".timeInfo").html(result.time.timeStart);	
-	   				$(".screenInfo").html(result.screenName);	
-				}
-
-   			});	 
-		});
-	}); 
     
 
     

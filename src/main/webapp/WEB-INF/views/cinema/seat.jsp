@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html>
@@ -80,7 +79,7 @@
 	
 </div> <!-- 인원선택 끝 -->&nbsp;&nbsp;&nbsp;&nbsp;
 	
-	<div class="form-group col-lg-4" style="display: inline-block; width: 560px;">
+	<div class="form-group col-lg-4" style="display: inline-block; width: 600px; justify-content: center;">
 		<div class="card">
 		  <div class="card-body" style="justify-content: center;">
 		   <div class="seat-wrapper"></div>
@@ -119,6 +118,19 @@
 		<h4 class="card-title">스낵 (택1)</h4>
 		이미지랑 설명
 		<div class="form-check">
+			<c:choose>
+		 		<c:when test="${empty requestScope.foodList}">
+			  		<div>맛난거 없음.</div>
+		  		</c:when>
+			  	<c:otherwise>
+			  	<!-- 조건 -->
+			  		<c:forEach items="${requestScope.foodList}" var="foods">
+						<button type="button" class="btn2" id="moviebtn" style="color: white;" value="${food.foodCode}">${food.foodName}</button>
+						
+			  		</c:forEach>
+			  	</c:otherwise>
+	  		</c:choose>
+		
 	        <label class="form-check-label">
 	          <input type="radio" class="form-check-input" name="snacks" id="snacks1" value="snacks1">
 	          KLJ팝콘세트 
