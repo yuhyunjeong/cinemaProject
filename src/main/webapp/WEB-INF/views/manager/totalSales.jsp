@@ -9,25 +9,37 @@
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script type="text/javascript">
-	function movepage(page) { 
-		window.document.location.href=page; 
-		return; 
-	}
+	
+	$(function(){
+		
+	})
 </script>
 </head>
 <body>
-<h1>salesByMonth.jsp 매출 조회입니다</h1>
-<fieldset>
-	<div class="form-check form-switch" onclick="movepage('${pageContext.request.contextPath}/manager/salesByMovie')">
-	  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
-	  <label class="form-check-label" for="flexSwitchCheckChecked">영화별 조회하기</label>
-	</div>
-</fieldset>
-<p>
+<h1>totalSales.jsp 매출 조회입니다</h1>
 
 <div class="card text-white bg-secondary mb-3" style="max-width: 70rem;">
-  <div class="card-header">월별 매출</div>
+  <div class="card-header">
+	<ul class="nav nav-pills">
+	  <li class="nav-item">
+	    <a class="nav-link active" href="#">전체 매출</a>
+	  </li>
+	  <li class="nav-item">
+    	<a class="nav-link" href="${pageContext.request.contextPath}/manager/salesByMovie">영화별 매출</a>
+  	  </li>
+  	</ul>
+  </div>
   <div class="card-body">
+	<ul class="nav nav-pills" style="float:right">
+	  <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
+		<div class="dropdown-menu">
+		  <a class="dropdown-item" href="#">월별</a>
+		  <a class="dropdown-item" href="#">연도별</a>
+		</div>
+	  </li>
+	</ul>
+	<p>
     <p class="card-text">
     	<canvas id="myChart"></canvas>
     </p>

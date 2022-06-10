@@ -3,7 +3,6 @@
  
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
- <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,13 +53,20 @@
 			      </td>
 			      <td>
 			      	<c:set value="${orderDate}" var="orderDate"/>
-			      	<c:forEach items="${member.orderList}" var="order" varStatus="status">
-				      	<c:if test="${status.last eq true}">
-				      		<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
-	    					<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" />
-	    					<c:set value="${orderDate}" var="orderDate"/>
-	    				</c:if>
-    				</c:forEach>
+			      	<c:choose>
+			      		<c:when test="${empty member.orderList}">
+			      			내역 없음
+			      		</c:when>
+			      		<c:otherwise>
+				      	<c:forEach items="${member.orderList}" var="order" varStatus="status">
+					      	<c:if test="${status.last eq true}">
+					      		<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
+		    					<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+		    					<c:set value="${orderDate}" var="orderDate"/>
+		    				</c:if>
+	    				</c:forEach>
+	    				</c:otherwise>
+    				</c:choose>
 			      </td>
 			      <td>
 			      	ㅇㅇㅇ
