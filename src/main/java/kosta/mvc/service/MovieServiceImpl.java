@@ -66,6 +66,7 @@ public class MovieServiceImpl implements MovieService {
 		dbMovie.setMovieAge(movie.getMovieAge());
 		dbMovie.setMovieGenre(movie.getMovieGenre());
 		dbMovie.setMovieImage(movie.getMovieImage());
+		dbMovie.setActorList(movie.getActorList());
 		
 		return dbMovie;
 	}
@@ -80,6 +81,15 @@ public class MovieServiceImpl implements MovieService {
 		
 		movieRepo.deleteById(movieCode);
 
+	}
+
+	@Override
+	public List<Movie> selectMovie(String optionsRadios) {
+		if(optionsRadios.equals("option1")) {
+		
+			return movieRepo.selectByDate();}
+		return null;
+		
 	}
 
 

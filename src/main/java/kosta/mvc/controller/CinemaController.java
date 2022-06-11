@@ -8,7 +8,10 @@ import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,6 +40,17 @@ public class CinemaController {
 	@RequestMapping("/movieDetail")
 	public void movieDetail() {
 	}
+
+
+	
+	@RequestMapping("/movieDetail/{movieCode}")
+	public ModelAndView movieDetail(@PathVariable String movieCode) {
+		
+		Movie movie = movieService.selectBy(movieCode);
+		
+		return new ModelAndView("cinema/movieDetail","movie",movie);
+	}
+	
 
 	/**
 	 * 영화예매- 1.영화 리스트 보여주기
@@ -133,4 +147,14 @@ public class CinemaController {
 
 	}
 
+	/**
+	 * 영화 나열 - 최신순 , 예매율순, 관람객순
+	 * */
+	@ResponseBody
+	@RequestMapping("/selectMovie")
+	public List<Movie> selectMovie(@RequestParam("optionsRadios") String optionsRadios) {
+		List<Movie> movie = movieService.selectMovie(optionsRadios);
+		return movie;
+	}
+	
 }

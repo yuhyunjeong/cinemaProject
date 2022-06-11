@@ -35,7 +35,7 @@ public class EventBoard {
 	private String eventImg; 
 	
 	private String eventPath;
-	
+
 	@CreationTimestamp
 	private LocalDateTime insertDate;
 	
