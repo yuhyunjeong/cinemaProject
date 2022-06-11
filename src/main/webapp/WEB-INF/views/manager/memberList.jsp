@@ -8,10 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function() {
+	  $("#memberListTable").tablesorter({
+	    sortList: [0,0]
+	  });
+
+	});
+</script>
 </head>
 <body>
 <h1>member.jsp 회원 조회입니다</h1>
-<table class="table table-hover">
+<table id="memberListTable" class="table table-hover" data-sortlist="[0,0]">
   <thead>
     <tr>
       <th scope="col">회원 아이디</th>

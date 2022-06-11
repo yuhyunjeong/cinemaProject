@@ -8,10 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function() {
+	  $("#orderListTable").tablesorter({
+	    sortList: [0,0]
+	  });
+
+	});
+</script>
 </head>
 <body>
 	<h1>tickets.jsp 예매내역입니다</h1>
-<table class="table table-hover">
+<table id="orderListTable" class="table table-hover" data-sortlist="[0,0]">
   <thead>
     <tr>
       <th scope="col">예매 코드</th>
