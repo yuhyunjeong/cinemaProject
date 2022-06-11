@@ -1,16 +1,15 @@
 package kosta.mvc.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Food;
@@ -39,9 +38,9 @@ public class ManagerController {
 	/**
 	 * 전체검색 
 	 */
-	@RequestMapping("/product")
+	@RequestMapping(value = "/product", produces = "text/html;charset=utf-8")
 //	public void product(Model model, @RequestParam(defaultValue = "1") int nowPage) {
-	public void product(Model model, @RequestParam(value="productSelect", defaultValue = "movie")String select) {	
+	public void product2(Model model, @RequestParam(value="productSelect", defaultValue = "movie")String select) {	
 		
 		// service에서 호출해서 영화검색
 		if(select.equals("movie")) {
@@ -74,6 +73,41 @@ public class ManagerController {
 //		model.addAttribute("startPage", startPage);
 //		model.addAttribute("nowPage", nowPage);
 	}
+	//////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * 전체검색 
+	 */
+	@RequestMapping(value = "/productSelect")
+	@ResponseBody
+	public Map<String, Object> product(Model model, @RequestParam(value="productSelect", defaultValue = "movie")String select) {	
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// service에서 호출해서 영화검색
+		if(select.equals("movie")) {
+			map.put("list", movieService.selectAll());
+			
+			
+		} else if(select.equals("food")) {
+			map.put("list", foodService.selectAll());
+		
+			
+		} else if(select.equals("gift")) {
+			map.put("list", giftService.selectAll());
+			
+		}
+		
+		return map;
+
+	}
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////
+	
+	
 	
 	/**
 	 * 상품 등록폼 
@@ -84,35 +118,59 @@ public class ManagerController {
 	/**
 	 * 상품등록 
 	 */
-	@RequestMapping("/insert") 
-	public String insert(Model model, Movie movie, Food food, Gift gift, @RequestParam(value="productSelect", defaultValue = "movie")String select) {
+	@RequestMapping("/productInsert") 
+	public String productInsert(Model model, Movie movie, Food food, Gift gift, @RequestParam(value="productSelect", defaultValue = "movie")String select) {
 		
 		if(select.equals("movie")) {
 			movieService.insert(movie);
-			model.addAttribute("movieCode", movie.getMovieCode());
-			
+//			model.addAttribute("movieInsert", movieService.selectAll());
 		} else if(select.equals("food")) {
 			foodService.insert(food);
+			model.addAttribute(food);
 			
 		} else if(select.equals("gift")) {
 			giftService.insert(gift);
+			model.addAttribute(gift);
 		}
 		
 		return "redirect:/manager/product";
-		
 	}
 	
 	/**
-	 * 상세보기 
+	 * 영화 상세보기 
 	 */
 	@RequestMapping("/productDetail/{movieCode}")
-	public ModelAndView productDetail(@PathVariable String movieCode) {
+	public ModelAndView movieDetail(@PathVariable String movieCode) {
 		
 		Movie movie = movieService.selectBy(movieCode);
 		
 		return new ModelAndView("manager/productDetail", "movie", movie);
 		
 	}
+	
+//	/**
+//	 * 먹거리 상세보기 
+//	 */
+//	@RequestMapping("/productDetail/{foodCode}")
+//	public ModelAndView foodDetail(@PathVariable String foodCode) {
+//		
+//		Food food = foodService.selectBy(foodCode);
+//		
+//		return new ModelAndView("manager/productDetail", "food", food);
+//		
+//	}
+//	
+//	/**
+//	 * 사은품 상세보기 
+//	 */
+//	@RequestMapping("/productDetail/{giftCode}")
+//	public ModelAndView giftDetail(@PathVariable String giftCode) {
+//		
+//		Gift gift = giftService.selectBy(giftCode);
+//		
+//		return new ModelAndView("manager/productDetail", "gift", gift);
+//		
+//	}
 	
 	/**
 	 * 수정폼 

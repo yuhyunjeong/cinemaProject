@@ -43,6 +43,6 @@ public interface MovieService {
 	 * 영화 조건별 출력
 	 * */
 	List<Movie> selectMovie(String optionsRadios);
-	
+
 
 }

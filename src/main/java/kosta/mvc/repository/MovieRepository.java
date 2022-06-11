@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import kosta.mvc.domain.Movie;
-import kosta.mvc.domain.Time;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, String> {
@@ -27,4 +26,10 @@ public interface MovieRepository extends JpaRepository<Movie, String> {
 	 * 관람객순
 	 * */
 	//@Query("select m from Movie m order by ")
+
+
+	List<Movie> findByMovieCodeEquals(String movieCode);
+	
+	List<Movie> findAll();
+
 }

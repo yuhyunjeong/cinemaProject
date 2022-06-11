@@ -58,6 +58,7 @@ public class Movie {
 	private Gift gift;
 
 	@OneToMany
+	@JsonIgnore
 	private List<Time> timeList;
 	
 }

@@ -66,6 +66,7 @@ public class MovieServiceImpl implements MovieService {
 		dbMovie.setMovieAge(movie.getMovieAge());
 		dbMovie.setMovieGenre(movie.getMovieGenre());
 		dbMovie.setMovieImage(movie.getMovieImage());
+		dbMovie.setActorList(movie.getActorList());
 		
 		return dbMovie;
 	}
