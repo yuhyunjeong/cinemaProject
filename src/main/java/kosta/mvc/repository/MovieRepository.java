@@ -12,5 +12,19 @@ import kosta.mvc.domain.Time;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, String> {
 
-
+	/**
+	 * 최신순
+	 * */
+	@Query("select m from Movie m order by m.movieStartdate desc")
+	List<Movie> selectByDate();
+	
+	/**
+	 * 예매율순
+	 * */
+	
+	
+	/**
+	 * 관람객순
+	 * */
+	//@Query("select m from Movie m order by ")
 }

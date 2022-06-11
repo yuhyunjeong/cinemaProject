@@ -82,6 +82,15 @@ public class MovieServiceImpl implements MovieService {
 
 	}
 
+	@Override
+	public List<Movie> selectMovie(String optionsRadios) {
+		if(optionsRadios.equals("option1")) {
+		
+			return movieRepo.selectByDate();}
+		return null;
+		
+	}
+
 
 
 
