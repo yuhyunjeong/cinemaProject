@@ -23,6 +23,7 @@ import kosta.mvc.domain.QnAReply;
 import kosta.mvc.service.NoticeBoardService;
 import kosta.mvc.service.QnABoardService;
 import kosta.mvc.service.QnAReplyService;
+import kosta.mvc.service.EventBoardService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -32,6 +33,7 @@ public class BoardController {
 	private final NoticeBoardService noticeBoardService;
 	private final QnABoardService qnABoardService;
 	private final QnAReplyService qnAReplyService;
+	private final EventBoardService eventBoardService;
 
 	@RequestMapping("/notice")
 	public void notice(Model model) {
@@ -129,8 +131,15 @@ public class BoardController {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/event")
-	public void event() {
-
+	public void event(Model model) {
+		List<EventBoard> list = eventBoardService.selectAll();
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/eventDetail/{bno}")
+	public ModelAndView eventDetail(@PathVariable Long bno) {
+		EventBoard board = eventBoardService.selectBy(bno);
+		return new ModelAndView("board/eventDetail", "board", board);
 	}
 	
 	@RequestMapping("/eventWrite")
@@ -138,19 +147,8 @@ public class BoardController {
 	 
 	@RequestMapping("/eventInsert")
 	public String eventInsert(@RequestPart MultipartFile file, EventBoard eventBoard, HttpSession session) throws Exception {
-		String path = ResourceUtils.getURL("classpath:").getPath()+"static/img/event";
-		File f = new File( path +"/" + file.getOriginalFilename());
-		eventBoard.setEventImg(file.getOriginalFilename());
+		eventBoardService.eventInsert(eventBoard, file);
 
-		try {
-		  file.transferTo(f);
-		  
-		}catch (Exception e) {
-			e.printStackTrace();
-		}		
-		
-		
-		
 		return "redirect:/board/event";
 	}
 }

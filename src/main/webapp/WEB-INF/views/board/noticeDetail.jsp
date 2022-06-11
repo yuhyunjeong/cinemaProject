@@ -48,7 +48,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2>게시글 상세 화면</h2>
+			<h2>공지사항 상세 화면</h2>
 		    	<table class="board_view">
 			        <colgroup>
 			            <col width="15%">

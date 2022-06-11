@@ -24,9 +24,7 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">글번호</th>
-		      <th scope="col" colspan="3">제목</th>
-		      <th scope="col"></th>
-		      <th scope="col"></th>
+		      <th scope="col">제목</th>
 		      <th scope="col">작성일</th>	      
 		    </tr>
 		  </thead>
@@ -40,16 +38,14 @@
 			  		</tr>
 			  	</c:when>
 			  	<c:otherwise>
-			  		<c:forEach items="${requestScope.list}" var="notice">
+			  		<c:forEach items="${requestScope.list}" var="event">
 			  			<tr class="table-active">
-					      <th scope="row">${notice.bno}</th>
-					      <td style="width: 300;"><a href="${pageContext.request.contextPath}/board/noticeDetail/${notice.bno}">${notice.title}</a></td>
-					      <td>${notice.member.id}</td>
+					      <th scope="row">${event.bno}</th>
+					      <td style="width: 300;"><a href="${pageContext.request.contextPath}/board/eventDetail/${event.bno}">${event.title}</a></td>
 					      <td>
-						      <fmt:parseDate value="${notice.insertDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parseIdateInsert"/>
+						      <fmt:parseDate value="${event.insertDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parseIdateInsert"/>
 						      <fmt:formatDate value="${parseIdateInsert}" pattern="yyyy-MM-dd HH:mm"/>
 					      </td>
-					      <td>${notice.readnum}</td>
 			  			</tr>
 			  		</c:forEach>
 			  	</c:otherwise>
