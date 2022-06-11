@@ -55,8 +55,8 @@
 			      	</c:if>
 			      </td>
 			      <td>
-			      	<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="orderDate"/>
-    				<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+			      	<fmt:parseDate value="${order.orderDate}" pattern="yyyy-MM-dd" var="orderDate"/>
+    				<fmt:formatDate value="${orderDate}" pattern="yyyy-MM-dd" /></td>
 			      <td>${order.totalPrice}</td>
 			      <td>
 			      	${order.member.id}
