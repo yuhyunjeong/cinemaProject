@@ -71,7 +71,9 @@
 			            </tr>
 			        </tbody>
 		    </table>
-		    <img src="${board.eventPath}">
+		    <div style="text-align: center;">
+		    	<img src="${board.eventPath}">
+		    </div>
 		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: right; ">
                	<input type="hidden" name="bno" value="${board.bno}">
                	<input type="button" value="수정하기">
