@@ -22,6 +22,7 @@ $(function() {
 <table id="memberListTable" class="table table-hover" data-sortlist="[0,0]">
   <thead>
     <tr>
+      <th scope="col">Index</th>
       <th scope="col">회원 아이디</th>
       <th scope="col">회원 등급</th>
       <th scope="col">가입 일시</th>
@@ -33,12 +34,15 @@ $(function() {
   	<c:choose>
   		<c:when test="${empty requestScope.memberList}">
   			<tr>
-  				<td colspan="5">저장된 회원이 없습니다.</td>
+  				<td colspan="6">저장된 회원이 없습니다.</td>
   			</tr>
   		</c:when>
   		<c:otherwise>
-  			<c:forEach items="${requestScope.memberList}" var="member">
+  			<c:forEach items="${requestScope.memberList}" var="member" varStatus="status">
 			    <tr class="table-active">
+			      <th>
+			        <a href="/manager/memberDetail/${member.id}">${status.index+1}</a>
+			      </th>
 			      <th scope="row">
 			      	<a href="/manager/memberDetail/${member.id}">${member.id}</a>
 			      </th>
