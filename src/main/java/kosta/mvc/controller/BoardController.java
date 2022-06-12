@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.mvc.domain.Event;
 import kosta.mvc.domain.EventBoard;
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.NoticeBoard;
@@ -24,6 +25,7 @@ import kosta.mvc.service.NoticeBoardService;
 import kosta.mvc.service.QnABoardService;
 import kosta.mvc.service.QnAReplyService;
 import kosta.mvc.service.EventBoardService;
+import kosta.mvc.service.EventService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -34,6 +36,7 @@ public class BoardController {
 	private final QnABoardService qnABoardService;
 	private final QnAReplyService qnAReplyService;
 	private final EventBoardService eventBoardService;
+	private final EventService eventService;
 
 	@RequestMapping("/notice")
 	public void notice(Model model) {
@@ -150,6 +153,16 @@ public class BoardController {
 		eventBoardService.eventInsert(eventBoard, file);
 
 		return "redirect:/board/event";
+	}
+	
+	@RequestMapping("/eventAttend")
+	public String eventAttend(Event event, HttpServletRequest request, EventBoard eventBoard) {
+		HttpSession session = request.getSession();
+		event.setMember((Member) session.getAttribute("member"));
+		event.setEventBoard(eventBoard);
+		eventService.eventAttend(event);
+		System.out.println(event.getEventBoard().getBno());
+		return "redirect:/board/eventDetail/"+event.getEventBoard().getBno();
 	}
 }
 

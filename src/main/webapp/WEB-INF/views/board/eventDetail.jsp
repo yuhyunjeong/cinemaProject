@@ -34,14 +34,11 @@
 		<script type="text/javascript">
 			
 			$(function() {
-				$("input[value=삭제하기]").click(function() {
-					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/noticeDelete");
+				$("input[value=참여하기]").click(function() {
+					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/eventAttend");
 					$("#changeForm").submit();
 				})
-				$("input[value=수정하기]").click(function() {
-					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/noticeUpdateForm");
-					$("#changeForm").submit();
-				})
+
 			})
 		
 		</script>
@@ -74,10 +71,9 @@
 		    <div style="text-align: center;">
 		    	<img src="${board.eventPath}">
 		    </div>
-		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: right; ">
+		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: center; ">
                	<input type="hidden" name="bno" value="${board.bno}">
-               	<input type="button" value="수정하기">
-               	<input type="button" value="삭제하기">
+               	<input type="button" value="참여하기">
             </form>
 		    
 		</div>

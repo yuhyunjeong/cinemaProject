@@ -1,6 +1,8 @@
 package kosta.mvc.domain;
 
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +15,10 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "event")
@@ -21,6 +26,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Event {
 
 	@Id
@@ -35,4 +41,6 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name = "event_bno")
 	private EventBoard eventBoard;
+	
+	
 }
