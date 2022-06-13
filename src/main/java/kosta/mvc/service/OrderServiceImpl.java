@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Orders;
+import kosta.mvc.dto.SalesDTOInterface;
 import kosta.mvc.repository.OrdersRepository;
-import ksota.mvc.dto.SalesDTOInterface;
 import lombok.RequiredArgsConstructor;
 
 @Service

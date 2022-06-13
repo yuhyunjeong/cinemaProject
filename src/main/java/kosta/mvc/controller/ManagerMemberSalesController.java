@@ -10,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Orders;
+import kosta.mvc.dto.SalesDTOInterface;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
-import ksota.mvc.dto.SalesDTOInterface;
 import lombok.RequiredArgsConstructor;
 
 @Controller

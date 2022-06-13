@@ -1,4 +1,4 @@
-package ksota.mvc.dto;
+package kosta.mvc.dto;
 
 public interface SalesDTOInterface {
 

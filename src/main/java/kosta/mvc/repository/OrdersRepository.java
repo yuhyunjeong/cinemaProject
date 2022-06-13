@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.Orders;
-import ksota.mvc.dto.SalesDTOInterface;
+import kosta.mvc.dto.SalesDTOInterface;
 
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
