@@ -12,6 +12,37 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	console.log($('input[type=hidden]').val());
+ 	$.ajax({
+		url: "${pageContext.request.contextPath}/board/reviewList",
+		type: "post", 
+		dataType: "text", 
+		data:{
+			"movieCode":$('input[type=hidden]').val()
+		}, 
+		success: function(reviewList) { 
+			console.log(reviewList);	
+			let str="";
+			$.each(reviewList, function(index, item){
+				str+=`<tr>`;
+				str+=`<th>'${item.member.id}'</th>`;
+				str+=`<th>'${item.member.id}'</th>`;
+				str+=`<th>'${item.member.id}'</th>`;					
+				str+=`<th>'${item.member.id}'</th>`;
+				str+=`<tr>`;
+				
+			});
+			$("tbody").empty();
+			$("tbody").html(str);
+		},
+			
+			
+		error: function(err) {
+			
+		}
+	}); 
+		
+});
 	
 </script>
 <style type="text/css">
@@ -27,6 +58,7 @@ $(function(){
 
 
 <body>
+	<input type="hidden" value="${movie.movieCode}">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 box-image">
@@ -79,6 +111,19 @@ $(function(){
 		<br>
 		<div class="row">
 			<h1>후기 목록</h1>
+			<table class="table table-hover" style="width: 1000px;">
+		  <thead>
+		    <tr>
+		      <th scope="col">작성자</th>
+		      <th scope="col">내용</th>
+		      <th scope="col">작성일</th>
+		      <th scope="col">별점</th>	      
+		    </tr>
+		  </thead>
+		  <tbody>
+			  
+		  </tbody>
+		</table>
 		</div>
 	</div>
 </body>

@@ -12,6 +12,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,9 +22,11 @@ import kosta.mvc.domain.Member;
 import kosta.mvc.domain.NoticeBoard;
 import kosta.mvc.domain.QnABoard;
 import kosta.mvc.domain.QnAReply;
+import kosta.mvc.domain.ReviewBoard;
 import kosta.mvc.service.NoticeBoardService;
 import kosta.mvc.service.QnABoardService;
 import kosta.mvc.service.QnAReplyService;
+import kosta.mvc.service.ReviewBoardService;
 import kosta.mvc.service.EventBoardService;
 import kosta.mvc.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +40,7 @@ public class BoardController {
 	private final QnAReplyService qnAReplyService;
 	private final EventBoardService eventBoardService;
 	private final EventService eventService;
+	private final ReviewBoardService reviewBoardService;
 
 	@RequestMapping("/notice")
 	public void notice(Model model) {
@@ -163,6 +167,18 @@ public class BoardController {
 		eventService.eventAttend(event);
 		System.out.println(event.getEventBoard().getBno());
 		return "redirect:/board/eventDetail/"+event.getEventBoard().getBno();
+	}
+	
+	/////////////////////////////////////////////////////////////////////
+	
+	@ResponseBody
+	@RequestMapping("/reviewList")
+	public List<ReviewBoard> reviewList(String movieCode) {
+		System.out.println(movieCode);
+		List<ReviewBoard> list = reviewBoardService.selectByMovieCode(movieCode);
+		
+		
+		return list;
 	}
 }
 
