@@ -8,16 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-<script type="text/javascript">
-	
-	$(function(){
-		
-	})
-</script>
 </head>
 <body>
-<h1>totalSales.jsp 매출 조회입니다</h1>
-
+<h1>매출 조회 중입니다.</h1>
 <div class="card text-white bg-secondary mb-3" style="max-width: 70rem;">
   <div class="card-header">
 	<ul class="nav nav-pills">
@@ -48,12 +41,18 @@
 
 <script type="text/javascript">
   var labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
+    '1월',
+    '2월',
+    '3월',
+    '4월',
+    '5월',
+    '6월',
+    '7월',
+    '8월',
+    '9월',
+    '10월',
+    '11월',
+    '12월'
   ];
 
   var data = {
@@ -62,7 +61,7 @@
       label: 'My First dataset',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: [0, 10, 5, 2, 20, 30, 45, 8, 9, 10, 11, 12],
     }]
   };
 
