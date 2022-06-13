@@ -20,8 +20,10 @@
 			display:inline-block;>
 			<div class="card-header">로그인</div>
 			<div class="card-body">
-				<form action="${pageContext.request.contextPath}/member/login" method="post">
-
+				<form action="${pageContext.request.contextPath}/loginCheck" method="post">
+					 
+					 <!-- 모든 jsp파일에 필요 -->
+					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 					<div class="form-group">
 						<label for="exampleInputId1" class="form-label mt-4">아이디</label>
@@ -38,6 +40,7 @@
 					</div>
 					<br>
 					<div>
+					   
 						<button type="submit" class="btn btn-primary">로그인</button>
 					</div>
 					<br>

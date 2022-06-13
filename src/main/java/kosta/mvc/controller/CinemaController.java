@@ -157,4 +157,16 @@ public class CinemaController {
 		return movie;
 	}
 	
+	/**
+	 * 상영 중 영화 
+	 * */
+	@ResponseBody
+	@RequestMapping("/nowMovie")
+	public List<Movie> nowMovie() {
+		
+		List<Movie> movie = movieService.nowMovie();
+		
+		return movie;
+	}
+	
 }

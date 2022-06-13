@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Member;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberRepository memberRepo;
+	private final BCryptPasswordEncoder getBCEncoder;
 	
 	@Override
 	public Member loginCheck(String id, String password) {
@@ -31,8 +33,20 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void join(Member member) {
-		//idCheck(member);
-		memberRepo.save(member);
+		/**
+		 * 비밀번호 암호화
+		 * */
+		  String rawPassword = member.getPassword(); //들어온 비밀번호
+	      String encPassword = getBCEncoder.encode(rawPassword); 
+	      member.setPassword(encPassword);
+	      
+	      member.setPoint(3000);
+	      
+	      Member mem = memberRepo.save(member);
+	      if(mem==null) {
+	         new RuntimeException("회원가입에 실패했습니다.");
+	      }
+		
 	
 	}
 	
@@ -76,7 +90,8 @@ public class MemberServiceImpl implements MemberService {
 	public Member update(Member member) {
 		Member mem = memberRepo.findById(member.getId()).orElse(null);
 		
-		mem.setPassword(member.getPassword());
+
+		mem.setPassword(getBCEncoder.encode(member.getPassword()));
 		mem.setName(member.getName());
 		mem.setPhone(member.getPhone());
 		

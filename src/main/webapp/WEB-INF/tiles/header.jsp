@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -46,6 +46,13 @@
 	padding-right: 20px;
 }
 </style>
+
+<script type="text/javascript">
+	function logout() {
+		document.getElementById("logoutFrm").submit();
+	}
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -58,8 +65,9 @@
 			</div>
 			<div class="col-md-4"
 				style="text-align: right; position: absolute; bottom: 0; right: 0;">
-				<c:choose>
-					<c:when test="${not empty member}">
+				
+					<sec:authorize access="isAuthenticated()">
+						<sec:authentication var="member" property="principal" /> 
 						<button name="myPage" type="button"
 							class="btn btn-secondary my-2 my-sm-0" title=""
 							data-bs-container="body" data-bs-toggle="popover"
@@ -68,9 +76,8 @@
 							data-bs-original-title="Popover Title"
 							onclick="location.href='${pageContext.request.contextPath}/member/myPage/${member.id}'">마이페이지</button>
 				&nbsp;&nbsp;&nbsp;
-				</c:when>
-					<c:otherwise>
-						<c:if test="${empty member}">
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
 							<button name="join" type="button"
 								class="btn btn-secondary my-2 my-sm-0" title=""
 								data-bs-container="body" data-bs-toggle="popover"
@@ -79,23 +86,21 @@
 								data-bs-original-title="Popover Title"
 								onclick="location.href='${pageContext.request.contextPath}/member/joinForm'">회원가입</button>
 				&nbsp;&nbsp;&nbsp;
-					</c:if>
-					</c:otherwise>
-				</c:choose>
+					</sec:authorize>
+				
 
-				<c:choose>
-					<c:when test="${not empty member}">
+				
+					<sec:authorize access="isAuthenticated()">
 						<button name="logout" type="button"
 							class="btn btn-secondary my-2 my-sm-0" title=""
 							data-bs-container="body" data-bs-toggle="popover"
 							data-bs-placement="right"
 							data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 							data-bs-original-title="Popover Title"
-							onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
+							onclick="logout()">로그아웃</button>
 				&nbsp;&nbsp;&nbsp;
-				</c:when>
-					<c:otherwise>
-						<c:if test="${empty member}">
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
 							<button name="login" type="button"
 								class="btn btn-secondary my-2 my-sm-0" title=""
 								data-bs-container="body" data-bs-toggle="popover"
@@ -104,9 +109,7 @@
 								data-bs-original-title="Popover Title"
 								onclick="location.href='${pageContext.request.contextPath}/member/loginForm'">로그인</button>
 				&nbsp;&nbsp;&nbsp;
-					</c:if>
-					</c:otherwise>
-				</c:choose>
+					</sec:authorize>
 				<button name="center" type="button"
 					class="btn btn-secondary my-2 my-sm-0" title=""
 					data-bs-container="body" data-bs-toggle="popover"
@@ -150,5 +153,10 @@
 			</div>
 		</div>
 	</nav>
+	
+	<!-- 로그아웃 -->
+<form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style:"display:none">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
 </body>
 </html>

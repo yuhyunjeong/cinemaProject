@@ -10,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Orders;
-import kosta.mvc.repository.MemberRepository;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
+import ksota.mvc.dto.SalesDTOInterface;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -39,7 +39,11 @@ public class ManagerMemberSalesController {
 	}
 	
 	@RequestMapping("/totalSales")
-	public void salesByMonth() {}
+	public ModelAndView salesByMonth() {
+		System.out.println("ManagerMemberSalesController의 salesByMonth() call...");
+		List<SalesDTOInterface> monthlySalesList = orderService.selectMonthlySalesList();
+		return new ModelAndView("manager/totalSales","monthlySalesList", monthlySalesList);
+	}
 	
 	@RequestMapping("/salesByMovie")
 	public void salesByMovie() {}

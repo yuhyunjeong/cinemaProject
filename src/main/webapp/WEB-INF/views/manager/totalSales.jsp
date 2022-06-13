@@ -8,16 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-<script type="text/javascript">
-	
-	$(function(){
-		
-	})
-</script>
 </head>
 <body>
-<h1>totalSales.jsp 매출 조회입니다</h1>
-
+<h1>매출 조회 중입니다.</h1>
 <div class="card text-white bg-secondary mb-3" style="max-width: 70rem;">
   <div class="card-header">
 	<ul class="nav nav-pills">
@@ -41,28 +34,29 @@
 	</ul>
 	<p>
     <p class="card-text">
-    	<canvas id="myChart"></canvas>
+    	<canvas id="monthlySalesChart"></canvas>
     </p>
   </div>
 </div>
 
 <script type="text/javascript">
-  var labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
-
+  var labels = new Array();
+  <c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
+  	labels.push("${status.count}월")
+  </c:forEach>
+  
+  var monthlySalesArr = new Array();
+  <c:forEach items="${requestScope.monthlySalesList}" var="item">
+  	monthlySalesArr.push("${item.total_Price}")
+  </c:forEach>
+	
   var data = {
     labels: labels,
     datasets: [{
-      label: 'My First dataset',
+      label: '월매출 총액',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: monthlySalesArr
     }]
   };
 
@@ -72,7 +66,7 @@
     options: {}
   };
   var myChart = new Chart(
-    document.getElementById('myChart'),
+    document.getElementById('monthlySalesChart'),
     config
   );
 </script>

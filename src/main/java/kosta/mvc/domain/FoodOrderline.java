@@ -37,5 +37,5 @@ public class FoodOrderline {
 	@Column(nullable=false)
 	private int qty;
 	
-	private int price;
+	private int sumPrice;
 }

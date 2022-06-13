@@ -51,6 +51,7 @@
     
 					
 					<div>
+					<input type="submit">
 						<button type="submit" class="btn btn-secondary" id="submit">회원 탈퇴</button>
 						<button type="button" class="cancel btn btn-warning" id="reset">취소</button>
 					</div>

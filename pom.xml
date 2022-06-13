@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.9-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>kosta.mvc</groupId>
 	<artifactId>CinemaProjectNew</artifactId>
@@ -22,10 +23,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- <dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>5.3.13.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -37,11 +46,8 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!--<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<scope>runtime</scope>
-		</dependency>-->
+		<!--<dependency> <groupId>com.oracle.database.jdbc</groupId> <artifactId>ojdbc8</artifactId> 
+			<scope>runtime</scope> </dependency> -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -57,93 +63,84 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> -->
-		
+		</dependency>
+
 		<!-- jsp view를 사용하기 위한 설정 -->
 		<dependency>
-		   <groupId>org.apache.tomcat.embed</groupId>
-		   <artifactId>tomcat-embed-jasper</artifactId>
-		 <!--  <version>10.0.0-M1</version>  -->
-		 <version>9.0.46</version>
-		
-       </dependency>
-       
-       <!-- jsp에서 jstl lib-->
-       <dependency>
-		   <groupId>javax.servlet</groupId>
-		   <artifactId>jstl</artifactId>
-		   <version>1.2</version>
-       </dependency>
-        
-        <!--DB전자지갑 연결 lib-->
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<!-- <version>10.0.0-M1</version> -->
+			<version>9.0.46</version>
+
+		</dependency>
+
+		<!-- jsp에서 jstl lib -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!--DB전자지갑 연결 lib -->
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_cert -->
-		<!-- <dependency>
-		    <groupId>com.oracle.database.security</groupId>
-		    <artifactId>osdt_cert</artifactId>
-		    <version>21.3.0.0</version>
-		</dependency>-->
-		
+		<!-- <dependency> <groupId>com.oracle.database.security</groupId> <artifactId>osdt_cert</artifactId> 
+			<version>21.3.0.0</version> </dependency> -->
+
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
-		<!--<dependency>
-		    <groupId>com.oracle.database.security</groupId>
-		    <artifactId>oraclepki</artifactId>
-		    <version>21.3.0.0</version>
-		</dependency>-->
-		
-		
+		<!--<dependency> <groupId>com.oracle.database.security</groupId> <artifactId>oraclepki</artifactId> 
+			<version>21.3.0.0</version> </dependency> -->
+
+
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_core -->
-		<!--<dependency>
-		    <groupId>com.oracle.database.security</groupId>
-		    <artifactId>osdt_core</artifactId>
-		    <version>21.3.0.0</version>
-		</dependency>-->
-		
-		
+		<!--<dependency> <groupId>com.oracle.database.security</groupId> <artifactId>osdt_core</artifactId> 
+			<version>21.3.0.0</version> </dependency> -->
+
+
 		<!--tiles -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
 		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-extras</artifactId>
-		    <version>3.0.8</version>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>3.0.8</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
 		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-servlet</artifactId>
-		    <version>3.0.8</version>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-servlet</artifactId>
+			<version>3.0.8</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
 		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-jsp</artifactId>
-		    <version>3.0.8</version>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.8</version>
 		</dependency>
-		
-		<dependency>
-         <groupId>com.querydsl</groupId>
-         <artifactId>querydsl-apt</artifactId>
-         <!-- querydsl과 jsp동시 사용시 오류 querydsl-apt내의 org.eclipse.jdt.core.compiler:ecj4,3,1에 
-            대한 종속성을 강제하여 JSP오류 STS 재시작 -->
-         <exclusions>
-            <exclusion>
-               <groupId>org.eclipse.jdt.core.compiler</groupId>
-               <artifactId>ecj</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      
-      <dependency>
-         <groupId>com.querydsl</groupId>
-         <artifactId>querydsl-jpa</artifactId>
-      </dependency>
 
-		
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<!-- querydsl과 jsp동시 사용시 오류 querydsl-apt내의 org.eclipse.jdt.core.compiler:ecj4,3,1에 
+				대한 종속성을 강제하여 JSP오류 STS 재시작 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.jdt.core.compiler</groupId>
+					<artifactId>ecj</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -160,7 +157,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>com.mysema.maven</groupId>
 				<artifactId>apt-maven-plugin</artifactId>
@@ -177,7 +174,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 	<repositories>

@@ -73,13 +73,13 @@
 
 .movie_left {
 	width: 50%;
-	height: 40px;
+	height: 60px;
 	float: left;
 }
 
 .movie_right {
 	width: 50%;
-	height: 40px;
+	height: 60px;
 	float: right;
 	text-align: right;
 }
@@ -88,7 +88,6 @@
 	width: 100%;
 	height: 100%;
 	float: left;
-	
 }
 
 .event_notice_container {
@@ -152,9 +151,13 @@
 	width: 100%;
 	height: 100%;
 }
-.card-text{
+
+.card-text {
 	text-align: center;
 }
+
+
+
 </style>
 
 
@@ -178,13 +181,58 @@
 			},
 		});
 
+		function select() {
+			$.ajax({
+						url : "cinema/nowMovie", // 서버요청주소 
+						type : "post", // 요청방식(get, post, delete, patch),
+						dataType : "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
+						data : {
+							"${_csrf.parameterName}" : "${_csrf.token}"
+						//	"optionsRadios":$("#optionsRadios1").val()
+						}, // 서버에게 보낼 parameter 정보 */
+
+						success : function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
+							//alert(movieList)
+							let str = "";
+							$.each(
+											movieList,
+											function(index, item) {
+												//alert(item.movieStartdate)
+												if (index < 4) {
+													str += "<div class='col-lg-3 col-md-6'>";
+													str += "<div class='card  m-1 h-90'>";
+													str += "<div class='card-body'>";
+													//str+=`<h4 class='card-title'>영화</h4>`;
+													str += `<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> 
+													<img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`
+													str += "<hr>";
+													str += `<p class='card-text'><h5>${'${item.movieName}'}</h5></p>`;
+													str += "</div></div></div>";
+												}
+											});
+
+							$("#rrr").empty();
+							$("#rrr").html(str);
+
+						},
+						error : function(err) {
+
+						}
+					});
+		}
+
+		select();
+
 	});
+	
+		
 </script>
 
 </head>
 <body>
-
+ 
 	<!-- Swiper -->
+	<!-- 
 	<div class="swiper mySwiper">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
@@ -197,74 +245,30 @@
 		<div class="swiper-button-next"></div>
 		<div class="swiper-button-prev"></div>
 		<div class="swiper-pagination"></div>
-	</div>
+	</div> 
+	-->
 
 	<br>
 
 
 	<div class="movie_container">
-		<div class="movie_left">
-			<h2>영화</h2>
+		<div class="row">
+			<div class="col movie_left">
+				<h2>최신 상영 영화</h2>
+			</div>
+			<div class="col movie_right">
+				<button type="button" class="btn btn-secondary"
+					onclick="location.href='${pageContext.request.contextPath}/cinema/movie'">전체보기</button>
+			&nbsp;&nbsp;&nbsp;
+			</div>
 		</div>
-		<div class="movie_right">
-			<a href="#">전체보기</a>
-		</div>
-		<div class="movie_list">
-		
-					
-						<div class='row row-cols-1 row-cols-md-3' style="justify-content: center;">
-							
-								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
-									
-										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/movie/닥터스트레인지2.jpeg" /></a>
-											
-										<br>
-										
-										<div class="card-text">영화 제목</div>		
-											
-								</div>
-							
-							
-								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
-									
-										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/movie/범죄도시2.jpeg" /></a>
-											
-										<br>
-										
-										<div class="card-text">영화 제목</div>		
-										
-								</div>
-							
-							
-								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
-									
-										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/movie/브로커.jpeg" /></a>
-											
-										<br>
-										
-										<div class="card-text">영화 제목</div>		
-												
-								</div>
-							
-							
-								<div class="card m-3 h-70" style="width: 300px; justify-content: center;" >
-									
-										<a class="card-link" href="#"> <img class="card-img-top"
-											src="./img/movie/쥬라기월드 - 도미니언.jpeg" /></a>
-											
-										<br>
-										
-										<div class="card-text">영화 제목</div>			
-										
-								</div>
-							
-						</div>
-					
-					
+		<div class="row">
+			<div class="movie_list">
 
+				<div class='row row-cols-1 row-cols-md-4 g-4'
+					style="justify-content: center;" id="rrr"></div>
+
+			</div>
 		</div>
 		<br>
 	</div>
