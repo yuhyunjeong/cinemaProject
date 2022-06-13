@@ -1,5 +1,6 @@
 package kosta.mvc.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,7 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
+
 import kosta.mvc.domain.Movie;
+//import kosta.mvc.domain.QMovie;
 import kosta.mvc.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -85,14 +90,39 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<Movie> selectMovie(String optionsRadios) {
+		//QMovie movie = QMovie.movie;
+		//BooleanBuilder builder = new BooleanBuilder();
+		//Tuple tuple = 
+		
+		//LocalDate now = LocalDate.now();
+		
+		//builder.and(movie.movieStartdate.lt(now))
+		
+		
+		
+		
 		if(optionsRadios.equals("option1")) {
 		
-			return movieRepo.selectByDate();}
+			return movieRepo.selectByDate();
+			
+		}else if(optionsRadios.equals("option2")){
+			
+			return null;
+			
+		}else if(optionsRadios.equals("option3")){
+			return null;
+		}
 		return null;
 		
 	}
 
+	@Override
+	public List<Movie> nowMovie() {
+		
+		return movieRepo.nowMovie();
+	}
 
+	
 
 
 }

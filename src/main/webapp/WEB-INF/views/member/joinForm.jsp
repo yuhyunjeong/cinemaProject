@@ -16,6 +16,9 @@
 	<div class="col-sm-6, container" style="text-align: center;">
 		<h1>카드 가운데 정렬 해야함</h1>
 		<form name="inForm" id="inForm" method="post" action="${pageContext.request.contextPath}/member/join">
+			
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			
 			<div class="card border-secondary mb-3" style="max-width: 40rem;"display:inline-block;>
 				<div class="card-header">회원가입</div>
 				<div class="card-body">
@@ -103,6 +106,8 @@ $(function(){
 			url:"idCheck",
 			type:"post",
 			data:{
+				//아작스에 필수
+				"${_csrf.parameterName}" : "${_csrf.token}",
 				"id":$("#id").val()
 			},
 			success: function(data){

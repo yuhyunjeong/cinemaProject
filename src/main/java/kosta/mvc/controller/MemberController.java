@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -61,6 +62,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/idCheck")
 	public String idCheck(@RequestParam("id") String id) {
+		System.out.println(id);
 		String str = "";
 		String i = memService.idCheck(id);
 		System.out.println(id + i);
@@ -82,7 +84,7 @@ public class MemberController {
 	
 	@RequestMapping("/myPage/{id}")
 	public ModelAndView myPage(@PathVariable String id) {
-		
+
 		Member mem = memService.selectBy(id);
 		return new ModelAndView("member/myPage","member", mem);
 	}
@@ -100,8 +102,12 @@ public class MemberController {
 //		return new ModelAndView("member/update","member",member);
 //	}
 	
-	@RequestMapping("/updateForm")
-	public void updateForm() {}
+	@RequestMapping("/updateForm/{id}")
+	public ModelAndView updateForm(@PathVariable String id) {
+		
+		Member mem = memService.selectBy(id);
+		return new ModelAndView("member/updateForm","member", mem);
+	}
 	
 //	@RequestMapping("/update")
 //	public ModelAndView update(Member member, HttpSession session) {
@@ -115,17 +121,18 @@ public class MemberController {
 	
 	@RequestMapping("/update")
 	public String update(Member member, HttpSession session) {
-		
+		//System.out.println(1111);
 		memService.update(member);
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/member/loginForm";
 	}
 	
-	@RequestMapping("/memberDelete")
-	public void memberDelete() {
-		
+	@RequestMapping("/memberDelete/{id}")
+	public ModelAndView memberDelete(@PathVariable String id) {
+		Member mem = memService.selectBy(id);
+		return new ModelAndView("member/memberDelete","member", mem);
 	}
 	
 	@RequestMapping("/delete")
@@ -134,16 +141,16 @@ public class MemberController {
 		//세션에 있는 member를 가져와 mem변수에 넣어준다.
 		Member mem = (Member) session.getAttribute("member");
 		
-		//세션에 있는 비밀번호
-		String sessionPass = mem.getPassword();
-		
-		//member로 들어오는 비밀번호
-		String voPass = member.getPassword();
-		
-		if(!(sessionPass.equals(voPass))) {
-			rttr.addFlashAttribute("msg", false);
-			return "redirect:/member/memberDelete";
-		}
+//		//세션에 있는 비밀번호
+//		String sessionPass = mem.getPassword();
+//		
+//		//member로 들어오는 비밀번호
+//		String voPass = member.getPassword();
+//		
+//		if(!(sessionPass.equals(voPass))) {
+//			rttr.addFlashAttribute("msg", false);
+//			return "redirect:/member/memberDelete";
+//		}
 		
 		memService.delete(member);
 		session.invalidate();

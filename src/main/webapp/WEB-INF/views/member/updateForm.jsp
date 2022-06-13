@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,12 @@
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+	})
+</script>
 <body>
 	<h1>${member.name}님의 마이페이지 입니다.</h1>
 	<p>잔여 포인트 : ${member.point}
@@ -77,12 +82,16 @@
 							placeholder="이름을 입력해주세요." id="name" value="${member.name}"
 							name="name" required="required">
 					</div>
-
+					
+					
+	    			
+	    			
+	    				
 					<div class="form-group">
 						<label class="col-form-label col-form-label-lg mt-4"
 							for="inputLarge">생년월일</label> <input
 							class="form-control form-control-lg" type="text"
-							placeholder="${member.birth}" id="birth" value="${member.birth}"
+							placeholder="" id="birth" value="<fmt:formatDate value="${member.birth}" pattern="yyyy-MM-dd" />"
 							name="birth" readonly="readonly">
 					</div>
 
