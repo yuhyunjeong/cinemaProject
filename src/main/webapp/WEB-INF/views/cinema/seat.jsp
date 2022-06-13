@@ -40,7 +40,7 @@
 	<div class="form-group col-lg-4" style="display: inline-block; width: 1000px;">
 		<div class="card">
 		  <div class="card-body">
-		    <h4 class="card-title">영화이름</h4>
+		    <h4 class="card-title">영화제목가져오기 : ${v[0]}</h4>
 		    <h6 class="card-subtitle mb-2 text-muted">일시 : </h6>
 		    <h6 class="card-subtitle mb-2 text-muted">상영관 : </h6>
 		    <h6 class="card-subtitle mb-2 text-muted">인원 : </h6>
@@ -233,13 +233,23 @@
 	&nbsp;&nbsp;
 	
 	<div class="form-group col-lg-4" style="display: inline-block; width: 200px; height: 280px;">
-    	<button type="submit" class="btn btn-primary btn-lg" style="width: 200px; height: 280px;">결제하기 <p> >> </button>
+    	<button type="submit" class="btn btn-primary btn-lg" style="width: 200px; height: 280px;" onclick="movepage()">결제하기 <p> >> </button>
 	</div>
 	
 </div>
 
 <p><p><p><p><p><p><p><p><p><p>
 <script>
+
+	/*결제하기 이동*/
+	function movepage(page) {
+		let hi = "${pageContext.request.contextPath}/member/payment";
+	    window.document.location.href=hi; 
+	  
+	}
+
+
+
 	//좌석선택
     let test = [];
     let selectedSeats = new Array();
@@ -367,6 +377,11 @@
         
     }
      */
+    
+    //영화 정보 가져오기
+     
+     
+     
 </script>
 
 </body>
