@@ -34,34 +34,29 @@
 	</ul>
 	<p>
     <p class="card-text">
-    	<canvas id="myChart"></canvas>
+    	<canvas id="monthlySalesChart"></canvas>
     </p>
   </div>
 </div>
 
 <script type="text/javascript">
-  var labels = [
-    '1월',
-    '2월',
-    '3월',
-    '4월',
-    '5월',
-    '6월',
-    '7월',
-    '8월',
-    '9월',
-    '10월',
-    '11월',
-    '12월'
-  ];
-
+  var labels = new Array();
+  <c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
+  	labels.push("${status.count}월")
+  </c:forEach>
+  
+  var monthlySalesArr = new Array();
+  <c:forEach items="${requestScope.monthlySalesList}" var="item">
+  	monthlySalesArr.push("${item.total_Price}")
+  </c:forEach>
+	
   var data = {
     labels: labels,
     datasets: [{
-      label: 'My First dataset',
+      label: '월매출 총액',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45, 8, 9, 10, 11, 12],
+      data: monthlySalesArr
     }]
   };
 
@@ -71,7 +66,7 @@
     options: {}
   };
   var myChart = new Chart(
-    document.getElementById('myChart'),
+    document.getElementById('monthlySalesChart'),
     config
   );
 </script>
