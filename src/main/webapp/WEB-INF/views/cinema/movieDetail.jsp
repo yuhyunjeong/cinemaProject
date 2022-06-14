@@ -9,40 +9,67 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
 $(function(){
-	console.log($('.hiddenCode').val());
-  	$.ajax({
-		url: "${pageContext.request.contextPath}/board/reviewList",
-		type: "post", 
-		dataType: "json", 
-		data:{
-			"movieCode":$('.hiddenCode').val()
-		}, 
-		success: function(list) { 
-			//alert(reviewList)
-			console.log(list);	
-			let str="";
-			$.each(list, function(index, item){
-				str+=`<tr>`;
-				str+=`<th>${"${item.member.id}"}</th>`;
-				str+=`<th>${"${item.content}"}</th>`;
-				str+=`<th>${"${item.insertDate}"}</th>`;					
-				str+=`<th>${"${item.starRating}"}</th>`;
-				str+=`<tr>`;
+	
+	function reviewList() {
+		console.log($('.hiddenCode').val());
+	  	$.ajax({
+			url: "${pageContext.request.contextPath}/board/reviewList",
+			type: "post", 
+			dataType: "json", 
+			data:{
+				"movieCode":$('.hiddenCode').val()
+			}, 
+			success: function(list) { 
+				let str="";
+				$.each(list, function(index, item){
+					str+=`<tr>`;
+					str+=`<th>${"${item.member.id}"}</th>`;
+					str+=`<th>${"${item.content}"}</th>`;
+					str+=`<th>${"${item.insertDate}"}</th>`;					
+					str+=`<th>
+							<div class="review">
+								<div class="rating" data-rate="${'${item.starRating}'}">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>	
+								</div>
+							</div>
+						</th>`;	
+					str+=`</tr>`;
+					
+				});
+				$("tbody").empty();
+				$("tbody").html(str);
+				starRating();
+			},
 				
-			});
-			$("tbody").empty();
-			$("tbody").html(str);
-		},
+				
+			error: function(err) {
+				
+			}
+		});  
+	}
+	reviewList();
+	
+	function starRating() {	
+	  	var rating = $('.review .rating');
+	  	rating.each(function() {
+			var targetScore = $(this).attr('data-rate');
 			
+			$(this).find('i:nth-child(-n+'+targetScore+')').css({color:'orange'});
 			
-		error: function(err) {
-			
-		}
-	});  
+		});
+	}
+  	
+	
 
 });
 
@@ -56,6 +83,8 @@ $(function(){
 .box-content {
 	
 }
+
+
 
 </style>
 </head>
