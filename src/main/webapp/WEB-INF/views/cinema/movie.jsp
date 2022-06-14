@@ -194,7 +194,7 @@ $(function() {
 	
 	<div class="row">
 	<div class="col">
-	<h1>영화 목록</h1>
+	<h1>무비 차트</h1>
 	
 	 <div class="form-check">
 	 	

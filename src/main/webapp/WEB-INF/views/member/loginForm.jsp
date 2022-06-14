@@ -10,11 +10,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <style type="text/css">
+
+.mb-3{
+ margin: auto;
+}
+
 </style>
 </head>
 <body>
 	<div class="col-sm-6, container" style="text-align: center;">
-		<h1>카드 가운데 정렬 해야함</h1>
+		<h1>로그인</h1>
 
 		<div class="card border-secondary mb-3" style="max-width: 40rem;"
 			display:inline-block;>
