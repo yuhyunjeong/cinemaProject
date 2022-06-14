@@ -41,8 +41,7 @@ public class ManagerMemberSalesController {
 	
 	@RequestMapping("/totalSales")
 	public void totalSales(Model model) {
-		List<SalesDTOInterface> monthlySalesList = orderService.selectMonthlySalesList();
-		model.addAttribute("monthlySalesList", monthlySalesList);
+		salesByMonth();
 	}
 	
 	@RequestMapping("/salesByMonth")
