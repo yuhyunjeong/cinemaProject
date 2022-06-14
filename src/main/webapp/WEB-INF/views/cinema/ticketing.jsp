@@ -222,12 +222,10 @@
    				dataType : "json", //서버가 응답해주는 데이터 타입 나중에 json으로..
    				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
    				success: function(timeList){ //timeList에 있는 값들 꺼내와야함..
-   					//alert(timeList);
    					var result='';
    					var dateinfo ='';
 					  $.each(timeList, function(index, item){
 						  let i = item.timeDate.substr(0,10).split("-");
-						  //alert(i[0]+"년"+i[1]+"월"+i[2]+"일 / ")
 						  var dateinfo = i[0]+"년"+i[1]+"월"+i[2]+"일 "
 						  let str = item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo;
 						  result += '<button type="button" class="btn3" id="datebtn" value="'+str+'">' + dateinfo +'</button><p>';
@@ -249,9 +247,7 @@
    	/* 날짜 클릭 시 시간 선택하기 */
     $(function() {
 		$("body").on("click", "[class=btn3]" , function() {
-			//alert(this.value); //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo;
 			let v = this.value.split("/");
-			//alert(v[4])
 			let timeinfo ='';
 
 			 $.ajax({
@@ -262,7 +258,6 @@
    				success: function(result){ 
    					let timeinfo = v[3].substr(11,5);
    					let str = v[0]+"/"+v[1]+"/"+v[2]+"/"+v[3]+"/"+v[4]+"/"+timeinfo; //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo"/"+"/"+timeinfo;
-   				    //alert(i)
    					var result='';
 					result += '<button type="button" class="btn4" id="timebtn" value="'+str+'">' + timeinfo + '</button><p>';
 					
@@ -271,28 +266,28 @@
 					$(".timeInfo").empty();
 					$(".screenInfo").empty();
 					$(".goSeat").empty();
-					
    				}
    			});	 
 		});
 	}); 
    	
-    function movepage(page) {
-    	let hi = "${pageContext.request.contextPath}/cinema/seat";
-        window.document.location.href=hi; 
-      
+    function movepage(th) { 
+		let v =   th.value.split(",");
+		document.f.timeCode.value= v[0];
+		document.f.tdate.value= v[1];
+		document.f.mCode.value= v[2];
+		document.f.tStart.value= v[3];
+		document.f.sCode.value= v[4];
+		document.f.submit();
+		      
     }
    	
    	
    	/* 시간 클릭 시 상영관, 상영시간 예매창에 띄우기*/
     $(function() {
 		$("body").on("click", "[class=btn4]" , function() {
-			//alert(this.value); //item.timeCode +"/" +item.timeDate +"/"+mc+"/"+item.timeStart+"/"+dateinfo"/"+"/"+timeinfo;
-			
 			let v = this.value.split("/");
 			var seatbtn ='';
-			var goCard='/cinema/seat';
-			//alert(v[0])
 
 			$.ajax({
    				type:"post",
@@ -300,14 +295,8 @@
    				dataType : "json", //나중에 json으로..
    				data:{ "timeCode" : v[0] }, //서버에 보낼 parameter정보
    				success: function(result){ 
-	   				//alert(result.time.timeStart) 
-	   				//alert(result.screenName) //screenName가져오기
-	   				
-	   				let str = v[0]+","+v[1]+","+v[2]+","+v[3]+","+v[4]+","+v[5];
-	   				
-	   				seatbtn +='<button type="button" class="btn btn-primary btn-lg" id="goSeat" style="width: 910px; height: 150px;" value="'+str+'" onclick="movepage()" >좌석선택<p>>></button><p>';
-	   			
-	   				$(".dateInfo").html(v[4]+"  /  "+v[5]);	
+	   				let str = v[0]+","+v[1]+","+v[2]+","+v[3]+","+result.screenCode+","+result.screenName;
+	   				seatbtn +='<button type="button" class="btn btn-primary btn-lg" id="goSeat" style="width: 910px; height: 150px;" value="'+str+'" onclick="movepage(this)" >좌석선택<p>>></button><p>';	   				$(".dateInfo").html(v[4]+"  /  "+v[5]);	
 	   				$(".screenInfo").html(result.screenName);
 	   				$(".goSeat").html(seatbtn);
 	   				
@@ -323,30 +312,35 @@
     /* 선택가능한 날짜만 출력해서 선택하게..?*/
     $(function() {
 		$(".btn2").on("click", function() {
-			//alert(this.value) //movieCode나옴
 			$.ajax({
    				type:"post",
    				url:"/cinema/ticketingInfo",
    				dataType : "json", //나중에 json으로..
    				data:{ "movieCode" : this.value }, //서버에 보낼 parameter정보
    				success: function(movie){ //movie에 있는 값들 꺼내와야함..
-   					//alert(movie.movieImage);
    					$(".dateInfo").empty();
    					$(".timeInfo").empty();
    	   				$(".screenInfo").empty();
    					$(".movieNameInfo").html(movie.movieName);
    					
    					var result ='';
-   					result += '<img class="card-img-top" src="${pageContext.request.contextPath}/img/movie/'+movie.movieImage+'" />'; //무비 이미지 들어가면 여기!!
-   					//alert(result)
+   					result += '<img class="card-img-top" src="${pageContext.request.contextPath}/img/movie/'+movie.movieImage+'" />';
    					$(".movieImg").html(result);
 				}
 
    			});	
 		});
-	});
-    
+	})
 
 </script>
+
+	<form action="${pageContext.request.contextPath}/cinema/seat" name="f" method="post">
+		<input type="hidden" name="timeCode" value="">
+		<input type="hidden" name="tdate" value="">
+		<input type="hidden" name="mCode" value="">
+		<input type="hidden" name="tStart" value="">
+		<input type="hidden" name="sCode" value="">
+	</form>
+	
 </body>
 </html>

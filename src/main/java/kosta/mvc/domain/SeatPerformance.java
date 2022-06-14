@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,10 +34,12 @@ public class SeatPerformance {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="seat_code", nullable = false)
+	@JsonIgnore
 	private Seat seat;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="time_code", nullable = false)
+	@JsonIgnore
 	private Time time;
 	
 	private boolean isBooked;

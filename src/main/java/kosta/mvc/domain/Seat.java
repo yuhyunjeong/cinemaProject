@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,7 @@ public class Seat {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")
+	@JsonIgnore
 	private Screen screen;
 	
 	@Column(nullable = false, length = 3)
