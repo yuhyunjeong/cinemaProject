@@ -148,7 +148,7 @@ public class CinemaController {
 	}
 
 	/**
-	 * 영화 나열 - 최신순 , 예매율순, 관람객순
+	 * 영화 나열 - 최신순 , 예매율순, 별점순
 	 * */
 	@ResponseBody
 	@RequestMapping("/selectMovie")
