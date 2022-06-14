@@ -35,7 +35,6 @@ public class Seat {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")
-	@JsonIgnore
 	private Screen screen;
 	
 	@Column(nullable = false, length = 3)

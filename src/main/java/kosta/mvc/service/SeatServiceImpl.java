@@ -11,6 +11,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SeatServiceImpl implements SeatService {
 	
-	//private final SeatRepository seatRepo;
 
 }

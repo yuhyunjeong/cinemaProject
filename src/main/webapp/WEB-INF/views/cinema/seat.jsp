@@ -327,7 +327,7 @@
 	    	 alert(this.value)
 	    	 alert(${time.timeCode})
 	    	 //여기서 timeCode를 불러오고 싶음.
-				$.ajax({
+				/* $.ajax({
 	   				type:"post",
 	   				url:"/cinema/chooseSeat",
 	   				dataType : "json", //나중에 json으로..
@@ -335,7 +335,7 @@
 	   				success: function(result){ //값들 꺼내와야함..
 	   					//
 					}
-	   			});	
+	   			});	 */
 			});   
 	}//chooseSeat() 끝
 			

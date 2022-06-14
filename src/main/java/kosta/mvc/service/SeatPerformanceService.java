@@ -10,10 +10,10 @@ public interface SeatPerformanceService {
 	/**
 	 * 타임코드로 검색
 	 * */
-	List<SeatPerformance> selectBy(Time time);
+	/* List<SeatPerformance> selectBy(Time time); */
 	
 	/**
 	 * 전체검색
 	 * */
-	List<SeatPerformance> selectAll();
+	/* List<SeatPerformance> selectAll(); */
 }

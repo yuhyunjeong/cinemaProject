@@ -18,24 +18,19 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class SeatPerformanceServiceImpl implements SeatPerformanceService {
-	
-	private final SeatPerformanceRepository seatPerformRepo;
-	
-	@Override
-	public List<SeatPerformance> selectBy(Time time) {
-		BooleanBuilder builder = new BooleanBuilder();
-		//QSeatPerformance qSeat = QSeatPerformance.seatPerformance;
-		
-		//builder.and(qSeat.time.timeCode.equals(time.getTimeCode());
-		
-		
-		return null;
-	}
-	
-	@Override
-	public List<SeatPerformance> selectAll() {
-		return null;
-	}
-	
+	/*
+	 * private final SeatPerformanceRepository seatPerformRepo;
+	 * 
+	 * @Override public List<SeatPerformance> selectBy(Time time) { //BooleanBuilder
+	 * builder = new BooleanBuilder(); //QSeatPerformance qSeat =
+	 * QSeatPerformance.seatPerformance;
+	 * 
+	 * //builder.and(qSeat.time.timeCode.equals(time.getTimeCode());
+	 * 
+	 * 
+	 * return null; }
+	 * 
+	 * @Override public List<SeatPerformance> selectAll() { return null; }
+	 */
 
 }

@@ -16,10 +16,6 @@ public interface TimeRepository extends JpaRepository<Time, Long> , QuerydslPred
 
 	  Time findByTimeCodeEquals(long timeCode);
 	
-	  // @Query("select t from Time t where t.movieCode = :#{#time.movie.movieCode} and t.timeDate = :#{#time.timeDate}")
-	 // @Query("select t from Time t where t.timeDate = ?1 and t.movieCode = ?2")
-	  //List<Time> findByTimeDateEqualsAndMovieMovieCodeEquals(Date timeDateconvert, String movieCode);
-	  
 	  List<Time> findByTimeDateEqualsAndMovieMovieCodeEquals(Date timeDateconvert, String movieCode); //findAll이 왜안되는지..?
 	  
 	  
