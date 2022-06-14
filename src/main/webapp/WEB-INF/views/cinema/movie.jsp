@@ -65,7 +65,7 @@ $(function() {
 					//str+=`<h4 class='card-title'>영화</h4>`;
 					str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
 					str+="<hr>";
-					str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><p><div class='date'></div>`;
+					str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'></div>`;
 					str+="</div></div></div>";
 					//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 					
@@ -83,6 +83,7 @@ $(function() {
 	}
 	
 	
+	//if($("#flexCheckDefault").is(":checked")){
 	
 	$('input[name="optionsRadios"]').on("change", function() {
 		
@@ -101,7 +102,7 @@ $(function() {
 				//alert(movieList)
 				let str="";
 				
-				if($("#flexCheckDefault").is(":checked")){
+				
 					
 					$.each(movieList, function(index, item){
 										
@@ -112,7 +113,7 @@ $(function() {
 						//str+=`<h4 class='card-title'>영화</h4>`;
 						str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
 						str+="<hr>";
-						str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><p><div class='date'></div>`;
+						str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'></div>`;
 						str+="</div></div></div>";
 						//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 					
@@ -123,11 +124,7 @@ $(function() {
 				
 				
 					
-				}else{
-					
-					
-					
-				}
+				
 				
 				//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 				

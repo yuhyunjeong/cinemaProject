@@ -212,7 +212,7 @@
 													str += `<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> 
 													<img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`
 													str += "<hr>";
-													str += `<p class='card-text'><h5>${'${item.movieName}'}</h5></p>`;
+													str += `<p class='card-text'><h5>${'${item.movieName}'}</h5></p><span class="badge bg-primary">${"${item.movieGenre}"}</span>`;
 													str += "</div></div></div>";
 												}
 											});
