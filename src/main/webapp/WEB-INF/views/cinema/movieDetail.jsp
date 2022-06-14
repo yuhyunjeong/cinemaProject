@@ -9,40 +9,68 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
 $(function(){
-	console.log($('input[type=hidden]').val());
- 	$.ajax({
-		url: "${pageContext.request.contextPath}/board/reviewList",
-		type: "post", 
-		dataType: "text", 
-		data:{
-			"movieCode":$('input[type=hidden]').val()
-		}, 
-		success: function(reviewList) { 
-			console.log(reviewList);	
-			let str="";
-			$.each(reviewList, function(index, item){
-				str+=`<tr>`;
-				str+=`<th>'${item.member.id}'</th>`;
-				str+=`<th>'${item.member.id}'</th>`;
-				str+=`<th>'${item.member.id}'</th>`;					
-				str+=`<th>'${item.member.id}'</th>`;
-				str+=`<tr>`;
+	
+	function reviewList() {
+		console.log($('.hiddenCode').val());
+	  	$.ajax({
+			url: "${pageContext.request.contextPath}/board/reviewList",
+			type: "post", 
+			dataType: "json", 
+			data:{
+				"movieCode":$('.hiddenCode').val()
+			}, 
+			success: function(list) { 
+				let str="";
+				$.each(list, function(index, item){
+					str+=`<tr>`;
+					str+=`<th>${"${item.member.id}"}</th>`;
+					str+=`<th>${"${item.content}"}</th>`;
+					str+=`<th>${"${item.insertDate}"}</th>`;					
+					str+=`<th>
+							<div class="review">
+								<div class="rating" data-rate="${'${item.starRating}'}">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>	
+								</div>
+							</div>
+						</th>`;	
+					str+=`</tr>`;
+					
+				});
+				$("tbody").empty();
+				$("tbody").html(str);
+				starRating();
+			},
 				
-			});
-			$("tbody").empty();
-			$("tbody").html(str);
-		},
+				
+			error: function(err) {
+				
+			}
+		});  
+	}
+	reviewList();
+	
+	function starRating() {	
+	  	var rating = $('.review .rating');
+	  	rating.each(function() {
+			var targetScore = $(this).attr('data-rate');
 			
+			$(this).find('i:nth-child(-n+'+targetScore+')').css({color:'orange'});
 			
-		error: function(err) {
-			
-		}
-	}); 
-		
+		});
+	}
+  	
+	
+
 });
 
 	
@@ -55,13 +83,16 @@ $(function(){
 .box-content {
 	
 }
+
+
+
 </style>
 </head>
 
 
 <body>
 
-<input type="hidden" value="${movie.movieCode}">
+<input type="hidden" class="hiddenCode" name="${movie.movieCode}" value="${movie.movieCode}">
 
 
 <jsp:useBean id="now" class="java.util.Date" />
@@ -139,7 +170,7 @@ $(function(){
 		<br>
 		<div class="row">
 			<h1>후기 목록</h1>
-			<table class="table table-hover" style="width: 1000px;">
+			<table class="table table-hover" style="width: 1000px; text-align: center; margin: 0 auto;">
 		  <thead>
 		    <tr>
 		      <th scope="col">작성자</th>

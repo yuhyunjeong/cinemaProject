@@ -1,15 +1,15 @@
 package kosta.mvc.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.mvc.domain.Food;
 import kosta.mvc.domain.Movie;
 import kosta.mvc.domain.Screen;
+import kosta.mvc.domain.SeatPerformance;
 import kosta.mvc.domain.Time;
 import kosta.mvc.service.FoodService;
 import kosta.mvc.service.MovieService;
+import kosta.mvc.service.SeatPerformanceService;
 import kosta.mvc.service.TimeService;
 import lombok.RequiredArgsConstructor;
 
@@ -32,16 +34,11 @@ public class CinemaController {
 	private final MovieService movieService;
 	private final TimeService timeService;
 	private final FoodService foodService;
+	private final SeatPerformanceService seatPerService;
 
 	@RequestMapping("/movie")
 	public void movie() {
 	}
-
-	@RequestMapping("/movieDetail")
-	public void movieDetail() {
-	}
-
-
 	
 	@RequestMapping("/movieDetail/{movieCode}")
 	public ModelAndView movieDetail(@PathVariable String movieCode) {
@@ -112,17 +109,61 @@ public class CinemaController {
 		Map<String, Object> map = new HashedMap();
 		map.put("time", time);
 		map.put("screenName", sc.getScreenName());
+		map.put("screenCode", sc.getScreenCode());
 
 		return map;
 	}
 	
-	
-
-	/**
-	 * 영화예매- 4.좌석선택
+	/** 
+	 * 영화예매- 4. 좌석선택 전 예매 정보 뿌려주기 & 좌석보여주기(seat_performance의 isBooked 체크)
 	 */
 	@RequestMapping("/seat")
-	public void seat() {
+	public void seat(Model model,  Time time, @RequestParam("mCode") String mCode ,  @RequestParam("tdate") @DateTimeFormat(iso =ISO.DATE_TIME) Date tdate,  
+			@RequestParam("tStart") @DateTimeFormat(iso =ISO.DATE_TIME) Date tStart, @RequestParam("sCode") Screen sCode) { //
+	
+		time.setTimeDate(tdate);
+		time.setTimeStart(tStart);
+		time.setScreen(sCode);
+		Movie movie = movieService.selectBy(mCode);
+		model.addAttribute("movie", movie);
+	
+		//상영관에 따라 행열 값주기
+		if(sCode.getScreenCode()==1) {
+			int row = sCode.getScreenRow();
+			int col = sCode.getScreenCol();
+			model.addAttribute("row", row);
+			model.addAttribute("col", col);
+			
+		}else if(sCode.getScreenCode()==0){
+			int row = sCode.getScreenRow();
+			int col = sCode.getScreenCol();
+			model.addAttribute("row", row);
+			model.addAttribute("col", col);
+		}
+	
+ 	}
+	
+	/**
+	 * 영화예매- 4.좌석선택 전 인원설정
+	 */
+	/*
+	 * @RequestMapping("/chooseSeat") public void chooseSeat(Model model, Time time)
+	 * { //timeCode를 가지고 가서 List<SeatPerformance> seatPerList =
+	 * seatPerService.selectBy(time); model.addAttribute("seatPerList",
+	 * seatPerList);
+	 * 
+	 * //여기중에서 isBooked=1인거 고르기
+	 * 
+	 * //System.out.println(seatPerList); //seatPerformance테이블의 isBooked가 1인(예약됨)
+	 * seatCode를 가져오고 싶음. }
+	 */
+	
+	/**
+	 * 영화예매- 4.좌석선택 전 인원설정
+	 */
+	@RequestMapping("/people")
+	public void people(int peopleNum) {
+		
 	}
 	
 	/**
@@ -134,19 +175,6 @@ public class CinemaController {
 		return new ModelAndView("cinema/seat", "foodList", foodList);
 	}
 	
-
-	/**
-	 * Test
-	 */
-	@RequestMapping("/test2")
-	public void test() {
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY.MM.DD");
-		Calendar cal = Calendar.getInstance();
-		System.out.println(sdf.format(cal.getTime()));
-
-	}
-
 	/**
 	 * 영화 나열 - 최신순 , 예매율순, 별점순
 	 * */
@@ -157,16 +185,17 @@ public class CinemaController {
 		return movie;
 	}
 	
-	/**
-	 * 상영 중 영화 
-	 * */
-	@ResponseBody
-	@RequestMapping("/nowMovie")
-	public List<Movie> nowMovie() {
-		
-		List<Movie> movie = movieService.nowMovie();
-		
-		return movie;
-	}
+    /**
+     * 상영 중 영화 
+     * */
+    @ResponseBody
+    @RequestMapping("/nowMovie")
+    public List<Movie> nowMovie() {
+        
+        List<Movie> movie = movieService.nowMovie();
+        
+        return movie;
+    }
+	
 	
 }

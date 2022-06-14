@@ -23,6 +23,7 @@ import kosta.mvc.domain.NoticeBoard;
 import kosta.mvc.domain.QnABoard;
 import kosta.mvc.domain.QnAReply;
 import kosta.mvc.domain.ReviewBoard;
+import kosta.mvc.dto.ReviewDTO;
 import kosta.mvc.service.NoticeBoardService;
 import kosta.mvc.service.QnABoardService;
 import kosta.mvc.service.QnAReplyService;
@@ -171,13 +172,13 @@ public class BoardController {
 	
 	/////////////////////////////////////////////////////////////////////
 	
-	@ResponseBody
+	
 	@RequestMapping("/reviewList")
-	public List<ReviewBoard> reviewList(String movieCode) {
-		System.out.println(movieCode);
-		List<ReviewBoard> list = reviewBoardService.selectByMovieCode(movieCode);
-		
-		
+	@ResponseBody
+	public List<ReviewDTO> reviewList(String movieCode) {
+		System.out.println("22ddd  = "+movieCode);
+		List<ReviewDTO> list = reviewBoardService.selectByMovieCode(movieCode);
+
 		return list;
 	}
 }

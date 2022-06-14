@@ -36,7 +36,7 @@ public class EventServiceImpl implements EventService {
 		builder.and(qEvent.eventBoard.bno.eq(event.getEventBoard().getBno()));
 		
 		Iterable<Event> result = eventRepository.findAll(builder);
-		System.out.println("nn"+result);
+
 		List<Event> result2 = new ArrayList<Event>();
 		for (Event str : result) {
 		    result2.add(str);
