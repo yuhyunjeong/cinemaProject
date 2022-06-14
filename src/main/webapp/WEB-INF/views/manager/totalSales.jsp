@@ -23,15 +23,12 @@
   	</ul>
   </div>
   <div class="card-body">
-	<ul class="nav nav-pills" style="float:right">
-	  <li class="nav-item dropdown">
-		<a id = "salesSelectToggle" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
-		<div class="dropdown-menu">
-		  <a class="dropdown-item" href="javaScript:monthly()">월별</a>
-		  <a class="dropdown-item" href="javaScript:yearly()">연도별</a>
-		</div>
-	  </li>
-	</ul>
+	<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="float: right">
+	  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+	  <label class="btn btn-outline-secondary" for="btnradio1">월별</label>
+	  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
+	  <label class="btn btn-outline-secondary" for="btnradio2">연도별</label>
+	</div>
 	<p>
     <p class="card-text">
     	<canvas id="myChart"></canvas>
@@ -40,21 +37,17 @@
 </div>
 
 <script type="text/javascript">
+
+//시작화면 : 월별 매출
+window.onload = monthly;
+$("#btnradio1").click(monthly);
+$("#btnradio2").click(yearly);
+
 //setup시작
 var labels = new Array();
-<c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
-	labels.push("${status.count}월");
-</c:forEach>
-
 var salesArr = new Array();
 var foodSalesArr = new Array();
 var movieSalesArr = new Array();
-<c:forEach items="${requestScope.monthlySalesList}" var="item">
-	salesArr.push("${item.total_Price}");
-	foodSalesArr.push("${item.food_Price}");
-	movieSalesArr.push("${item.movie_Price}");
-</c:forEach>
-
 
 const data = {
   labels: labels,
@@ -95,7 +88,7 @@ const myChart = new Chart(
 	    document.getElementById('myChart'),
 	    config
 	  );
-	  
+
 	  
 function yearly(){
 	$.ajax({
@@ -126,7 +119,6 @@ function yearly(){
 	});//ajax끝
 }//yeary()끝
 
-
 function monthly(){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/manager/salesByMonth",
@@ -145,8 +137,6 @@ function monthly(){
 				config.data.datasets[1].data.push(item.movie_Price);
 				config.data.datasets[2].data.push(item.total_Price);
 			});
-			
-			myChart.update();
 			
 			myChart.update();
 			$("#salesSelectToggle").text("월별");
