@@ -40,7 +40,7 @@ public class ManagerMemberSalesController {
 	}
 	
 	@RequestMapping("/totalSales")
-	public void totalSales(Model model) {
+	public void totalSales() {
 		salesByMonth();
 	}
 	
@@ -54,14 +54,16 @@ public class ManagerMemberSalesController {
 	
 	@RequestMapping("/salesByYear")
 	@ResponseBody
-	public List<SalesDTOInterface> salesByYear(Model model) {
+	public List<SalesDTOInterface> salesByYear() {
 		System.out.println("ManagerMemberSalesController의 salesByYear() call...");
 		List<SalesDTOInterface> yearlySalesList = orderService.selectYearlySalesList();
 		return yearlySalesList;
 	}
 	
 	@RequestMapping("/salesByMovie")
-	public void salesByMovie() {}
+	public void salesByMovie() {
+		
+	}
 	
 	@RequestMapping("/memberList")
 	public void members(Model model) {
