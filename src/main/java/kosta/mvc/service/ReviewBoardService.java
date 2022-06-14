@@ -3,7 +3,8 @@ package kosta.mvc.service;
 import java.util.List;
 
 import kosta.mvc.domain.ReviewBoard;
+import kosta.mvc.dto.ReviewDTO;
 
 public interface ReviewBoardService {
-	List<ReviewBoard> selectByMovieCode(String movieCode);
+	List<ReviewDTO> selectByMovieCode(String movieCode);
 }

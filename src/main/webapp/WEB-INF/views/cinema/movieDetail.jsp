@@ -13,23 +13,24 @@
 <script type="text/javascript">
 
 $(function(){
-	console.log($('input[type=hidden]').val());
- 	$.ajax({
+	console.log($('.hiddenCode').val());
+  	$.ajax({
 		url: "${pageContext.request.contextPath}/board/reviewList",
 		type: "post", 
-		dataType: "text", 
+		dataType: "json", 
 		data:{
-			"movieCode":$('input[type=hidden]').val()
+			"movieCode":$('.hiddenCode').val()
 		}, 
-		success: function(reviewList) { 
-			console.log(reviewList);	
+		success: function(list) { 
+			//alert(reviewList)
+			console.log(list);	
 			let str="";
-			$.each(reviewList, function(index, item){
+			$.each(list, function(index, item){
 				str+=`<tr>`;
-				str+=`<th>'${item.member.id}'</th>`;
-				str+=`<th>'${item.member.id}'</th>`;
-				str+=`<th>'${item.member.id}'</th>`;					
-				str+=`<th>'${item.member.id}'</th>`;
+				str+=`<th>${"${item.member.id}"}</th>`;
+				str+=`<th>${"${item.content}"}</th>`;
+				str+=`<th>${"${item.insertDate}"}</th>`;					
+				str+=`<th>${"${item.starRating}"}</th>`;
 				str+=`<tr>`;
 				
 			});
@@ -41,8 +42,8 @@ $(function(){
 		error: function(err) {
 			
 		}
-	}); 
-		
+	});  
+
 });
 
 	
@@ -55,13 +56,14 @@ $(function(){
 .box-content {
 	
 }
+
 </style>
 </head>
 
 
 <body>
 
-<input type="hidden" value="${movie.movieCode}">
+<input type="hidden" class="hiddenCode" name="${movie.movieCode}" value="${movie.movieCode}">
 
 
 <jsp:useBean id="now" class="java.util.Date" />
@@ -139,7 +141,7 @@ $(function(){
 		<br>
 		<div class="row">
 			<h1>후기 목록</h1>
-			<table class="table table-hover" style="width: 1000px;">
+			<table class="table table-hover" style="width: 1000px; text-align: center; margin: 0 auto;">
 		  <thead>
 		    <tr>
 		      <th scope="col">작성자</th>

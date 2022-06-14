@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "ReviewBoard")
@@ -27,6 +28,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ReviewBoard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_code_seq")
@@ -41,7 +43,7 @@ public class ReviewBoard {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "movieCode")
-	private Movie movie;
+	private Movie movie;  
 	
 	private String content;
 	

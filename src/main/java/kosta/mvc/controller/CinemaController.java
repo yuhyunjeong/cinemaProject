@@ -36,12 +36,6 @@ public class CinemaController {
 	@RequestMapping("/movie")
 	public void movie() {
 	}
-
-	@RequestMapping("/movieDetail")
-	public void movieDetail() {
-	}
-
-
 	
 	@RequestMapping("/movieDetail/{movieCode}")
 	public ModelAndView movieDetail(@PathVariable String movieCode) {
