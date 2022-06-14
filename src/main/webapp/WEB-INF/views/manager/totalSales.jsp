@@ -41,20 +41,16 @@
 
 <script type="text/javascript">
 //setup시작
-var DATA_COUNT = 0;
-const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-
 var labels = new Array();
 <c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
 	labels.push("${status.count}월");
-	DATA_COUNT = DATA_COUNT + 1;
 </c:forEach>
 
-var monthlySalesArr = new Array();
+var salesArr = new Array();
 var foodSalesArr = new Array();
 var movieSalesArr = new Array();
 <c:forEach items="${requestScope.monthlySalesList}" var="item">
-	monthlySalesArr.push("${item.total_Price}");
+	salesArr.push("${item.total_Price}");
 	foodSalesArr.push("${item.food_Price}");
 	movieSalesArr.push("${item.movie_Price}");
 </c:forEach>
@@ -78,8 +74,8 @@ const data = {
       type: 'bar'
     },
     {
-      label: '월매출 총액',
-      data: monthlySalesArr,
+      label: '총 매출',
+      data: salesArr,
       borderColor: 'rgba(75, 192, 192, 1)',
       backgroundColor: 'rgba(75, 192, 192, 1)',
       fill: false,
@@ -107,7 +103,20 @@ function yearly(){
 		mothod : "post",
 		dataType : "json",
 		success : function(result){
-			//console.log(result);
+			
+			config.data.labels = [];
+			config.data.datasets[0].data = [];
+			config.data.datasets[1].data = [];
+			config.data.datasets[2].data = [];
+			
+			$.each(result, function(index, item){
+				config.data.labels.push(item.datedata+"년");
+				config.data.datasets[0].data.push(item.food_Price);
+				config.data.datasets[1].data.push(item.movie_Price);
+				config.data.datasets[2].data.push(item.total_Price);
+			});
+			
+			myChart.update();
 			$("#salesSelectToggle").text("연도별");
 		},
 		error : function(err){
@@ -125,7 +134,21 @@ function monthly(){
 		dataType : "json",
 		async : false,
 		success : function(result){
+			config.data.labels = [];
+			config.data.datasets[0].data = [];
+			config.data.datasets[1].data = [];
+			config.data.datasets[2].data = [];
 			
+			$.each(result, function(index, item){
+				config.data.labels.push((index+1)+"월");
+				config.data.datasets[0].data.push(item.food_Price);
+				config.data.datasets[1].data.push(item.movie_Price);
+				config.data.datasets[2].data.push(item.total_Price);
+			});
+			
+			myChart.update();
+			
+			myChart.update();
 			$("#salesSelectToggle").text("월별");
 		},
 		error : function(err){
