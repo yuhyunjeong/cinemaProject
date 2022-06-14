@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+	
+<style type="text/css">
+.mb-3{
+ margin: auto;
+}
+</style>	
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <body>
@@ -19,10 +25,10 @@
   <p class="mb-0">탈퇴하면 모든 기록이 사라집니다</a>.</p>
 </div>
 
-<div class="card text-white bg-primary mb-3" style="max-width: 40rem; text-align: center;" >
+<div class="card border-warning mb-3" style="max-width: 40rem; text-align: center;" >
   <div class="card-header">회원 탈퇴</div>
   <div class="card-body">
-    <p class="card-text">탈퇴하면 모든 기록이 사라집니다</p>
+    <p class="card-text"></p>
   	<form action="${pageContext.request.contextPath}/member/delete" method="post">
 
 
@@ -47,11 +53,11 @@
 					</div>
 					<br>
 					
-					<h4 class="card-title">정말로 탈퇴하시겠습니까?</h4>
+					<h4 class="card-title"></h4>
     
 					
 					<div>
-					<input type="submit">
+					
 						<button type="submit" class="btn btn-secondary" id="submit">회원 탈퇴</button>
 						<button type="button" class="cancel btn btn-warning" id="reset">취소</button>
 					</div>

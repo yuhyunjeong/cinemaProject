@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+
+<style type="text/css">
+.mb-3{
+ margin: auto;
+}
+</style>
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -38,7 +44,7 @@
 			</div></li>
 	</ul>
 	<div class="col-sm-6, container" style="text-align: center;">
-		<h1>카드 가운데 정렬 해야함</h1>
+		
 		<form name="updateForm" id="inForm" method="post" 
 			action="${pageContext.request.contextPath}/member/update" onSubmit='return checkValid()'>
 			
@@ -50,35 +56,35 @@
 
 
 					<div class="form-group">
-						<label class="col-form-label col-form-label-lg mt-4"
+						<label class="col-form-label mt-4"
 							for="inputLarge">아이디</label> <input
-							class="form-control form-control-lg" type="text"
+							class="form-control " type="text"
 							placeholder="${member.id}" id="id" value="${member.id}" name="id"
 							readonly="readonly">
 
 					</div>
 
 					<div class="form-group">
-						<label class="col-form-label col-form-label-lg mt-4"
+						<label class="col-form-label mt-4"
 							for="inputLarge">변경할 비밀번호</label> <input
-							class="form-control form-control-lg" type="password"
+							class="form-control" type="password"
 							placeholder="7자 이상 영문/숫자를 입력해주세요." id="password"
 							value="${member.password}" name="password" required="required">
 					</div>
 
 					<div class="form-group">
-						<label class="col-form-label col-form-label-lg mt-4"
+						<label class="col-form-label mt-4"
 							for="inputLarge">비밀번호 확인</label> <input
-							class="form-control form-control-lg" type="password"
+							class="form-control" type="password"
 							placeholder="비밀번호를 다시 입력해주세요." id="pwdCheck" name="pwdCheck"
 							required="required">
 						<div id="pCheck" name="pCheck"></div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-form-label col-form-label-lg mt-4"
+						<label class="col-form-label mt-4"
 							for="inputLarge">이름</label> <input
-							class="form-control form-control-lg" type="text"
+							class="form-control " type="text"
 							placeholder="이름을 입력해주세요." id="name" value="${member.name}"
 							name="name" required="required">
 					</div>
@@ -88,24 +94,24 @@
 	    			
 	    				
 					<div class="form-group">
-						<label class="col-form-label col-form-label-lg mt-4"
+						<label class="col-form-label mt-4"
 							for="inputLarge">생년월일</label> <input
-							class="form-control form-control-lg" type="text"
+							class="form-control " type="text"
 							placeholder="" id="birth" value="<fmt:formatDate value="${member.birth}" pattern="yyyy-MM-dd" />"
 							name="birth" readonly="readonly">
 					</div>
 
 					<div class="form-group">
-						<label class="col-form-label col-form-label-lg mt-4"
+						<label class="col-form-label mt-4"
 							for="inputLarge">연락처</label> <input
-							class="form-control form-control-lg" type="text"
+							class="form-control" type="text"
 							placeholder="000-0000-0000 형식으로 입력해주세요." id="phone"
 							value="${member.phone}" name="phone" required="required">
 					</div>
 
 					<br>
 					<div>
-						<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#updateModal">회원정보 수정 완료</button>
+						<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#updateModal">수정 완료</button>
 					</div>
 					<br>
 

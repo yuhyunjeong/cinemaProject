@@ -16,6 +16,16 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+<style type="text/css">
+.card {
+  transition: all 0.2s linear;
+}
+.card:hover {
+  transform: scale(1.2);
+}
+
+</style>
+
 <script type="text/javascript">
 $(function() {
 	
@@ -184,6 +194,7 @@ $(function() {
 }) // ready End
 
 </script>
+
 
 </head>
 <body>

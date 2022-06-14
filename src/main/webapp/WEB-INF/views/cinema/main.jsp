@@ -156,6 +156,12 @@
 	text-align: center;
 }
 
+.card {
+  transition: all 0.2s linear;
+}
+.card:hover {
+  transform: scale(1.2);
+}
 
 
 </style>
