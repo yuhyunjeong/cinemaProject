@@ -77,7 +77,62 @@ $(function() {
 	$('input[name="optionsRadios"]').on("change", function() {
 		
 		//alert(this.value)
+		
+		$.ajax({
+			url: "selectMovie", // 서버요청주소 
+			type: "post", // 요청방식(get, post, delete, patch),
+			dataType: "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
+			data:{
+				"${_csrf.parameterName}" : "${_csrf.token}", 
+				"optionsRadios":$(this).val()
+			}, // 서버에게 보낼 parameter 정보 */
+			
+			success: function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
+				//alert(movieList)
+				let str="";
 				
+				if($("#flexCheckDefault").is(":checked")){
+					
+					$.each(movieList, function(index, item){
+										
+					
+						str+="<div class='col-lg-3 col-md-6'>";
+						str+="<div class='card mb-3 h-100'>";
+						str+="<div class='card-body'>";
+						//str+=`<h4 class='card-title'>영화</h4>`;
+						str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
+						str+="<hr>";
+						str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><p><div class='date'></div>`;
+						str+="</div></div></div>";
+						//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
+					
+					});
+					
+					$("#rrr").empty();
+					$("#rrr").html(str);
+				
+				
+					
+				}else{
+					
+					
+					
+				}
+				
+				//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
+				
+			}, error: function(err) {
+				
+			}
+		});
+		
+		
+	});
+	
+	$("#flexCheckDefault").on("click", function() {
+		
+		//alert(this.value)
+		
 		$.ajax({
 			url: "selectMovie", // 서버요청주소 
 			type: "post", // 요청방식(get, post, delete, patch),
@@ -91,8 +146,10 @@ $(function() {
 				//alert(movieList)
 				let str="";
 				$.each(movieList, function(index, item){
+										
+					
 					str+="<div class='col-lg-3 col-md-6'>";
-					str+="<div class='card m-3 h-100'>";
+					str+="<div class='card mb-3 h-100'>";
 					str+="<div class='card-body'>";
 					//str+=`<h4 class='card-title'>영화</h4>`;
 					str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
@@ -112,11 +169,17 @@ $(function() {
 				
 			}
 		});
+		
+		
 	});
 	
 	
-	
 	select();
+	
+	
+	
+	$()
+	
 
 }) // ready End
 
@@ -159,7 +222,7 @@ $(function() {
 		<div class="form-check disabled">
 			<label class="form-check-label"> <input type="radio"
 				class="form-check-input" name="optionsRadios" id="optionsRadios3"
-				value="option3"> 관람객순
+				value="option3"> 별점순
 			</label>
 		</div>
 	</fieldset>

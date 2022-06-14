@@ -15,6 +15,7 @@ import com.querydsl.core.Tuple;
 import kosta.mvc.domain.Movie;
 //import kosta.mvc.domain.QMovie;
 import kosta.mvc.repository.MovieRepository;
+import kosta.mvc.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class MovieServiceImpl implements MovieService {
 
 	private final MovieRepository movieRepo;
-
+	private final OrdersRepository orderRepo;
 	
 	@Override
 	public List<Movie> selectAll() {
@@ -100,14 +101,19 @@ public class MovieServiceImpl implements MovieService {
 		
 		
 		
-		
 		if(optionsRadios.equals("option1")) {
 		
 			return movieRepo.selectByDate();
 			
 		}else if(optionsRadios.equals("option2")){
 			
-			return null;
+			List<String> movieList = movieRepo.selectByCount();
+			System.out.println(movieList);
+			
+			List<Movie> movieFind = movieRepo.findAllById(movieList);
+			System.out.println(movieFind);  
+			
+			return movieFind;
 			
 		}else if(optionsRadios.equals("option3")){
 			return null;

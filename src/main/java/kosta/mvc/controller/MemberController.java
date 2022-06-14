@@ -27,26 +27,26 @@ public class MemberController {
 	@RequestMapping("/loginForm")
 	public void login() {}
 	
-	
-	@RequestMapping("login")
-	public String loginCheck(String id, String password, HttpSession session) {
-		
-		System.out.println(id + password);
-		Member member = memService.loginCheck(id, password);
-		System.out.println(member);
-		if(member != null) {
-			session.setAttribute("member", member);
-		}
-		
-		
-		return "redirect:/";
-	}
-	
-	@RequestMapping("logout")
-	public String logout(Member member , HttpSession session) {
-		session.removeAttribute("member");
-		return "redirect:/";
-	}
+//	
+//	@RequestMapping("login")
+//	public String loginCheck(String id, String password, HttpSession session) {
+//		
+//		System.out.println(id + password);
+//		Member member = memService.loginCheck(id, password);
+//		System.out.println(member);
+//		if(member != null) {
+//			session.setAttribute("member", member);
+//		}
+//		
+//		
+//		return "redirect:/";
+//	}
+//	
+//	@RequestMapping("logout")
+//	public String logout(Member member , HttpSession session) {
+//		session.removeAttribute("member");
+//		return "redirect:/";
+//	}
 	
 	@RequestMapping("/joinForm")
 	public void joinForm() {}

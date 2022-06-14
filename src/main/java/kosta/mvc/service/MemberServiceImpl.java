@@ -40,6 +40,9 @@ public class MemberServiceImpl implements MemberService {
 	      String encPassword = getBCEncoder.encode(rawPassword); 
 	      member.setPassword(encPassword);
 	      
+	      /**
+	       * 가입하면 포인트 3000
+	       * */
 	      member.setPoint(3000);
 	      
 	      Member mem = memberRepo.save(member);

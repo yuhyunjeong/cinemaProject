@@ -12,4 +12,6 @@ public interface OrderService {
 	Orders selectByOrderCode(Long orderCode);
 
 	List<SalesDTOInterface> selectMonthlySalesList();
+
+	List<SalesDTOInterface> selectYearlySalesList();
 }

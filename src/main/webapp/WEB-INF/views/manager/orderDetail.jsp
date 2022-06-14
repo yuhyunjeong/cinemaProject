@@ -105,7 +105,7 @@
 	  		가격 : ${foodOrderline.food.foodPrice}원<br>
 	  		수량 : ${foodOrderline.qty}개<br>
 	  		<c:if test="${status.last eq false}">, </c:if>
-	  		<c:set var="foodTotalPrice" value="${foodTotalPrice + (foodOrderline.food.foodPrice)*(foodOrderline.qty) }"/>
+	  		<c:set var="foodTotalPrice" value="${foodTotalPrice + (foodOrderline.sumPrice) }"/>
 	  	</c:forEach><p><p>
  		<b>합산가 : ${foodTotalPrice}원</b>
     </p>
