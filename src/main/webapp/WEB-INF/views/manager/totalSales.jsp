@@ -28,47 +28,77 @@
 		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
 		<div class="dropdown-menu">
 		  <a class="dropdown-item" href="#">월별</a>
-		  <a class="dropdown-item" href="#">연도별</a>
+		  <a class="dropdown-item" href="javaScript:yearly()">연도별</a>
 		</div>
 	  </li>
 	</ul>
 	<p>
     <p class="card-text">
-    	<canvas id="monthlySalesChart"></canvas>
+    	<canvas id="myChart"></canvas>
     </p>
   </div>
 </div>
 
 <script type="text/javascript">
-  var labels = new Array();
-  <c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
-  	labels.push("${status.count}월")
-  </c:forEach>
-  
-  var monthlySalesArr = new Array();
-  <c:forEach items="${requestScope.monthlySalesList}" var="item">
-  	monthlySalesArr.push("${item.total_Price}")
-  </c:forEach>
-	
-  var data = {
-    labels: labels,
-    datasets: [{
-      label: '월매출 총액',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: monthlySalesArr
-    }]
-  };
+//setup시작
+var DATA_COUNT = 0;
+const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
-  var config = {
-    type: 'line',
-    data: data,
-    options: {}
-  };
-  var myChart = new Chart(
-    document.getElementById('monthlySalesChart'),
-    config
-  );
+var labels = new Array();
+<c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
+	labels.push("${status.count}월");
+	DATA_COUNT = DATA_COUNT + 1;
+</c:forEach>
+
+var monthlySalesArr = new Array();
+var foodSalesArr = new Array();
+var movieSalesArr = new Array();
+<c:forEach items="${requestScope.monthlySalesList}" var="item">
+	monthlySalesArr.push("${item.total_Price}");
+	foodSalesArr.push("${item.food_Price}");
+	movieSalesArr.push("${item.movie_Price}");
+</c:forEach>
+
+
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: '먹거리매출',
+      data: foodSalesArr,
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132)',
+      type: 'bar'
+    },
+    {
+      label: '영화매출',
+      data: movieSalesArr,
+      borderColor: 'rgba(54, 162, 235, 1)',
+      backgroundColor: 'rgba(54, 162, 235, 1)',
+      type: 'bar'
+    },
+    {
+      label: '월매출 총액',
+      data: monthlySalesArr,
+      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 192, 1)',
+      fill: false,
+      type: 'line'
+    }
+  ]
+};
+//setup끝
+
+//config시작
+const config = {
+  type: 'line',
+  data: data
+};//config끝
+
+const myChart = new Chart(
+	    document.getElementById('myChart'),
+	    config
+	  );
 </script>
 
 </body>

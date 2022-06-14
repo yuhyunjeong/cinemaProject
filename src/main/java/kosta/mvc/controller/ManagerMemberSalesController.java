@@ -45,6 +45,12 @@ public class ManagerMemberSalesController {
 		return new ModelAndView("manager/totalSales","monthlySalesList", monthlySalesList);
 	}
 	
+	@RequestMapping("/salesByYear")
+	public ModelAndView salesByYear() {
+		List<SalesDTOInterface> yearlySalesList = orderService.selectYearlySalesList();
+		return new ModelAndView("manager/totalSales","yearlySalesList", yearlySalesList);
+	}
+	
 	@RequestMapping("/salesByMovie")
 	public void salesByMovie() {}
 	

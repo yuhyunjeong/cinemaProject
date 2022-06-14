@@ -28,9 +28,9 @@ public class QFoodOrderline extends EntityPathBase<FoodOrderline> {
 
     public final QOrders order;
 
-    public final NumberPath<Integer> price = createNumber("price", Integer.class);
-
     public final NumberPath<Integer> qty = createNumber("qty", Integer.class);
+
+    public final NumberPath<Integer> sumPrice = createNumber("sumPrice", Integer.class);
 
     public QFoodOrderline(String variable) {
         this(FoodOrderline.class, forVariable(variable), INITS);
