@@ -3,7 +3,7 @@ package kosta.mvc.service;
 import java.util.List;
 
 import kosta.mvc.domain.Orders;
-import kosta.mvc.dto.SalesDTOInterface;
+import kosta.mvc.dto.SalesTotalDTO;
 
 public interface OrderService {
 	
@@ -11,7 +11,7 @@ public interface OrderService {
 
 	Orders selectByOrderCode(Long orderCode);
 
-	List<SalesDTOInterface> selectMonthlySalesList();
+	List<SalesTotalDTO> selectMonthlySalesList();
 
-	List<SalesDTOInterface> selectYearlySalesList();
+	List<SalesTotalDTO> selectYearlySalesList();
 }

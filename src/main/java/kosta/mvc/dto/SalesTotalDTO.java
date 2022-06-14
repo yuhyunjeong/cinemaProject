@@ -1,6 +1,6 @@
 package kosta.mvc.dto;
 
-public interface SalesDTOInterface {
+public interface SalesTotalDTO {
 
 	int getCount();
 	String getDatedata();

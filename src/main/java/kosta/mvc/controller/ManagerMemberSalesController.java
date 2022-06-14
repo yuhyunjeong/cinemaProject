@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Orders;
-import kosta.mvc.dto.SalesDTOInterface;
+import kosta.mvc.dto.SalesTotalDTO;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -46,17 +46,17 @@ public class ManagerMemberSalesController {
 	
 	@RequestMapping("/salesByMonth")
 	@ResponseBody
-	public List<SalesDTOInterface> salesByMonth() {
+	public List<SalesTotalDTO> salesByMonth() {
 		System.out.println("ManagerMemberSalesController의 salesByMonth() call...");
-		List<SalesDTOInterface> monthlySalesList = orderService.selectMonthlySalesList();
+		List<SalesTotalDTO> monthlySalesList = orderService.selectMonthlySalesList();
 		return monthlySalesList;
 	}
 	
 	@RequestMapping("/salesByYear")
 	@ResponseBody
-	public List<SalesDTOInterface> salesByYear() {
+	public List<SalesTotalDTO> salesByYear() {
 		System.out.println("ManagerMemberSalesController의 salesByYear() call...");
-		List<SalesDTOInterface> yearlySalesList = orderService.selectYearlySalesList();
+		List<SalesTotalDTO> yearlySalesList = orderService.selectYearlySalesList();
 		return yearlySalesList;
 	}
 	

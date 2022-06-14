@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Orders;
-import kosta.mvc.dto.SalesDTOInterface;
+import kosta.mvc.dto.SalesTotalDTO;
 import kosta.mvc.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -32,9 +32,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<SalesDTOInterface> selectMonthlySalesList() {
+	public List<SalesTotalDTO> selectMonthlySalesList() {
 		System.out.println("OrderServiceImpl의 selectMonthlySalesList() call...");
-		List<SalesDTOInterface> monthlySalesList = orderRepo.selectMonthlySalesList();
+		List<SalesTotalDTO> monthlySalesList = orderRepo.selectMonthlySalesList();
 		monthlySalesList.forEach(item->System.out.println(item.getCount() + ", " + item.getDatedata() + ", " + item.getTotal_Price()));
 		
 		System.out.println("monthlySalesList = " + monthlySalesList);
@@ -42,9 +42,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<SalesDTOInterface> selectYearlySalesList() {
+	public List<SalesTotalDTO> selectYearlySalesList() {
 		System.out.println("OrderServiceImpl의 selectYearlySalesList() call...");
-		List<SalesDTOInterface> yearlySalesList = orderRepo.selectYearlySalesList();
+		List<SalesTotalDTO> yearlySalesList = orderRepo.selectYearlySalesList();
 		yearlySalesList.forEach(item->System.out.println(item.getCount() + ", " + item.getDatedata() + ", " + item.getTotal_Price()));
 		
 		System.out.println("yearlySalesList = " + yearlySalesList);

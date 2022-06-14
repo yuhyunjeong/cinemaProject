@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.Orders;
-import kosta.mvc.dto.SalesDTOInterface;
+import kosta.mvc.dto.SalesTotalDTO;
 
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
@@ -29,7 +29,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 			+ "GROUP BY TO_CHAR(ORDER_DATE, 'YYYY-MM')\r\n"
 			+ "ORDER BY DATEDATA"
 			, nativeQuery=true)
-	List<SalesDTOInterface> selectMonthlySalesList();
+	List<SalesTotalDTO> selectMonthlySalesList();
 
 	
 	
@@ -52,5 +52,5 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 			+ "GROUP BY TO_CHAR(ORDER_DATE, 'YYYY')\r\n"
 			+ "ORDER BY DATEDATA"
 			, nativeQuery=true)
-	List<SalesDTOInterface> selectYearlySalesList();
+	List<SalesTotalDTO> selectYearlySalesList();
 }
