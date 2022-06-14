@@ -25,50 +25,139 @@
   <div class="card-body">
 	<ul class="nav nav-pills" style="float:right">
 	  <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
+		<a id = "salesSelectToggle" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
 		<div class="dropdown-menu">
-		  <a class="dropdown-item" href="#">월별</a>
-		  <a class="dropdown-item" href="#">연도별</a>
+		  <a class="dropdown-item" href="javaScript:monthly()">월별</a>
+		  <a class="dropdown-item" href="javaScript:yearly()">연도별</a>
 		</div>
 	  </li>
 	</ul>
 	<p>
     <p class="card-text">
-    	<canvas id="monthlySalesChart"></canvas>
+    	<canvas id="myChart"></canvas>
     </p>
   </div>
 </div>
 
 <script type="text/javascript">
-  var labels = new Array();
-  <c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
-  	labels.push("${status.count}월")
-  </c:forEach>
-  
-  var monthlySalesArr = new Array();
-  <c:forEach items="${requestScope.monthlySalesList}" var="item">
-  	monthlySalesArr.push("${item.total_Price}")
-  </c:forEach>
-	
-  var data = {
-    labels: labels,
-    datasets: [{
-      label: '월매출 총액',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: monthlySalesArr
-    }]
-  };
+//setup시작
+var labels = new Array();
+<c:forEach items="${requestScope.monthlySalesList}" var="item" varStatus="status">
+	labels.push("${status.count}월");
+</c:forEach>
 
-  var config = {
-    type: 'line',
-    data: data,
-    options: {}
-  };
-  var myChart = new Chart(
-    document.getElementById('monthlySalesChart'),
-    config
-  );
+var salesArr = new Array();
+var foodSalesArr = new Array();
+var movieSalesArr = new Array();
+<c:forEach items="${requestScope.monthlySalesList}" var="item">
+	salesArr.push("${item.total_Price}");
+	foodSalesArr.push("${item.food_Price}");
+	movieSalesArr.push("${item.movie_Price}");
+</c:forEach>
+
+
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: '먹거리매출',
+      data: foodSalesArr,
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132)',
+      type: 'bar'
+    },
+    {
+      label: '영화매출',
+      data: movieSalesArr,
+      borderColor: 'rgba(54, 162, 235, 1)',
+      backgroundColor: 'rgba(54, 162, 235, 1)',
+      type: 'bar'
+    },
+    {
+      label: '총 매출',
+      data: salesArr,
+      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 192, 1)',
+      fill: false,
+      type: 'line'
+    }
+  ]
+};
+//setup끝
+
+//config시작
+const config = {
+  type: 'line',
+  data: data
+};//config끝
+
+const myChart = new Chart(
+	    document.getElementById('myChart'),
+	    config
+	  );
+	  
+	  
+function yearly(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/manager/salesByYear",
+		mothod : "post",
+		dataType : "json",
+		success : function(result){
+			
+			config.data.labels = [];
+			config.data.datasets[0].data = [];
+			config.data.datasets[1].data = [];
+			config.data.datasets[2].data = [];
+			
+			$.each(result, function(index, item){
+				config.data.labels.push(item.datedata+"년");
+				config.data.datasets[0].data.push(item.food_Price);
+				config.data.datasets[1].data.push(item.movie_Price);
+				config.data.datasets[2].data.push(item.total_Price);
+			});
+			
+			myChart.update();
+			$("#salesSelectToggle").text("연도별");
+		},
+		error : function(err){
+			console.log(err + "에러 발생");
+		}
+		
+	});//ajax끝
+}//yeary()끝
+
+
+function monthly(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/manager/salesByMonth",
+		mothod : "post",
+		dataType : "json",
+		async : false,
+		success : function(result){
+			config.data.labels = [];
+			config.data.datasets[0].data = [];
+			config.data.datasets[1].data = [];
+			config.data.datasets[2].data = [];
+			
+			$.each(result, function(index, item){
+				config.data.labels.push((index+1)+"월");
+				config.data.datasets[0].data.push(item.food_Price);
+				config.data.datasets[1].data.push(item.movie_Price);
+				config.data.datasets[2].data.push(item.total_Price);
+			});
+			
+			myChart.update();
+			
+			myChart.update();
+			$("#salesSelectToggle").text("월별");
+		},
+		error : function(err){
+			console.log(err + "에러 발생");
+		}
+		
+	});//ajax끝
+}//yeary()끝
+
 </script>
 
 </body>

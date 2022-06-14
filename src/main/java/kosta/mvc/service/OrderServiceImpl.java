@@ -35,10 +35,20 @@ public class OrderServiceImpl implements OrderService {
 	public List<SalesDTOInterface> selectMonthlySalesList() {
 		System.out.println("OrderServiceImpl의 selectMonthlySalesList() call...");
 		List<SalesDTOInterface> monthlySalesList = orderRepo.selectMonthlySalesList();
-		monthlySalesList.forEach(item->System.out.println(item.getCount() + ", " + item.getMonthlydata() + ", " + item.getTotal_Price()));
+		monthlySalesList.forEach(item->System.out.println(item.getCount() + ", " + item.getDatedata() + ", " + item.getTotal_Price()));
 		
 		System.out.println("monthlySalesList = " + monthlySalesList);
 		return monthlySalesList;
+	}
+
+	@Override
+	public List<SalesDTOInterface> selectYearlySalesList() {
+		System.out.println("OrderServiceImpl의 selectYearlySalesList() call...");
+		List<SalesDTOInterface> yearlySalesList = orderRepo.selectYearlySalesList();
+		yearlySalesList.forEach(item->System.out.println(item.getCount() + ", " + item.getDatedata() + ", " + item.getTotal_Price()));
+		
+		System.out.println("yearlySalesList = " + yearlySalesList);
+		return yearlySalesList;
 	}
 
 }
