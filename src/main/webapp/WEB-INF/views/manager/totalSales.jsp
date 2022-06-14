@@ -26,7 +26,7 @@
 	<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="float: right">
 	  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
 	  <label class="btn btn-outline-secondary" for="btnradio1">월별</label>
-	  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked="">
+	  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
 	  <label class="btn btn-outline-secondary" for="btnradio2">연도별</label>
 	</div>
 	<p>
