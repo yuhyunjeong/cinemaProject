@@ -25,9 +25,9 @@
   <div class="card-body">
 	<ul class="nav nav-pills" style="float:right">
 	  <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
+		<a id = "salesSelectToggle" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
 		<div class="dropdown-menu">
-		  <a class="dropdown-item" href="#">월별</a>
+		  <a class="dropdown-item" href="javaScript:monthly()">월별</a>
 		  <a class="dropdown-item" href="javaScript:yearly()">연도별</a>
 		</div>
 	  </li>
@@ -99,6 +99,42 @@ const myChart = new Chart(
 	    document.getElementById('myChart'),
 	    config
 	  );
+	  
+	  
+function yearly(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/manager/salesByYear",
+		mothod : "post",
+		dataType : "json",
+		success : function(result){
+			//console.log(result);
+			$("#salesSelectToggle").text("연도별");
+		},
+		error : function(err){
+			console.log(err + "에러 발생");
+		}
+		
+	});//ajax끝
+}//yeary()끝
+
+
+function monthly(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/manager/salesByMonth",
+		mothod : "post",
+		dataType : "json",
+		async : false,
+		success : function(result){
+			
+			$("#salesSelectToggle").text("월별");
+		},
+		error : function(err){
+			console.log(err + "에러 발생");
+		}
+		
+	});//ajax끝
+}//yeary()끝
+
 </script>
 
 </body>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Member;
@@ -39,16 +40,25 @@ public class ManagerMemberSalesController {
 	}
 	
 	@RequestMapping("/totalSales")
-	public ModelAndView salesByMonth() {
+	public void totalSales(Model model) {
+		List<SalesDTOInterface> monthlySalesList = orderService.selectMonthlySalesList();
+		model.addAttribute("monthlySalesList", monthlySalesList);
+	}
+	
+	@RequestMapping("/salesByMonth")
+	@ResponseBody
+	public List<SalesDTOInterface> salesByMonth() {
 		System.out.println("ManagerMemberSalesController의 salesByMonth() call...");
 		List<SalesDTOInterface> monthlySalesList = orderService.selectMonthlySalesList();
-		return new ModelAndView("manager/totalSales","monthlySalesList", monthlySalesList);
+		return monthlySalesList;
 	}
 	
 	@RequestMapping("/salesByYear")
-	public ModelAndView salesByYear() {
+	@ResponseBody
+	public List<SalesDTOInterface> salesByYear(Model model) {
+		System.out.println("ManagerMemberSalesController의 salesByYear() call...");
 		List<SalesDTOInterface> yearlySalesList = orderService.selectYearlySalesList();
-		return new ModelAndView("manager/totalSales","yearlySalesList", yearlySalesList);
+		return yearlySalesList;
 	}
 	
 	@RequestMapping("/salesByMovie")
