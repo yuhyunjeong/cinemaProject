@@ -30,7 +30,7 @@
   <div class="card-body">
     <p class="card-text"></p>
   	<form action="${pageContext.request.contextPath}/member/delete" method="post">
-
+	<input type="hidden" value="${member.password}" name="pwd">
 
 					<div class="form-group">
 						<label for="exampleInputId1" class="form-label mt-4">아이디</label>

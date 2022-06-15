@@ -3,6 +3,7 @@ package kosta.mvc.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	
 	private final MemberService memService;
+	private final BCryptPasswordEncoder getBCEncoder;
 	
 	@RequestMapping("/loginForm")
 	public void login() {}
@@ -136,24 +138,40 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(Member member, HttpSession session, RedirectAttributes rttr) {
+	public String delete(String pwd, Member member, HttpSession session, RedirectAttributes rttr) {
+		
+		System.out.println(pwd);
+		
 		
 		//세션에 있는 member를 가져와 mem변수에 넣어준다.
-		Member mem = (Member) session.getAttribute("member");
+		//Member mem = (Member) session.getAttribute("member");
+		//Member mem = new Member();
+		//mem = (Member) session.getAttribute("member");
+		//세션에 있는 비밀번호
+		//String sessionPass = mem.getPassword();
 		
-//		//세션에 있는 비밀번호
-//		String sessionPass = mem.getPassword();
-//		
-//		//member로 들어오는 비밀번호
-//		String voPass = member.getPassword();
-//		
-//		if(!(sessionPass.equals(voPass))) {
+		//member로 들어오는 비밀번호
+		String voPass = member.getPassword();
+		System.out.println(voPass);
+		
+		boolean dePassword = getBCEncoder.matches(voPass, pwd);
+		
+		if(dePassword==false) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/memberDelete/"+member.getId();
+		}
+		
+//		if(!(pwd.equals(voPass))) {
 //			rttr.addFlashAttribute("msg", false);
 //			return "redirect:/member/memberDelete";
 //		}
 		
+		
+		
 		memService.delete(member);
 		session.invalidate();
+		System.out.println("세션"+pwd);
+		System.out.println("member"+voPass);
 		return "redirect:/";
 	}
 	
