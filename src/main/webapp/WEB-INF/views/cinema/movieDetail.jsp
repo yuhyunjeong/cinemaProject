@@ -33,21 +33,19 @@ $(function(){
 					str+=`<th>${"${item.content}"}</th>`;
 					str+=`<th>${"${item.insertDate}"}</th>`;					
 					str+=`<th>
-							<div class="review">
-								<div class="rating" data-rate="${'${item.starRating}'}">
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>	
-								</div>
+							<div class="rating" data-rate="${'${item.starRating}'}">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>	
 							</div>
 						</th>`;	
 					str+=`</tr>`;
 					
 				});
-				$("tbody").empty();
-				$("tbody").html(str);
+				//$("tbody").empty();
+				$(".reviewList").html(str);
 				starRating();
 			},
 				
@@ -60,16 +58,17 @@ $(function(){
 	reviewList();
 	
 	function starRating() {	
-	  	var rating = $('.review .rating');
+	  	var rating = $('.rating');
 	  	rating.each(function() {
 			var targetScore = $(this).attr('data-rate');
 			
-			$(this).find('i:nth-child(-n+'+targetScore+')').css({color:'orange'});
+			$(this).find('i:nth-child(-n+'+targetScore+')').css({color:'gold'});
 			
 		});
 	}
-  	
 	
+	
+  	
 
 });
 
@@ -84,7 +83,56 @@ $(function(){
 	
 }
 
-
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 20px;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+textarea{
+	background: transparent;
+	border: none; 
+	width: 100%; 
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+			
+.reviewInsert{
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 1px solid white;
+	height: 300px;
+	
+}
+.reviewInsert th,td{
+	height: 100%;
+	border: 1px solid white;
+}
 
 </style>
 </head>
@@ -92,7 +140,7 @@ $(function(){
 
 <body>
 
-<input type="hidden" class="hiddenCode" name="${movie.movieCode}" value="${movie.movieCode}">
+<input type="hidden" class="hiddenCode" value="${movie.movieCode}">
 
 
 <jsp:useBean id="now" class="java.util.Date" />
@@ -170,20 +218,54 @@ $(function(){
 		<br>
 		<div class="row">
 			<h1>후기 목록</h1>
+
 			<table class="table table-hover" style="width: 1000px; text-align: center; margin: 0 auto;">
-		  <thead>
-		    <tr>
-		      <th scope="col">작성자</th>
-		      <th scope="col">내용</th>
-		      <th scope="col">작성일</th>
-		      <th scope="col">별점</th>	      
-		    </tr>
-		  </thead>
-		  <tbody>
-			  
-		  </tbody>
-		</table>
+				<thead>
+					<tr>
+						<th scope="col">작성자</th>
+						<th scope="col">내용</th>
+						<th scope="col">작성일</th>
+						<th scope="col">별점</th>	      
+					</tr>
+				</thead>
+				<tbody class="reviewList">	
+				</tbody>
+			</table>
 		</div>
 	</div>
+
+	<form action="${pageContext.request.contextPath}/board/reviewInsert" method="post">
+		<table class="reviewInsert" cellspacing="0" style="width: 1000px; text-align: center; margin: 0 auto;">
+			<thead>
+				<tr>
+					<th scope="col">작성자</th>
+					<th scope="col">sss</th>
+					<th scope="col">별점</th>	      
+					<th>
+						<div class="star-rating space-x-4 mx-auto">
+							<input type="radio" id="5-stars" name="sratRating" value="5"/>
+							<label for="5-stars" class="fas fa-star"></label>
+							<input type="radio" id="4-stars" name="sratRating" value="4"/>
+							<label for="4-stars" class="fas fa-star"></label>
+							<input type="radio" id="3-stars" name="sratRating" value="3"/>
+							<label for="3-stars" class="fas fa-star"></label>
+							<input type="radio" id="2-stars" name="sratRating" value="2"/>
+							<label for="2-stars" class="fas fa-star"></label>
+							<input type="radio" id="1-star" name="sratRating" value="1"/>
+							<label for="1-star" class="fas fa-star"></label>
+						</div>
+					</th>
+				</tr>
+				<tr>
+					<td colspan="4" style="height: 100%">
+				    	<textarea rows="20" name="content"></textarea>
+					</td>
+				</tr>
+			</thead>
+		</table>
+    	<br>
+    	<input type="hidden" name="movieCode" value="${movie.movieCode}"/>
+		<input type="submit" value="작성하기">
+    </form>
 </body>
 </html>

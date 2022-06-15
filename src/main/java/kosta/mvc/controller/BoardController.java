@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.mvc.domain.Event;
 import kosta.mvc.domain.EventBoard;
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.Movie;
 import kosta.mvc.domain.NoticeBoard;
 import kosta.mvc.domain.QnABoard;
 import kosta.mvc.domain.QnAReply;
@@ -101,10 +103,10 @@ public class BoardController {
 	public void qnaWrite() {}
 	
 	@RequestMapping("/qnaInsert")
-	public String qnaInsert(HttpServletRequest request, QnABoard qnaBoard) {
-		HttpSession session = request.getSession();
-		qnaBoard.setMember((Member) session.getAttribute("member"));
-		qnABoardService.insert(qnaBoard);
+	public String qnaInsert(@AuthenticationPrincipal Member sessionMember, QnABoard qnaBoard) {
+		//HttpSession session = request.getSession();
+		//qnaBoard.setMember((Member) session.getAttribute("member"));
+		//qnABoardService.insert(qnaBoard);
 		
 		return "redirect:/board/qna";
 	}
@@ -180,6 +182,25 @@ public class BoardController {
 		List<ReviewDTO> list = reviewBoardService.selectByMovieCode(movieCode);
 
 		return list;
+	}
+	
+	@RequestMapping("/reviewInsert")
+	public String reviewInsert(@AuthenticationPrincipal Member sessionMember, ReviewBoard reviewBoard, Movie movieCode) {
+		System.out.println(reviewBoard.getSratRating());
+		System.out.println(reviewBoard.getContent());
+		//System.out.println(reviewBoard.getMovie().getMovieCode());
+		System.out.println("------------------------------------------------------------");
+		reviewBoard.setMovie(movieCode);
+		reviewBoard.setMember(sessionMember);
+		System.out.println(reviewBoard.getSratRating());
+		System.out.println(reviewBoard.getContent());
+		
+		System.out.println(reviewBoard.getMember().getId());
+		System.out.println(reviewBoard.getMovie().getMovieCode());
+		reviewBoardService.reviewInsert(reviewBoard);
+		
+		
+		return "redirect:/cinema/movieDetail/"+reviewBoard.getMovie().getMovieCode();
 	}
 }
 

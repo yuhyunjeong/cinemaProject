@@ -35,12 +35,10 @@ public class ReviewBoard {
 	@SequenceGenerator(sequenceName = "review_code_seq", allocationSize = 1, name = "review_code_seq")
 	private Long reviewCode;
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id")
 	private Member member;
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "movieCode")
 	private Movie movie;  
