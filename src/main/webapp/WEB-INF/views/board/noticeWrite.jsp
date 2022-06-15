@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,6 +35,8 @@
 		</style>
 	</head>
 	<body>
+	 <sec:authorize access="isAuthenticated()">
+        <sec:authentication property="principal" var="member"/>
 		<div class="container">
 			<h2>공지사항 작성하기</h2>
 			<form method="post" action="${pageContext.request.contextPath}/board/noticeInsert">
@@ -67,6 +70,6 @@
 				</div>
 		    </form>
 		</div>
-
+	</sec:authorize>
 	</body>
 </html>

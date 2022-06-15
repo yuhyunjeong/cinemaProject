@@ -52,4 +52,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		return list;
 	}
 
+	@Override
+	public void reviewInsert(ReviewBoard reviewBoard) {
+		reviewBoardRepository.save(reviewBoard);
+		
+	}
+
 }
