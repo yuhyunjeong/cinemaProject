@@ -22,110 +22,128 @@
 </script>
 </head>
 <body>
-	<h1>productDetail 페이지 입니다.</h1>
-	
-	<c:set var="movie" value="${requestScope.movie}"/>
-	<c:set var="food" value="${requestScope.food}"/>
-	<c:set var="gift" value="${requestScope.gift}"/>
-
+	<!-- <h1>productDetail 페이지 입니다.</h1> -->
+	<%-- test = ${item} / ${kind} <br> --%> 
 	<c:choose>
-		<c:when test="${movie eq requestScope.movie}">
-		<h1>movieDetail 페이지 입니다.</h1>
+	
+		<c:when test="${kind=='movie'}">
+			<%-- 영화 : ${item} --%>
+			<h1>movieDetail 페이지 입니다.</h1>
 			<table>
 				<tr>
 					<th>영화코드</th>
-					<td>${movie.movieCode}</td>
+					<td>${item.movieCode}</td>
 				</tr>
 				<tr>
 					<th>영화제목</th>
-					<td>${movie.movieName}</td>
+					<td>${item.movieName}</td>
 				</tr>
 				<tr>
 					<th>줄거리</th>
-					<td>${movie.movieSummary}</td>
+					<td>${item.movieSummary}</td>
 				</tr>		
 				<tr>
 					<th>러닝타임</th>
-					<td>${movie.movieRunningtime}</td>
+					<td>${item.movieRunningtime}</td>
 				</tr>
 				<tr>
 					<th>상영시작일</th>
-					<td>${movie.movieStartdate}</td>
+					<td>${item.movieStartdate}</td>
 				</tr>
 				<tr>
 					<th>상영종료일</th>
-					<td>${movie.movieEnddate}</td>
+					<td>${item.movieEnddate}</td>
 				</tr>
 				<tr>
 					<th>관람등급</th>
-					<td>${movie.movieAge}</td>
+					<td>${item.movieAge}</td>
 				</tr>		
 				<tr>
 					<th>장르</th>
-					<td>${movie.movieGenre}</td>
+					<td>${item.movieGenre}</td>
 				</tr>	
 				<tr>
 					<th>포스터</th>
-					<td>${movie.movieImage}</td>
+					<td>${item.movieImage}</td>
 				</tr>					
 				<tr>
 					<th>출연진</th>
-					<td>${movie.actorList}</td>
+					<td>${item.actorList}</td>
 				</tr>					
 				
 			</table>
 			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
 				<form name="requestForm" method="post" id="requestForm">
-					<input type="hidden" name="movieCode" value=${movie.movieCode}>
+					<input type="hidden" name="movieCode" value="${item.movieCode}">
+					<%-- <button value="${item.movieCode}" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productUpdate'">수정하기</button> --%>
 					<input type="button" class="btn btn-secondary" id="movieUpdate" value="수정하기">
 					<input type="button" class="btn btn-secondary" id="movieDelete" value="삭제하기">
 				</form>
 			</div>
 		</c:when>
-		<c:when test="${food eq requestScope.food}">
+		
+		<c:when test="${kind=='food'}">
+			<%-- 먹거리 : ${item} --%>
+			<h1>foodDetail 페이지 입니다.</h1>
 			<table>
 				<tr>
 					<th>먹거리코드</th>
-					<td>${food.foodCode}</td>
+					<td>${item.foodCode}</td>
 				</tr>
 				<tr>
 					<th>먹거리이름</th>
-					<td>${food.foodName}</td>
+					<td>${item.foodName}</td>
 				</tr>
 				<tr>
 					<th>먹거리가격</th>
-					<td>${food.foodPrice}</td>
+					<td>${item.foodPrice}</td>
 				</tr>		
 				<tr>
 					<th>먹거리사진</th>
-					<td>${food.foodImage}</td>
+					<td>${item.foodImage}</td>
 				</tr>
 			</table>
+			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
+				<form name="requestForm" method="post" id="requestForm">
+					<input type="hidden" name="foodCode" value="${item.foodCode}">
+					<input type="button" class="btn btn-secondary" id="foodUpdate" value="수정하기">
+					<input type="button" class="btn btn-secondary" id="foodDelete" value="삭제하기">
+				</form>
+			</div>
 		</c:when>
-		<c:when test="${gift eq requestScope.gift}">
+
+		<c:when test="${kind=='gift'}">
+	<%-- 		사은품 : ${item} --%>
+			<h1>giftDetail 페이지 입니다.</h1>
 			<table>
 				<tr>
 					<th>사은품코드</th>
-					<td>${gift.giftCode}</td>
+					<td>${item.giftCode}</td>
 				</tr>
 				<tr>
 					<th>영화제목</th>
-					<td>${gift.movie}</td>
+					<td>${item.movie.movieName}</td>
 				</tr>
 				<tr>
 					<th>사은품이름</th>
-					<td>${gift.giftName }</td>
+					<td>${item.giftName}</td>
 					
 				</tr>
 				<tr>
 					<th>사은품수량</th>
-					<td>${gift.giftQty}</td>
+					<td>${item.giftQty}</td>
 				</tr>									
 			</table>
-		</c:when>
-	</c:choose> 
-	
-	<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/manager/product">상품목록으로 돌아가기</a>&gt;</span></div>
+			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
+				<form name="requestForm" method="post" id="requestForm">
+					<input type="hidden" name="giftCode" value="${item.giftCode}">
+					<input type="button" class="btn btn-secondary" id="giftUpdate" value="수정하기">
+					<input type="button" class="btn btn-secondary" id="giftDelete" value="삭제하기">
+				</form>
+			</div>
+		</c:when>				
+	</c:choose>
+
 	
 </body>
 </html>

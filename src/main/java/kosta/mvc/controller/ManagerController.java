@@ -83,7 +83,7 @@ public class ManagerController {
 	public Map<String, Object> product(Model model, @RequestParam(value="productSelect", defaultValue = "movie")String select) {	
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		// service에서 호출해서 영화검색
 		if(select.equals("movie")) {
 			map.put("list", movieService.selectAll());
@@ -96,7 +96,7 @@ public class ManagerController {
 		} else if(select.equals("gift")) {
 			map.put("list", giftService.selectAll());
 			
-		}
+		} 
 		
 		return map;
 
@@ -119,58 +119,101 @@ public class ManagerController {
 	 * 상품등록 
 	 */
 	@RequestMapping("/productInsert") 
-	public String productInsert(Model model, Movie movie, Food food, Gift gift, @RequestParam(value="productSelect", defaultValue = "movie")String select) {
+	public String productInsert(Movie movie, Food food, Gift gift, @RequestParam(value="productSelect", defaultValue = "movie")String select) {
 		
-		if(select.equals("movie")) {
-			movieService.insert(movie);
-//			model.addAttribute("movieInsert", movieService.selectAll());
-		} else if(select.equals("food")) {
-			foodService.insert(food);
-			model.addAttribute(food);
+//		if(select.equals("movie")) {
 			
-		} else if(select.equals("gift")) {
-			giftService.insert(gift);
-			model.addAttribute(gift);
-		}
+			movieService.insert(movie);
+
+//		} else if(select.equals("food")) {
+//			
+//			foodService.insert(food);
+//
+//			
+//		} else if(select.equals("gift")) {
+//			
+//			giftService.insert(gift);
+//
+//		}
 		
 		return "redirect:/manager/product";
 	}
 	
-	/**
-	 * 영화 상세보기 
-	 */
-	@RequestMapping("/productDetail/{movieCode}")
-	public ModelAndView movieDetail(@PathVariable String movieCode) {
-		
-		Movie movie = movieService.selectBy(movieCode);
-		
-		return new ModelAndView("manager/productDetail", "movie", movie);
-		
-	}
-	
-//	/**
-//	 * 먹거리 상세보기 
-//	 */
-//	@RequestMapping("/productDetail/{foodCode}")
-//	public ModelAndView foodDetail(@PathVariable String foodCode) {
+//	@RequestMapping(value = {"/productDetail/{movieCode}", "/productDetail/{foodCode}", "/productDetail/{giftCode}"})
+//	public ModelAndView productDetail(@PathVariable(required = false) String movieCode, @PathVariable(required = false) String foodCode, @PathVariable(required = false) String giftCode) {
+//			
+//		Movie movie = movieService.selectBy(movieCode);
 //		
-//		Food food = foodService.selectBy(foodCode);
-//		
-//		return new ModelAndView("manager/productDetail", "food", food);
+//		return new ModelAndView("manager/productDetail", "movie", movie);
 //		
 //	}
 //	
-//	/**
-//	 * 사은품 상세보기 
-//	 */
-//	@RequestMapping("/productDetail/{giftCode}")
-//	public ModelAndView giftDetail(@PathVariable String giftCode) {
+//	@RequestMapping("/productDetail/{movieCode}")
+//	public ModelAndView productDetail(@PathVariable(required = false) String movieCode) {
 //		
-//		Gift gift = giftService.selectBy(giftCode);
+//		Movie movie = movieService.selectBy(movieCode);
 //		
-//		return new ModelAndView("manager/productDetail", "gift", gift);
+//		return new ModelAndView("manager/productDetail", "movie", movie);
 //		
 //	}
+	
+	/**
+	 * 영화 상세보기 
+	 */
+	@RequestMapping("/movieDetail/{movieCode}")
+	public ModelAndView movieDetail(@PathVariable(required = false) String movieCode) {
+		
+		Movie movie = movieService.selectBy(movieCode);
+		
+		ModelAndView mv = new ModelAndView("manager/productDetail");
+		mv.addObject("item", movie);
+		mv.addObject("kind", "movie");
+		
+		return mv;
+		
+	}
+	
+	/**
+	 * 먹거리 상세보기 
+	 */
+	@RequestMapping("/foodDetail/{foodCode}")
+	public ModelAndView foodDetail(@PathVariable(required = false) String foodCode) {
+		
+		Food food = foodService.selectBy(foodCode);
+		
+//		return new ModelAndView("manager/productDetail", "food", food);
+		ModelAndView mv = new ModelAndView("manager/productDetail");
+		mv.addObject("item", food);
+		mv.addObject("kind", "food");
+		
+		return mv;
+		
+		
+		//return new ModelAndView("manager/productDetail", "item", food);
+		
+		
+		
+		
+	}
+	
+	/**
+	 * 사은품 상세보기 
+	 */
+	@RequestMapping("/giftDetail/{giftCode}")
+	public ModelAndView giftDetail(@PathVariable(required = false) String giftCode) {
+		
+		Gift gift = giftService.selectBy(giftCode);
+		
+//		return new ModelAndView("manager/productDetail", "gift", gift);
+//		return new ModelAndView("manager/productDetail", "item", gift);
+		
+		ModelAndView mv = new ModelAndView("manager/productDetail");
+		mv.addObject("item", gift);
+		mv.addObject("kind", "gift");
+		
+		return mv;
+		
+	}
 	
 	/**
 	 * 수정폼 
@@ -178,28 +221,40 @@ public class ManagerController {
 	@RequestMapping("/productUpdateForm")
 	public ModelAndView productUpdateForm(String movieCode, String foodCode, String giftCode, @RequestParam(value="productSelect", defaultValue = "movie")String select) {
 	
-//		if(select.equals("movie")) {
-//			
-//			Movie movie = movieService.selectBy(movieCode);
-//			
-//			return new ModelAndView("manager/productUpdate", "movie", movie);
-//			
-//		} else if(select.equals("food")) {
-//			
-//			Food food = foodService.selectBy(foodCode);
-//			
-//			return new ModelAndView("manager/productUpdate", "food", food);
-//		} else if(select.equals("gift")) {
-//			
-//			Gift gift = giftService.selectBy(giftCode);
-//			
-//			return new ModelAndView("manager/productUpdate", "gift", gift);
-//		}
+		ModelAndView mv = new ModelAndView("manager/productUpdate");
 		
-	
-		Movie movie = movieService.selectBy(movieCode);
+		if(select.equals("movie")) {
+			
+			Movie movie = movieService.selectBy(movieCode);
+			
+//			ModelAndView mv = new ModelAndView("manager/productUpdate");
+			mv.addObject("item", movie);
+			mv.addObject("kind", "movie");
+			
+//			return mv;
+			
+		} else if(select.equals("food")) {
+			
+			Food food = foodService.selectBy(foodCode);
+			
+//			ModelAndView mv = new ModelAndView("manager/productUpdate");
+			mv.addObject("item", food);
+			mv.addObject("kind", "food");
+			
+//			return mv;
+			
+		} else if(select.equals("gift")) {
+			
+			Gift gift = giftService.selectBy(giftCode);
+			
+//			ModelAndView mv = new ModelAndView("manager/productUpdate");
+			mv.addObject("item", gift);
+			mv.addObject("kind", "gift");
+			
+//			return mv;
+		}
 		
-		return new ModelAndView("manager/productUpdate", "movie", movie);
+		return mv;
 
 	}
 	
@@ -207,11 +262,39 @@ public class ManagerController {
 	 * 수정하기
 	 */
 	@RequestMapping("/productUpdate")
-	public ModelAndView productUpdate(Movie movie) {
+	public ModelAndView productUpdate(Movie movie, Food food, Gift gift, @RequestParam(value="productSelect", defaultValue = "movie")String select) {
 		
-		Movie dbMovie = movieService.update(movie);
+		ModelAndView mv = new ModelAndView("manager/productDetail");
 		
-		return new ModelAndView("manager/productDetail", "movie", dbMovie);
+		if(select.equals("movie")) {
+			Movie dbMovie = movieService.update(movie);
+
+			mv.addObject("item", dbMovie);
+			mv.addObject("kind", "movie");
+			
+//			return mv;
+		} else if(select.equals("food")) {   	
+		
+			Food dbFood = foodService.update(food);
+			
+//			ModelAndView mv = new ModelAndView("manager/productDetail");
+			mv.addObject("item", dbFood);
+			mv.addObject("kind", "food");
+			
+//			return mv;
+			
+		} else if(select.equals("gift")) {
+			
+			Gift dbGift = giftService.update(gift);
+			
+//			ModelAndView mv = new ModelAndView("manager/productDetail");
+			mv.addObject("item", dbGift);
+			mv.addObject("kind", "gift");
+			
+//			return mv;
+		}
+		return mv;
+
 	}
 	
 	/**

@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -20,9 +22,11 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Gift {
 	
 	@Id
+	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gift_pk")
 	@SequenceGenerator(name="gift_pk", allocationSize = 1, sequenceName = "gift_pk")
 	private String giftCode;

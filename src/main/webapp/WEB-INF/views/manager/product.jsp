@@ -34,8 +34,9 @@
 			/* alert(this.value) */ 
   			selectAll(this.value);
 		});
-	
 		
+	   
+
         function selectAll(v) { 
         	if(v == null || v == '') {
         		v = 'movie'; 
@@ -46,34 +47,40 @@
 				dataType: "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
 				data: {productSelect : v},  // 서버에게 보낼 parameter 정보 
 				success: function(result) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
-					alert(JSON.stringify(result))// m f g
+					/* alert(JSON.stringify(result))// m f g */
 					
 					let str = "";
 					str += "<table class='table table-hover' style='width: 1000px'><tr>";
 					str += "<th scope='col'>상품코드</th>";
 					str += "<th scope='col'>상품이름</th></tr>";
-					
+
 					if(v=='movie'){
-						$.each(result, function(index, item) { // item은 movie
-							alert(result);
-							alert(result.movieCode)
+						$.each(result.list, function(index, item) { // item은 movie
+						/* 	console.log(item)
+							console.log(result.list[0].movieCode) */
+		
 							str += "<tr class='table-active'>";
 							str += "<th scope='row'>" + item.movieCode + "</th>"
-							str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.movieCode}'" + item.movieName + "</td>"
+							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.movieCode}'>" + item.movieName + "</td>" */
+							str += "<td><a href='#' onclick=movepage('" + item.movieCode + "')>" + item.movieName + "</a></td>"
 							str += "</tr>"
 						})  
 					}else if(v=='food'){
-						$.each(result, function(index, item) { // item은 food 
+						console.log('foodClick')
+						$.each(result.list, function(index, item) { // item은 food
+							console.log('rowClick')
 							str += "<tr class='table-active'>";
 							str += "<th scope='row'>" + item.foodCode + "</th>";
-							str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.foodCode}'" + item.foodName + "</td>";
+							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.foodCode}'>" + item.foodName + "</td>"; */
+							str += "<td><a href='#' onclick=movepage2('" + item.foodCode + "')>" + item.foodName + "</a></td>"
 							str += "</tr>"
 						})   
 					}else if(v=='gift'){
-						$.each(result, function(index, item) { // item은 gift 
+						$.each(result.list, function(index, item) { // item은 gift 
 							str += "<tr class='table-active'>";
 							str += "<th scope='row'>" + item.giftCode + "</th>";
-							str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.giftCode}'" + item.giftName + "</td>";
+							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.giftCode}'>" + item.giftName + "</td>"; */
+							str += "<td><a href='#' onclick=movepage3('" + item.giftCode + "')>" + item.giftName + "</a></td>"
 							str += "</tr>"
 						})   
 					}
@@ -88,9 +95,34 @@
 				}
 			});  
         }
-		
-		
+
 	}) // ready End
+	
+	
+/*     function movepage(page) {
+    	let hi = "${pageContext.request.contextPath}/manager/movieDetail/"+page;
+        window.document.location.href=hi;   
+    }  */
+    
+    function movepage(page) {
+    	console.log('movepage1')
+    	console.log('page1:', page)
+    	let hi = "${pageContext.request.contextPath}/manager/movieDetail/"+page;
+        window.document.location.href=hi;   
+    }
+    function movepage2(page) {
+    	console.log('movepage2')
+    	console.log('page2:', page)
+    	let hi = "${pageContext.request.contextPath}/manager/foodDetail/"+page;
+        window.document.location.href=hi;   
+    }
+    function movepage3(page) {
+    	console.log('movepage3')
+    	console.log('page3:', page)
+    	let hi = "${pageContext.request.contextPath}/manager/giftDetail/"+page;
+        window.document.location.href=hi;   
+    }  
+	 
 	
 </script>
 </head>
@@ -105,121 +137,6 @@
 			<option value="gift">사은품</option>
 		</select>
 	</div> 
-	
-<!-- <div class="col-lg-12">
- 	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a class="nav-link active" data-bs-toggle="tab" href="#movie">영화</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" data-bs-toggle="tab" href="#food">먹거리</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" data-bs-toggle="tab" href="#goods">사은품</a>
-		</li>
-	</ul>
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade show active" id="movie">
-			영화
-		</div>
-		<div class="tab-pane fade" id="food">
-			먹거리 
-		</div>
-		<div class="tab-pane fade" id="goods">
-			사은품
-		</div>
-	</div>
-</div> -->
-
-
-	<%-- <table class="table table-hover" style="width: 1000px">
-	  <thead>
-	    <tr>
-	      <th scope="col">상품코드</th>
-	      <th scope="col">상품이름</th>
-	      <th scope="col">상품등록일</th>
-	    </tr>
-	  </thead>
-  <tbody>
-	
-	<c:set var="movie" value="${requestScope.movieList}"/>
-	<c:set var="food" value="${requestScope.foodList}"/>
-	<c:set var="gift" value="${requestScope.giftList}"/>
-	
-   <c:choose>
- 		<c:when test="${empty requestScope.movieList}">
-	  		<tr>
-	  			<td colspan="3" style="text-align: center">
-	  				<b><span>등록된 영화가 없습니다.</span></b>
-	  			</td>
-	  		</tr>
-  		</c:when>
-	  	<c:when test="${movie eq movieList}">
-	  		<c:forEach items="${requestScope.movieList}" var="movie">
-	  			<tr class="table-active">
-			      <th scope="row">${movie.movieCode}</th>
-			      <td>
-			      	<a href="${pageContext.request.contextPath}/manager/productDetail/${movie.movieCode}">
-			      		${movie.movieName}
-			      	</a>
-			      </td>
-			      <td>${movie.movieStartdate}</td>
-	  			</tr>
-	  		</c:forEach>
-	  	</c:when>
-	  	
-	  	<c:when test="${empty requestScope.foodList}">
-	  		<tr>
-	  			<td colspan="3" style="text-align: center">
-	  				<b><span>등록된 먹거리가 없습니다.</span></b>
-	  			</td>
-	  		</tr>
-  		</c:when>
-  		<c:when test="${food eq foodList}">
-  			<c:forEach items="${requestScope.foodList}" var="food">
-	  			<tr class="table-active">
-			      <th scope="row">${food.foodCode}</th>
-			      <td>
-			      	<a href="${pageContext.request.contextPath}/manager/productDetail/${food.foodCode}">
-			      		${food.foodName}
-			      	</a>
-			      </td>
-	  			</tr>
-	  		</c:forEach>
-  		</c:when>
-  		
-  		<c:when test="${empty requestScope.giftList}">
-	  		<tr>
-	  			<td colspan="3" style="text-align: center">
-	  				<b><span>등록된 사은품이 없습니다.</span></b>
-	  			</td>
-	  		</tr>
-  		</c:when>
-  		<c:when test="${gift eq giftList}">
-  			<c:forEach items="${requestScope.giftList}" var="movie">
-	  			<tr class="table-active">
-			      <th scope="row">${gift.giftCode}</th>
-			      <td>
-			      	<a href="${pageContext.request.contextPath}/manager/productDetail/${gift.giftCode}">
-			      		${gift.giftName}
-			      	</a>
-			      </td>
-	  			</tr>
-	  		</c:forEach>
-  		</c:when>
-	  	<c:otherwise>
-	  		<tr>
-	  			<td colspan="3" style="text-align: center">
-	  				<b><span>등록된 게시물이 없습니다.</span></b>
-	  			</td>
-	  		</tr>
-	  	</c:otherwise>
-  </c:choose> 
- 
-    
-
-  </tbody>
-</table> --%>
 
 <div id="productSelect"></div>
 

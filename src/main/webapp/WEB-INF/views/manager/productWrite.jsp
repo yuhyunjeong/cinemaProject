@@ -10,13 +10,8 @@
 <body>
 	<h1>상품 등록 페이지 입니다.</h1>
 	
-	<c:set var="movie" value="${requestScope.movieList}"/>
-	<c:set var="food" value="${requestScope.foodList}"/>
-	<c:set var="gift" value="${requestScope.giftList}"/>
-	
 		<c:choose>
-			<%-- <c:when test="${not empty requestScope.movieInsert}"> --%>
-			<c:when test="${movie eq requestScope.movieList}">
+			<c:when test="${kind=='movie'}">
 			<h1>영화 등록 페이지 입니다.</h1>
 				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert">	
 					<fieldset>
@@ -68,7 +63,7 @@
 				</form>
 			</c:when>
 			
-			<c:when test="${food eq requestScope.foodList}">
+			<c:when test="${kind=='food'}">
 			<h1>먹거리 등록 페이지 입니다.</h1>
 				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert">	
 					<fieldset>
@@ -96,7 +91,7 @@
 				</form>
 			</c:when>
 			
-			<c:when test="${gift eq requestScope.giftList}">
+			<c:when test="${kind=='gift'}">
 			<h1>사은품 등록 페이지 입니다.</h1>
 				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert">	
 					<fieldset>

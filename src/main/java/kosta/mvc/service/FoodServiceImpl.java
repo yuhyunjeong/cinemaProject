@@ -42,11 +42,15 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public Food selectBy(String foodCode) {
 		
+//		System.out.println("@@@@@@@@@@@@@@@"+foodCode);
+		
 		Food food = foodRepo.findById(foodCode).orElse(null);
 		if(food.equals(null)) {
 			throw new RuntimeException("상세보기 오류가 발생했습니다.");
 		}
 		
+//		System.out.println("!!!!!!!!!!!!!!!!"+food);
+
 		return food;
 	}
 
