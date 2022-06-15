@@ -2,10 +2,15 @@ package kosta.mvc.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,11 +30,22 @@ public class ManagerMemberSalesController {
 	
 	private final MemberService memberService;
 	
+	public static final int BLOCK_COUNT = 3;
+	public static final int PAGE_COUNT = 10;
+	
 	@RequestMapping("/orderList")
-	public void orderList(Model model) {
+	public void orderList(Model model, @RequestParam(defaultValue="1") int nowPage) {
+		Pageable page = PageRequest.of((nowPage-1), PAGE_COUNT, Direction.DESC, "orderCode"); //pk
+		Page<Orders> pageList = orderService.selectAll(page);
 		
-		List<Orders> list = orderService.selectAll();
-		model.addAttribute("orderList", list);
+		model.addAttribute("pageList", pageList);
+		
+		int temp = (nowPage-1)%BLOCK_COUNT;
+		int startPage = nowPage-temp;
+		 
+		model.addAttribute("blockCount", BLOCK_COUNT);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("nowPage", nowPage);
 	}
 	
 	@RequestMapping("/orderDetail/{orderCode}")
@@ -66,9 +82,18 @@ public class ManagerMemberSalesController {
 	}
 	
 	@RequestMapping("/memberList")
-	public void members(Model model) {
-		List<Member> memberList = memberService.selectAll();
-		model.addAttribute("memberList", memberList);
+	public void members(Model model, @RequestParam(defaultValue="1") int nowPage) {
+		Pageable page = PageRequest.of((nowPage-1), PAGE_COUNT, Direction.DESC, "id"); //pk
+		Page<Member> pageList = memberService.selectAll(page);
+		
+		model.addAttribute("pageList", pageList);
+		
+		int temp = (nowPage-1)%BLOCK_COUNT;
+		int startPage = nowPage-temp;
+		 
+		model.addAttribute("blockCount", BLOCK_COUNT);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("nowPage", nowPage);
 	}
 	
 	@RequestMapping("/memberDetail/{memberId}")
