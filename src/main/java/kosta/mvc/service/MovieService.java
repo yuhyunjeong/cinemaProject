@@ -17,7 +17,7 @@ public interface MovieService {
 	/**
 	 * 영화 전체검색 - paging처리 
 	 */
-	Page<Movie> selectAll(Pageable pageable);
+	Page<Movie> selectAllByPage(Pageable pageable);
 	
 	/**
 	 * 영화 등록하기

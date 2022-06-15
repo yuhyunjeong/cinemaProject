@@ -3,6 +3,7 @@ package kosta.mvc.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -138,10 +139,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(String pwd, Member member, HttpSession session, RedirectAttributes rttr) {
+	public String delete(@AuthenticationPrincipal Member sessionMember, HttpSession session, Member member, RedirectAttributes rttr) {
 		
-		System.out.println(pwd);
-		
+		//System.out.println(pwd);
+		String sessionPass = sessionMember.getPassword();
+		System.out.println(sessionPass);
 		
 		//세션에 있는 member를 가져와 mem변수에 넣어준다.
 		//Member mem = (Member) session.getAttribute("member");
@@ -154,7 +156,7 @@ public class MemberController {
 		String voPass = member.getPassword();
 		System.out.println(voPass);
 		
-		boolean dePassword = getBCEncoder.matches(voPass, pwd);
+		boolean dePassword = getBCEncoder.matches(voPass, sessionPass);
 		
 		if(dePassword==false) {
 			rttr.addFlashAttribute("msg", false);
@@ -170,7 +172,7 @@ public class MemberController {
 		
 		memService.delete(member);
 		session.invalidate();
-		System.out.println("세션"+pwd);
+		System.out.println("세션"+sessionPass);
 		System.out.println("member"+voPass);
 		return "redirect:/";
 	}

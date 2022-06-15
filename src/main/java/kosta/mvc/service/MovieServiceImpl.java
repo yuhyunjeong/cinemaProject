@@ -32,9 +32,9 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public Page<Movie> selectAll(Pageable pageable) {
+	public Page<Movie> selectAllByPage(Pageable pageable) {
 	
-		return null;
+		return movieRepo.findAll(pageable);
 	}
 
 	@Override
