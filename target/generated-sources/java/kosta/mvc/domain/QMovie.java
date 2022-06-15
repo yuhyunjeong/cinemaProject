@@ -38,6 +38,8 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public final StringPath movieName = createString("movieName");
 
+    public final StringPath moviePath = createString("moviePath");
+
     public final NumberPath<Integer> movieRunningtime = createNumber("movieRunningtime", Integer.class);
 
     public final DateTimePath<java.util.Date> movieStartdate = createDateTime("movieStartdate", java.util.Date.class);
