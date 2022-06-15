@@ -12,7 +12,6 @@
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-
 <body>
 	<h1>${member.name}님의 마이페이지 입니다.</h1> <p>
 	잔여 포인트 : ${member.point} <p>
