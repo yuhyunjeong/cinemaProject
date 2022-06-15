@@ -35,5 +35,7 @@ public class Food {
 	
 	private String foodImage;
 	
+	private String foodPath;
+	
 	
 }
