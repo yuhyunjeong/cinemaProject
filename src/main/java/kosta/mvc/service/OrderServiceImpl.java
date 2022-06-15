@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kosta.mvc.domain.Orders;
@@ -19,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
 	private final OrdersRepository orderRepo;
 	
 	@Override
-	public List<Orders> selectAll() {
-		return orderRepo.findAll();
+	public Page<Orders> selectAll(Pageable page) {
+		return orderRepo.findAll(page);
 	}
 
 	@Override

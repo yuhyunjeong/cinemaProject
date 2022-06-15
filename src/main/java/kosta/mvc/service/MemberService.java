@@ -1,6 +1,7 @@
 package kosta.mvc.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import kosta.mvc.domain.Member;
 
@@ -47,6 +48,6 @@ public interface MemberService {
 	/**
 	 * 전체검색
 	 * */
-	List<Member> selectAll();
+	Page<Member> selectAll(Pageable page);
 	
 }

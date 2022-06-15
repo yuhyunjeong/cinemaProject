@@ -32,13 +32,13 @@ $(function() {
   </thead>
   <tbody>
   	<c:choose>
-  		<c:when test="${empty requestScope.memberList}">
+  		<c:when test="${empty requestScope.pageList.content}">
   			<tr>
   				<td colspan="6">저장된 회원이 없습니다.</td>
   			</tr>
   		</c:when>
   		<c:otherwise>
-  			<c:forEach items="${requestScope.memberList}" var="member" varStatus="status">
+  			<c:forEach items="${requestScope.pageList.content}" var="member" varStatus="status">
 			    <tr class="table-active">
 			      <th>
 			        <a href="/manager/memberDetail/${member.id}">${status.index+1}</a>
@@ -92,27 +92,28 @@ $(function() {
 
 <div>
   <ul class="pagination">
+    <c:set var="doneLoop" value="false"/>
     <li class="page-item disabled">
-      <a class="page-link" href="#">&laquo;</a>
+      <c:if test="${(startPage-blockCount) > 0}">
+        <a class="page-link" href="#">&laquo;</a>
+      </c:if>
     </li>
-    <li class="page-item active">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">&raquo;</a>
-    </li>
+    <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+	    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+	       <c:set var="doneLoop" value="true"/>
+	    </c:if> 
+	    <c:if test="${not doneLoop}" >
+	    	 <!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
+	    	 <li class="${i==nowPage?'page-item':active}">
+		       <a class="page-link" href="${pageContext.request.contextPath}/manager/memberList?nowPage=${i}">${i}</a>
+		     </li> 
+	    </c:if>
+    </c:forEach>
+    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+      <li class="page-item">
+        <a class="page-link" href="${pageContext.request.contextPath}/manager/memberList?nowPage=${startPage+blockCount}">&raquo;</a>
+      </li>
+	</c:if>
   </ul>
 </div>
 </body>
