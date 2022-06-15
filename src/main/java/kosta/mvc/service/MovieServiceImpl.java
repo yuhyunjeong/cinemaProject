@@ -116,9 +116,9 @@ public class MovieServiceImpl implements MovieService {
 			return movieFind;
 			
 		}else if(optionsRadios.equals("option3")){
-			return null;
+			return movieRepo.selectByStar();
 		}
-		return null;
+		return movieRepo.selectByDate();
 		
 	}
 
