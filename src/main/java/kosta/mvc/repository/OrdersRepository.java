@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import kosta.mvc.domain.Orders;
+import kosta.mvc.dto.SalesByMovieDTO;
 import kosta.mvc.dto.SalesTotalDTO;
 
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
@@ -53,4 +54,34 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 			+ "ORDER BY DATEDATA"
 			, nativeQuery=true)
 	List<SalesTotalDTO> selectYearlySalesList();
+	
+	
+	@Query(value = "select movie_code, movie_name, TO_CHAR(ORDER_DATE, 'YYYY-MM') as DATEDATA, count(*) as cnt\r\n"
+			+ "    from orders\r\n"
+			+ "        join movie_orderline using(order_code)\r\n"
+			+ "        join seat_performance using(seat_performance_code)\r\n"
+			+ "        join time using(time_code)\r\n"
+			+ "        join movie using(movie_code)\r\n"
+			+ "    where  1=1\r\n"
+			+ "        and ORDER_DATE>=to_char(sysdate - interval '1' year)\r\n"
+			+ "        and ORDER_DATE<to_char(sysdate)\r\n"
+			+ "    group by movie_code, movie_name, TO_CHAR(ORDER_DATE, 'YYYY-MM')"
+			, nativeQuery=true)
+	List<SalesByMovieDTO> selectSalesMonthlyByMovieList();
+	
+	
+	@Query(value = "select movie_code, movie_name, TO_CHAR(ORDER_DATE, 'YYYY') as DATEDATA, count(*) as cnt\r\n"
+			+ "    from orders\r\n"
+			+ "        join movie_orderline using(order_code)\r\n"
+			+ "        join seat_performance using(seat_performance_code)\r\n"
+			+ "        join time using(time_code)\r\n"
+			+ "        join movie using(movie_code)\r\n"
+			+ "    where  1=1\r\n"
+			+ "        and ORDER_DATE>=to_char(sysdate - interval '1' year)\r\n"
+			+ "        and ORDER_DATE<to_char(sysdate)\r\n"
+			+ "    group by movie_code, movie_name, TO_CHAR(ORDER_DATE, 'YYYY')"
+			, nativeQuery=true)
+	List<SalesByMovieDTO> selectSalesYearlyByMovieList();
+	
+	
 }
