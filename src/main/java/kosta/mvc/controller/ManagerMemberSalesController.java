@@ -18,7 +18,6 @@ import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Orders;
 import kosta.mvc.dto.SalesByMovieDTO;
 import kosta.mvc.dto.SalesTotalDTO;
-import kosta.mvc.repository.OrdersRepository;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +52,6 @@ public class ManagerMemberSalesController {
 	@RequestMapping("/orderDetail/{orderCode}")
 	public ModelAndView orderDetail(@PathVariable Long orderCode) {
 		Orders order = orderService.selectByOrderCode(orderCode);
-		//System.out.println(order.getMovieOrderline().g);
 		return new ModelAndView("manager/orderDetail","order", order);
 	}
 	
@@ -84,8 +82,14 @@ public class ManagerMemberSalesController {
 	@RequestMapping("/salesMonthlyByMovieList")
 	@ResponseBody
 	public List<SalesByMovieDTO> salesMonthlyByMovieList(){
-		System.out.println("ManagerMemberSalesController의 salesMonthlyByMovieList() call...");
 		List<SalesByMovieDTO> list = orderService.selectSalesMonthlyByMovieList();
+		return list;
+	}
+	
+	@RequestMapping("/salesYearlyByMovieList")
+	@ResponseBody
+	public List<SalesByMovieDTO> salesYearlyByMovieList(){
+		List<SalesByMovieDTO> list = orderService.selectSalesYearlyByMovieList();
 		return list;
 	}
 	
