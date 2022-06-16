@@ -41,37 +41,52 @@
 	  </li>
 	</ul>
     <p class="card-text">
-    	<canvas id="myPie"></canvas>
+    	<canvas id="myDoughnut"></canvas>
     </p>
   </div>
 </div>
 
 <script type="text/javascript">
-var data = {
-		  labels: [
-		    'Red',
-		    'Blue',
-		    'Yellow'
-		  ],
-		  datasets: [{
-		    label: 'My First Dataset',
-		    data: [300, 50, 100],
-		    backgroundColor: [
-		      'rgb(255, 99, 132)',
-		      'rgb(54, 162, 235)',
-		      'rgb(255, 205, 86)'
-		    ],
-		    hoverOffset: 4
-		  }]
-		};
+//setup시작
+const DATA_COUNT = 5;
 
-var config = {
-  type: 'pie',
-  data: data,
-};
+const data = {
+  labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [12,19,15,3,2],
+      backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+      ],
+    }
+  ]
+};//setup끝
 
-var myPie = new Chart(
-   document.getElementById('myPie'),
+//config시작
+const config = {
+		  type: 'doughnut',
+		  data: data,
+		  options: {
+		    responsive: true,
+		    plugins: {
+		      legend: {
+		        position: 'top',
+		      },
+		      title: {
+		        display: true,
+		        text: 'Chart.js Doughnut Chart'
+		      }
+		    }
+		  },
+		};//config끝
+
+var myDoughnut = new Chart(
+   document.getElementById('myDoughnut'),
    config
  );
 </script>
