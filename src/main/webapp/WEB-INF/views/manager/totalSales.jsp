@@ -110,7 +110,6 @@ function yearly(){
 			});
 			
 			myChart.update();
-			$("#salesSelectToggle").text("연도별");
 		},
 		error : function(err){
 			console.log(err + "에러 발생");
@@ -139,7 +138,6 @@ function monthly(){
 			});
 			
 			myChart.update();
-			$("#salesSelectToggle").text("월별");
 		},
 		error : function(err){
 			console.log(err + "에러 발생");

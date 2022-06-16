@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Member;
 import kosta.mvc.domain.Orders;
+import kosta.mvc.dto.SalesByMovieDTO;
 import kosta.mvc.dto.SalesTotalDTO;
 import kosta.mvc.service.MemberService;
 import kosta.mvc.service.OrderService;
@@ -51,7 +52,6 @@ public class ManagerMemberSalesController {
 	@RequestMapping("/orderDetail/{orderCode}")
 	public ModelAndView orderDetail(@PathVariable Long orderCode) {
 		Orders order = orderService.selectByOrderCode(orderCode);
-		//System.out.println(order.getMovieOrderline().g);
 		return new ModelAndView("manager/orderDetail","order", order);
 	}
 	
@@ -63,7 +63,6 @@ public class ManagerMemberSalesController {
 	@RequestMapping("/salesByMonth")
 	@ResponseBody
 	public List<SalesTotalDTO> salesByMonth() {
-		System.out.println("ManagerMemberSalesController의 salesByMonth() call...");
 		List<SalesTotalDTO> monthlySalesList = orderService.selectMonthlySalesList();
 		return monthlySalesList;
 	}
@@ -71,14 +70,27 @@ public class ManagerMemberSalesController {
 	@RequestMapping("/salesByYear")
 	@ResponseBody
 	public List<SalesTotalDTO> salesByYear() {
-		System.out.println("ManagerMemberSalesController의 salesByYear() call...");
 		List<SalesTotalDTO> yearlySalesList = orderService.selectYearlySalesList();
 		return yearlySalesList;
 	}
 	
 	@RequestMapping("/salesByMovie")
 	public void salesByMovie() {
-		
+		salesMonthlyByMovieList();
+	}
+	
+	@RequestMapping("/salesMonthlyByMovieList")
+	@ResponseBody
+	public List<SalesByMovieDTO> salesMonthlyByMovieList(){
+		List<SalesByMovieDTO> list = orderService.selectSalesMonthlyByMovieList();
+		return list;
+	}
+	
+	@RequestMapping("/salesYearlyByMovieList")
+	@ResponseBody
+	public List<SalesByMovieDTO> salesYearlyByMovieList(){
+		List<SalesByMovieDTO> list = orderService.selectSalesYearlyByMovieList();
+		return list;
 	}
 	
 	@RequestMapping("/memberList")

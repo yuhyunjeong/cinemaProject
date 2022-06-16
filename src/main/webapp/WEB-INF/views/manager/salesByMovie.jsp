@@ -19,7 +19,7 @@
 <h1>sales.jsp 매출 조회입니다</h1>
 
 
-<div class="card text-white bg-secondary mb-3" style="max-width: 40rem;">
+<div class="card text-white bg-secondary mb-3" style="max-width: 60rem;">
   <div class="card-header">
   	<ul class="nav nav-pills">
 	  <li class="nav-item">
@@ -31,49 +31,112 @@
   	</ul>
   </div>
   <div class="card-body">
-    <ul class="nav nav-pills" style="float:right">
-	  <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--옵션 선택--</a>
-		<div class="dropdown-menu">
-		  <a class="dropdown-item" href="#">월별</a>
-		  <a class="dropdown-item" href="#">연도별</a>
-		</div>
-	  </li>
-	</ul>
+	<div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="float: right">
+	  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+	  <label class="btn btn-outline-secondary" for="btnradio1">이번달</label>
+	  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+	  <label class="btn btn-outline-secondary" for="btnradio2">올해</label>
+	</div>
     <p class="card-text">
-    	<canvas id="myPie"></canvas>
+    	<canvas id="myDoughnut"></canvas>
     </p>
   </div>
 </div>
 
 <script type="text/javascript">
-var data = {
-		  labels: [
-		    'Red',
-		    'Blue',
-		    'Yellow'
-		  ],
-		  datasets: [{
-		    label: 'My First Dataset',
-		    data: [300, 50, 100],
-		    backgroundColor: [
-		      'rgb(255, 99, 132)',
-		      'rgb(54, 162, 235)',
-		      'rgb(255, 205, 86)'
-		    ],
-		    hoverOffset: 4
-		  }]
-		};
+//시작화면 : 이번달 매출
+window.onload = monthly;
+$("#btnradio1").click(monthly);
+$("#btnradio2").click(yearly);
 
-var config = {
-  type: 'pie',
-  data: data,
-};
+//setup시작
+var labels = []
+var salesArr = []
 
-var myPie = new Chart(
-   document.getElementById('myPie'),
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: '영화별 예매 횟수',
+      data: salesArr,
+      backgroundColor: [
+          'rgba(255, 99, 132, 0.5)',
+          'rgba(255, 159, 64, 0.5)',
+          'rgba(255, 206, 86, 0.5)',
+          'rgba(75, 192, 192, 0.5)',
+          'rgba(54, 162, 235, 0.5)',
+          'rgba(153, 102, 255, 0.5)'
+      ],
+    }
+  ]
+};//setup끝
+
+//config시작
+const config = {
+		  type: 'doughnut',
+		  data: data,
+		  options: {
+		    responsive: true,
+		    plugins: {
+		      legend: {
+		        position: 'top',
+		      }
+		    }
+		  },
+		};//config끝
+
+var myDoughnut = new Chart(
+   document.getElementById('myDoughnut'),
    config
  );
+
+function yearly(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/manager/salesYearlyByMovieList",
+		mothod : "post",
+		dataType : "json",
+		success : function(result){
+			
+			config.data.labels = [];
+			config.data.datasets[0].data = [];
+			
+			$.each(result, function(index, item){
+				config.data.labels.push(item.movie_Name);
+				config.data.datasets[0].data.push(item.cnt);
+			});
+			
+			myDoughnut.update();
+		},
+		error : function(err){
+			console.log(err + "에러 발생");
+		}
+		
+	});//ajax끝
+}//yeary()끝
+
+function monthly(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/manager/salesMonthlyByMovieList",
+		mothod : "post",
+		dataType : "json",
+		async : false,
+		success : function(result){
+			config.data.labels = [];
+			config.data.datasets[0].data = [];
+			
+			$.each(result, function(index, item){
+				config.data.labels.push(item.movie_Name);
+				config.data.datasets[0].data.push(item.cnt);
+			});
+			
+			myDoughnut.update();
+		},
+		error : function(err){
+			console.log(err + "에러 발생");
+		}
+		
+	});//ajax끝
+}//yeary()끝
 </script>
 
 </body>
