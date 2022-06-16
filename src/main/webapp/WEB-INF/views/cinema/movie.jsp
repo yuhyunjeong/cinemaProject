@@ -67,6 +67,11 @@ $(function() {
 					str+="<hr>";
 					str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'></div>`;
 					str+="</div></div></div>";
+					
+					let i = item.movieStartdate.substr(0,10).split("-");
+					var dateinfo = i[0]+"년"+i[1]+"월"+i[2]+"일 "
+					console.log(dateinfo);
+
 					//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 					
 				});
