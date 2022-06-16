@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -201,6 +202,9 @@ public class CinemaController {
 	@RequestMapping("/selectMovie")
 	public List<Movie> selectMovie(@RequestParam("optionsRadios") String optionsRadios) {
 		List<Movie> movie = movieService.selectMovie(optionsRadios);
+		
+		List<String> movieDate = new ArrayList<String>();
+		
 		return movie;
 	}
 	
