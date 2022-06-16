@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import kosta.mvc.domain.Movie;
 
@@ -17,12 +18,12 @@ public interface MovieService {
 	/**
 	 * 영화 전체검색 - paging처리 
 	 */
-	Page<Movie> selectAll(Pageable pageable);
+	Page<Movie> selectAllByPage(Pageable pageable);
 	
 	/**
 	 * 영화 등록하기
 	 */
-	void insert(Movie movie);
+	void insert(Movie movie, MultipartFile file) throws Exception;
 	
 	/**
 	 * 코드번호 검색 

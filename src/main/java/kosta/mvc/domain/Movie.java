@@ -62,4 +62,6 @@ public class Movie {
 	@JsonIgnore
 	private List<Time> timeList;
 	
+	private String moviePath;
+	
 }

@@ -9,12 +9,27 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("input[value=수정하기]").click(function() {
+/* 		$("input[value=수정하기]").click(function() {
 			$("#requestForm").attr("action", "${pageContext.request.contextPath}/manager/productUpdateForm");
 			$("#requestForm").submit();
+		}); */
+		
+		$("input[value=수정하기]").click(function() {
+			$("#requestForm1").attr("action", "${pageContext.request.contextPath}/manager/MovieUpdateForm");
+			$("#requestForm1").submit();
 		});
 		
 		$("input[value=수정하기]").click(function() {
+			$("#requestForm2").attr("action", "${pageContext.request.contextPath}/manager/FoodUpdateForm");
+			$("#requestForm2").submit();
+		});
+		
+		$("input[value=수정하기]").click(function() {
+			$("#requestForm3").attr("action", "${pageContext.request.contextPath}/manager/GiftUpdateForm");
+			$("#requestForm3").submit();
+		});
+		
+		$("input[value=삭제하기]").click(function() {
 			$("#requestForm").attr("action", "${pageContext.request.contextPath}/manager/productDelete");
 		});
 
@@ -73,7 +88,7 @@
 				
 			</table>
 			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
-				<form name="requestForm" method="post" id="requestForm">
+				<form name="requestForm1" method="post" id="requestForm1">
 					<input type="hidden" name="movieCode" value="${item.movieCode}">
 					<%-- <button value="${item.movieCode}" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productUpdate'">수정하기</button> --%>
 					<input type="button" class="btn btn-secondary" id="movieUpdate" value="수정하기">
@@ -104,7 +119,7 @@
 				</tr>
 			</table>
 			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
-				<form name="requestForm" method="post" id="requestForm">
+				<form name="requestForm2" method="post" id="requestForm2">
 					<input type="hidden" name="foodCode" value="${item.foodCode}">
 					<input type="button" class="btn btn-secondary" id="foodUpdate" value="수정하기">
 					<input type="button" class="btn btn-secondary" id="foodDelete" value="삭제하기">
@@ -135,7 +150,7 @@
 				</tr>									
 			</table>
 			<div class="col-lg-6 col-sm-12 text-lg-end text-center">
-				<form name="requestForm" method="post" id="requestForm">
+				<form name="requestForm3" method="post" id="requestForm3">
 					<input type="hidden" name="giftCode" value="${item.giftCode}">
 					<input type="button" class="btn btn-secondary" id="giftUpdate" value="수정하기">
 					<input type="button" class="btn btn-secondary" id="giftDelete" value="삭제하기">

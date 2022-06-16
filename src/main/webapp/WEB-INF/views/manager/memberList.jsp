@@ -93,27 +93,22 @@ $(function() {
 <div>
   <ul class="pagination">
     <c:set var="doneLoop" value="false"/>
-    <li class="page-item disabled">
-      <c:if test="${(startPage-blockCount) > 0}">
-        <a class="page-link" href="#">&laquo;</a>
-      </c:if>
-    </li>
+      <li class="${(startPage-blockCount) <= 0?'page-item disabled': page}">
+        <a class="page-link" href="${pageContext.request.contextPath}/manager/orderList?nowPage=${startPage-1}">&laquo;</a>
+      </li>
     <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
 	    <c:if test="${(i-1)>=pageList.getTotalPages()}">
 	       <c:set var="doneLoop" value="true"/>
 	    </c:if> 
 	    <c:if test="${not doneLoop}" >
-	    	 <!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
-	    	 <li class="${i==nowPage?'page-item':active}">
+	    	 <li class="${i==nowPage?'page-item active': active}">
 		       <a class="page-link" href="${pageContext.request.contextPath}/manager/memberList?nowPage=${i}">${i}</a>
 		     </li> 
 	    </c:if>
     </c:forEach>
-    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-      <li class="page-item">
+      <li class="${(startPage+blockCount)>pageList.getTotalPages()? 'page-item disabled': page}">
         <a class="page-link" href="${pageContext.request.contextPath}/manager/memberList?nowPage=${startPage+blockCount}">&raquo;</a>
       </li>
-	</c:if>
   </ul>
 </div>
 </body>

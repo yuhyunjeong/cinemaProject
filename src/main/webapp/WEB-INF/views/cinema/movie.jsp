@@ -248,6 +248,37 @@ $(function() {
 			
 		</div>
 	</div>
+	
+	<div class="row m-3">
+  <ul class="pagination">
+    <c:set var="doneLoop" value="false"/>
+    <li class="page-item disabled">
+      <c:if test="${(startPage-blockCount) > 0}">
+        <a class="page-link" href="#">&laquo;</a>
+      </c:if>
+    </li>
+    <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
+	    <c:if test="${(i-1)>=pageList.getTotalPages()}">
+	       <c:set var="doneLoop" value="true"/>
+	    </c:if> 
+	    <c:if test="${not doneLoop}" >
+	    	 <!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
+	    	 <li class="${i==nowPage?'page-item':active}">
+		       <a class="page-link" href="${pageContext.request.contextPath}/cinema/movie?nowPage=${i}">${i}</a>
+		     </li> 
+	    </c:if>
+    </c:forEach>
+    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
+      <li class="page-item">
+        <a class="page-link" href="${pageContext.request.contextPath}/cinema/movie?nowPage=${startPage+blockCount}">&raquo;</a>
+      </li>
+	</c:if>
+  </ul>
+</div>
+	
 	</div>
+	
+	
+	
 </body>
 </html>
