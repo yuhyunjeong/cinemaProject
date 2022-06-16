@@ -13,7 +13,7 @@
 		<c:choose>
 			<c:when test="${kind=='movie'}">
 			<h1>영화 등록 페이지 입니다.</h1>
-				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert">	
+				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert" enctype="multipart/form-data">	
 					<fieldset>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">영화제목</label>
@@ -45,7 +45,7 @@
 						</div>			
 						<div class="form-group" style="width: 1000px">
 							<label for="formFile" class="form-label mt-4">포스터</label>
-							<input class="form-control" type="file" id="formFile">
+							<input class="form-control" type="file" id="file">
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">출연진</label>
@@ -81,7 +81,7 @@
 						</div>				
 						<div class="form-group" style="width: 1000px">
 							<label for="formFile" class="form-label mt-4">먹거리 사진</label>
-							<input class="form-control" type="file" id="formFile">
+							<input class="form-control" type="file" id="file">
 						</div>						
 						<p><p>		
 						<div class="col-lg-6 col-sm-12 text-lg-end text-center">

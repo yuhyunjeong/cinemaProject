@@ -1,13 +1,16 @@
 package kosta.mvc.service;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
@@ -38,9 +41,19 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public void insert(Movie movie) {
-		Movie saveMovie = movieRepo.save(movie);
-		System.out.println("saveMovie : " + saveMovie);
+	public void insert(Movie movie, MultipartFile file) throws Exception {
+		
+		String path = System.getProperty("user.dir") + "/src/main/resources/static/img/movie";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File saveFile = new File(path, fileName);
+		file.transferTo(saveFile);
+		movie.setMovieImage(fileName);
+		movie.setMoviePath("img/movie/" + fileName);
+		movieRepo.save(movie);
+
+//		Movie saveMovie = movieRepo.save(movie);
+//		System.out.println("saveMovie : " + saveMovie);
 
 	}
 

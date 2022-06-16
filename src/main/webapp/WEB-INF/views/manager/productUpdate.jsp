@@ -12,7 +12,7 @@
 		<c:choose>
 			<c:when test="${kind=='movie'}">
 			<h1>영화 수정 페이지 입니다.</h1>
-				<form name="productUpdate" method="post" action="${pageContext.request.contextPath}/manager/update">	
+				<form name="MovieUpdateForm" method="post" action="${pageContext.request.contextPath}/manager/update">	
 					<fieldset>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">영화제목</label>

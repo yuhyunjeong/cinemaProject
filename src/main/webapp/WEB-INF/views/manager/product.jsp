@@ -25,6 +25,8 @@
 <script type="text/javascript">
 	$(function() {
 		
+		selectAll();
+		
 		// 전체검색
 		$("exampleSelect1").on("load", function() {
 			selectAll(this.value);
@@ -34,8 +36,7 @@
 			/* alert(this.value) */ 
   			selectAll(this.value);
 		});
-		
-	   
+	
 
         function selectAll(v) { 
         	if(v == null || v == '') {
@@ -53,8 +54,14 @@
 					str += "<table class='table table-hover' style='width: 1000px'><tr>";
 					str += "<th scope='col'>상품코드</th>";
 					str += "<th scope='col'>상품이름</th></tr>";
-
+					
+					let insert = "";
+					insert += "<form name='insertForm' method='post' id='insertForm'>"
+					insert += "<input type='button' class='btn btn-secondary' onclick='insert()' value='등록하기'>"
+					insert += "</form>";
+					
 					if(v=='movie'){
+						
 						$.each(result.list, function(index, item) { // item은 movie
 						/* 	console.log(item)
 							console.log(result.list[0].movieCode) */
@@ -63,10 +70,12 @@
 							str += "<th scope='row'>" + item.movieCode + "</th>"
 							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.movieCode}'>" + item.movieName + "</td>" */
 							str += "<td><a href='#' onclick=movepage('" + item.movieCode + "')>" + item.movieName + "</a></td>"
-							str += "</tr>"
+							str += "</tr>"		
+
 						})  
-					}else if(v=='food'){
-						console.log('foodClick')
+						
+					} else if(v=='food') {  
+						
 						$.each(result.list, function(index, item) { // item은 food
 							console.log('rowClick')
 							str += "<tr class='table-active'>";
@@ -75,7 +84,9 @@
 							str += "<td><a href='#' onclick=movepage2('" + item.foodCode + "')>" + item.foodName + "</a></td>"
 							str += "</tr>"
 						})   
-					}else if(v=='gift'){
+						
+					} else if(v=='gift') {
+						
 						$.each(result.list, function(index, item) { // item은 gift 
 							str += "<tr class='table-active'>";
 							str += "<th scope='row'>" + item.giftCode + "</th>";
@@ -88,7 +99,13 @@
 					str += "</table>";
 				
  				    $("#productSelect").html(str);
-					
+ 				    $("#insert").html(insert);
+ 				    
+/*  					$("#insert").on("click", function() {
+ 						alert(1);
+ 						$("#insertForm").attr("action", "${pageContext.request.contextPath}/manager/productWrite");
+ 						$("#insertForm").submit();
+ 					}); */
 					
 				}, error: function(err) {
 					alert("error")
@@ -98,11 +115,12 @@
 
 	}) // ready End
 	
-	
-/*     function movepage(page) {
-    	let hi = "${pageContext.request.contextPath}/manager/movieDetail/"+page;
-        window.document.location.href=hi;   
-    }  */
+
+    
+    function insert(page) {
+    	let hi = "${contextPath.reqeust.contextPath}/manager/productWrite";
+    	window.document.location.href=hi;
+    }
     
     function movepage(page) {
     	console.log('movepage1')
@@ -141,11 +159,11 @@
 <div id="productSelect"></div>
 
 	
-<div class="col-lg-12 col-sm-12 text-lg-end" style="width:1000px">
-  	<div class="text-lg-end">
-  		<input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/>
+ <div class="col-lg-12 col-sm-12 text-lg-end" style="width:1000px">
+  	<div class="text-lg-end" id="insert">
+  		<input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/> 
   	</div>
-</div><p><p>
+</div><p><p> 
 
 
 <!-- 페이징처리 -->
