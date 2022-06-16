@@ -51,4 +51,10 @@ public class OrderServiceImpl implements OrderService {
 		return list;
 	}
 
+	@Override
+	public List<SalesByMovieDTO> selectSalesYearlyByMovieList() {
+		List<SalesByMovieDTO> list = orderRepo.selectSalesYearlyByMovieList();
+		return list;
+	}
+
 }

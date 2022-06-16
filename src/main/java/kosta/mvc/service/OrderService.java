@@ -20,4 +20,6 @@ public interface OrderService {
 	List<SalesTotalDTO> selectYearlySalesList();
 
 	List<SalesByMovieDTO> selectSalesMonthlyByMovieList();
+
+	List<SalesByMovieDTO> selectSalesYearlyByMovieList();
 }
