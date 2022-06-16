@@ -65,7 +65,8 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 			+ "    where  1=1\r\n"
 			+ "        and ORDER_DATE>=TRUNC(SYSDATE, 'MM')\r\n"
 			+ "        and ORDER_DATE<LAST_DAY(SYSDATE)\r\n"
-			+ "    group by movie_code, movie_name"
+			+ "    group by movie_code, movie_name\r\n"
+			+ "    order by cnt desc"
 			, nativeQuery=true)
 	List<SalesByMovieDTO> selectSalesMonthlyByMovieList();
 	
@@ -79,7 +80,8 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 			+ "    where  1=1\r\n"
 			+ "        and ORDER_DATE>=TRUNC(sysdate,'YYYY')\r\n"
 			+ "        and ORDER_DATE<to_char(sysdate)\r\n"
-			+ "    group by movie_code, movie_name"
+			+ "    group by movie_code, movie_name\r\n"
+			+ "    order by cnt desc"
 			, nativeQuery=true)
 	List<SalesByMovieDTO> selectSalesYearlyByMovieList();
 	
