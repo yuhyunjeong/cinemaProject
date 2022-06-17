@@ -27,14 +27,13 @@ $(function() {
       <th scope="col">회원 등급</th>
       <th scope="col">가입 일시</th>
       <th scope="col">마지막 예매 일시</th>
-      <th scope="col">휴면회원 여부</th>
     </tr>
   </thead>
   <tbody>
   	<c:choose>
   		<c:when test="${empty requestScope.pageList.content}">
   			<tr>
-  				<td colspan="6">저장된 회원이 없습니다.</td>
+  				<td colspan="5">저장된 회원이 없습니다.</td>
   			</tr>
   		</c:when>
   		<c:otherwise>
@@ -79,9 +78,6 @@ $(function() {
 	    				</c:forEach>
 	    				</c:otherwise>
     				</c:choose>
-			      </td>
-			      <td>
-			      	ㅇㅇㅇ
 			      </td>
 			    </tr>
 		    </c:forEach>
