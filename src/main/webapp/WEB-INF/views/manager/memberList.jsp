@@ -18,7 +18,7 @@ $(function() {
 </script>
 </head>
 <body>
-<h1>member.jsp 회원 조회입니다</h1>
+<h1>회원 조회 중입니다</h1>
 <table id="memberListTable" class="table table-hover" data-sortlist="[0,0]">
   <thead>
     <tr>

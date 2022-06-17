@@ -12,7 +12,9 @@
 </head>
 <body>
 <div class="card mb-3" style="width: 30rem; display: inline-block;">
-  <h3 class="card-header">티켓 정보</h3>
+  <h3 class="card-header">티켓 정보
+  <button type="button" class="btn btn-primary btn-sm" style="float:right"onclick="history.back()">목록으로</button>
+  </h3>
   <div class="card-body">
     <h5 class="card-title">예매 코드 : ${requestScope.order.orderCode}</h5>
     <h6 class="card-subtitle text-muted">예매 상태 : 
