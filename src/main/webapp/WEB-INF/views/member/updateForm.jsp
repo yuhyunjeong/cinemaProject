@@ -12,7 +12,11 @@
 
 <style type="text/css">
 .mb-3{
- margin: auto;
+ 	margin: auto;
+}
+
+.nav-item{
+	margin: auto;
 }
 </style>
 </head>
@@ -24,13 +28,35 @@
 	})
 </script>
 <body>
-	<h1>${member.name}님의 마이페이지 입니다.</h1>
-	<p>잔여 포인트 : ${member.point}
-	<p>아이디 : ${member.id}
-	<p>비밀번호 : ${member.password}
-	<p>연락처 : ${member.phone}
-	<p>
-	<ul class="nav nav-pills">
+<div class="col-sm-6, container" style="text-align: center;">
+
+	
+	
+	<div class="card border-primary mb-3" style="max-width: 20rem;">
+ 		 <div class="card-header">${member.name} 님</div>
+ 		 <div class="card-body">
+   	 		<p class="card-text">
+	   	 		<c:choose>
+			   		<c:when test="${member.grade==0}">
+			   			일반 회원
+			   		</c:when>
+			   		<c:when test="${member.grade==1}">
+			   			VIP
+			   		</c:when>
+			   		<c:when test="${member.grade==2}">
+			   			VVIP
+			   		</c:when>
+	   			</c:choose>
+				
+				<p><fmt:parseDate value="${member.regdate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="memDate"/>
+    				<fmt:formatDate value="${memDate}" pattern="yyyy-MM-dd" /> 가입
+    			<p>${member.point} point
+			</p>
+   	 		
+  		</div>
+	</div>
+	
+	<ul class="nav nav-pills" style="width: 400px; margin: auto;">
 		<li class="nav-item"><a class="nav-link"
 			href="${pageContext.request.contextPath}/member/myPage">예매내역</a></li>
 		<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
@@ -43,7 +69,7 @@
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/member/memberDelete/${member.id}">탈퇴</a>
 			</div></li>
 	</ul>
-	<div class="col-sm-6, container" style="text-align: center;">
+	<br>
 		
 		<form name="updateForm" id="inForm" method="post" 
 			action="${pageContext.request.contextPath}/member/update" onSubmit='return checkValid()'>
@@ -69,7 +95,7 @@
 							for="inputLarge">변경할 비밀번호</label> <input
 							class="form-control" type="password"
 							placeholder="7자 이상 영문/숫자를 입력해주세요." id="password"
-							value="${member.password}" name="password" required="required">
+							value="" name="password" required="required">
 					</div>
 
 					<div class="form-group">

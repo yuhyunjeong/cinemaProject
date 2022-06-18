@@ -2,6 +2,8 @@ package kosta.mvc.service;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -103,7 +106,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<Movie> selectMovie(String optionsRadios) {
+	public List<Movie> selectMovie(String optionsRadios, String flexCheckDefault) {
 		//QMovie movie = QMovie.movie;
 		//BooleanBuilder builder = new BooleanBuilder();
 		//Tuple tuple = 
@@ -112,28 +115,106 @@ public class MovieServiceImpl implements MovieService {
 		
 		//builder.and(movie.movieStartdate.lt(now))
 		
+		if(!(flexCheckDefault==null)) {
+			
+			if(optionsRadios.equals("option1")) {
+				
+				List<Movie> movieFind = movieRepo.selectByDate();
+				
+				Date now = new Date();	
+				List<Movie> list = new ArrayList<Movie>();
+				for(Movie m : movieFind) {
+								
+					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
+						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
+									m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
+									m.getGift(), m.getTimeList(), m.getMoviePath());
+						list.add(mo);
+					}	
+					
+				}
+				
+				return list;
+				
+			}else if(optionsRadios.equals("option2")){
+				
+				List<String> movieList = movieRepo.selectByCount();
+				System.out.println(movieList);			
+				
+				List<Movie> movieFind = movieRepo.findAllById(movieList);
+				System.out.println(movieFind);  
+				
+				Date now = new Date();	
+				List<Movie> list = new ArrayList<Movie>();
+				for(Movie m : movieFind) {
+								
+					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
+						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
+								m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
+								m.getGift(), m.getTimeList(), m.getMoviePath());
+						list.add(mo);
+					}	
+					
+				}
+				
+				return list;
+				
+			}else if(optionsRadios.equals("option3")){
 		
+				List<Movie> movieFind = movieRepo.selectByStar();
+				System.out.println(movieFind);  
+				
+				Date now = new Date();	
+				List<Movie> list = new ArrayList<Movie>();
+				for(Movie m : movieFind) {
+								
+					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
+						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
+								m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
+								m.getGift(), m.getTimeList(), m.getMoviePath());
+						list.add(mo);
+					}	
+					
+				}
+				
+				return list;
+			}
 		
-		if(optionsRadios.equals("option1")) {
-		
-			return movieRepo.selectByDate();
 			
-		}else if(optionsRadios.equals("option2")){
+		}else {
+			if(optionsRadios.equals("option1")) {
+				
+				return movieRepo.selectByDate();
+				
+			}else if(optionsRadios.equals("option2")){
+				
+				List<String> movieList = movieRepo.selectByCount();
+				System.out.println(movieList);			
+				
+				List<Movie> movieFind = movieRepo.findAllById(movieList);
+				System.out.println(movieFind);  
+				
+				return movieFind;
+				
+			}else if(optionsRadios.equals("option3")){
 			
-			List<String> movieList = movieRepo.selectByCount();
-			System.out.println(movieList);
+				List<Movie> movieFind = movieRepo.selectByStar();
+				System.out.println(movieFind);  
+				
+				return movieFind;
+			}
 			
-			List<Movie> movieFind = movieRepo.findAllById(movieList);
-			System.out.println(movieFind);  
-			
-			return movieFind;
-			
-		}else if(optionsRadios.equals("option3")){
-			return movieRepo.selectByStar();
 		}
+		
+		
+		
 		return movieRepo.selectByDate();
 		
 	}
+	
+//	private Sort sortByCountDesc() {
+//		return new Sort(Sort.Direction.DESC, "count(*)");
+//	}
 
 	@Override
 	public List<Movie> nowMovie() {

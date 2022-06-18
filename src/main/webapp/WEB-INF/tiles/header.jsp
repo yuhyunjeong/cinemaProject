@@ -140,9 +140,11 @@
 
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/board/qna">문의사항</a></li>
-
-					<li class="nav-item"><a class="nav-link"
+				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/manager/orderList">관리</a></li>
+				</sec:authorize>
+					
 
 				</ul>
 				<form class="d-flex">

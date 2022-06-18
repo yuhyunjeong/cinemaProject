@@ -39,6 +39,9 @@ public class MemberServiceImpl implements MemberService {
 		  String rawPassword = member.getPassword(); //들어온 비밀번호
 	      String encPassword = getBCEncoder.encode(rawPassword); 
 	      member.setPassword(encPassword);
+	      member.setRole("ROLE_USER");
+	      
+	      
 	      
 	      /**
 	       * 가입하면 포인트 3000

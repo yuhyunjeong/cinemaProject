@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,15 @@ public class MemberController {
 	private final BCryptPasswordEncoder getBCEncoder;
 	
 	@RequestMapping("/loginForm")
-	public void login() {}
+	public String login(@RequestParam(value = "error" , required = false)String error,
+						//@RequestParam(value = "exception", required = false)String exception,
+						Model model) {
+		model.addAttribute("error",error);
+		//model.addAttribute("exception",exception);
+		return "member/loginForm";
+		
+	}
+	
 	
 //	
 //	@RequestMapping("login")

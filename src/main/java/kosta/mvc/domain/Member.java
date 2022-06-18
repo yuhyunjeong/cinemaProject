@@ -46,6 +46,8 @@ public class Member {
 	
 	private int point;
 	
+	private String role;
+	
 	@CreationTimestamp
 	private LocalDateTime regdate;
 	
