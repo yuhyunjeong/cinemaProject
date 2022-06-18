@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter
@@ -25,16 +26,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
+//@ToString
 public class Seat {
 
 	@Id
 	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_pk")
 	@SequenceGenerator(name = "seat_pk", allocationSize = 1, sequenceName = "seat_pk")
-	private Integer seatcode;
+	private int seatcode;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")
+	@JsonIgnore
 	private Screen screen;
 	
 	@Column(nullable = false, length = 3)

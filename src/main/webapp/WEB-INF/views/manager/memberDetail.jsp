@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>memberDetail.jsp 입니다</h1>
+<h1>${member.id}님의 정보입니다.</h1>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -75,7 +75,7 @@
   	<c:choose>
   		<c:when test="${empty requestScope.member.orderList}">
   			<tr>
-  				<td colspan="5">예매 내역이 없습니다.</td>
+  				<td colspan="6">예매 내역이 없습니다.</td>
   			</tr>
   		</c:when>
   		<c:otherwise>
@@ -115,6 +115,6 @@
   	</c:choose> 
   </tbody>
 </table>
-
+<button type="button" class="btn btn-primary btn-sm" onclick="history.back()">목록으로</button>
 </body>
 </html>

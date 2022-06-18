@@ -18,7 +18,7 @@ $(function() {
 </script>
 </head>
 <body>
-	<h1>tickets.jsp 예매내역입니다</h1>
+	<h1>예매내역 조회 중입니다.</h1>
 <table id="orderListTable" class="table table-hover" data-sortlist="[0,0]">
   <thead>
     <tr>

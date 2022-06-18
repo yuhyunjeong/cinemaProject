@@ -49,6 +49,11 @@ public interface MovieRepository extends JpaRepository<Movie, String>, QuerydslP
 	List<Movie> selectByStar();
 	
 	/**
+	 * 예매율
+	 * */
+	
+	
+	/**
 	 * 상영 종료 영화
 	 * */
 	@Query("select m from Movie m where m.movieEnddate < sysdate")
