@@ -57,7 +57,7 @@
 		  </tbody>
 		</table>
 		<div style="width: 1000px; margin: 0 auto; text-align: right; ">
-			<input type="button" value="등록하기" onclick="location.href='${pageContext.request.contextPath}/board/noticeWrite'">
+			<input type="button" class="btn btn-outline-light" value="등록하기" onclick="location.href='${pageContext.request.contextPath}/board/noticeWrite'">
 		</div>
 	</body>
 </html>
