@@ -205,7 +205,9 @@ public class CinemaController {
 	@ResponseBody
 	@RequestMapping("/selectMovie")
 	public List<Movie> selectMovie(@RequestParam("optionsRadios") String optionsRadios , String flexCheckDefault) {
-		List<Movie> movie = movieService.selectMovie(optionsRadios , flexCheckDefault);
+		List<Movie> movie = movieService.selectMovie(optionsRadios 
+				//, flexCheckDefault
+				);
 		
 		List<String> movieDate = new ArrayList<String>();
 		
