@@ -38,6 +38,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final DateTimePath<java.time.LocalDateTime> regdate = createDateTime("regdate", java.time.LocalDateTime.class);
 
+    public final StringPath role = createString("role");
+
     public QMember(String variable) {
         super(Member.class, forVariable(variable));
     }

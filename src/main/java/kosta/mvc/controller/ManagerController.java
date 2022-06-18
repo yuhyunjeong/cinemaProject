@@ -112,9 +112,9 @@ public class ManagerController {
 	 * 상품 등록폼 
 	 */
 	@RequestMapping("/productWrite")
-	public void productWrite(@RequestParam(value="productSelect", defaultValue = "movie")String select) {
-		
-		
+	public void productWrite(Model model, String write) {
+
+		model.addAttribute("write", write);
 		
 	}
 	
@@ -122,7 +122,22 @@ public class ManagerController {
 	 * 상품등록 
 	 */
 	@RequestMapping("/productInsert") 
-	public String productInsert(Model model, @RequestPart MultipartFile file, Movie movie, Food food, Gift gift, @RequestParam(value="productSelect", defaultValue = "movie")String select) throws Exception {
+	public String productInsert(Model model, @RequestPart MultipartFile file, Movie movie, Food food, Gift gift, String select) throws Exception {
+
+		System.out.println(movie.getMovieCode());
+		System.out.println(movie.getMovieName());
+		System.out.println(movie.getMovieSummary());
+		System.out.println(movie.getMovieRunningtime());
+		System.out.println(movie.getMovieStartdate());
+		System.out.println(movie.getMovieEnddate());
+		System.out.println(movie.getMovieAge());
+		System.out.println(movie.getMovieGenre());
+//		System.out.println(movie.getMovieImage());
+		System.out.println(movie.getActorList());
+		System.out.println(select);
+		System.out.println(food.getFoodName());
+		System.out.println(food.getFoodContent());
+
 		
 		if(select.equals("movie")) {
 			
@@ -194,8 +209,8 @@ public class ManagerController {
 	/**
 	 * 영화 수정폼 
 	 */
-	@RequestMapping("/MovieUpdateForm")
-	public ModelAndView MovieUpdateForm(String movieCode) {
+	@RequestMapping("/movieUpdateForm")
+	public ModelAndView movieUpdateForm(String movieCode) {
 		
 		ModelAndView mv = new ModelAndView("manager/productUpdate");
 
@@ -211,9 +226,9 @@ public class ManagerController {
 	/**
 	 * 영화 수정하기
 	 */
-	@RequestMapping("/MovieUpdate")
-	public ModelAndView MovieUpdate(Movie movie) {
-		
+	@RequestMapping("/movieUpdate")
+	public ModelAndView movieUpdate(Movie movie) {
+
 		ModelAndView mv = new ModelAndView("manager/productDetail");
 
 			Movie dbMovie = movieService.update(movie);
@@ -227,8 +242,8 @@ public class ManagerController {
 	/**
 	 * 먹거리 수정폼 
 	 */
-	@RequestMapping("/FoodUpdateForm")
-	public ModelAndView FoodUpdateForm(String foodCode) {
+	@RequestMapping("/foodUpdateForm")
+	public ModelAndView foodUpdateForm(String foodCode) {
 		
 		ModelAndView mv = new ModelAndView("manager/productUpdate");
 
@@ -244,8 +259,8 @@ public class ManagerController {
 	/**
 	 * 먹거리 수정하기
 	 */
-	@RequestMapping("/FoodUpdate")
-	public ModelAndView FoodUpdate(Food food) {
+	@RequestMapping("/foodUpdate")
+	public ModelAndView foodUpdate(Food food) {
 		
 		ModelAndView mv = new ModelAndView("manager/productDetail");
 
@@ -260,7 +275,7 @@ public class ManagerController {
 	/**
 	 * 사은품 수정폼 
 	 */
-	@RequestMapping("/GiftUpdateForm")
+	@RequestMapping("/giftUpdateForm")
 	public ModelAndView GiftUpdateForm(String giftCode) {
 		
 		ModelAndView mv = new ModelAndView("manager/productUpdate");
@@ -277,7 +292,7 @@ public class ManagerController {
 	/**
 	 * 사은품 수정하기
 	 */
-	@RequestMapping("/GiftUpdate")
+	@RequestMapping("/giftUpdate")
 	public ModelAndView giftUpdate(Gift gift) {
 		
 		ModelAndView mv = new ModelAndView("manager/productDetail");
@@ -292,12 +307,34 @@ public class ManagerController {
 	}
 	
 	/**
-	 * 삭제하기 
+	 * 영화 삭제하기 
 	 */
-	@RequestMapping("/productDelete")
-	public String delete(String movieCode) {
-		
+	@RequestMapping("/movieDelete")
+	public String movieDelete(String movieCode) {
+
 		movieService.delete(movieCode);
+		
+		return "redirect:/manager/product";
+	}
+	
+	/**
+	 * 영화 삭제하기 
+	 */
+	@RequestMapping("/foodDelete")
+	public String foodDelete(String foodCode) {
+
+		foodService.delete(foodCode);
+		
+		return "redirect:/manager/product";
+	}
+	
+	/**
+	 * 영화 삭제하기 
+	 */
+	@RequestMapping("/giftDelete")
+	public String giftDelete(String giftCode) {
+		
+		giftService.delete(giftCode);
 		
 		return "redirect:/manager/product";
 	}

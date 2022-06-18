@@ -1,8 +1,15 @@
 package kosta.mvc.controller;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kosta.mvc.domain.Member;
+import kosta.mvc.domain.Screen;
+import kosta.mvc.domain.Time;
 import kosta.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
@@ -88,8 +97,42 @@ public class MemberController {
 		return str;
 	}
 	
+	@ResponseBody
 	@RequestMapping("/payment")
-	public void payment() {}
+	public ModelAndView payment(
+//			 @RequestParam("timeDate") @DateTimeFormat(iso =ISO.DATE_TIME) Date timeDate,
+//			 @RequestParam("timeStart") @DateTimeFormat(iso =ISO.DATE_TIME) Date timeStart,
+			 @RequestParam("peopleNum") String peopleNum,
+			 @RequestParam("timeDate") String timeDate,
+			 @RequestParam("timeStart") String timeStart,
+			 @RequestParam("movieName") String movieName,
+			 @RequestParam("screenName") String screenName
+			 ) {
+//		Model model,  Time time, @RequestParam("mCode") String mCode ,  @RequestParam("tdate") @DateTimeFormat(iso =ISO.DATE_TIME) Date tdate,  
+//		@RequestParam("tStart") @DateTimeFormat(iso =ISO.DATE_TIME) Date tStart, @RequestParam("sCode") Screen sCode
+		
+//		document.f.timeDate.value= temp[0];
+//		document.f.timeStart.value= temp[1];
+//		document.f.movieName.value= temp[2];
+//		document.f.screenName.value= temp[3];
+		
+		System.out.println("peopleNum : " + peopleNum);
+		System.out.println("timeDate : " + timeDate);
+		System.out.println("timeStart : " + timeStart);
+		System.out.println("movieName : " + movieName);
+		System.out.println("screenName : " + screenName);
+		
+		ModelAndView mv = new ModelAndView("member/payment");
+		mv.addObject("peopleNum", peopleNum);
+		mv.addObject("timeDate", timeDate);
+		mv.addObject("timeStart", timeStart);
+		mv.addObject("movieName", movieName);
+		mv.addObject("screenName", screenName);
+
+		return mv;
+
+		
+	}
 	
 	@RequestMapping("/paymentComplete")
 	public void paymentComplete() {}

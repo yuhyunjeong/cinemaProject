@@ -36,7 +36,7 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public void insert(Food food, MultipartFile file) throws Exception {
-		
+
 		String path = System.getProperty("user.dir") + "/src/main/resources/static/img/food";
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
@@ -44,6 +44,7 @@ public class FoodServiceImpl implements FoodService {
 		file.transferTo(saveFile);
 		food.setFoodImage(fileName);
 		food.setFoodPath("img/food/" + fileName);
+	
 		foodRepo.save(food);
 		
 //		Food saveFood = foodRepo.save(food);
