@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
 
 
 <title>Insert title here</title>
@@ -14,35 +16,23 @@
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
 <style type="text/css">
 .card {
-  transition: all 0.2s linear;
-}
-.card:hover {
-  transform: scale(1.2);
+	transition: all 0.2s linear;
 }
 
+.card:hover {
+	transform: scale(1.2);
+}
+#rrr{
+	margin-top: 24px;
+}
 </style>
 
 <script type="text/javascript">
+
 $(function() {
-	
-	// 전체검색
-/* 		$("#exampleSelect1").click(function() {
-		$.ajax({
-			url:"product", // 서버요청주소 
-			type:"post", // 요청방식 
-			dataType:"text" // 서버가 보내온 데이터(응답)타입 
-			success: function(result) {
-				alert(result)	
-			}
-		});
-	} */
-	
-	//$(".date").html(moment.(${"${item.movieStartdate}"}).format('YYYY-MM-DD'))
-	
+
 	function select(){
 		$.ajax({
 			url: "selectMovie", // 서버요청주소 
@@ -59,18 +49,19 @@ $(function() {
 				$.each(movieList, function(index, item){
 					//var day = moment("${item.movieStartdate}").format("YYYY-MM-DD")+ " 개봉";
 					
+					let i = item.movieStartdate.substr(0,10).split("-");
+					var dateinfo = i[0]+"-"+i[1]+"-"+i[2]+" 개봉"
+					console.log(dateinfo);
+					
 					str+="<div class='col-lg-3 col-md-6'>";
 					str+="<div class='card mb-3 h-100'>";
 					str+="<div class='card-body'>";
 					//str+=`<h4 class='card-title'>영화</h4>`;
 					str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
 					str+="<hr>";
-					str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'></div>`;
+					str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'>${"${dateinfo}"}</div>`;
 					str+="</div></div></div>";
-					
-					let i = item.movieStartdate.substr(0,10).split("-");
-					var dateinfo = i[0]+"년"+i[1]+"월"+i[2]+"일"
-					console.log(dateinfo);
+
 
 					//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 					
@@ -87,12 +78,9 @@ $(function() {
 		});
 	}
 	
-	
-	//if($("#flexCheckDefault").is(":checked")){
-	
-	$('input[name="optionsRadios"]').on("change", function() {
-		
-		//alert(this.value)
+	$('input[name="optionsRadios"]').on("change", function() {	
+		filter();
+	function filter(x){
 		
 		$.ajax({
 			url: "selectMovie", // 서버요청주소 
@@ -100,17 +88,27 @@ $(function() {
 			dataType: "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
 			data:{
 				"${_csrf.parameterName}" : "${_csrf.token}", 
-				"optionsRadios":$(this).val()
-			}, // 서버에게 보낼 parameter 정보 */
-			
+				"optionsRadios":$(this).val(),
+				"flexCheckDefault": x
+			} // 서버에게 보낼 parameter 정보 */
+			,
 			success: function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
 				//alert(movieList)
 				let str="";
 				
+			
+				//if($("#flexCheckDefault").is(":checked")){
+				//	$("#flexCheckDefault").val()="check";
+				//}else{
+				//	$("#flexCheckDefault").val()="no";
+				//}
 				
 					
 					$.each(movieList, function(index, item){
-										
+							
+						let i = item.movieStartdate.substr(0,10).split("-");
+						var dateinfo = i[0]+"-"+i[1]+"-"+i[2]+" 개봉"
+						console.log(dateinfo);
 					
 						str+="<div class='col-lg-3 col-md-6'>";
 						str+="<div class='card mb-3 h-100'>";
@@ -118,7 +116,7 @@ $(function() {
 						//str+=`<h4 class='card-title'>영화</h4>`;
 						str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
 						str+="<hr>";
-						str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'></div>`;
+						str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><span class="badge bg-primary">${"${item.movieGenre}"}</span><p><div class='date'>${"${dateinfo}"}</div>`;
 						str+="</div></div></div>";
 						//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 					
@@ -128,69 +126,39 @@ $(function() {
 					$("#rrr").html(str);
 				
 				
-					
-				
-				
-				//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
 				
 			}, error: function(err) {
 				
 			}
 		});
+	}
+	
+	
+	$('input[name="check"]').on("click", function() {
+		var x = $(this).val();
+		alert($(this).val())
+		filter(x);
 		
 		
 	});
 	
-	$("#flexCheckDefault").on("click", function() {
-		
-		//alert(this.value)
-		
-		$.ajax({
-			url: "selectMovie", // 서버요청주소 
-			type: "post", // 요청방식(get, post, delete, patch),
-			dataType: "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
-			data:{
-				"${_csrf.parameterName}" : "${_csrf.token}", 
-				"optionsRadios":$(this).val()
-			}, // 서버에게 보낼 parameter 정보 */
-			
-			success: function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
-				//alert(movieList)
-				let str="";
-				$.each(movieList, function(index, item){
-										
-					
-					str+="<div class='col-lg-3 col-md-6'>";
-					str+="<div class='card mb-3 h-100'>";
-					str+="<div class='card-body'>";
-					//str+=`<h4 class='card-title'>영화</h4>`;
-					str+=`<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> <img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`							
-					str+="<hr>";
-					str+=`<div class='card-text'><h5>${"${item.movieName}"}</h5></div><p><div class='date'></div>`;
-					str+="</div></div></div>";
-					//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
-					
-				});
-				
-				$("#rrr").empty();
-				$("#rrr").html(str);
-				
-				//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
-				
-			}, error: function(err) {
-				
-			}
-		});
-		
-		
+	
+	
+	
 	});
+
+	
+	
+	
+	
+
 	
 	
 	select();
 	
 	
 	
-	$()
+	
 	
 
 }) // ready End
@@ -200,85 +168,89 @@ $(function() {
 
 </head>
 <body>
-	
-	
+
+
 	<div class='container mb-4'>
-	
-	
-	<div class="row">
-	<div class="col">
-	<h1>무비 차트</h1>
-	
-	 <div class="form-check">
-	 	
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-         현재상영작만 보기
-        </label>
-      </div>
-	</div>
-	<div class="col">
-	<fieldset class="form-group" style="padding-left: 70%; padding-top: 5%">
-	
-		<div class="form-check">
-			<label class="form-check-label"> <input type="radio"
-				class="form-check-input" name="optionsRadios" id="optionsRadios1"
-				value="option1" checked=""> 최신순
-			</label>
+
+
+		<div class="row" style="padding-top: 30px;">
+			<div class="col" style="padding-left: 60px;">
+				<h1>무비 차트</h1>
+
+				<div class="form-check">
+
+					<input class="form-check-input" type="checkbox" value="check"
+						name="check" id="flexCheckDefault"> <label class="form-check-label"
+						for="flexCheckDefault"> 현재상영작만 보기 </label>
+				</div>
+			</div>
+			<div class="col">
+				<fieldset class="form-group"
+					style="padding-left: 70%; padding-top: 5%">
+
+					<div class="form-check">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" name="optionsRadios" id="optionsRadios1"
+							value="option1" checked=""> 최신순
+						</label>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" name="optionsRadios" id="optionsRadios2"
+							value="option2"> 예매율순
+						</label>
+					</div>
+					<div class="form-check disabled">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" name="optionsRadios" id="optionsRadios3"
+							value="option3"> 별점순
+						</label>
+					</div>
+				</fieldset>
+			</div>
 		</div>
-		<div class="form-check">
-			<label class="form-check-label"> <input type="radio"
-				class="form-check-input" name="optionsRadios" id="optionsRadios2"
-				value="option2"> 예매율순
-			</label>
+
+		<hr>
+		
+		<div class="row">
+			<div id='rrr' class='row row-cols-1 row-cols-md-4 g-4'></div>
 		</div>
-		<div class="form-check disabled">
-			<label class="form-check-label"> <input type="radio"
-				class="form-check-input" name="optionsRadios" id="optionsRadios3"
-				value="option3"> 별점순
-			</label>
+
+		<div class="row m-3">
+			<ul class="pagination">
+				<c:set var="doneLoop" value="false" />
+				<li class="${(startPage-blockCount) <= 0?'page-item disabled':page}">
+
+					<a class="page-link"
+					href="${pageContext.request.contextPath}/cinema/movie?nowPage=${startPage-1}">&laquo;</a>
+
+				</li>
+				<c:forEach var='i' begin='${startPage}'
+					end='${(startPage-1)+blockCount}'>
+					<c:if test="${(i-1)>=pageList.getTotalPages()}">
+						<c:set var="doneLoop" value="true" />
+					</c:if>
+					<c:if test="${not doneLoop}">
+						<!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
+						<li class="${i==nowPage?'page-item active':active}"><a
+							class="page-link"
+							href="${pageContext.request.contextPath}/cinema/movie?nowPage=${i}">${i}</a>
+						</li>
+					</c:if>
+				</c:forEach>
+
+				<li
+					class="${(startPage+blockCount)>pageList.getTotalPages()? 'page-item disabled': page}">
+					<a class="page-link"
+					href="${pageContext.request.contextPath}/cinema/movie?nowPage=${startPage+blockCount}">&raquo;</a>
+				</li>
+
+			</ul>
 		</div>
-	</fieldset>
-	</div>
+
 	</div>
 
 
-	<div class="row">
-		<div id='rrr' class='row row-cols-1 row-cols-md-4 g-4'>
-			
-		</div>
-	</div>
-	
-	<div class="row m-3">
-  <ul class="pagination">
-    <c:set var="doneLoop" value="false"/>
-    <li class="page-item disabled">
-      <c:if test="${(startPage-blockCount) > 0}">
-        <a class="page-link" href="#">&laquo;</a>
-      </c:if>
-    </li>
-    <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
-	    <c:if test="${(i-1)>=pageList.getTotalPages()}">
-	       <c:set var="doneLoop" value="true"/>
-	    </c:if> 
-	    <c:if test="${not doneLoop}" >
-	    	 <!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
-	    	 <li class="${i==nowPage?'page-item':active}">
-		       <a class="page-link" href="${pageContext.request.contextPath}/cinema/movie?nowPage=${i}">${i}</a>
-		     </li> 
-	    </c:if>
-    </c:forEach>
-    <c:if test="${(startPage+blockCount)<=pageList.getTotalPages()}">
-      <li class="page-item">
-        <a class="page-link" href="${pageContext.request.contextPath}/cinema/movie?nowPage=${startPage+blockCount}">&raquo;</a>
-      </li>
-	</c:if>
-  </ul>
-</div>
-	
-	</div>
-	
-	
-	
+
 </body>
 </html>

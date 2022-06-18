@@ -43,7 +43,7 @@ public interface MovieService {
 	/**
 	 * 영화 조건별 출력
 	 * */
-	List<Movie> selectMovie(String optionsRadios);
+	List<Movie> selectMovie(String optionsRadios , String flexCheckDefault);
 	
 	/**
 	 * 상영 중 영화 가져오기

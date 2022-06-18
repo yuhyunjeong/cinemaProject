@@ -34,8 +34,7 @@
 						<label for="exampleInputId1" class="form-label mt-4">아이디</label>
 						<input type="id" class="form-control" id="exampleInputId1" name="id"
 							aria-describedby="idHelp" placeholder="아이디를 입력해주세요."> <small
-							id="idHelp" class="form-text text-muted">We'll never
-							share your email with anyone else.</small>
+							id="idHelp" class="form-text text-muted"></small>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
@@ -44,14 +43,23 @@
 
 					</div>
 					<br>
+					<c:if test="${not empty error}">
+						
+						<div style="color: orange;">아이디 또는 비밀번호가 맞지 않습니다.
+							다시 입력해주세요.</div>
+					
+					</c:if>
+					<br>
 					<div>
 					   
 						<button type="submit" class="btn btn-primary">로그인</button>
 					</div>
 					<br>
+					
 				</form>
 			</div>
 		</div>
 	</div>
 </body>
+
 </html>

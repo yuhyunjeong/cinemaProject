@@ -33,7 +33,7 @@ public class Seat {
 	@NonNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_pk")
 	@SequenceGenerator(name = "seat_pk", allocationSize = 1, sequenceName = "seat_pk")
-	private int seatcode;
+	private int seatCode;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="screen_code")

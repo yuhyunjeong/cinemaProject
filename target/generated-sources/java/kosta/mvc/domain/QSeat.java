@@ -24,7 +24,7 @@ public class QSeat extends EntityPathBase<Seat> {
 
     public final QScreen screen;
 
-    public final NumberPath<Integer> seatcode = createNumber("seatcode", Integer.class);
+    public final NumberPath<Integer> seatCode = createNumber("seatCode", Integer.class);
 
     public final NumberPath<Integer> seatCol = createNumber("seatCol", Integer.class);
 

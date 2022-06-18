@@ -38,7 +38,7 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 				throw new UsernameNotFoundException("비밀번호가 일치하지 않습니다.");
 			}
 			
-			String role = Integer.toString(member.getGrade());
+			String role = member.getRole();
 			
 			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
 			 

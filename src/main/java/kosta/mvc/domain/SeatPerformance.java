@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Setter
@@ -25,7 +24,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-//@ToString //출력할 때만 확인하려고 쓰는거고 아무런 관련없음!
 public class SeatPerformance {
 
 	@Id

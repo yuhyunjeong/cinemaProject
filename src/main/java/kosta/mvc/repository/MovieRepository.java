@@ -37,16 +37,21 @@ public interface MovieRepository extends JpaRepository<Movie, String>, QuerydslP
 			, nativeQuery=true)
 	List<String> selectByCount();
 	
+	
+	
+	
 	/**
 	 * 별점순
 	 * */
 	@Query(value = "select * from movie m "
-			+ "join (select movie_code from review_board "
-			+ "group by movie_code "
-			+ "order by sum(srat_rating) desc) j "
-			+ "on m.movie_code=j.movie_code"
+			+ "join (select movie_code, avg(srat_rating) total from review_board group by movie_code) j "
+			+ "on m.movie_code=j.movie_code "
+			+ "order by total desc"
 			, nativeQuery = true)
 	List<Movie> selectByStar();
+	
+//	@Query("select * from movie m join (select movie_code from review_board group by movie_code order by sum(srat_rating) desc) j on m.movie_code=j.movie_code where rownum <= ?1")
+//	List<Movie> selectByStar(int );
 	
 	/**
 	 * 예매율
