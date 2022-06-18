@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style type="text/css">
 .mb-3 {
@@ -21,14 +23,16 @@
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication var="sessionMember" property="principal" />
 		<script type="text/javascript">
-			$(function(){			
+		
+		
+						
 				if("${member.id}"!="${sessionMember.id}"){
 				
-					alert("본인만 접속할 수 있습니다.")
+					alert('본인만 접속할 수 있습니다.');
 					location.href="${pageContext.request.contextPath}/";
 				
 				}			
-			})
+			
 		</script>
 		<div class="container">
 			<div class="alert alert-dismissible alert-warning">
@@ -81,7 +85,7 @@
 						<br>
 					</form>
 
-					<div>
+					<div style="color:orange;">
 						<c:if test="${msg==false}">
   							비밀번호가 맞지 않습니다.
   						</c:if>
@@ -100,7 +104,7 @@
 		<script type="text/javascript">
 			$(function(){			
 					
-				alert("로그인 후 접속할 수 있습니다.")
+				alert('로그인 후 접속할 수 있습니다.');
 				location.href="${pageContext.request.contextPath}/";
 			
 			})
@@ -127,5 +131,8 @@
 		});
 
 	})
+	
+	
+	
 </script>
 </html>

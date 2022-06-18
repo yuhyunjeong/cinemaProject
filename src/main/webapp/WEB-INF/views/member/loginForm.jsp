@@ -45,8 +45,8 @@
 					<br>
 					<c:if test="${not empty error}">
 						
-						<div style="color: orange;">아이디 또는 비밀번호가 맞지 않습니다.
-							다시 입력해주세요.</div>
+						<div style="color: orange;"><strong>아이디 또는 비밀번호가 맞지 않습니다.
+							다시 입력해주세요.</strong></div>
 					
 					</c:if>
 					<br>

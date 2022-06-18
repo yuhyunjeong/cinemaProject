@@ -74,7 +74,7 @@
 							data-bs-placement="right"
 							data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
 							data-bs-original-title="Popover Title"
-							onclick="location.href='${pageContext.request.contextPath}/member/myPage/${member.id}'">마이페이지</button>
+							onclick="location.href='${pageContext.request.contextPath}/mypage/myPage/${member.id}'">마이페이지</button>
 				&nbsp;&nbsp;&nbsp;
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
@@ -110,12 +110,7 @@
 								onclick="location.href='${pageContext.request.contextPath}/member/loginForm'">로그인</button>
 				&nbsp;&nbsp;&nbsp;
 					</sec:authorize>
-				<button name="center" type="button"
-					class="btn btn-secondary my-2 my-sm-0" title=""
-					data-bs-container="body" data-bs-toggle="popover"
-					data-bs-placement="right"
-					data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-					data-bs-original-title="Popover Title">고객센터</button>
+				
 
 			</div>
 		</div>

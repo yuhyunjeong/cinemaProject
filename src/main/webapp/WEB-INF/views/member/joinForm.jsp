@@ -21,20 +21,58 @@
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function joinCheck() {
-	//변수에 입력 값 담기
+$(function() {
+	function joinCheck() {
+		//변수에 입력 값 담기	
+		var id = document.getElementById("id"); //아이디
+		var password = document.getElementById("password"); //비밀번호
+		var name = document.getElementById("name"); //이름
+		var phone = document.getElementById("phone");//핸드폰 번호
+		var birth = document.getElementById("birth");//생일
 
-	var userName = document.getElementById("userName"); //이름
-	var userId = document.getElementById("userId"); //아이디
-	var userPwd = document.getElementById("userPwd"); //비밀번호
-	var userPhone = document.getElementById("userPhone");//핸드폰 번호
+			
+		
+				//입력 값 전송
+			//document.join.submit();
+			document.getElementById("inForm").submit();
+
+	};
+
+
+		
+});
+
 	
+////////////아이디에 한글 입력 불가능 하도록
+function chkCharCode(event) {
+	const regExp = /[^0-9a-zA-Z]/g;
+	  const ele = event.target;
+	  if (regExp.test(ele.value)) {
+	    ele.value = ele.value.replace(regExp, '');
+	  }
+	  
+};
+
+
+
+////////////휴대폰 번호, 생년월일에 숫자,- 이외에는 입력 불가능 하도록
+function chkPhCode(event) {
+	const regExp = /[^0-9\-]/g;
+	  const ele = event.target;
+	  if (regExp.test(ele.value)) {
+	    ele.value = ele.value.replace(regExp, '');
+	  }
+	  
+};
+
+
+
 </script>
 <body>
 	<div class="col-sm-6, container" style="text-align: center; margin:0 auto;">
 		<h1>회원가입</h1>
 		
-		<form name="inForm" id="inForm" method="post" action="${pageContext.request.contextPath}/member/join">
+		<form name="inForm" id="inForm" method="post" action="${pageContext.request.contextPath}/member/join" onsubmit="return joinCheck()">
 			
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			
@@ -48,7 +86,8 @@ function joinCheck() {
 							<input
 							class="form-control" type="text"
 							placeholder="아이디를 입력해주세요." id="id"
-							name="id"  required="required">
+							name="id"  required="required"
+							onkeyup="chkCharCode(event)" onKeyDown="if(event.keyCode == 13) joinCheck()">
 							<br>
 							<input type="button" class="btn btn-success" id="check" name="check" value="중복체크">
 							<div id="idCheck" name="idCheck"></div>
@@ -60,7 +99,8 @@ function joinCheck() {
 							<input
 							class="form-control" type="password"
 							placeholder="7자 이상 영문/숫자를 입력해주세요." id="password"
-							name="password" required="required">
+							name="password" required="required"
+							onKeyDown="if(event.keyCode == 13) joinCheck()">
 					</div>
 					
 					<div class="form-group">
@@ -88,7 +128,8 @@ function joinCheck() {
 							<input
 							class="form-control " type="text"
 							placeholder="0000-00-00 형식으로 입력해주세요." id="birth"
-							name="birth" required="required">
+							name="birth" required="required"
+							onkeyup="chkPhCode(event)" maxlength='10'>
 					</div>
 					
 					<div class="form-group">
@@ -97,12 +138,13 @@ function joinCheck() {
 							<input
 							class="form-control" type="text"
 							placeholder="000-0000-0000 형식으로 입력해주세요." id="phone"
-							name="phone" required="required">
+							name="phone" required="required"
+							onkeyup="chkPhCode(event)" onKeyDown="if(event.keyCode == 13) joinCheck()">
 					</div>
 					
 					<br>
 					<div>
-						<button type="submit" class="btn btn-primary">회원가입 완료</button>
+						<button onclick="joinCheck();" class="btn btn-primary">회원가입 완료</button>
 					</div>
 					<br>
 				
