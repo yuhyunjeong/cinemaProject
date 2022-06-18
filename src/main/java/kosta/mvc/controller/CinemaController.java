@@ -97,8 +97,6 @@ public class CinemaController {
 	@RequestMapping("/time")
 	@ResponseBody
 	public List<Time> time(String timeDate, String  movieCode) {
-		//System.out.println("movieCode :"+movieCode);
-		//System.out.println("timeDate : "+timeDate);
 		Date timeDateconvert = new Date(timeDate);
 		List<Time> timeList = timeService.selectByTime(timeDateconvert, movieCode);
 	
@@ -164,19 +162,22 @@ public class CinemaController {
  	}
 	
 	/**
-	 * 영화예매- 4.좌석선택 전 인원설정
+	 * 영화예매- 4.좌석선택 전 예약되어 있는 자리 보여주기
 	 */
-	/*
-	 * @RequestMapping("/chooseSeat") public void chooseSeat(Model model, Time time)
-	 * { //timeCode를 가지고 가서 List<SeatPerformance> seatPerList =
-	 * seatPerService.selectBy(time); model.addAttribute("seatPerList",
-	 * seatPerList);
-	 * 
-	 * //여기중에서 isBooked=1인거 고르기
-	 * 
-	 * //System.out.println(seatPerList); //seatPerformance테이블의 isBooked가 1인(예약됨)
-	 * seatCode를 가져오고 싶음. }
-	 */
+	  @RequestMapping("/chooseSeat")
+	  @ResponseBody
+	  public List<SeatPerformance> chooseSeat(Model model, Time time, @RequestParam("tCode") Long tCode){ //timeCode를 가지고 가서 
+		  
+		  time.setTimeCode(tCode);
+		  List<SeatPerformance> seatPerList = seatPerService.selectBy(time); 
+		  
+		  System.out.println(seatPerList);
+		  
+		  return seatPerList;
+		  //System.out.println(seatPerList); 
+		  //seatPerformance테이블의 isBooked가 1인(예약됨)seatCode를 가져오고 싶음. 
+	  }
+	 
 	
 	/**
 	 * 영화예매- 4.좌석선택 전 인원설정
