@@ -90,40 +90,43 @@
 	float: left;
 }
 
-.event_notice_container {
+#event_notice_container {
 	width: 100%;
 	height: 100%;
+	display: flex;
+	justify-content: space-around;
 }
 
-.event_container {
-	width: 50%;
+#event_container {
+	width: 100%;
 	height: 100%;
 	float: left;
+	flex: 1;
 }
 
 .notice_container {
-	width: 50%;
+	width: 100%;
 	height: 100%;
 	float: right;
+	flex: 1;
 }
 
-.event_left {
+#event_left {
 	width: 50%;
 	height: 40px;
 	float: left;
 }
 
-.event_right {
+#event_right {
 	width: 50%;
 	height: 40px;
 	float: right;
 	text-align: right;
 }
 
-.event_list {
+#event_list {
 	width: 100%;
 	height: 150px;
-	background-color: blue;
 	float: left;
 }
 
@@ -156,10 +159,10 @@
 	text-align: center;
 }
 
-.card {
+#movieCard {
   transition: all 0.2s linear;
 }
-.card:hover {
+#movieCard:hover {
   transform: scale(1.2);
 }
 
@@ -200,22 +203,20 @@
 						success : function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
 							//alert(movieList)
 							let str = "";
-							$.each(
-											movieList,
-											function(index, item) {
-												//alert(item.movieStartdate)
-												if (index < 4) {
-													str += "<div class='col-lg-3 col-md-6'>";
-													str += "<div class='card  m-1 h-90'>";
-													str += "<div class='card-body'>";
-													//str+=`<h4 class='card-title'>영화</h4>`;
-													str += `<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> 
-													<img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`
-													str += "<hr>";
-													str += `<p class='card-text'><h5>${'${item.movieName}'}</h5></p><span class="badge bg-primary">${"${item.movieGenre}"}</span>`;
-													str += "</div></div></div>";
-												}
-											});
+							$.each(movieList, function(index, item) {
+								//alert(item.movieStartdate)
+								if (index < 4) {
+									str += "<div class='col-lg-3 col-md-6'>";
+									str += "<div id='movieCard' class='card  m-1 h-90'>";
+									str += "<div class='card-body'>";
+									//str+=`<h4 class='card-title'>영화</h4>`;
+									str += `<a class='card-img' href='${pageContext.request.contextPath}/cinema/movieDetail/${"${item.movieCode}"}'> 
+									<img class='card-img-top' src='${path}/img/movie/${"${item.movieImage}"}' /></a>`
+									str += "<hr>";
+									str += `<p class='card-text'><h5>${'${item.movieName}'}</h5></p><span class="badge bg-primary">${"${item.movieGenre}"}</span>`;
+									str += "</div></div></div>";
+								}
+							});
 
 							$("#rrr").empty();
 							$("#rrr").html(str);
@@ -226,9 +227,35 @@
 						}
 					});
 		}
+		function eventMainList() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/board/eventMainList",
+				type: "post", 
+				dataType: "json", 
+				data:{
+					
+				}, 
+				success: function(eList) { 
+					let str = "";
+					$.each(eList, function(index, item) {
+						if(index < 5){
+							str += `<a href='${pageContext.request.contextPath}/board/eventDetail/${"${item.bno}"}'>${"${item.title}"}</a><br>`
+						}
+					});
+					$("#event_list").empty();
+					$("#event_list").html(str);
+				},
+					
+					
+				error: function(err) {
+					
+				}
+			});
+		}
 
 		select();
-
+		eventMainList();
+		
 	});
 	
 		
@@ -281,24 +308,28 @@
 
 
 
-	<div class="event_notice_container">
-		<div class="event_container">
-			<div class="event_left">
-				<h2>이벤트</h2>
+	<div  id="event_notice_container">
+		<div class="card" style="width: 40%;">
+			<div class="card-body" id="event_container">
+				<div id="event_left">
+					<h2>이벤트</h2>
+				</div>
+				<div id="event_right">
+					<a href="${pageContext.request.contextPath}/board/event">전체보기</a>
+				</div>
+				<div id="event_list"></div>
 			</div>
-			<div class="event_right">
-				<a href="#">전체보기</a>
-			</div>
-			<div class="event_list">리스트</div>
 		</div>
-		<div class="notice_container">
-			<div class="notice_left">
-				<h2>공지사항</h2>
+		<div class="card" style="width: 40%;">
+			<div class="card-body"  id="notice_container">
+				<div class="notice_left">
+					<h2>공지사항</h2>
+				</div>
+				<div class="notice_right">
+					<a href="#">전체보기</a>
+				</div>
+				<div class="notice_list">리스트</div>
 			</div>
-			<div class="notice_right">
-				<a href="#">전체보기</a>
-			</div>
-			<div class="notice_list">리스트</div>
 		</div>
 	</div>
 

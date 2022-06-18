@@ -14,4 +14,6 @@ public interface EventBoardService {
 	EventBoard selectBy(Long bno);
 	
 	void eventInsert(EventBoard eventBoard, MultipartFile file) throws Exception;
+	
+	List<EventBoard> eventMainList();
 }

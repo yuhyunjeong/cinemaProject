@@ -183,6 +183,13 @@ public class BoardController {
 		return list;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/eventMainList")
+	public List<EventBoard> eventMainList(){
+		List<EventBoard> eList = eventBoardService.eventMainList();
+		return eList;
+	}
+	
 	/////////////////////////////////////////////////////////////////////
 	
 	

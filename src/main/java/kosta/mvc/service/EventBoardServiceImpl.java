@@ -49,6 +49,11 @@ public class EventBoardServiceImpl implements EventBoardService {
 		return eventBoard;
 	}
 
+	@Override
+	public List<EventBoard> eventMainList() {
+		return eventBoardRepository.findAllByOrderByBnoDesc();
+	}
+
 	
 
 }
