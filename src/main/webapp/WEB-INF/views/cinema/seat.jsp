@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -235,7 +236,11 @@
 			<div class="card">
 			  <div class="card-body">
 			    <h4 class="card-title">${movie.movieName}</h4>
-			    <h6 class="card-subtitle mb-2 text-muted">일시 : ${time.timeDate} / ${time.timeStart}</h6>
+			    <h6 class="card-subtitle mb-2 text-muted">일시 :
+			    	<fmt:formatDate value="${time.timeDate}" type="date" />
+			    	/
+			    	<fmt:formatDate value="${time.timeStart}" type="time"/>
+			    </h6>
 			    <h6 class="card-subtitle mb-2 text-muted">상영관 :  ${time.screen.screenName}</h6>
 			    <h6 class="card-subtitle mb-2 text-muted">인원 : <div class="peopleNum" style="display: inline-block;"></div> </h6>
 			  </div>
