@@ -24,7 +24,7 @@ public class EventServiceImpl implements EventService {
 	private final EventRepository eventRepository;
 
 	@Override
-	public void eventAttend(Event event) {
+	public String eventAttend(Event event) {
 		
 		//Event ev = eventRepository.duplicateCheck(event);
 	//	System.out.println(ev);
@@ -46,8 +46,9 @@ public class EventServiceImpl implements EventService {
 		
 		if(result2.isEmpty()) {
 			eventRepository.save(event);
+			return "참여완료.";
 		}else {
-			
+			return "이미 참여 하셨습니다.";
 		}
 	
 	}

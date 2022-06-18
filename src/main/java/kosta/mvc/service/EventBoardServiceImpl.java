@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,10 +21,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EventBoardServiceImpl implements EventBoardService {
 	private final EventBoardRepository eventBoardRepository;
+	
+
 
 	@Override
 	public List<EventBoard> selectAll() {
-		return eventBoardRepository.findAll();
+		return eventBoardRepository.findAllByOrderByBnoDesc();
 	}
 	
 	@Override

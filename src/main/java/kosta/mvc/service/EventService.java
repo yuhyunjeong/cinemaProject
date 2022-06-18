@@ -7,6 +7,6 @@ import kosta.mvc.dto.eventDTO;
 
 
 public interface EventService {
-	void eventAttend(Event event);
+	String eventAttend(Event event);
 	List<eventDTO> lottery(Long bno, Long num);
 }

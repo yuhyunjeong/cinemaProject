@@ -46,11 +46,12 @@
 							"num":$('.num').val()
 						}, 
 						success: function(list) { 
-							let str="";
+							let str="당첨자아이디\n";
 							$.each(list, function(index, item) {
-								str+=`${"${item.member.id}"}`;
+								str+=`${"${item.member.id}"}, `;
 							});
 							alert(str);
+							
 						},
 							
 							
@@ -58,6 +59,11 @@
 							
 						}
 					}); 
+				});
+				
+				$('.participate').click(function(){
+					removeAttribute( 'result' );
+					
 				});
 			})
 			
@@ -70,6 +76,14 @@
 	<body>
 		<div class="container">
 			<h2>이벤트 상세 화면</h2>
+			<c:if test="${not empty result}">
+				<script type="text/javascript">
+					alert("${result}");
+					
+				</script>
+				<% session.removeAttribute("result"); %>
+			</c:if>
+			
 		    	<table class="board_view">
 			        <colgroup>
 			            <col width="15%">
@@ -97,7 +111,7 @@
 		    </div>
 		    <form id="changeForm" action="${pageContext.request.contextPath}/board/eventAttend" style="width: 1000px; margin: 0 auto; text-align: center; ">
                	<input type="hidden" name="bno" value="${board.bno}">
-               	<input type="submit" value="참여하기">
+               	<input type="submit" class="participate" value="참여하기">
             </form>
             
 
