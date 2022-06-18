@@ -657,7 +657,7 @@
 							//alert(item.seat.seatCode)
 							//alert(item.seat.seatRow)
 							//alert(item.seat.seatCol)
-							console.log(item.seat.seatCode)
+							//console.log(item.seat.seatCode)
 							//console.log(item.seat.seatRow)
 							//console.log(item.seat.seatCol)
 							if (item.booked){ 
