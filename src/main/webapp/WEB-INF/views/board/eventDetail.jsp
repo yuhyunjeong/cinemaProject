@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -32,14 +33,37 @@
 		</style>
 		<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
-			
 			$(function() {
-				$("input[value=참여하기]").click(function() {
-					$("#changeForm").attr("action", "${pageContext.request.contextPath}/board/eventAttend");
-					$("#changeForm").submit();
-				})
-
+				
+				$("#lottery").on("click", function() {
+					alert(22); 
+					$.ajax({
+						url: "${pageContext.request.contextPath}/board/eventLottery",
+						type: "post", 
+						dataType: "json", 
+						data:{
+							"bno":$('.bno').val(),
+							"num":$('.num').val()
+						}, 
+						success: function(list) { 
+							let str="";
+							$.each(list, function(index, item) {
+								str+=`${"${item.member.id}"}`;
+							});
+							alert(str);
+						},
+							
+							
+						error: function(err) {
+							
+						}
+					}); 
+				});
 			})
+			
+
+			
+			
 		
 		</script>
 	</head>
@@ -71,11 +95,25 @@
 		    <div style="text-align: center;">
 		    	<img src="${board.eventPath}">
 		    </div>
-		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: center; ">
+		    <form id="changeForm" action="${pageContext.request.contextPath}/board/eventAttend" style="width: 1000px; margin: 0 auto; text-align: center; ">
                	<input type="hidden" name="bno" value="${board.bno}">
-               	<input type="button" value="참여하기">
+               	<input type="submit" value="참여하기">
             </form>
-		    
+            
+
+           	<input type="hidden" class="bno" value="${board.bno}">
+			<select class="num">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+          	<input type="button" id="lottery" value="당첨자 추첨">
+
+            
+
+            
 		</div>
 	</body>
 </html>

@@ -26,6 +26,7 @@ import kosta.mvc.domain.QnABoard;
 import kosta.mvc.domain.QnAReply;
 import kosta.mvc.domain.ReviewBoard;
 import kosta.mvc.dto.ReviewDTO;
+import kosta.mvc.dto.eventDTO;
 import kosta.mvc.service.NoticeBoardService;
 import kosta.mvc.service.QnABoardService;
 import kosta.mvc.service.QnAReplyService;
@@ -61,9 +62,8 @@ public class BoardController {
 	public void noticeWrite() {}
 	
 	@RequestMapping("/noticeInsert")
-	public String noticeInsert(HttpServletRequest request, NoticeBoard noticeBoard) {
-		HttpSession session = request.getSession();
-		noticeBoard.setMember((Member) session.getAttribute("member"));
+	public String noticeInsert(@AuthenticationPrincipal Member sessionMember, NoticeBoard noticeBoard) {
+		noticeBoard.setMember(sessionMember);
 		noticeBoardService.insert(noticeBoard);
 		
 		return "redirect:/board/notice";
@@ -104,18 +104,17 @@ public class BoardController {
 	
 	@RequestMapping("/qnaInsert")
 	public String qnaInsert(@AuthenticationPrincipal Member sessionMember, QnABoard qnaBoard) {
-		//HttpSession session = request.getSession();
-		//qnaBoard.setMember((Member) session.getAttribute("member"));
-		//qnABoardService.insert(qnaBoard);
+		qnaBoard.setMember(sessionMember);
+		qnABoardService.insert(qnaBoard);
 		
 		return "redirect:/board/qna";
 	}
 	
 	@RequestMapping("/qnaReplyInsert")
-	public String qnaReplyInsert(HttpServletRequest request, QnAReply qnaReply, Long bno) {
+	public String qnaReplyInsert(@AuthenticationPrincipal Member sessionMember, QnAReply qnaReply, Long bno) {
 		qnaReply.setQnaBoard(new QnABoard(bno));
-		HttpSession session = request.getSession();
-		qnaReply.setMember((Member) session.getAttribute("member"));
+		qnaReply.setMember(sessionMember);
+		
 		qnAReplyService.insert(qnaReply);
 		return "redirect:/board/qnaDetail/"+bno;
 	}
@@ -163,13 +162,23 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/eventAttend")
-	public String eventAttend(Event event, HttpServletRequest request, EventBoard eventBoard) {
-		HttpSession session = request.getSession();
-		event.setMember((Member) session.getAttribute("member"));
+	public String eventAttend(Event event, @AuthenticationPrincipal Member sessionMember, EventBoard eventBoard) {
+
+		event.setMember(sessionMember);
 		event.setEventBoard(eventBoard);
 		eventService.eventAttend(event);
 		System.out.println(event.getEventBoard().getBno());
 		return "redirect:/board/eventDetail/"+event.getEventBoard().getBno();
+	}
+	
+	@ResponseBody
+	@RequestMapping("/eventLottery")
+	public List<eventDTO> eventLottery(Long bno, Long num) {
+		System.out.println("b"+bno);
+		System.out.println("num"+num);
+		List<eventDTO> list = eventService.lottery(bno, num);
+		System.out.println(list);
+		return list;
 	}
 	
 	/////////////////////////////////////////////////////////////////////
@@ -178,25 +187,19 @@ public class BoardController {
 	@RequestMapping("/reviewList")
 	@ResponseBody
 	public List<ReviewDTO> reviewList(String movieCode) {
-		System.out.println("22ddd  = "+movieCode);
+
 		List<ReviewDTO> list = reviewBoardService.selectByMovieCode(movieCode);
 
 		return list;
 	}
 	
 	@RequestMapping("/reviewInsert")
-	public String reviewInsert(@AuthenticationPrincipal Member sessionMember, ReviewBoard reviewBoard, Movie movieCode) {
-		System.out.println(reviewBoard.getSratRating());
-		System.out.println(reviewBoard.getContent());
-		//System.out.println(reviewBoard.getMovie().getMovieCode());
-		System.out.println("------------------------------------------------------------");
-		reviewBoard.setMovie(movieCode);
-		reviewBoard.setMember(sessionMember);
-		System.out.println(reviewBoard.getSratRating());
-		System.out.println(reviewBoard.getContent());
+	public String reviewInsert(@AuthenticationPrincipal Member sessionMember, ReviewBoard reviewBoard, Movie movie) { 
 		
-		System.out.println(reviewBoard.getMember().getId());
-		System.out.println(reviewBoard.getMovie().getMovieCode());
+		
+		reviewBoard.setMovie(movie);
+		reviewBoard.setMember(sessionMember);
+
 		reviewBoardService.reviewInsert(reviewBoard);
 		
 		

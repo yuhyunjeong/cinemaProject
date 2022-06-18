@@ -12,6 +12,8 @@ import com.querydsl.core.BooleanBuilder;
 
 import kosta.mvc.domain.Event;
 import kosta.mvc.domain.QEvent;
+import kosta.mvc.dto.MemberDTO;
+import kosta.mvc.dto.eventDTO;
 import kosta.mvc.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -48,11 +50,19 @@ public class EventServiceImpl implements EventService {
 			
 		}
 	
-	
-	
-	
-	
-	
+	}
+
+	@Override
+	public List<eventDTO> lottery(Long bno, Long num) {
+		List<Event> list = eventRepository.lottery(bno, num);
+		
+		List<eventDTO> result = new ArrayList<eventDTO>();
+		for(Event ev : list) {
+			eventDTO eventDTO = new eventDTO(ev.getEventCode(), new MemberDTO(ev.getMember().getId()));
+			result.add(eventDTO);
+		}
+		System.out.println("ss"+result);
+		return result;
 	}
  
 }

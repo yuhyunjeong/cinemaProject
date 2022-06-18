@@ -71,5 +71,16 @@
 		    </form>
 		</div>
 	</sec:authorize>
+	<sec:authorize access="isAnonymous()">
+		<script type="text/javascript">
+			$(function() {
+				function anonymous() {
+					alert("관리자 접근가능");
+					location.href = "${pageContext.request.contextPath}/board/notice";
+				}
+				anonymous();
+			})
+		</script>
+	</sec:authorize>
 	</body>
 </html>

@@ -69,7 +69,7 @@ $(function() {
 					str+="</div></div></div>";
 					
 					let i = item.movieStartdate.substr(0,10).split("-");
-					var dateinfo = i[0]+"년"+i[1]+"월"+i[2]+"일 "
+					var dateinfo = i[0]+"년"+i[1]+"월"+i[2]+"일"
 					console.log(dateinfo);
 
 					//$(".date").html(moment(${item.movieStartdate}).format("YYYY-MM-DD")+" 개봉");
