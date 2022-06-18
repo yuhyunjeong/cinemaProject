@@ -61,10 +61,6 @@
 					}); 
 				});
 				
-				$('.participate').click(function(){
-					removeAttribute( 'result' );
-					
-				});
 			})
 			
 
@@ -111,7 +107,8 @@
 		    </div>
 		    <form id="changeForm" action="${pageContext.request.contextPath}/board/eventAttend" style="width: 1000px; margin: 0 auto; text-align: center; ">
                	<input type="hidden" name="bno" value="${board.bno}">
-               	<input type="submit" class="participate" value="참여하기">
+               	<br>
+               	<input type="submit" class="btn btn-lg btn-info" value="참여하기" style="width: 500px">
             </form>
             
 

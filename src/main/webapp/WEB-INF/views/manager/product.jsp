@@ -56,11 +56,12 @@
 					str += "<th scope='col'>상품이름</th></tr>";
 					
 					let insert = "";
-					insert += "<form name='insertForm' method='post' id='insertForm'>"
-					insert += "<input type='button' class='btn btn-secondary' onclick='insert()' value='등록하기'>"
-					insert += "</form>";
+					
 					
 					if(v=='movie'){
+						insert += "<form name='insertForm' method='post' id='insertForm' action='${contextPath.reqeust.contextPath}/manager/productWrite'>"
+						insert += "<input type='hidden' name='write' value='movie'>"
+						insert += "<input type='submit' class='btn btn-secondary' value='등록하기'>"
 						
 						$.each(result.list, function(index, item) { // item은 movie
 						/* 	console.log(item)
@@ -70,11 +71,17 @@
 							str += "<th scope='row'>" + item.movieCode + "</th>"
 							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.movieCode}'>" + item.movieName + "</td>" */
 							str += "<td><a href='#' onclick=movepage('" + item.movieCode + "')>" + item.movieName + "</a></td>"
-							str += "</tr>"		
+							str += "</tr>"
 
-						})  
+						});
+						
+						console.log(insert)
 						
 					} else if(v=='food') {  
+						
+						insert += "<form name='insertForm' method='post' id='insertForm' action='${contextPath.reqeust.contextPath}/manager/productWrite'>"
+						insert += "<input type='hidden' name='write' value='food'>"
+						insert += "<input type='submit' class='btn btn-secondary' value='등록하기'>"
 						
 						$.each(result.list, function(index, item) { // item은 food
 							console.log('rowClick')
@@ -87,17 +94,23 @@
 						
 					} else if(v=='gift') {
 						
+						insert += "<form name='insertForm' method='post' id='insertForm' action='${contextPath.reqeust.contextPath}/manager/productWrite'>"
+						insert += "<input type='hidden' name='write' value='gift'>"
+						insert += "<input type='submit' class='btn btn-secondary' value='등록하기'>"
+							
 						$.each(result.list, function(index, item) { // item은 gift 
 							str += "<tr class='table-active'>";
 							str += "<th scope='row'>" + item.giftCode + "</th>";
 							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.giftCode}'>" + item.giftName + "</td>"; */
-							str += "<td><a href='#' onclick=movepage3('" + item.giftCode + "')>" + item.giftName + "</a></td>"
+							str += "<td><a href='#' onclick=movepage3('" + item.giftCode + "')>" + item.movieName + "</a></td>"
 							str += "</tr>"
 						})   
 					}
 					
 					str += "</table>";
-				
+					insert += "</form>";
+					
+					
  				    $("#productSelect").html(str);
  				    $("#insert").html(insert);
  				    
@@ -115,12 +128,6 @@
 
 	}) // ready End
 	
-
-    
-    function insert(page) {
-    	let hi = "${contextPath.reqeust.contextPath}/manager/productWrite";
-    	window.document.location.href=hi;
-    }
     
     function movepage(page) {
     	console.log('movepage1')

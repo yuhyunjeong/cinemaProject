@@ -58,7 +58,7 @@
 		
 		</div>
 		<div style="width: 1000px; margin: 0 auto; text-align: right; ">
-			<input type="button" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">
+			<input type="button" class="btn btn-outline-light" value="문의하기" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">
 		</div>
 		
 	</body>

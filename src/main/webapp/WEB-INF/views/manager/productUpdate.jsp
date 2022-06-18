@@ -12,35 +12,39 @@
 		<c:choose>
 			<c:when test="${kind=='movie'}">
 			<h1>영화 수정 페이지 입니다.</h1>
-				<form name="MovieUpdateForm" method="post" action="${pageContext.request.contextPath}/manager/update">	
+				<form name="movieUpdateForm" method="post" action="${pageContext.request.contextPath}/manager/movieUpdate">	
 					<fieldset>
 						<div class="form-group" style="width: 1000px">
+							<label class="form-label mt-4" for="form-label">영화코드</label>
+							<input class="form-control" type="text" value="${item.movieName}">							    
+						</div>
+						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">영화제목</label>
-							<input class="form-control" type="text" placeholder="영화제목을 입력해주세요">							    
+							<input class="form-control" type="text" value="${item.movieName}">							    
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label for="exampleTextarea" class="form-label mt-4">줄거리</label>
-							<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+							<textarea class="form-control" id="exampleTextarea" rows="3">${item.movieSummary}</textarea>
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">러닝타임</label>
-							<input class="form-control" type="text" placeholder="러닝타임을 입력해주세요">							    
+							<input class="form-control" type="text" placeholder="러닝타임을 입력해주세요" value="${item.movieRunningtime}">							    
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">상영시작일자</label>
-							<input class="form-control" type="text" placeholder="상영시작일자를 입력해주세요">							    
+							<input class="form-control" type="text" placeholder="상영시작일자를 입력해주세요" value="${item.movieStartdate}">							    
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">상영종료일자</label>
-							<input class="form-control" type="text" placeholder="상영종료일자를 입력해주세요">							    
+							<input class="form-control" type="text" placeholder="상영종료일자를 입력해주세요" value="${item.movieEnddate}">							    
 						</div>			
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">관람등급</label>
-							<input class="form-control" type="text" placeholder="관람등급을 입력해주세요">							    
+							<input class="form-control" type="text" placeholder="관람등급을 입력해주세요" value="${item.movieAge}">							    
 						</div>						
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">장르</label>
-							<input class="form-control" type="text" placeholder="장르를 입력해주세요">							    
+							<input class="form-control" type="text" placeholder="장르를 입력해주세요" value="${item.movieGenre}">							    
 						</div>			
 						<div class="form-group" style="width: 1000px">
 							<label for="formFile" class="form-label mt-4">포스터</label>
@@ -48,7 +52,7 @@
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">출연진</label>
-							<input class="form-control" type="text" placeholder="출연진을 입력해주세요">							    
+							<input class="form-control" type="text" placeholder="출연진을 입력해주세요" value="${item.actorList}">							    
 						</div>	
 						
 						<p><p>
@@ -56,6 +60,7 @@
 								
 						<div class="col-lg-6 col-sm-12 text-lg-end text-center">
 							<%-- <input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/product'" value="등록하기"/> --%>
+							<input type="hidden" name="movieCode" value="${item.movieCode}">
 							<input type="submit" class="btn btn-secondary" value="수정하기">
 						</div><p><p>			
 				  </fieldset>

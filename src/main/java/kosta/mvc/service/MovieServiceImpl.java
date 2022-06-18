@@ -45,8 +45,9 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void insert(Movie movie, MultipartFile file) throws Exception {
-		
+
 		String path = System.getProperty("user.dir") + "/src/main/resources/static/img/movie";
+		System.out.println(path);
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
 		File saveFile = new File(path, fileName);
@@ -74,10 +75,12 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public Movie update(Movie movie) {
 		
-		Movie dbMovie = movieRepo.findById(movie.getMovieCode()).orElse(null);
-		if(dbMovie == null) {
-			throw new RuntimeException("영화코드 오류로 수정할 수 없습니다.");
-		}
+//		Movie dbMovie = movieRepo.findById(movie.getMovieCode()).orElse(null);
+//		if(dbMovie == null) {
+//			throw new RuntimeException("영화코드 오류로 수정할 수 없습니다.");
+//		}
+//		
+		Movie dbMovie = movieRepo.getById(movie.getMovieCode());
 		
 		// 수정완료
 		dbMovie.setMovieName(movie.getMovieName());
@@ -87,7 +90,7 @@ public class MovieServiceImpl implements MovieService {
 		dbMovie.setMovieEnddate(movie.getMovieEnddate());
 		dbMovie.setMovieAge(movie.getMovieAge());
 		dbMovie.setMovieGenre(movie.getMovieGenre());
-		dbMovie.setMovieImage(movie.getMovieImage());
+//		dbMovie.setMovieImage(movie.getMovieImage());
 		dbMovie.setActorList(movie.getActorList());
 		
 		return dbMovie;

@@ -15,22 +15,33 @@
 		}); */
 		
 		$("input[value=수정하기]").click(function() {
-			$("#requestForm1").attr("action", "${pageContext.request.contextPath}/manager/MovieUpdateForm");
+			$("#requestForm1").attr("action", "${pageContext.request.contextPath}/manager/movieUpdateForm");
 			$("#requestForm1").submit();
 		});
 		
 		$("input[value=수정하기]").click(function() {
-			$("#requestForm2").attr("action", "${pageContext.request.contextPath}/manager/FoodUpdateForm");
+			$("#requestForm2").attr("action", "${pageContext.request.contextPath}/manager/foodUpdateForm");
 			$("#requestForm2").submit();
 		});
 		
 		$("input[value=수정하기]").click(function() {
-			$("#requestForm3").attr("action", "${pageContext.request.contextPath}/manager/GiftUpdateForm");
+			$("#requestForm3").attr("action", "${pageContext.request.contextPath}/manager/giftUpdateForm");
 			$("#requestForm3").submit();
 		});
 		
 		$("input[value=삭제하기]").click(function() {
-			$("#requestForm").attr("action", "${pageContext.request.contextPath}/manager/productDelete");
+			$("#requestForm1").attr("action", "${pageContext.request.contextPath}/manager/movieDelete");
+			$("#requestForm1").submit();
+		});
+		
+		$("input[value=삭제하기]").click(function() {
+			$("#requestForm2").attr("action", "${pageContext.request.contextPath}/manager/foodDelete");
+			$("#requestForm2").submit();
+		});
+		
+		$("input[value=삭제하기]").click(function() {
+			$("#requestForm3").attr("action", "${pageContext.request.contextPath}/manager/giftDelete");
+			$("#requestForm4").submit();
 		});
 
 	}); // ready end 

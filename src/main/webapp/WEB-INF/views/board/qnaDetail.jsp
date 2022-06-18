@@ -53,13 +53,11 @@
 		<sec:authorize access="isAuthenticated()">
 			<sec:authentication property="principal" var="member"/>
 				<script type="text/javascript">
-					$(function() {
-	                    
-						if("${member.id}" != "${board.member.id}"){
-							alert("작성자 본인과 관리자만 볼 수 있습니다.");
-							location.href = "${pageContext.request.contextPath}/board/qna";
-						}
-					});
+					if("${member.id}" != "${board.member.id}"){
+						alert("작성자 본인과 관리자만 볼 수 있습니다.");
+						location.href = "${pageContext.request.contextPath}/board/qna";
+					}
+
 				</script>
 				<div class="container">
 					<h2>문의글 상세 화면</h2>
