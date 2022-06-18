@@ -36,7 +36,6 @@ public class SeatPerformance {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="seat_code", nullable = false)
-	@JsonIgnore
 	private Seat seat;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
