@@ -158,6 +158,9 @@ public class CinemaController {
 			model.addAttribute("row", row);
 			model.addAttribute("col", col);
 		}
+		
+		//
+		
 	
  	}
 	

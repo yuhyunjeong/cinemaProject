@@ -500,16 +500,16 @@
 	    const selectSeatListNormal = document.querySelectorAll('.peopleNum'); //인원체크
 	    let selectSeatListUlActive = '';
 	    let normalNumber = 0;
-	    let allNumber = 0; //모든 좌석 : 나중에 청소년, 노인 요금 받을 수도 있으니까 allNumber로 전체넘버 봐주기
+	    let allNumber = 0; //모든 좌석 : 나중에 청소년, 우대 요금 받을 수도 있으니까 allNumber로 전체넘버 봐주기
 	    let prevNumber = 0;
 	    let normalMoney = 0;
-	    let allMoney = 0; //총 금액 : 일반요금 + 나중에 청소년, 노인 요금 확대
+	    let allMoney = 0; //총 금액 : 일반요금 + 나중에 청소년, 우대 요금 확대
 	    const selectNumberNormal = document.querySelectorAll('.btn-check'); //일반요금 선택값이 .btn-check
 		//alert(selectNumberNormal)
 		
 	    //예약 관련
 	    const ticketPrice = document.querySelector('.ticket-price'); //티켓가격
-	    const seatForm = document.querySelector('.seatForm');
+	    const seatForm = document.querySelector('.seatForm'); //나중에 히든으로 값넘길때 필요
 	    const reserveButton = document.querySelector('.reserve-button'); //선택한 좌석 버튼
 	    const selectedSeat = document.querySelector('.selectedSeat');//선택한 좌석
 
@@ -533,11 +533,11 @@
 		   function initList(list, li) {
 			    li.addEventListener('click', function() {
 			        list.forEach(li => {
-			            li.classList.remove('select-seat-ul-active'); //
+			            li.classList.remove('.btn-check'); //사람명수?? 이부분잘보기!!l
 			        });
-			        li.classList.add('select-seat-ul-active');
+			        li.classList.add('.btn-check');
 			        selectSeatListUlActive = document.querySelectorAll(
-			            '.select-seat-ul-active'
+			        	'.btn-check'
 			        );
 			        console.log(selectSeatListUlActive);
 			        selectListUiFunction(selectSeatListUlActive);
@@ -591,6 +591,8 @@
 	            
 	            mapping(input, i, j); //3중포문 사용 안하려고
 	            div.append(input); //요소 마지막에 input을 추가...?
+	            		
+	            		
 	            
            		input.addEventListener('click', function(e) {
 	                console.log(e.target.value); //누르는 값
@@ -657,9 +659,17 @@
 	   					//console.log(result)
 	   					//alert(booked) 여기 booked에 booked=1인값 넣어주기..
 						$.each(result, function(index, item){
-							if (item.booked==1){
+							//alert(item.seat.seatCode)
+							//alert(item.seat.seatRow)
+							//alert(item.seat.seatCol)
+							//console.log(item.seat.seatCode)
+							//console.log(item.seat.seatRow)
+							//console.log(item.seat.seatCol)
+							if (item.booked){ 
 								bookedSeat = item.seatPerformanceCode;
-								//console.log(bookedSeat); //booked가 되어 있는 seat-per 의 seat코드
+								$("input[name=seats]").val("ss");
+								console.log(bookedSeat); //booked가 되어 있는 seat-per 의 seat코드
+								
 							} //이제 여기서 seat도 가져와서 seat-perform테이블이랑 조인해주면 됨..
 							//선택한 자리 예매예약창에 띄워주기
 						})
