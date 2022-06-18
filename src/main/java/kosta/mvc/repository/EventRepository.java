@@ -14,7 +14,7 @@ public interface EventRepository extends JpaRepository<Event, Long>, QuerydslPre
 	@Query("select e from Event e where e.eventBoard = :#{#paramEvent.eventBoard.bno} and e.member = :#{#paramEvent.member.id}")
 	Event duplicateCheck(@Param("paramEvent") Event event);
 	
-	@Query(value = "select * from (select * from event where event_bno = :bno order by dbms_random.value) where rownum = :num", nativeQuery=true)
+	@Query(value = "select * from (select * from event where event_bno = :bno order by dbms_random.value) where rownum <= :num", nativeQuery=true)
 	List<Event> lottery(@Param("bno") Long bno, @Param("num") Long num);
 	
 }

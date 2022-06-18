@@ -146,8 +146,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/eventDetail/{bno}")
-	public ModelAndView eventDetail(@PathVariable Long bno) {
+	public ModelAndView eventDetail(@PathVariable Long bno, HttpSession session) {
 		EventBoard board = eventBoardService.selectBy(bno);
+
 		return new ModelAndView("board/eventDetail", "board", board);
 	}
 	
@@ -162,12 +163,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/eventAttend")
-	public String eventAttend(Event event, @AuthenticationPrincipal Member sessionMember, EventBoard eventBoard) {
+	public String eventAttend(Event event, @AuthenticationPrincipal Member sessionMember, EventBoard eventBoard, HttpSession session) {
 
 		event.setMember(sessionMember);
 		event.setEventBoard(eventBoard);
-		eventService.eventAttend(event);
-		System.out.println(event.getEventBoard().getBno());
+		String result = eventService.eventAttend(event);
+		session.setAttribute("result", result);
+		System.out.println(result);
 		return "redirect:/board/eventDetail/"+event.getEventBoard().getBno();
 	}
 	
