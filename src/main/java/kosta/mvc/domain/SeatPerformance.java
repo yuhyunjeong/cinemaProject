@@ -1,5 +1,6 @@
 package kosta.mvc.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class SeatPerformance {
 	@SequenceGenerator(name="seatperformance_pk", allocationSize = 1, sequenceName = "seatperformance_pk")
 	private Long seatPerformanceCode;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="seat_code", nullable = false)
 	@JsonIgnore
 	private Seat seat;

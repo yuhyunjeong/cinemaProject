@@ -22,10 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.mvc.domain.Food;
 import kosta.mvc.domain.Movie;
-import kosta.mvc.domain.Orders;
 import kosta.mvc.domain.Screen;
-import kosta.mvc.domain.SeatPerformance;
 import kosta.mvc.domain.Time;
+import kosta.mvc.dto.SeatPerformanceDTO;
 import kosta.mvc.service.FoodService;
 import kosta.mvc.service.MovieService;
 import kosta.mvc.service.SeatPerformanceService;
@@ -169,13 +168,13 @@ public class CinemaController {
 	 */
 	  @RequestMapping("/chooseSeat")
 	  @ResponseBody
-	  public List<SeatPerformance> chooseSeat(Model model, Time time, @RequestParam("tCode") Long tCode){ //timeCode를 가지고 가서 
-		  
+	  public List<SeatPerformanceDTO> chooseSeat(Model model, @RequestParam("tCode") Long tCode){ //timeCode를 가지고 가서 
+		  Time time = new Time();
 		  time.setTimeCode(tCode);
-		  List<SeatPerformance> seatPerList = seatPerService.selectBy(time); 
+		  List<SeatPerformanceDTO> seatPerList = seatPerService.selectBy(time); 
 		  
-		  System.out.println(seatPerList);
-		  
+		  System.out.println("CinemaController의 chooseSeat() 호출....");
+		  System.out.println(seatPerList.get(0).getSeat()); //kosta.mvc.domain.Seat@2c82cc8e
 		  return seatPerList;
 		  //System.out.println(seatPerList); 
 		  //seatPerformance테이블의 isBooked가 1인(예약됨)seatCode를 가져오고 싶음. 

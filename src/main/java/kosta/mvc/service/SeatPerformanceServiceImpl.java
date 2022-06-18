@@ -6,9 +6,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import kosta.mvc.domain.Seat;
 import kosta.mvc.domain.SeatPerformance;
 import kosta.mvc.domain.Time;
+import kosta.mvc.dto.SeatPerformanceDTO;
 import kosta.mvc.repository.SeatPerformanceRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -21,10 +21,10 @@ public class SeatPerformanceServiceImpl implements SeatPerformanceService {
 	  private final SeatPerformanceRepository seatPerformRepo;
 	  
 	  @Override 
-	  public List<SeatPerformance> selectBy(Time time) { 
+	  public List<SeatPerformanceDTO> selectBy(Time time) { 
 			
-		  List<SeatPerformance> result = seatPerformRepo.findByTimeTimeCodeEquals(time.getTimeCode());
-		 
+		  List<SeatPerformanceDTO> result = seatPerformRepo.findByTimeTimeCodeEquals(time.getTimeCode());
+		  
 		  return result; 
 	  }
 	  

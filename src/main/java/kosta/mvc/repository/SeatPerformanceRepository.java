@@ -10,12 +10,15 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import kosta.mvc.domain.Seat;
 import kosta.mvc.domain.SeatPerformance;
 import kosta.mvc.domain.Time;
+import kosta.mvc.dto.SeatPerformanceDTO;
 
 
 public interface SeatPerformanceRepository extends JpaRepository<SeatPerformance, Long>, QuerydslPredicateExecutor<SeatPerformance> {
 	
-	//@Query("select s from seat_performance s where time_code=?1 and is_booked=1")
-	List<SeatPerformance> findByTimeTimeCodeEquals(long timeCode);
+	/*@Query(value = "select seat_performance_code, seat_code, time_code, is_booked"
+			+ " from seat_performance where time_code=?1 and is_booked=1",
+			nativeQuery = true)*/
+	List<SeatPerformanceDTO> findByTimeTimeCodeEquals(long timeCode);
 	
 	/*
 	 * @Query("select t.timeCode, sp.seatcode, sp.isBooked , s.seatRow, s.seatCol\r\n"

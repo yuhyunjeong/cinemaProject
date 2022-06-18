@@ -5,13 +5,14 @@ import java.util.List;
 import kosta.mvc.domain.Seat;
 import kosta.mvc.domain.SeatPerformance;
 import kosta.mvc.domain.Time;
+import kosta.mvc.dto.SeatPerformanceDTO;
 
 public interface SeatPerformanceService {
 	
 	/**
 	 * 타임코드로 검색
 	 * */
-	List<SeatPerformance> selectBy(Time time);
+	List<SeatPerformanceDTO> selectBy(Time time);
 	
 	/**
 	 * 전체검색

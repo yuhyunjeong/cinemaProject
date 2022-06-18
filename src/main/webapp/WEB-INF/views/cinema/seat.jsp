@@ -640,7 +640,9 @@
 	        }
 	        
 		    //console.log(selectedSeatsArray.length);
-	        console.log(selectedSeatsArray);
+		    
+	        //console.log(selectedSeatsArray);
+	        
 	        //좌석번호의 innerHTML 설정
 	        //selectedSeats.innerHTML = selectedSeatsArray; //selectedSeats -> 출력할때 selectedSeatsArray로..?
 	        //reserveNumber.innerHTML = selectedSeatsArray.length; //ncaught TypeError: Cannot set properties of null (setting 'innerHTML') at chooseSeat (seat:531:34) at seat:562:2
@@ -662,17 +664,17 @@
 	   				success: function(result){ //값들 꺼내와야함..
 	   					//console.log(result)
 	   					//alert(booked) 여기 booked에 booked=1인값 넣어주기..
-						$.each(result, function(index, item){
-							//alert(item.seat.seatCode)
-							//alert(item.seat.seatRow)
-							//alert(item.seat.seatCol)
-							//console.log(item.seat.seatCode)
-							//console.log(item.seat.seatRow)
-							//console.log(item.seat.seatCol)
-							if (item.booked){ 
-								bookedSeat = item.seatPerformanceCode;
-								$("input[name=seats]").val("ss");
-								console.log(bookedSeat); //booked가 되어 있는 seat-per 의 seat코드
+	   					
+						$.each(result, function(index, item){ //item = seatPerformance
+							
+							if (item.booked){
+								console.log(item.seatPerformanceCode) //예약됨
+								console.log(item.seat.seatCol) //undefined
+								console.log(item.seat.seatRow)
+								//$("input[value=]").css("background-color", "#BA2869");
+								//$("input[value=]").attr("disabled",true);
+								//$(bookedSeat).val("ss");
+								//console.log(bookedSeat); //booked가 되어 있는 seat-per 의 seat코드
 								
 							} //이제 여기서 seat도 가져와서 seat-perform테이블이랑 조인해주면 됨..
 							//선택한 자리 예매예약창에 띄워주기
