@@ -45,8 +45,9 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public void insert(Movie movie, MultipartFile file) throws Exception {
-		
+
 		String path = System.getProperty("user.dir") + "/src/main/resources/static/img/movie";
+		System.out.println(path);
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
 		File saveFile = new File(path, fileName);
@@ -74,10 +75,12 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public Movie update(Movie movie) {
 		
-		Movie dbMovie = movieRepo.findById(movie.getMovieCode()).orElse(null);
-		if(dbMovie == null) {
-			throw new RuntimeException("영화코드 오류로 수정할 수 없습니다.");
-		}
+//		Movie dbMovie = movieRepo.findById(movie.getMovieCode()).orElse(null);
+//		if(dbMovie == null) {
+//			throw new RuntimeException("영화코드 오류로 수정할 수 없습니다.");
+//		}
+//		
+		Movie dbMovie = movieRepo.getById(movie.getMovieCode());
 		
 		// 수정완료
 		dbMovie.setMovieName(movie.getMovieName());
@@ -87,7 +90,7 @@ public class MovieServiceImpl implements MovieService {
 		dbMovie.setMovieEnddate(movie.getMovieEnddate());
 		dbMovie.setMovieAge(movie.getMovieAge());
 		dbMovie.setMovieGenre(movie.getMovieGenre());
-		dbMovie.setMovieImage(movie.getMovieImage());
+//		dbMovie.setMovieImage(movie.getMovieImage());
 		dbMovie.setActorList(movie.getActorList());
 		
 		return dbMovie;
@@ -106,92 +109,85 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<Movie> selectMovie(String optionsRadios, String flexCheckDefault) {
-		//QMovie movie = QMovie.movie;
-		//BooleanBuilder builder = new BooleanBuilder();
-		//Tuple tuple = 
+	public List<Movie> selectMovie(String optionsRadios
+			//, String flexCheckDefault
+			) {
 		
-		//LocalDate now = LocalDate.now();
-		
-		//builder.and(movie.movieStartdate.lt(now))
-		
-		if(!(flexCheckDefault==null)) {
+//		if(!(flexCheckDefault==null)) {
+//			
+//			if(optionsRadios.equals("option1")) {
+//				
+//				List<Movie> movieFind = movieRepo.selectByDate();
+//				
+//				Date now = new Date();	
+//				List<Movie> list = new ArrayList<Movie>();
+//				for(Movie m : movieFind) {
+//								
+//					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
+//						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
+//									m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
+//									m.getGift(), m.getTimeList(), m.getMoviePath());
+//						list.add(mo);
+//					}	
+//					
+//				}
+//				
+//				return list;
+//				
+//			}else if(optionsRadios.equals("option2")){
+//				
+//				List<String> movieList = movieRepo.selectByCount();
+//				System.out.println(movieList);			
+//				
+//				List<Movie> movieFind = movieRepo.findAllById(movieList);
+//				System.out.println(movieFind);  
+//				
+//				Date now = new Date();	
+//				List<Movie> list = new ArrayList<Movie>();
+//				for(Movie m : movieFind) {
+//								
+//					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
+//						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
+//								m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
+//								m.getGift(), m.getTimeList(), m.getMoviePath());
+//						list.add(mo);
+//					}	
+//					
+//				}
+//				
+//				return list;
+//				
+//			}else if(optionsRadios.equals("option3")){
+//		
+//				List<Movie> movieFind = movieRepo.selectByStar();
+//				System.out.println(movieFind);  
+//				
+//				Date now = new Date();	
+//				List<Movie> list = new ArrayList<Movie>();
+//				for(Movie m : movieFind) {
+//								
+//					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
+//						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
+//								m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
+//								m.getGift(), m.getTimeList(), m.getMoviePath());
+//						list.add(mo);
+//					}	
+//					
+//				}
+//				
+//				return list;
+//			}
+//		
 			
-			if(optionsRadios.equals("option1")) {
-				
-				List<Movie> movieFind = movieRepo.selectByDate();
-				
-				Date now = new Date();	
-				List<Movie> list = new ArrayList<Movie>();
-				for(Movie m : movieFind) {
-								
-					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
-						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
-									m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
-									m.getGift(), m.getTimeList(), m.getMoviePath());
-						list.add(mo);
-					}	
-					
-				}
-				
-				return list;
-				
-			}else if(optionsRadios.equals("option2")){
-				
-				List<String> movieList = movieRepo.selectByCount();
-				System.out.println(movieList);			
-				
-				List<Movie> movieFind = movieRepo.findAllById(movieList);
-				System.out.println(movieFind);  
-				
-				Date now = new Date();	
-				List<Movie> list = new ArrayList<Movie>();
-				for(Movie m : movieFind) {
-								
-					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
-						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
-								m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
-								m.getGift(), m.getTimeList(), m.getMoviePath());
-						list.add(mo);
-					}	
-					
-				}
-				
-				return list;
-				
-			}else if(optionsRadios.equals("option3")){
-		
-				List<Movie> movieFind = movieRepo.selectByStar();
-				System.out.println(movieFind);  
-				
-				Date now = new Date();	
-				List<Movie> list = new ArrayList<Movie>();
-				for(Movie m : movieFind) {
-								
-					if(m.getMovieEnddate().after(now) && m.getMovieStartdate().before(now)) {
-						Movie mo = new Movie(m.getMovieCode(), m.getMovieName(), m.getMovieSummary(), m.getMovieRunningtime(), m.getMovieStartdate(), m.getMovieEnddate(), 
-								m.getMovieGenre(), m.getMovieAge(), m.getMovieImage(), m.getActorList(), 
-								m.getGift(), m.getTimeList(), m.getMoviePath());
-						list.add(mo);
-					}	
-					
-				}
-				
-				return list;
-			}
-		
-			
-		}else {
+		//}else {
 			if(optionsRadios.equals("option1")) {
 				
 				return movieRepo.selectByDate();
 				
 			}else if(optionsRadios.equals("option2")){
 				
-				List<String> movieList = movieRepo.selectByCount();
-				System.out.println(movieList);			
 				
-				List<Movie> movieFind = movieRepo.findAllById(movieList);
+				List<Movie> movieFind = movieRepo.selectByCount();
 				System.out.println(movieFind);  
 				
 				return movieFind;
@@ -204,7 +200,7 @@ public class MovieServiceImpl implements MovieService {
 				return movieFind;
 			}
 			
-		}
+		//}
 		
 		
 		

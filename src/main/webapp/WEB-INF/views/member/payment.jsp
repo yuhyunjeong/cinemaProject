@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <style type="text/css">
 	h1 {
 		text-align: center;
@@ -16,6 +18,67 @@
 		margin: 30px;
 	}
 </style>
+<script type="text/javascript">
+
+	$(function() {
+		$("#iamportPayment").click(function() {
+			requestpay(); 
+		});
+		
+		function requestpay(data) {
+			
+			uid = new Date().getTime();
+			
+			var IMP = window.IMP; // 생략가능 
+			IMP.init("imp03894740"); // 가맹정 식별코드
+			
+			// IMP.request_pay(param, callback) 결제창 호출
+		      IMP.request_pay({ // param
+		          pg: "html5_inicis",
+		          pay_method: "card",
+		          /* merchant_uid: "ORD20180131-0000011",  */
+		          merchant_uid: "marchant" + uid,
+		          name: "영화",
+		          amount: 1000,
+		          buyer_email: "gildong@gmail.com",
+		          buyer_name: "홍길동",
+		          buyer_tel: "010-4242-4242",
+		          buyer_addr: "서울특별시 강남구 신사동",
+		          buyer_postcode: "01181"
+		      }, function (rsp) { // callback
+		    	  
+		    	  console.log("click")
+		    	  console.log(rsp); 
+		          if (rsp.success) { 
+		        	console.log(rsp); 
+		        	
+		        	var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + 1000/* ${paymentPrice} */;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+			        /* // 결제 성공 시 로직,
+		              alert("완료 -> imp_uid : " + rsp.imp_uid + " / merchant_uid(orderKey) : " + rsp.merchant_uid); */
+       
+		          } else {
+		              
+		              // 결제 실패 시 로직,
+		              alert("실패 -> 코드(" + rsp.error_code + ") / 메세지 (" + rsp.error_msg + ")");	   
+		              
+	/* 	              $("#payForm #key").val("order");
+					  $("#payForm #methodName").val("orders");
+					  $("#payForm #orderCode").val(uid);
+				      $("#payForm").submit();      */
+		          }
+		  	    alert(msg);
+		      });
+		    }        
+		
+	}) // ready end 
+	
+
+</script>
 </head>
 <body>
 
@@ -39,18 +102,48 @@
 			      <div class="accordion-body">
 			      	<h3><strong>영화</strong></h3><p><p>
 					<div class="mr-5"style="display: flex; flex-flow: row; ">
-						<div style="display: inline-block">
+						<div style="display: inline-block" id="selectedProduct"> 
+							
+							<%-- ${movieOrderline.seatPerformance.time.movie.movieName} 영화이름<br>
+							${movieOrderline.seatPerformance.time.movie.movieAge} 관람연령<br> --%>
+							영화이름 : ${movieName}<br>
+							일시 : ${timeStart} <p>
+							좌석번호 : <!-- G6, G7   -->
+							<!-- 관람연령 : <br> -->
+							
+							<!-- 예매인원 <br>
+							
+							 
 					        해리포터<br>
-					        2D<br>
 					        12세 관람가<br>
-					        성인 2명<br>
+					        성인 2명<br> -->
 						</div>
 						<div style="display: inline-block">
 							<!-- <img alt="범죄도시2" src=""> -->
-							일시 : 2022년 6월 3일 <p>
-							좌석번호 : G6, G7 
+					<%-- 		일시 : ${timeStart} <p>
+							좌석번호 : G6, G7   --%>
 						</div>
 					</div>
+					
+					<p><p>
+			      	<h3><strong>먹거리</strong></h3><p><p>
+					<div class="mr-5"style="display: flex; flex-flow: row; ">
+						<div style="display: inline-block">
+							${foodOrderline.food.foodName} 먹거리 이름 <br>  
+							${foodOrderline.food.foodPrice} 먹거리 가격 <br>  
+					     <!--    달콤콤보<br>
+					        6000원<br> -->
+						</div>
+					</div>					
+					
+					<p><p>
+			      	<h3><strong>사은품</strong></h3><p><p>
+					<div class="mr-5"style="display: flex; flex-flow: row; ">
+						<div style="display: inline-block">
+							${movieOrderline.isWithGift} 사은품 선택<br> 
+						</div>
+					</div>	
+					
 			      </div>
 			    </div>
 			  </div>
@@ -89,6 +182,10 @@
 				    <h6 class="card-subtitle text-muted">24000원</h6>
 				  </div><p>
 				  <div class="card-body">
+				    <h5 class="card-title">사용하실 적립금</h5>
+				    <h6 class="card-subtitle text-muted">2000P</h6>
+				  </div><p>
+				  <div class="card-body">
 				    <h5 class="card-title">예상 적립금</h5>
 				    <h6 class="card-subtitle text-muted">3000P</h6>
 				  </div><p>
@@ -98,7 +195,7 @@
 				    	<h6 class="card-subtitle text-muted">24000원</h6>
 				    </div>
 				    <div style="display: inline-block">
-				    	<button type="button" class="btn btn-primary">결제하기>></button>
+				    	<input type="button" class="btn btn-primary" id="iamportPayment" value="결제하기>>"></button>
 				    </div>
 				  </div>
 				</div>

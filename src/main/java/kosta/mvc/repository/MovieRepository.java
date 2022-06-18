@@ -20,25 +20,19 @@ public interface MovieRepository extends JpaRepository<Movie, String>, QuerydslP
 	
 	
 	/**
-	 * 예매율순
+	 * 인기순 or 관람객순
 	 * */
 	//@Query("select count(m) from Movie m where m.movieCode=?1 and m.timeDate<sysdate group by m.isBooked Having m.isBooked=1")
 	//int selectByCount(String movieCode);
-	@Query(value = "select "
-			+ "m.movie_code "
-			+ "from movie m "
-			+ "inner join (select * from seat_performance s "
-			+ "inner join time t "
-			+ "on s.time_code = t.time_code "
-			+ "where s.is_booked=1) j "
-			+ "on m.movie_code = j.movie_code "
-			+ "group by m.movie_code "
-			+ "order by count(*) desc"
+	@Query(value = "select * from movie m "
+			+ "inner join (select movie_code, count(*) total "
+			+ "from seat_performance s "
+			+ "inner join time t on s.time_code = t.time_code "
+			+ "where s.is_booked=1 group by movie_code) j "
+			+ "on m.movie_code = j.movie_code  "
+			+ "order by total desc"
 			, nativeQuery=true)
-	List<String> selectByCount();
-	
-	
-	
+	List<Movie> selectByCount();	
 	
 	/**
 	 * 별점순

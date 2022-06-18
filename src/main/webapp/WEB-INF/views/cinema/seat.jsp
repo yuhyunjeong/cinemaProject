@@ -457,11 +457,15 @@
 	<p><p><p><p><p><p><p><p><p><p>
 <script>
 
+	var temp = [];
 	
 	/*인원선택시 인원수 예약창에 보여주기*/
 	$(function(){
    		$(".btn-check").on("click", function(){
    			var peopleNum = this.value;
+   			
+   			temp.push(peopleNum);
+   			
    			  $.ajax({
    				type:"post",
    				url:"/cinema/people",
@@ -719,9 +723,47 @@
 	function movepage(page) {
 		let hi = "${pageContext.request.contextPath}/member/payment";
 	    window.document.location.href=hi;
+	    
+	    /* console.log("${time.timeDate}");
+	    console.log("${time.timeStart}"); */ 
+	   	console.log("${peopleNum}");
+	    console.log(typeof("${time.timeDate}"));
+	    console.log(typeof("${time.timeStart}")); 
+	    console.log("${movie.movieName}");   
+	    console.log("${time.screen.screenName}"); 
+	    
+	    temp.push("${time.timeDate}");
+	    temp.push("${time.timeStart}");
+	    temp.push("${movie.movieName}");   
+	    temp.push("${time.screen.screenName}");
+	    console.log(temp); 
+	    /* let hi = "${pageContext.request.contextPath}/member/payment";
+	    window.document.location.href=hi;  */
+	    
+
+/* 		document.f.timeDate.value= temp[0].toString;
+		document.f.timeStart.value= temp[1].toString; */
+/* 		document.f.timeDate.value= String(temp[0]);
+		document.f.timeStart.value= String(temp[1]); */
+		
+		document.f.peopleNum.value= temp[0];
+		document.f.timeDate.value= temp[1];
+		document.f.timeStart.value= temp[2];
+		document.f.movieName.value= temp[3];
+		document.f.screenName.value= temp[4];
+
+		document.f.submit();  
 	}
      
 </script>
+
+	<form action="${pageContext.request.contextPath}/member/payment" name="f" method="post">
+		<input type="hidden" name="peopleNum" value="">
+		<input type="hidden" name="timeDate" value="">
+		<input type="hidden" name="timeStart" value="">
+		<input type="hidden" name="movieName" value="">
+		<input type="hidden" name="screenName" value="">
+	</form>
 
 </body>
 </html>
