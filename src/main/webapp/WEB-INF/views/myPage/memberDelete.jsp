@@ -88,6 +88,14 @@
 								id="password" placeholder="비밀번호를 입력해주세요.">
 
 						</div>
+						
+						<div>
+							<c:if test="${msg==false}">
+  								<div style="color:orange;"><strong>비밀번호가 맞지 않습니다. 다시 입력해주세요.</strong></div>
+  							</c:if>
+
+						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputName1" class="form-label mt-4">이름</label>
 							<input type="text" class="form-control" name="name" id="name"
@@ -107,12 +115,7 @@
 						<br>
 					</form>
 
-					<div>
-						<c:if test="${msg==false}">
-  							<div style="color:orange;">비밀번호가 맞지 않습니다.</div>
-  						</c:if>
-
-					</div>
+				
 
 				</div>
 

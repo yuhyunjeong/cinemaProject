@@ -176,11 +176,13 @@ textarea{
 					</c:choose>						
 				
 				</div>
-								
+				<!-- 			
 				<br>
+				
 				<div class="score">
 					<strong class="percent"> 예매율&nbsp; </strong> <span> </span>
 				</div>
+				 -->
 				<hr>
 				<div class="spec">
 					<dl>
@@ -201,8 +203,9 @@ textarea{
 					</dl>
 				</div>
 				<span class="like">
-					<button type="button" class="btn btn-secondary" >예매하러 가기</button>
-					<button type="button" class="btn btn-secondary" >후기 작성</button>
+					<button type="button" class="btn btn-secondary" 
+					onclick="location.href='${pageContext.request.contextPath}/cinema/ticketing'">예매하러 가기</button>
+					
 				</span>
 				<hr>
 				<div class="mSummary">${movie.movieSummary}</div>
@@ -216,8 +219,8 @@ textarea{
 				aria-valuemax="100" style="width: 100%;"></div>
 		</div>
 		<br>
-		<div class="row">
-			<h1>후기 목록</h1>
+		<div class="row" style="text-align: center;">
+			<h1>Review</h1>
 
 			<table class="table table-hover" style="width: 1000px; text-align: center; margin: 0 auto;">
 				<thead>

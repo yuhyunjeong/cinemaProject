@@ -208,13 +208,14 @@ $(function() {
 		<div class="row" style="padding-top: 30px;">
 			<div class="col" style="padding-left: 60px;">
 				<h1>무비 차트</h1>
-
+				<!-- 
 				<div class="form-check">
 
 					<input class="form-check-input" type="checkbox" value="check"
 						name="check" id="flexCheckDefault"> <label class="form-check-label"
 						for="flexCheckDefault"> 현재상영작만 보기 </label>
 				</div>
+				 -->
 			</div>
 			<div class="col">
 				<fieldset class="form-group"
@@ -247,7 +248,8 @@ $(function() {
 		<div class="row">
 			<div id='rrr' class='row row-cols-1 row-cols-md-4 g-4'></div>
 		</div>
-
+		
+		<!-- 
 		<div class="row m-3">
 			<ul class="pagination">
 				<c:set var="doneLoop" value="false" />
@@ -262,7 +264,7 @@ $(function() {
 						<c:set var="doneLoop" value="true" />
 					</c:if>
 					<c:if test="${not doneLoop}">
-						<!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
+					
 						<li class="${i==nowPage?'page-item active':active}">
 						<a class="page-link"
 							href="${pageContext.request.contextPath}/cinema/movie?nowPage=${i}">${i}</a>
@@ -276,6 +278,8 @@ $(function() {
 					</li>
 				</ul>
 		</div>
+		
+		-->
 	</div>
 
 </body>
