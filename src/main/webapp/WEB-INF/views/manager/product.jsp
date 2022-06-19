@@ -101,8 +101,8 @@
 						$.each(result.list, function(index, item) { // item은 gift 
 							str += "<tr class='table-active'>";
 							str += "<th scope='row'>" + item.giftCode + "</th>";
-							/* str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.giftCode}'>" + item.giftName + "</td>"; */
-							str += "<td><a href='#' onclick=movepage3('" + item.giftCode + "')>" + item.movieName + "</a></td>"
+							str += "<td><a href='${pageContext.request.contextPath}/manager/productDetail/${item.giftCode}'>" + item.giftName + "</td>"; 
+							/* str += "<td><a href='#' onclick=movepage3('" + item.giftCode + "')>" + item.movieName + "</a></td>" */
 							str += "</tr>"
 						})   
 					}
@@ -152,10 +152,10 @@
 </script>
 </head>
 <body>
-	<h1>상품관리 page입니다.</h1>
 
  	<div class="form-group" style="width: 1000px">
-		<label for="exampleSelect1" class="form-label mt-4 col-lg-12">상품 종류</label> 
+ 		<h2 style="text-align:center;">상품관리 페이지입니다.</h2>
+		<label for="exampleSelect1" class="form-label mt-2 col-lg-12">상품 종류</label> 
 		<select class="form-select" id="exampleSelect1" name="productSelect" style="width: 150px; height:50px">
 			<option value="movie" selected="selected">영화</option>
 			<option value="food">먹거리</option>
@@ -168,7 +168,7 @@
 	
  <div class="col-lg-12 col-sm-12 text-lg-end" style="width:1000px">
   	<div class="text-lg-end" id="insert">
-  		<input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기"/> 
+  		<input type="button" class="btn btn-secondary" onclick="location.href='${contextPath.reqeust.contextPath}/manager/productWrite'" value="등록하기" style="width:1000px; maring:0 auto; text-align: right;"/> 
   	</div>
 </div><p><p> 
 
@@ -214,11 +214,11 @@
 	    </li>
 	    <li class="page-item">
 	      <a class="page-link" href="#">5</a>
-	    </li> --%>
+	    </li> 
 	    <li class="page-item">
 	      <a class="page-link" href="#">&raquo;</a>
 	    </li>
-	  </ul>
+	  </ul> --%>
 	</nav>
 </div>
 

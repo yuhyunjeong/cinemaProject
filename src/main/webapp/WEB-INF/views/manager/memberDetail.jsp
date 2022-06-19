@@ -18,7 +18,6 @@
       <th scope="col">회원 등급</th>
       <th scope="col">가입 일시</th>
       <th scope="col">마지막 예매 일시</th>
-      <th scope="col">휴면회원 여부</th>
     </tr>
   </thead>
   <tbody>
@@ -52,9 +51,6 @@
   					<c:set value="${orderDate}" var="orderDate"/>
   				</c:if>
  		</c:forEach>
-      </td>
-      <td>
-      	ㅇㅇㅇ
       </td>
     </tr>
   </tbody>

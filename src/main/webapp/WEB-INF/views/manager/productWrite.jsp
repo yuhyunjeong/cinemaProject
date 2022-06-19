@@ -12,20 +12,26 @@
 		console.log('${write}');
 	});
 </script>
+<style type="text/css">
+	
+</style>
 </head>
 <body>
-	<h1>상품 등록 페이지 입니다.</h1>
+
 	
 		<c:choose>
 			<%-- <c:when test="${write}=='movie'}"> --%>
 			<c:when test="${write eq 'movie'}">
-			<h1>영화 등록 페이지 입니다.</h1>
+			<div class="height">
+			<p><p>
+				<h2>영화 등록 페이지 입니다.</h2>
+			</div>
 				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert" enctype="multipart/form-data">	
 					<fieldset>
 						<input type='hidden' name='select' value='movie'>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">영화코드</label>
-							<input class="form-control" type="text" name="movieCode" placeholder="영화제목을 입력해주세요">							    
+							<input class="form-control" type="text" name="movieCode" placeholder="영화코드를 입력해주세요">							    
 						</div>
 						<div class="form-group" style="width: 1000px">
 							<label class="form-label mt-4" for="form-label">영화제목</label>
@@ -76,6 +82,7 @@
 			</c:when>
 			
 			<c:when test="${write eq 'food'}">
+			<p><p>
 			<h1>먹거리 등록 페이지 입니다.</h1>
 				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert" enctype="multipart/form-data">	
 					<fieldset>
@@ -109,6 +116,7 @@
 			</c:when>
 			
 			<c:when test="${write eq 'gift'}">
+			<p><p>
 			<h1>사은품 등록 페이지 입니다.</h1>
 				<form name="writeForm" method="post" action="${pageContext.request.contextPath}/manager/productInsert">	
 					<fieldset>
