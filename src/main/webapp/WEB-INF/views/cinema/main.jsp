@@ -252,9 +252,36 @@
 				}
 			});
 		}
+		
+		function noticeMainList() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/board/noticeMainList",
+				type: "post", 
+				dataType: "json", 
+				data:{
+					
+				}, 
+				success: function(nList) { 
+					let str = "";
+					$.each(nList, function(index, item) {
+						if(index < 5){
+							str += `<a href='${pageContext.request.contextPath}/board/noticeDetail/${"${item.bno}"}'>${"${item.title}"}</a><br>`
+						}
+					});
+					$("#notice_list").empty();
+					$("#notice_list").html(str);
+				},
+					
+					
+				error: function(err) {
+					
+				}
+			});
+		}
 
 		select();
 		eventMainList();
+		noticeMainList();
 		
 	});
 	
@@ -328,7 +355,7 @@
 				<div class="notice_right">
 					<a href="#">전체보기</a>
 				</div>
-				<div class="notice_list">리스트</div>
+				<div id="notice_list">리스트</div>
 			</div>
 		</div>
 	</div>

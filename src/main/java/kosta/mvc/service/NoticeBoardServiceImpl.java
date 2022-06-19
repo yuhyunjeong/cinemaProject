@@ -17,7 +17,7 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	private final NoticeBoardRepository noticeBoardRepository;
 	@Override
 	public List<NoticeBoard> selectAll() {
-		return noticeBoardRepository.findAll();
+		return noticeBoardRepository.findAllByOrderByBnoDesc();
 	}
 	@Override
 	public NoticeBoard selectBy(Long bno) {

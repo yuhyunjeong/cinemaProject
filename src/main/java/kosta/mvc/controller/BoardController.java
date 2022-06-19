@@ -86,6 +86,13 @@ public class BoardController {
 		NoticeBoard board = noticeBoardService.update(noticeBoard);
 		return new ModelAndView("board/noticeDetail", "board", board); 
 	}
+	
+	@ResponseBody
+	@RequestMapping("/noticeMainList")
+	public List<NoticeBoard> noticeMainList(){
+		List<NoticeBoard> nList = noticeBoardService.selectAll();
+		return nList;
+	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/qna")

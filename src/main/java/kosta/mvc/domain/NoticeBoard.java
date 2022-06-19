@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +38,7 @@ public class NoticeBoard {
 	private Long bno; //글번호
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "id")
 	private Member member; //작성자	
 
