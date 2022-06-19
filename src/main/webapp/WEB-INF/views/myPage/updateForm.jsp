@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -24,8 +25,24 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <body>
-<div class="col-sm-6, container" style="text-align: center;">
 
+<sec:authorize access="isAuthenticated()">
+		<sec:authentication var="sessionMember" property="principal" />
+		<script type="text/javascript">
+		
+		
+						
+				if("${member.id}"!="${sessionMember.id}"){
+				
+					alert('본인만 접속할 수 있습니다.');
+					location.href="${pageContext.request.contextPath}/";
+				
+				}			
+			
+		</script>
+
+<div class="col-sm-6, container" style="text-align: center;">
+	<h1>My Page</h1>
 	<br>
 	
 	<ul class="nav nav-pills" style="width: 400px; margin: auto;">
@@ -47,7 +64,7 @@
 			action="${pageContext.request.contextPath}/mypage/update" onSubmit='return checkValid()'>
 			
 			<div class="card border-secondary mb-3" style="max-width: 40rem;"display:inline-block;>
-				<div class="card-header">회원정보 수정 폼</div>
+				<div class="card-header">회원정보 수정</div>
 				<div class="card-body">
 					<h4 class="card-title">수정해주세요.</h4>
 					<p class="card-text">아이디, 생년월일은 수정 불가</p>
@@ -169,6 +186,17 @@
 			
 		}
 	</script>
-
+</sec:authorize>
+	<sec:authorize access="isAnonymous()">
+		<script type="text/javascript">
+			$(function(){			
+					
+				alert('로그인 후 접속할 수 있습니다.');
+				location.href="${pageContext.request.contextPath}/";
+			
+			})
+		</script>
+	
+	</sec:authorize>
 </body>
 </html>

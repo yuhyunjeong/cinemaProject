@@ -207,7 +207,7 @@ $(function() {
 
 		<div class="row" style="padding-top: 30px;">
 			<div class="col" style="padding-left: 60px;">
-				<h1>무비 차트</h1>
+				<h1>Movie</h1>
 				<!-- 
 				<div class="form-check">
 

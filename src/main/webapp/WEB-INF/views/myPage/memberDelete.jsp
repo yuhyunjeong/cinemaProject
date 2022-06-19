@@ -38,7 +38,7 @@
 			
 		</script>
 		<div class="col-sm-6, container" style="text-align: center;">
-			
+			<h1>My Page</h1>
 			<br>
 	
 		<ul class="nav nav-pills" style="width: 400px; margin: auto;">
@@ -49,9 +49,9 @@
 				class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
 				href="#" role="button" aria-haspopup="true" aria-expanded="false">회원정보</a>
 				<div class="dropdown-menu" style="">
-					<a class="dropdown-item" href="#">수정</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/updateForm/${member.id}">수정</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/memberDelete/${member.id}">탈퇴</a>
+					<a class="dropdown-item" href="#">탈퇴</a>
 				</div></li>
 		</ul>
 		<br>
@@ -99,7 +99,7 @@
 						<div class="form-group">
 							<label for="exampleInputName1" class="form-label mt-4">이름</label>
 							<input type="text" class="form-control" name="name" id="name"
-								value="${member.name}">
+								value="${member.name}" readonly="readonly">
 
 						</div>
 						<br>

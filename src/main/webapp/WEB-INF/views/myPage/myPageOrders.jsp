@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -23,9 +23,22 @@
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <body>
-
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication var="sessionMember" property="principal" />
+		<script type="text/javascript">
+		
+		
+						
+				if("${member.id}"!="${sessionMember.id}"){
+				
+					alert('본인만 접속할 수 있습니다.');
+					location.href="${pageContext.request.contextPath}/";
+				
+				}			
+			
+		</script>
 	<div class="col-sm-6, container" style="text-align: center;">
-	
+			<h1>My Page</h1>
 			<br>
 			
 			<ul class="nav nav-pills" style="width: 400px; margin: auto;">
@@ -102,7 +115,18 @@
 	  </tbody>
 	</table>
 	</div>
-
+	</sec:authorize>
+	<sec:authorize access="isAnonymous()">
+		<script type="text/javascript">
+			$(function(){			
+					
+				alert('로그인 후 접속할 수 있습니다.');
+				location.href="${pageContext.request.contextPath}/";
+			
+			})
+		</script>
+	
+	</sec:authorize>
 
 </body>
 </html>
