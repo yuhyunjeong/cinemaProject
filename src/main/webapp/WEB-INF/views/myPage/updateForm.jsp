@@ -67,11 +67,11 @@
 				<div class="card-header">회원정보 수정</div>
 				<div class="card-body">
 					<h4 class="card-title">수정해주세요.</h4>
-					<p class="card-text">아이디, 생년월일은 수정 불가</p>
+					<p class="card-text">*아이디, 생년월일은 수정 불가</p>
 
 
 					<div class="form-group">
-						<label class="col-form-label mt-4"
+						<label class="col-form-label"
 							for="inputLarge">아이디</label> <input
 							class="form-control " type="text"
 							placeholder="${member.id}" id="id" value="${member.id}" name="id"

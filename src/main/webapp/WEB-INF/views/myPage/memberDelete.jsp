@@ -76,7 +76,7 @@
 						<input type="hidden" value="${member.password}" name="pwd">
 
 						<div class="form-group">
-							<label for="exampleInputId1" class="form-label mt-4">아이디</label>
+							<label for="exampleInputId1" class="form-label">아이디</label>
 							<input type="id" class="form-control" id="id" name="id"
 								aria-describedby="idHelp" value="${member.id}"
 								readonly="readonly"> <small id="idHelp"

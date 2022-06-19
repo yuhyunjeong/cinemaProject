@@ -70,7 +70,7 @@ function chkPhCode(event) {
 </script>
 <body>
 	<div class="col-sm-6, container" style="text-align: center; margin:0 auto;">
-		<h1>회원가입</h1>
+		<h1>Welcome to KLJ Movie</h1>
 		
 		<form name="inForm" id="inForm" method="post" action="${pageContext.request.contextPath}/member/join" onsubmit="return joinCheck()">
 			
@@ -81,7 +81,7 @@ function chkPhCode(event) {
 				<div class="card-body">					
 					
 					<div class="form-group">
-						<label class="col-form-label mt-4"
+						<label class="col-form-label"
 							for="inputLarge">아이디</label> 
 							<input
 							class="form-control" type="text"

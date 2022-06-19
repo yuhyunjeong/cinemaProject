@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -242,7 +243,8 @@ textarea{
 			<thead>
 				<tr>
 					<th scope="col">작성자</th>
-					<th scope="col">sss</th>
+					<sec:authentication var="member" property="principal" />
+					<th scope="col">${member.id}</th>
 					<th scope="col">별점</th>	      
 					<th>
 						<div class="star-rating space-x-4 mx-auto">
@@ -261,14 +263,16 @@ textarea{
 				</tr>
 				<tr>
 					<td colspan="4" style="height: 100%">
-				    	<textarea rows="20" name="content"></textarea>
+				    	<textarea rows="10" name="content"></textarea>
 					</td>
 				</tr>
 			</thead>
 		</table>
     	<br>
     	<input type="hidden" name="movieCode" value="${movie.movieCode}"/>
-		<input type="submit" value="작성하기">
+    	<div style="text-align: center; margin-bottom: 50px;">
+			<input class="btn btn-secondary" type="submit" value="작성하기">
+		</div>
     </form>
 </body>
 </html>
