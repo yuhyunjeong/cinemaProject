@@ -79,8 +79,8 @@
 				                <td>
 					                <form id="changeForm" action="#">
 					                	<input type="hidden" name="bno" value="${board.bno}">
-					                	<input type="button" value="수정하기">
-					                	<input type="button" value="삭제하기">
+					                	<input class="btn btn-secondary" type="button" value="수정하기">
+					                	<input class="btn btn-secondary" type="button" value="삭제하기">
 					                </form>
 				                </td>
 				            </tr>
@@ -95,7 +95,7 @@
 				            </tr>
 				            <tr>
 				                <th class="board_content">내용</th>
-				                <td colspan="3" style="word-break:break-all;">
+				                <td colspan="3"  valign="top" style="word-break:break-all; text-align: left">
 				                    ${board.content}
 				                </td>
 				            </tr>
@@ -126,7 +126,7 @@
 				    	<input type="hidden" name="bno" value="${board.bno}"/>
 				    	<textarea rows="20" cols="20" name="content"></textarea>
 				    	<br>
-				    	<input type="submit" value="작성하기">
+				    	<input type="submit" class="btn btn-secondary" value="작성하기">
 				    </form>
 			    </div>
 			</div>

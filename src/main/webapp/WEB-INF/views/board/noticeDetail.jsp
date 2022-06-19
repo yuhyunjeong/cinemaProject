@@ -89,8 +89,10 @@
 		    <br>
 		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: right; ">
                	<input type="hidden" name="bno" value="${board.bno}">
-               	<input type="button" class="btn btn-outline-light" value="수정하기">
-               	<input type="button" class="btn btn-outline-light" value="삭제하기">
+               	<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+	               	<input type="button" class="btn btn-outline-light" value="수정하기">
+	               	<input type="button" class="btn btn-outline-light" value="삭제하기">
+               	</sec:authorize>
             </form>
 		    
 		</div>

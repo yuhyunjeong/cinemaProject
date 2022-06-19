@@ -237,42 +237,43 @@ textarea{
 			</table>
 		</div>
 	</div>
-
-	<form action="${pageContext.request.contextPath}/board/reviewInsert" method="post">
-		<table class="reviewInsert" cellspacing="0" style="width: 1000px; text-align: center; margin: 0 auto;">
-			<thead>
-				<tr>
-					<th scope="col">작성자</th>
-					<sec:authentication var="member" property="principal" />
-					<th scope="col">${member.id}</th>
-					<th scope="col">별점</th>	      
-					<th>
-						<div class="star-rating space-x-4 mx-auto">
-							<input type="radio" id="5-stars" name="sratRating" value="5"/>
-							<label for="5-stars" class="fas fa-star"></label>
-							<input type="radio" id="4-stars" name="sratRating" value="4"/>
-							<label for="4-stars" class="fas fa-star"></label>
-							<input type="radio" id="3-stars" name="sratRating" value="3"/>
-							<label for="3-stars" class="fas fa-star"></label>
-							<input type="radio" id="2-stars" name="sratRating" value="2"/>
-							<label for="2-stars" class="fas fa-star"></label>
-							<input type="radio" id="1-star" name="sratRating" value="1"/>
-							<label for="1-star" class="fas fa-star"></label>
-						</div>
-					</th>
-				</tr>
-				<tr>
-					<td colspan="4" style="height: 100%">
-				    	<textarea rows="10" name="content"></textarea>
-					</td>
-				</tr>
-			</thead>
-		</table>
-    	<br>
-    	<input type="hidden" name="movieCode" value="${movie.movieCode}"/>
-    	<div style="text-align: center; margin-bottom: 50px;">
-			<input class="btn btn-secondary" type="submit" value="작성하기">
-		</div>
-    </form>
+	<sec:authorize access="isAuthenticated()">
+		<form action="${pageContext.request.contextPath}/board/reviewInsert" method="post">
+			<table class="reviewInsert" cellspacing="0" style="width: 1000px; text-align: center; margin: 0 auto;">
+				<thead>
+					<tr>
+						<th scope="col">작성자</th>
+						<sec:authentication var="member" property="principal" />
+						<th scope="col">${member.id}</th>
+						<th scope="col">별점</th>	      
+						<th>
+							<div class="star-rating space-x-4 mx-auto">
+								<input type="radio" id="5-stars" name="sratRating" value="5"/>
+								<label for="5-stars" class="fas fa-star"></label>
+								<input type="radio" id="4-stars" name="sratRating" value="4"/>
+								<label for="4-stars" class="fas fa-star"></label>
+								<input type="radio" id="3-stars" name="sratRating" value="3"/>
+								<label for="3-stars" class="fas fa-star"></label>
+								<input type="radio" id="2-stars" name="sratRating" value="2"/>
+								<label for="2-stars" class="fas fa-star"></label>
+								<input type="radio" id="1-star" name="sratRating" value="1"/>
+								<label for="1-star" class="fas fa-star"></label>
+							</div>
+						</th>
+					</tr>
+					<tr>
+						<td colspan="4" style="height: 100%">
+					    	<textarea rows="10" name="content"></textarea>
+						</td>
+					</tr>
+				</thead>
+			</table>
+	    	<br>
+	    	<input type="hidden" name="movieCode" value="${movie.movieCode}"/>
+	    	<div style="text-align: center; margin-bottom: 50px;">
+				<input class="btn btn-secondary" type="submit" value="작성하기">
+			</div>
+	    </form>
+    </sec:authorize>
 </body>
 </html>
