@@ -58,13 +58,6 @@
   		</c:forEach>
   	</li>
   </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">영화 정보</a>
-    <a href="#" class="card-link">상영관 정보</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
 </div>
 
 <!-- 가격정보 -->
@@ -151,7 +144,19 @@
     </p>
 	<hr>
     <a href="${pageContext.request.contextPath}/manager/members" class="card-link">결제 회원 아이디 : ${requestScope.order.member.id}</a>
-    <a href="#" class="card-link">회원 등급 : 일반/vip/vvip</a>
+    <a href="#" class="card-link">회원 등급 :
+    	<c:choose>
+   		<c:when test="${requestScope.order.member.grade==0}">
+   			일반 회원
+   		</c:when>
+   		<c:when test="${requestScope.order.member.grade==1}">
+   			VIP
+   		</c:when>
+   		<c:when test="${requestScope.order.member.grade==2}">
+   			VVIP
+   		</c:when>
+   		</c:choose>
+    </a>
   </div>
 </div>
 
