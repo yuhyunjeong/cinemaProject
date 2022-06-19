@@ -30,6 +30,10 @@
 			.board_content{
 				height: 500px;
 			}
+			#tdContent{
+				text-align: left;
+				
+			}
 		</style>
 		<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
@@ -76,16 +80,17 @@
 			            </tr>
 			            <tr class="board_content">
 			                <th>내용</th>
-			                <td colspan="3">
+			                <td id="tdContent" colspan="3" valign="top">
 			                    ${board.content}
 			                </td>
 			            </tr>
 			        </tbody>
 		    </table>
+		    <br>
 		    <form id="changeForm" action="#" style="width: 1000px; margin: 0 auto; text-align: right; ">
                	<input type="hidden" name="bno" value="${board.bno}">
-               	<input type="button" value="수정하기">
-               	<input type="button" value="삭제하기">
+               	<input type="button" class="btn btn-outline-light" value="수정하기">
+               	<input type="button" class="btn btn-outline-light" value="삭제하기">
             </form>
 		    
 		</div>

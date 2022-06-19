@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -56,8 +57,10 @@
 			  </c:choose>
 		  </tbody>
 		</table>
-		<div style="width: 1000px; margin: 0 auto; text-align: right; ">
-			<input type="button" class="btn btn-outline-light" value="등록하기" onclick="location.href='${pageContext.request.contextPath}/board/noticeWrite'">
-		</div>
+		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+			<div style="width: 1000px; margin: 0 auto; text-align: right; ">
+				<input type="button" class="btn btn-outline-light" value="등록하기" onclick="location.href='${pageContext.request.contextPath}/board/noticeWrite'">
+			</div>
+		</sec:authorize>
 	</body>
 </html>

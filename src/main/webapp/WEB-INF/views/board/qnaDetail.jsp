@@ -54,8 +54,11 @@
 			<sec:authentication property="principal" var="member"/>
 				<script type="text/javascript">
 					if("${member.id}" != "${board.member.id}"){
-						alert("작성자 본인과 관리자만 볼 수 있습니다.");
-						location.href = "${pageContext.request.contextPath}/board/qna";
+						if("${member.role}" != "ROLE_ADMIN"){
+							alert("작성자 본인과 관리자만 볼 수 있습니다.");
+							location.href = "${pageContext.request.contextPath}/board/qna";
+						}
+						
 					}
 
 				</script>

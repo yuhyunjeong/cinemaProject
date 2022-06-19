@@ -37,6 +37,13 @@
 	</head>
 	<body>
 		<sec:authorize access="isAuthenticated()">
+			<sec:authentication property="principal" var="member"/>
+			<script type="text/javascript">
+				if("${member.role}" != "ROLE_ADMIN"){
+					alert("관리자 접근가능");
+					location.href = "${pageContext.request.contextPath}/board/qna";
+				}
+			</script>
 			<div class="container">
 				<h2>이벤트글 작성하기</h2>
 				<form method="post" action="${pageContext.request.contextPath}/board/eventInsert" enctype="multipart/form-data">
