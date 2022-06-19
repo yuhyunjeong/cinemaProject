@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table{width:100%}
-	#top{text-align: center;
+	#top{
 		    vertical-align: top;
 		    width: 320px;
 		    padding-right: 40px;

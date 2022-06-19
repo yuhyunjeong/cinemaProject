@@ -22,43 +22,15 @@
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		
-	})
-</script>
+
 <body>
 <div class="col-sm-6, container" style="text-align: center;">
 
-	
-	
-	<div class="card border-primary mb-3" style="max-width: 20rem;">
- 		 <div class="card-header">${member.name} 님</div>
- 		 <div class="card-body">
-   	 		<p class="card-text">
-	   	 		<c:choose>
-			   		<c:when test="${member.grade==0}">
-			   			일반 회원
-			   		</c:when>
-			   		<c:when test="${member.grade==1}">
-			   			VIP
-			   		</c:when>
-			   		<c:when test="${member.grade==2}">
-			   			VVIP
-			   		</c:when>
-	   			</c:choose>
-				
-				<p><fmt:parseDate value="${member.regdate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="memDate"/>
-    				<fmt:formatDate value="${memDate}" pattern="yyyy-MM-dd" /> 가입
-    			<p>${member.point} point
-			</p>
-   	 		
-  		</div>
-	</div>
+	<br>
 	
 	<ul class="nav nav-pills" style="width: 400px; margin: auto;">
 		<li class="nav-item"><a class="nav-link"
-			href="${pageContext.request.contextPath}/member/myPage">예매내역</a></li>
+			href="${pageContext.request.contextPath}/mypage/myPage/${member.id}">예매내역</a></li>
 		<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
 		<li class="nav-item dropdown"><a
 			class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
@@ -66,13 +38,13 @@
 			<div class="dropdown-menu" style="">
 				<a class="dropdown-item" href="#">수정</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/member/memberDelete/${member.id}">탈퇴</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/memberDelete/${member.id}">탈퇴</a>
 			</div></li>
 	</ul>
 	<br>
 		
 		<form name="updateForm" id="inForm" method="post" 
-			action="${pageContext.request.contextPath}/member/update" onSubmit='return checkValid()'>
+			action="${pageContext.request.contextPath}/mypage/update" onSubmit='return checkValid()'>
 			
 			<div class="card border-secondary mb-3" style="max-width: 40rem;"display:inline-block;>
 				<div class="card-header">회원정보 수정 폼</div>
