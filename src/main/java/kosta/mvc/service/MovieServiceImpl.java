@@ -93,6 +93,8 @@ public class MovieServiceImpl implements MovieService {
 //		dbMovie.setMovieImage(movie.getMovieImage());
 		dbMovie.setActorList(movie.getActorList());
 		
+		System.out.println("@@@@@@@@@" + dbMovie.getMovieName());
+		
 		return dbMovie;
 	}
 

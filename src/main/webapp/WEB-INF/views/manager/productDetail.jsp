@@ -46,6 +46,12 @@
 
 	}); // ready end 
 </script>
+<style type="text/css">
+	table { 
+		margin-left: auto; 
+		margin-right: auto;
+	}
+</style>
 </head>
 <body>
 	<!-- <h1>productDetail 페이지 입니다.</h1> -->
@@ -54,8 +60,8 @@
 	
 		<c:when test="${kind=='movie'}">
 			<%-- 영화 : ${item} --%>
-			<h1>movieDetail 페이지 입니다.</h1>
-			<table>
+			<h2 style="text-align:center;">movieDetail 페이지 입니다.</h2>
+			<table class='table table-hover' style='width: 1200px'> 
 				<tr>
 					<th>영화코드</th>
 					<td>${item.movieCode}</td>
