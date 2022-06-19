@@ -26,13 +26,15 @@
 	</definition>
 	
 	
+	<definition extends="myPageLayout" name="myPage/*">
+		<put-attribute name="content" value="/WEB-INF/views/myPage/{1}.jsp"/>
+	</definition>
+	
 	<definition extends="layout" name="*/*">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
 	
 	
-	<definition extends="myPageLayout" name="mypage/*">
-		<put-attribute name="content" value="/WEB-INF/views/myPage/{1}.jsp"/>
-	</definition>
+	
 	
 </tiles-definitions>
