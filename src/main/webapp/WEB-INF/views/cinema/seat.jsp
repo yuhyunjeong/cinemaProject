@@ -242,7 +242,7 @@
 			    	<fmt:formatDate value="${time.timeStart}" type="time"/>
 			    </h6>
 			    <h6 class="card-subtitle mb-2 text-muted">상영관 :  ${time.screen.screenName}</h6>
-			    <h6 class="card-subtitle mb-2 text-muted">인원 : <div class="peopleNum" style="display: inline-block;"></div> </h6>
+			    <h6 class="card-subtitle mb-2 text-muted">인원 : <div class="peopleNum" style="display: inline-block;"></div>명 </h6>
 			  </div>
 			</div>
 		</div>
@@ -307,8 +307,11 @@
 			  <div class="card-body">
 			    <p class="card-text">사은품은 표1개당 1개 입니다. 수량이 없는 경우 받으실 수 없습니다.</p>
 			  	<div class="form-check form-switch">
-				  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"> <!-- checked 로 바뀌면 받을게요. 수량 . 사은품이름. -->
-				  <label class="form-check-label" for="flexSwitchCheckChecked">안 받을게요.</label>
+			        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+			        <label class="form-check-label" for="flexSwitchCheckDefault">
+			        	<div class="checkmessage">안받을게요</div>
+			        	<div class="checkmessage1"></div>
+			        </label>
 				</div>
 			  </div>
 			</div>
@@ -319,96 +322,45 @@
 				
 	<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
 		<div class="form-group col-lg-4" style="display: inline-block; width: 1000px;">
-		<div class="card">
-		<div class="card-body">
-			<h4 class="card-title">스낵 (택1)</h4>
-			이미지랑 설명
-			<div class="form-check">
-				<c:choose>
-			 		<c:when test="${empty requestScope.foodList}">
-				  		<div>맛난거 없음.</div>
-			  		</c:when>
-				  	<c:otherwise>
-				  	<!-- 조건 -->
-				  		<c:forEach items="${requestScope.foodList}" var="foods">
-							<button type="button" class="btn2" id="moviebtn" style="color: white;" value="${food.foodCode}">${food.foodName}</button>
-							
-				  		</c:forEach>
-				  	</c:otherwise>
-		  		</c:choose>
-			
-		        <label class="form-check-label">
-		          <input type="radio" class="form-check-input" name="snacks" id="snacks1" value="snacks1">
-		          KLJ팝콘세트 
-		        </label>&nbsp;&nbsp;&nbsp;&nbsp;
-		        <label class="form-check-label">
-		          <input type="radio" class="form-check-input" name="snacks" id="snacks2" value="snacks2">
-		          달콤세트 
-		        </label>&nbsp;&nbsp;&nbsp;&nbsp;
-		        <label class="form-check-label">
-		          <input type="radio" class="form-check-input" name="snacks" id="snacks3" value="snacks3">
-		          짭잘세트 
-		        </label>&nbsp;&nbsp;&nbsp;&nbsp;
-		        <label class="form-check-label">
-		          <input type="radio" class="form-check-input" name="snacks" id="snacks4" value="snacks4" checked="checked">
-		          선택안함
-		        </label>
-		      </div>
-		      
-		      <div class="form-group">
-		      <label for="exampleSelect1" class="form-label mt-4">개수</label>
-			      <select class="form-select" id="exampleSelect1">
-			        <option>1</option>
-			        <option>2</option>
-			        <option>3</option>
-			        <option>4</option>
-			        <option>5</option>
-			      </select>
-		      </div>
-		      
-		      
-		      </div>
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">스낵 & 음료</h4>
+					<div class="form-check">
+						<%-- <c:choose>
+					 		<c:when test="${empty requestScope.foodList}">
+						  		<div>음식이 준비되어 있지 않습니다.</div>
+					  		</c:when>
+						  	<c:otherwise>
+						  	<!-- 조건 -->
+						  		<c:forEach items="${requestScope.foodList}" var="foods">
+									<div class='row row-cols-1 row-cols-md-4 g-4' style="justify-content: center;" id="foodList"></div>
+						  		</c:forEach>
+						  	</c:otherwise>
+				  		</c:choose> --%>
+				  		
+				  		<div class="form-check">
+					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					        <label class="form-check-label" for="flexCheckDefault">달콤콤보</label>
+					   </div>
+					   <div class="form-check">
+					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					        <label class="form-check-label" for="flexCheckDefault">짭잘콤보</label>
+					   </div>
+					   <div class="form-check">
+					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					        <label class="form-check-label" for="flexCheckDefault">매콤콤보</label>
+					   </div>
+					   <div class="form-check">
+					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					        <label class="form-check-label" for="flexCheckDefault">단짠콤보</label>
+					   </div>
+				  		
+				      </div>
+			      </div>
 		      </div>
 		</div>
-	</div>	  <p> 
-	
-	<div class="col-lg-12" style="display: flex; flex-flow: row; justify-content: center; ">
-		<div class="form-group col-lg-4" style="display: inline-block; width: 1000px;">   
-		<div class="card">
-		<div class="card-body">
-			<h4 class="card-title">음료 (택1)</h4>
-			<div class="form-check">
-				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="beverage" id="beverage1" value="beverage1">콜라
-				</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="beverage" id="beverage2" value="beverage2">사이다
-				</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="beverage" id="beverage3" value="beverage3">오렌지주스
-				</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="beverage" id="beverage4" value="beverage4" checked="checked">선택안함
-				</label>
-			</div>
-			
-			 <div class="form-group">
-		      <label for="exampleSelect1" class="form-label mt-4">개수</label>
-			      <select class="form-select" id="exampleSelect1">
-			        <option>1</option>
-			        <option>2</option>
-			        <option>3</option>
-			        <option>4</option>
-			        <option>5</option>
-			      </select>
-		    </div>
-			
-			</div>
-			</div>
-		</div>
-	</div>
-			
-	<p><p>
+	</div>	  
+	<p><p><p>
 	
 	<!-- 영화 선택 정보 &결제하기 버튼 -->
 	
@@ -417,7 +369,8 @@
 		<div class="form-group col-lg-4" style="display: inline-block; width: 200px; height: 280px; background-color: none;">
 			<div class="card">
 				<div class="card-body" style="height: 280px;">
-				<h6 class="card-subtitle mb-2 text-muted" style="width: 200px; height: 200px;"></h6>
+						<img class="card-img-top" src="${pageContext.request.contextPath}/img/movie/${movie.movieImage}" />
+					
 				</div>
 			</div>
 		</div>&nbsp;&nbsp;
@@ -426,23 +379,26 @@
 			<div class="card">
 			  <div class="card-body" style="height: 280px;">
 			    <h4 class="card-title">${movie.movieName}</h4>
-			    <h6 class="card-subtitle mb-2 text-muted">일시 : ${time.timeDate} / ${time.timeStart}</h6>
-			    <h6 class="card-subtitle mb-2 text-muted">상영관 :  ${time.screen.screenName}</h6>
-			    <h6 class="card-subtitle mb-2 text-muted">인원 :  <div class="peopleNum" style="display: inline-block;"></div> </h6>
-			    <h6 class="card-subtitle mb-2 text-muted">
-			    	<div class="selected-seats-wrapper">
-						<span class="selected-seats-title">좌석번호 : </span> 
-						<span class="selected-seats">선택한 좌석이 없습니다.</span>
-					</div>
+			    <h6 class="card-subtitle mb-2 text-muted">일시 :
+			    	<fmt:formatDate value="${time.timeDate}" type="date" />
+			    	/
+			    	<fmt:formatDate value="${time.timeStart}" type="time"/>
 			    </h6>
+			    <h6 class="card-subtitle mb-2 text-muted">상영관 :  ${time.screen.screenName}</h6>
+			    <h6 class="card-subtitle mb-2 text-muted">인원 :  <div class="peopleNum" style="display: inline-block;"></div>명 </h6>
+			    <h6 class="card-subtitle mb-2 text-muted">좌석번호 : B2, B3 </h6>
+			   <!--  <h6 class="card-subtitle mb-2 text-muted">
+			    	<div class="selected-seats-wrapper">
+						<span class="selected-seats-title">좌석번호 : B2, B3
+					</div>
+			    </h6> -->
 			    <h6 class="card-subtitle mb-2 text-muted">
 			    	<div class="ticket-price-wrapper">
-						<div class="ticket-price-title">좌석가격 :</div>
-						<div class="ticket-price">금액 *인원</div>
+			    		<h6 class="card-subtitle mb-2 text-muted">좌석가격 : 일반 12000원 * <div class="peopleNum" style="display: inline-block;"></div>명</h6>
 					</div>
 			    </h6>
-			    <h6 class="card-subtitle mb-2 text-muted">먹거리 : 스낵금액 *갯수 + 음료금액 *갯수</h6>
-			    <h6 class="card-subtitle mb-2 text-muted">총 금액 : sum(금액 * 인원) + sum(스낵금액 *갯수) + sum(음료금액 *갯수)</h6>
+			    <h6 class="card-subtitle mb-2 text-muted">먹거리 : 달콤콤보 6000원 * 1개 </h6>
+			    <h6 class="card-subtitle mb-2 text-muted">총 금액 : 18000원</h6>
 			  </div>
 			</div>
 		</div>
@@ -533,51 +489,8 @@
 			   });
 		   }//selectSeatList(list) 끝
 		   
-		   /*initList에 추가*/
-		   function initList(list, li) {
-			    li.addEventListener('click', function() {
-			        list.forEach(li => {
-			            li.classList.remove('.btn-check'); //사람명수?? 이부분잘보기!!l
-			        });
-			        li.classList.add('.btn-check');
-			        selectSeatListUlActive = document.querySelectorAll(
-			        	'.btn-check'
-			        );
-			        console.log(selectSeatListUlActive);
-			        selectListUiFunction(selectSeatListUlActive);
-			        console.log('돈내나' + allMoney);
-
-			        console.log(normalNumber);
-			        console.log(allNumber);
-			    });
-			}
-		   
-		  /*좌석선택 시 ui기능 + 좌석가격 표시*/
-		  function selectListUiFunction(selectSeatListUlActive) {
-			    selectSeatListUlActive.forEach(li => {
-			        if (li.parentNode.classList.contains('select-seat-ul-normal')) {
-			            normalNumber = Number(li.innerHTML);
-			            normalMoney = 12000 * normalNumber;
-			            allMoney = normalMoney; //나중에 더 많은 종류의 고객이 있을경우 +해주면 됨.
-			            allNumber = normalNumber;
-			            ticketPrice.innerHTML = allMoney + '원';
-			            if (allNumber > 4) { //관객 몇명 이상일 경우 
-			                li.classList.remove('select-seat-ul-active');
-			                allMoney -= normalMoney;
-			                allNumber = allNumber - normalNumber;
-			
-			                selectNumberNormal[0].classList.add('select-seat-ul-active');
-			                ticketPrice.innerHTML = allMoney + '원';
-			            }
-			        } 
-			        console.log(allNumber + '이당');
-			        ticketPrice.innerHTML = allMoney + '원';
-			        payMoney.value = allMoney;
-			        console.log(allMoney);
-			    });
-			}
-			
-			selectSeatList(selectSeatListNormal);
+		  
+		 
 		   
 	     
 	    
@@ -621,20 +534,20 @@
 	                    
 	                    //인원수에 맞게 선택하게 해주기-->아니면 동작 안되게!!
 	                    console.log(allNumber); //toastr
-	                    if (clicked.length > allNumber) {
+	                  /*   if (clicked.length > allNumber) {
 	                        input.classList.remove('clicked');
-	                        toastr.error(
+	                        /* toastr.error(
 	                            '<div style="color:white">선택한 인원수를 넘었습니다. <p>다시 확인해 주세요.</div>',
 	                            '<div style="color:white">인원 수 확인</div>'
 	                            //,{} --toastr옵션 일케주기
-	                        );
+	                        );  */
 	                        return;
-	                    }//if문 끝 -- allNumber가 clicked보다 작아야 함..!
+	                    }//if문 끝 -- allNumber가 clicked보다 작아야 함..! */
 	                    
-	                     	clicked.forEach((data) => {
+	                     	/* clicked.forEach((data) => {
 	                     	selectedSeatsArray.push(data.value);
-	                    }); 
-	                }
+	                   		});  */
+	                 //} 
 	                 console.log(selectedSeatsArray);
 	            });
 	        }
@@ -757,6 +670,19 @@
 		document.f.submit();  
 	}
      
+   /*사은품 선택*/
+   $('#flexSwitchCheckDefault').click(function(){
+		var checked = $('#flexSwitchCheckDefault').is(':checked');
+		
+		if(checked)
+			$('input:checkbox').prop('checked',true);
+		    $('.checkmessage').remove();
+			$('.checkmessage1').html('받을래요');
+			
+	});
+   
+ 
+   
 </script>
 
 	<form action="${pageContext.request.contextPath}/member/payment" name="f" method="post">

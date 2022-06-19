@@ -26,6 +26,7 @@ import kosta.mvc.domain.Screen;
 import kosta.mvc.domain.Time;
 import kosta.mvc.dto.SeatPerformanceDTO;
 import kosta.mvc.service.FoodService;
+import kosta.mvc.service.GiftService;
 import kosta.mvc.service.MovieService;
 import kosta.mvc.service.SeatPerformanceService;
 import kosta.mvc.service.TimeService;
@@ -40,6 +41,8 @@ public class CinemaController {
 	private final TimeService timeService;
 	private final FoodService foodService;
 	private final SeatPerformanceService seatPerService;
+	private final GiftService giftService;
+
 	
 	public static final int BLOCK_COUNT = 3;
 	public static final int PAGE_COUNT = 10;
@@ -135,7 +138,7 @@ public class CinemaController {
 	 * 영화예매- 4. 좌석선택 전 예매 정보 뿌려주기 & 좌석보여주기(seat_performance의 isBooked 체크)
 	 */
 	@RequestMapping("/seat")
-	public void seat(Model model,  Time time, @RequestParam("mCode") String mCode ,  @RequestParam("tdate") @DateTimeFormat(iso =ISO.DATE_TIME) Date tdate,  
+	public ModelAndView seat(Model model,  Time time, @RequestParam("mCode") String mCode ,  @RequestParam("tdate") @DateTimeFormat(iso =ISO.DATE_TIME) Date tdate,  
 			@RequestParam("tStart") @DateTimeFormat(iso =ISO.DATE_TIME) Date tStart, @RequestParam("sCode") Screen sCode) { //
 	
 		time.setTimeDate(tdate);
@@ -158,6 +161,10 @@ public class CinemaController {
 			model.addAttribute("col", col);
 		}
 		
+		//먹거리띄워주기
+		List<Food> foodList = foodService.selectAll();
+		return new ModelAndView("cinema/seat", "foodList", foodList);
+		
 		//
 		
 	
@@ -174,7 +181,15 @@ public class CinemaController {
 		  List<SeatPerformanceDTO> seatPerList = seatPerService.selectBy(time); 
 		  
 		  System.out.println("CinemaController의 chooseSeat() 호출....");
-		  System.out.println(seatPerList.get(0).getSeat()); //kosta.mvc.domain.Seat@2c82cc8e
+		  System.out.println(seatPerList.get(0).getSeat().getSeatRow() + seatPerList.get(0).getSeat().getSeatCol() );
+		  System.out.println(seatPerList.get(1).getSeat().getSeatCol()); //kosta.mvc.domain.Seat@2c82cc8e
+		  System.out.println(seatPerList.get(0).getSeat().getSeatRow());
+		  System.out.println(seatPerList.get(11).getSeat().getSeatRow());
+		  System.out.println(seatPerList.get(11).getSeat().getSeatCol());
+		  
+		  
+		  
+		  
 		  return seatPerList;
 		  //System.out.println(seatPerList); 
 		  //seatPerformance테이블의 isBooked가 1인(예약됨)seatCode를 가져오고 싶음. 
@@ -192,11 +207,11 @@ public class CinemaController {
 	/**
 	 * 영화예매 -5.먹거리 뿌려주기
 	 * */
-	@RequestMapping("/foods")
-	public ModelAndView foods() {
-		List<Food> foodList = foodService.selectAll();
-		return new ModelAndView("cinema/seat", "foodList", foodList);
-	}
+	/*
+	 * @RequestMapping("/foods") public ModelAndView foods() { List<Food> foodList =
+	 * foodService.selectAll(); return new ModelAndView("cinema/seat", "foodList",
+	 * foodList); }
+	 */
 	
 	/**
 	 * 영화 나열 - 최신순 , 예매율순, 별점순
