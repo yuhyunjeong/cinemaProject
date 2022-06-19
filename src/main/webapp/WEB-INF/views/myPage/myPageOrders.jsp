@@ -45,7 +45,7 @@
 				<li class="nav-item"><a name="btn" value="order"
 					class="nav-link active" href="#">예매내역</a></li>
 				<li class="nav-item"><a name="btn" value="review"
-					class="nav-link" href="#">후기</a></li>
+					class="nav-link" href="${pageContext.request.contextPath}/board/myReview/${member.id}">후기</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
 					role="button" aria-haspopup="true" aria-expanded="false">회원정보</a>

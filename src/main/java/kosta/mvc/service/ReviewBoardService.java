@@ -8,4 +8,5 @@ import kosta.mvc.dto.ReviewDTO;
 public interface ReviewBoardService {
 	List<ReviewDTO> selectByMovieCode(String movieCode);
 	void reviewInsert(ReviewBoard reviewBoard);
+	List<ReviewBoard> selectByMyList(String id);
 }

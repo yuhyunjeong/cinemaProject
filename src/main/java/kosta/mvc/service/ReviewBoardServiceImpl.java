@@ -58,4 +58,9 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 		
 	}
 
+	@Override
+	public List<ReviewBoard> selectByMyList(String id) {
+		return reviewBoardRepository.selectByMyList(id);
+	}
+
 }

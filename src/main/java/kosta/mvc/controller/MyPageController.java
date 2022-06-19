@@ -113,4 +113,6 @@ public class MyPageController {
 		System.out.println("member"+voPass);
 		return "redirect:/";
 	}
+	
+	
 }

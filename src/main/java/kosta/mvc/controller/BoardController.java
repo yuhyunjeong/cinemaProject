@@ -221,6 +221,13 @@ public class BoardController {
 		
 		return "redirect:/cinema/movieDetail/"+reviewBoard.getMovie().getMovieCode();
 	}
+	
+	@RequestMapping("/myReview/{id}")
+	public ModelAndView myReview(@PathVariable String id) {
+		System.out.println("호출");
+		List<ReviewBoard> list = reviewBoardService.selectByMyList(id);
+		return new ModelAndView("myPage/myReview","list", list);
+	}
 }
 
 

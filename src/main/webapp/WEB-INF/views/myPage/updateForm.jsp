@@ -48,7 +48,7 @@
 	<ul class="nav nav-pills" style="width: 400px; margin: auto;">
 		<li class="nav-item"><a class="nav-link"
 			href="${pageContext.request.contextPath}/mypage/myPage/${member.id}">예매내역</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/myReview">후기</a></li>
 		<li class="nav-item dropdown"><a
 			class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
 			href="#" role="button" aria-haspopup="true" aria-expanded="false">회원정보</a>

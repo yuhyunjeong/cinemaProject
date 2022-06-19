@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +18,9 @@
 </head>
 <body>
 
-
+	<sec:authentication var="sessionMember" property="principal" />
 	<div class="card border-primary mb-3" >
-		<div class="card-header">${member.name} 님</div>
+		<div class="card-header">${sessionMember.name} 님</div>
 		<div class="card-body">
 			<p class="card-text">
 			
@@ -27,24 +28,24 @@
 				<div class="col">
 				<p>
 					<c:choose>
-					<c:when test="${member.grade==0}">
+					<c:when test="${sessionMember.grade==0}">
 			   			일반 회원
 			   		</c:when>
-					<c:when test="${member.grade==1}">
+					<c:when test="${sessionMember.grade==1}">
 			   			VIP
 			   		</c:when>
-					<c:when test="${member.grade==2}">
+					<c:when test="${sessionMember.grade==2}">
 			   			VVIP
 			   		</c:when>
 				</c:choose>
 				</p>
 				<p>
-				<fmt:parseDate value="${member.regdate}"
+				<fmt:parseDate value="${sessionMember.regdate}"
 					pattern="yyyy-MM-dd'T'HH:mm:ss" var="memDate" />
 				<fmt:formatDate value="${memDate}" pattern="yyyy-MM-dd" />
 				가입
 				</p>
-				<p>${member.point} point
+				<p>${sessionMember.point} point
 				</p>
 				</div>
 				
