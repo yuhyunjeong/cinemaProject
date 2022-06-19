@@ -36,14 +36,13 @@
 			$(function() {
 				
 				$("#lottery").on("click", function() {
-					alert(22); 
 					$.ajax({
 						url: "${pageContext.request.contextPath}/board/eventLottery",
 						type: "post", 
 						dataType: "json", 
 						data:{
 							"bno":$('.bno').val(),
-							"num":$('.num').val()
+							"num":$('#num').val()
 						}, 
 						success: function(list) { 
 							let str="당첨자아이디\n";
@@ -62,11 +61,6 @@
 				});
 				
 			})
-			
-
-			
-			
-		
 		</script>
 	</head>
 	<body>
@@ -105,22 +99,33 @@
 		    <div style="text-align: center;">
 		    	<img src="${board.eventPath}">
 		    </div>
-		    <form id="changeForm" action="${pageContext.request.contextPath}/board/eventAttend" style="width: 1000px; margin: 0 auto; text-align: center; ">
-               	<input type="hidden" name="bno" value="${board.bno}">
-               	<br>
-               	<input type="submit" class="btn btn-lg btn-info" value="참여하기" style="width: 500px">
-            </form>
-            
-
-           	<input type="hidden" class="bno" value="${board.bno}">
-			<select class="num">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-          	<input type="button" id="lottery" value="당첨자 추첨">
+		    <sec:authorize access="hasAuthority('ROLE_USER')">
+			    <form id="changeForm" action="${pageContext.request.contextPath}/board/eventAttend" style="width: 1000px; margin: 0 auto; text-align: center; ">
+	               	<input type="hidden" name="bno" value="${board.bno}">
+	               	<br>
+	               	<input type="submit" class="btn btn-lg btn-info" value="참여하기" style="width: 500px">
+	            </form>
+            </sec:authorize>
+            <br>
+            <br>
+			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+				<div style="text-align: center; display: flex;">
+					<div style="justify-content: center; margin-left: 10%;">
+		           	<input type="hidden" class="bno" value="${board.bno}" >
+						<select class="form-select" id="num" style="width: 300px; margin-left: 265px">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div style="justify-content: center;">
+						<input type="button" class="btn btn-secondary" id="lottery" value="당첨자 추첨" style="width: 200px" >
+					</div>
+				</div>	
+			</sec:authorize>
+          	
 
             
 

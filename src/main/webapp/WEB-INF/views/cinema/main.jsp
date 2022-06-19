@@ -353,7 +353,7 @@
 					<h2>공지사항</h2>
 				</div>
 				<div class="notice_right">
-					<a href="#">전체보기</a>
+					<a href="${pageContext.request.contextPath}/board/notice">전체보기</a>
 				</div>
 				<div id="notice_list">리스트</div>
 			</div>
