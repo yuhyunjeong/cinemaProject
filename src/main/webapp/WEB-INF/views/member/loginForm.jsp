@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div class="col-sm-6, container" style="text-align: center;">
-		<h1>로그인</h1>
+		<h1>LogIn</h1>
 
 		<div class="card border-secondary mb-3" style="max-width: 40rem;"
 			display:inline-block;>

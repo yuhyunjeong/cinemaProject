@@ -22,25 +22,44 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	function joinCheck() {
-		//변수에 입력 값 담기	
-		var id = document.getElementById("id"); //아이디
-		var password = document.getElementById("password"); //비밀번호
-		var name = document.getElementById("name"); //이름
-		var phone = document.getElementById("phone");//핸드폰 번호
-		var birth = document.getElementById("birth");//생일
-
-			
-		
-				//입력 값 전송
-			//document.join.submit();
-			document.getElementById("inForm").submit();
-
-	};
+	
 
 
 		
 });
+
+function joinCheck() {
+	//변수에 입력 값 담기	
+	var id = document.getElementById("id"); //아이디
+	var password = document.getElementById("password"); //비밀번호
+	var name = document.getElementById("name"); //이름
+	var phone = document.getElementById("phone");//핸드폰 번호
+	var birth = document.getElementById("birth");//생일
+	
+	var pwdCheck = $("#pwdCheck").val();
+	var idCheck = $("#id").val();
+	
+	
+	if(pwdCheck==""){
+		alert("비밀번호를 입력해주세요")
+		pwdCheck.focus();
+
+		return false;
+	}else if(idCheck==""){
+		alert("아이디를 입력해주세요")
+		idCheck.focus();
+
+		return false;
+	}else{
+		$("#mb").trigger("click");
+	}
+	
+	
+	//입력 값 전송
+	//document.join.submit();
+	document.getElementById("inForm").submit();
+
+};
 
 	
 ////////////아이디에 한글 입력 불가능 하도록
@@ -72,7 +91,7 @@ function chkPhCode(event) {
 	<div class="col-sm-6, container" style="text-align: center; margin:0 auto;">
 		<h1>Welcome to KLJ Movie</h1>
 		
-		<form name="inForm" id="inForm" method="post" action="${pageContext.request.contextPath}/member/join" onsubmit="return joinCheck()">
+		<form name="inForm" id="inForm" method="post" action="${pageContext.request.contextPath}/member/join" onSubmit='return joinCheck()''>
 			
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			
@@ -143,14 +162,36 @@ function chkPhCode(event) {
 					</div>
 					
 					<br>
-					<div>
-						<button onclick="joinCheck();" class="btn btn-primary">회원가입 완료</button>
+			
+					<div>				
+						<button class="btn btn-primary" onclick="joinCheck()">회원가입 완료</button>
+						<button type="button"  id="mb" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#joinModal" style="display: none;">회원가입 완료</button>
 					</div>
+				
 					<br>
 				
 				</div>
 			</div>
 		</form>
+		
+			<!-- Modal -->
+		<div class="modal" id="joinModal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">회원가입을 축하드립니다!</h5>	
+					</div>
+					<div class="modal-body">
+						<p>로그인을 해주세요.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="joinCheck();">
+						확인</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
 		
 	</div>
 	
@@ -185,6 +226,9 @@ $(function(){
 						var html="<div style='color: orange;'><strong>사용 불가능한 아이디 입니다.</strong></div>";
 						$("#idCheck").empty();
 						$("#idCheck").append(html);
+						
+						 $('#id').val('');
+						 $('#id').focus();	
 					}
 				}
 			},

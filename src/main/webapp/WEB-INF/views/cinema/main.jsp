@@ -189,6 +189,26 @@
 				prevEl : ".swiper-button-prev",
 			},
 		});
+		
+		//$("button[name=vplay]").click(function(){
+			
+			//javascript기반 코딩
+			//let video = document.getElementById("video");
+			//video.src = $(this).val();
+			//video.play();
+			///////////////////////////////////////////////////////////////////
+			
+			//jquery기반 코딩
+			//$("#video").attr("src",$(this).val()).get(0).play();
+			///////////////////////////////////////////////////////////////////
+			//$("#video").attr("src",$(this).val());
+			//$("#video").play(); //안된다.
+			//$("#video").trigger("play");
+			///////////////////////////////////////////////////////////////////
+			//src와 autoplay를 attr로 한다.
+			//$("#video").attr({src:$(this).val() , autoplay:"autoplay"});
+			
+		//});
 
 		function select() {
 			$.ajax({
@@ -307,7 +327,13 @@
 		<div class="swiper-pagination"></div>
 	</div> 
 	-->
-
+	<!-- 
+	<section>
+		<video width=100% height="400" controls="controls" id="video" autoplay="autoplay">
+			<source src="img/avengers.mp4" type="video/mp4"/>
+		</video>
+	</section>
+	 -->
 	<br>
 
 
@@ -333,7 +359,9 @@
 		<br>
 	</div>
 
-
+	<br>
+	<br>
+	<br>
 
 	<div  id="event_notice_container">
 		<div class="card" style="width: 40%;">
@@ -344,6 +372,7 @@
 				<div id="event_right">
 					<a href="${pageContext.request.contextPath}/board/event">전체보기</a>
 				</div>
+				<hr>
 				<div id="event_list"></div>
 			</div>
 		</div>
@@ -355,12 +384,13 @@
 				<div class="notice_right">
 					<a href="${pageContext.request.contextPath}/board/notice">전체보기</a>
 				</div>
+				<hr>
 				<div id="notice_list">리스트</div>
 			</div>
 		</div>
 	</div>
 
-
+	<br>
 
 
 </body>

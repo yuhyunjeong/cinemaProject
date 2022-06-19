@@ -50,18 +50,18 @@
 				
 				<ul class="nav nav-pills" style="width: 400px; margin: auto;">
 					<li class="nav-item"><a name="btn" value="order"
-						class="nav-link" href="#">예매내역</a></li>
+						class="nav-link" href="${pageContext.request.contextPath}/mypage/myPage/${sessionMember.id}">예매내역</a></li>
 					<li class="nav-item"><a name="btn" value="review"
-						class="nav-link active" href="${pageContext.request.contextPath}/board/myReview">후기</a></li>
+						class="nav-link active" href="#">후기</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
 						role="button" aria-haspopup="true" aria-expanded="false">회원정보</a>
 						<div class="dropdown-menu" style="">
 							<a class="dropdown-item" name="btn" value="update"
-								href="${pageContext.request.contextPath}/mypage/updateForm/${member.id}">수정</a>
+								href="${pageContext.request.contextPath}/mypage/updateForm/${sessionMember.id}">수정</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" name="btn" value="delete"
-								href="${pageContext.request.contextPath}/mypage/memberDelete/${member.id}">탈퇴</a>
+								href="${pageContext.request.contextPath}/mypage/memberDelete/${sessionMember.id}">탈퇴</a>
 						</div></li>
 				</ul>
 		<br>

@@ -150,44 +150,16 @@ $(function() {
 	
 	});	
 	
-	var data = null;
 	
-	function checkBox(){
-		
-		$.ajax({
-			url : "cinema/nowMovie", // 서버요청주소 
-			type : "post", // 요청방식(get, post, delete, patch),
-			dataType : "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
-			data : {
-				"${_csrf.parameterName}" : "${_csrf.token}"
-			//	"optionsRadios":$("#optionsRadios1").val()
-			}, // 서버에게 보낼 parameter 정보 */
-
-			success : function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
-				//alert(movieList)
-				let str = "";
-				$.each(movieList, function(index, item) {
-					//$("div").remove("${item.movieCode}");
-					data = $(".${item.movieCode}").detach();
-
-				});
-
-			},
-			error : function(err) {
-
-			}
-		});
-		
-	}
 	
 	select();
 	
-	if($('#flexCheckDefault').is(":checked")){
+	//if($('#flexCheckDefault').is(":checked")){
 		
-		checkBox();
-	}else{
-		$(".${item.movieCode}").after(data);
-	}
+		//checkBox();
+	//}else{
+		//$(".${item.movieCode}").after(data);
+	//}
 	
 	//var current = 
 	
