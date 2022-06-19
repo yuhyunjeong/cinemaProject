@@ -97,7 +97,7 @@ public class MyPageController {
 		
 		if(dePassword==false) {
 			rttr.addFlashAttribute("msg", false);
-			return "redirect:/myPage/memberDelete/"+member.getId();
+			return "redirect:/mypage/memberDelete/"+member.getId();
 		}
 		
 //		if(!(pwd.equals(voPass))) {

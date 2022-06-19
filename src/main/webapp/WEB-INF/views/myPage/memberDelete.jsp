@@ -16,6 +16,9 @@
 .mb-3 {
 	margin: auto;
 }
+.nav-item{
+	margin: auto;
+}
 </style>
 </head>
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -34,7 +37,27 @@
 				}			
 			
 		</script>
-		<div class="container">
+		<div class="col-sm-6, container" style="text-align: center;">
+			<h1>My Page</h1>
+			<br>
+	
+		<ul class="nav nav-pills" style="width: 400px; margin: auto;">
+			<li class="nav-item"><a class="nav-link"
+			href="${pageContext.request.contextPath}/mypage/myPage/${member.id}">예매내역</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
+				href="#" role="button" aria-haspopup="true" aria-expanded="false">회원정보</a>
+				<div class="dropdown-menu" style="">
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/updateForm/${member.id}">수정</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">탈퇴</a>
+				</div></li>
+		</ul>
+		<br>
+			
+		
+		<!-- 
 			<div class="alert alert-dismissible alert-warning">
 				<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 				<h4 class="alert-heading">신중히 생각해주세요!</h4>
@@ -42,13 +65,13 @@
 					탈퇴하면 모든 기록이 사라집니다</a>.
 				</p>
 			</div>
-
+		 -->
 			<div class="card border-warning mb-3"
 				style="max-width: 40rem; text-align: center;">
 				<div class="card-header">회원 탈퇴</div>
 				<div class="card-body">
 					<p class="card-text"></p>
-					<form action="${pageContext.request.contextPath}/member/delete"
+					<form action="${pageContext.request.contextPath}/mypage/delete"
 						method="post">
 						<input type="hidden" value="${member.password}" name="pwd">
 
@@ -57,8 +80,7 @@
 							<input type="id" class="form-control" id="id" name="id"
 								aria-describedby="idHelp" value="${member.id}"
 								readonly="readonly"> <small id="idHelp"
-								class="form-text text-muted">We'll never share your
-								email with anyone else.</small>
+								class="form-text text-muted"></small>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
@@ -66,10 +88,18 @@
 								id="password" placeholder="비밀번호를 입력해주세요.">
 
 						</div>
+						
+						<div>
+							<c:if test="${msg==false}">
+  								<div style="color:orange;"><strong>비밀번호가 맞지 않습니다. 다시 입력해주세요.</strong></div>
+  							</c:if>
+
+						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputName1" class="form-label mt-4">이름</label>
 							<input type="text" class="form-control" name="name" id="name"
-								value="${member.name}">
+								value="${member.name}" readonly="readonly">
 
 						</div>
 						<br>
@@ -85,12 +115,7 @@
 						<br>
 					</form>
 
-					<div style="color:orange;">
-						<c:if test="${msg==false}">
-  							비밀번호가 맞지 않습니다.
-  						</c:if>
-
-					</div>
+				
 
 				</div>
 

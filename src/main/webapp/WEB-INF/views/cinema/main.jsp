@@ -314,7 +314,7 @@
 	<div class="movie_container">
 		<div class="row">
 			<div class="col movie_left">
-				<h2>&nbsp;&nbsp;&nbsp;최신 상영 영화</h2>
+				<h2>&nbsp;&nbsp;&nbsp;최신 상영작</h2>
 			</div>
 			<div class="col movie_right">
 				<button type="button" class="btn btn-secondary"

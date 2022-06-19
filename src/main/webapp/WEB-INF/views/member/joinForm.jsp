@@ -98,7 +98,7 @@ function chkPhCode(event) {
 							for="inputLarge">비밀번호</label> 
 							<input
 							class="form-control" type="password"
-							placeholder="7자 이상 영문/숫자를 입력해주세요." id="password"
+							placeholder="비밀번호를 입력해주세요." id="password"
 							name="password" required="required"
 							onKeyDown="if(event.keyCode == 13) joinCheck()">
 					</div>
@@ -200,7 +200,7 @@ $(function(){
 	$("#pwdCheck").blur(function(){
 		  if($('#password').val() != $('#pwdCheck').val()){
 			   	if($('#pwdCheck').val()!=''){
-				   var html="<div>비밀번호가 일치하지 않습니다.</div>";
+				   var html="<div style='color: orange;'><strong>비밀번호가 일치하지 않습니다.</strong></div>";
 						$("#pCheck").empty();
 						$("#pCheck").append(html);
 				

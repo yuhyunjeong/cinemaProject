@@ -103,7 +103,6 @@ $(function() {
 
 	$('input[name="optionsRadios"]').on("change", function() {	
 		
-	
 		
 		$.ajax({
 			url: "selectMovie", // 서버요청주소 
@@ -126,7 +125,7 @@ $(function() {
 						var dateinfo = i[0]+"-"+i[1]+"-"+i[2]+" 개봉"
 						console.log(dateinfo);
 					
-						str+="<div class='col-lg-3 col-md-6'>";
+						str+="<div id='${item.movieCode}' class='col-lg-3 col-md-6'>";
 						str+="<div class='card mb-3 h-100'>";
 						str+="<div class='card-body'>";
 						//str+=`<h4 class='card-title'>영화</h4>`;
@@ -151,11 +150,46 @@ $(function() {
 	
 	});	
 	
+	var data = null;
 	
+	function checkBox(){
+		
+		$.ajax({
+			url : "cinema/nowMovie", // 서버요청주소 
+			type : "post", // 요청방식(get, post, delete, patch),
+			dataType : "json", // (제일 중요!)서버가 응답해주는 데이터타입 (text, html, xml, json)
+			data : {
+				"${_csrf.parameterName}" : "${_csrf.token}"
+			//	"optionsRadios":$("#optionsRadios1").val()
+			}, // 서버에게 보낼 parameter 정보 */
+
+			success : function(movieList) { // 성공여부 callback함수 , result는 서버가 리턴해주는 데이터가 들어간다.
+				//alert(movieList)
+				let str = "";
+				$.each(movieList, function(index, item) {
+					//$("div").remove("${item.movieCode}");
+					data = $(".${item.movieCode}").detach();
+
+				});
+
+			},
+			error : function(err) {
+
+			}
+		});
+		
+	}
 	
 	select();
 	
+	if($('#flexCheckDefault').is(":checked")){
+		
+		checkBox();
+	}else{
+		$(".${item.movieCode}").after(data);
+	}
 	
+	//var current = 
 	
 	
 
@@ -173,14 +207,15 @@ $(function() {
 
 		<div class="row" style="padding-top: 30px;">
 			<div class="col" style="padding-left: 60px;">
-				<h1>무비 차트</h1>
-
+				<h1>Movie</h1>
+				<!-- 
 				<div class="form-check">
 
 					<input class="form-check-input" type="checkbox" value="check"
 						name="check" id="flexCheckDefault"> <label class="form-check-label"
 						for="flexCheckDefault"> 현재상영작만 보기 </label>
 				</div>
+				 -->
 			</div>
 			<div class="col">
 				<fieldset class="form-group"
@@ -213,7 +248,8 @@ $(function() {
 		<div class="row">
 			<div id='rrr' class='row row-cols-1 row-cols-md-4 g-4'></div>
 		</div>
-
+		
+		<!-- 
 		<div class="row m-3">
 			<ul class="pagination">
 				<c:set var="doneLoop" value="false" />
@@ -228,7 +264,7 @@ $(function() {
 						<c:set var="doneLoop" value="true" />
 					</c:if>
 					<c:if test="${not doneLoop}">
-						<!-- 수정전<li class="page-item active"> //참고${i==nowPage?'pagination-active':page}-->
+					
 						<li class="${i==nowPage?'page-item active':active}">
 						<a class="page-link"
 							href="${pageContext.request.contextPath}/cinema/movie?nowPage=${i}">${i}</a>
@@ -242,6 +278,8 @@ $(function() {
 					</li>
 				</ul>
 		</div>
+		
+		-->
 	</div>
 
 </body>
