@@ -90,7 +90,7 @@ $(function() {
   <ul class="pagination">
     <c:set var="doneLoop" value="false"/>
       <li class="${(startPage-blockCount) <= 0?'page-item disabled': page}">
-        <a class="page-link" href="${pageContext.request.contextPath}/manager/orderList?nowPage=${startPage-1}">&laquo;</a>
+        <a class="page-link" href="${pageContext.request.contextPath}/manager/memberList?nowPage=${startPage-1}">&laquo;</a>
       </li>
     <c:forEach var='i' begin='${startPage}' end='${(startPage-1)+blockCount}'> 
 	    <c:if test="${(i-1)>=pageList.getTotalPages()}">
