@@ -143,7 +143,7 @@
     	<b>최종 결제 금액 : ${(ticketPrice*ticketQty)+foodTotalPrice-requestScope.order.pointPrice}원</b>
     </p>
 	<hr>
-    <a href="${pageContext.request.contextPath}/manager/members" class="card-link">결제 회원 아이디 : ${requestScope.order.member.id}</a>
+    <a href="${pageContext.request.contextPath}/manager/memberDetail/${requestScope.order.member.id}" class="card-link">결제 회원 아이디 : ${requestScope.order.member.id}</a>
     <a href="#" class="card-link">회원 등급 :
     	<c:choose>
    		<c:when test="${requestScope.order.member.grade==0}">
