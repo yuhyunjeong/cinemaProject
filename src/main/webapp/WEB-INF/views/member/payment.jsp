@@ -40,11 +40,11 @@
 		          /* merchant_uid: "ORD20180131-0000011",  */
 		          merchant_uid: "marchant" + uid,
 		          name: "영화",
-		          amount: 300,
-		          buyer_email: "gildong@gmail.com",
-		          buyer_name: "홍길동",
-		          buyer_tel: "010-4242-4242",
-		          buyer_addr: "서울특별시 강남구 신사동",
+		          amount: 28000,
+		          /* buyer_email: "gildong@gmail.com", */
+		          buyer_name: "이정아",
+		          buyer_tel: "010-1234-1234",
+		          /* buyer_addr: "서울특별시 강남구 신사동", */
 		          buyer_postcode: "01181"
 		      }, function (rsp) { // callback
 		    	  
@@ -59,13 +59,17 @@
 			        msg += '결제 금액 : ' + 300/* ${paymentPrice} */;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
+			        $("#payForm").submit();
+			        
 			        /* // 결제 성공 시 로직,
 		              alert("완료 -> imp_uid : " + rsp.imp_uid + " / merchant_uid(orderKey) : " + rsp.merchant_uid); */
        
 		          } else {
 		              
+
+		        	  
 		              // 결제 실패 시 로직,
-		              alert("실패 -> 코드(" + rsp.error_code + ") / 메세지 (" + rsp.error_msg + ")");	   
+		             //  alert("실패 -> 코드(" + rsp.error_code + ") / 메세지 (" + rsp.error_msg + ")");	   
 		              
 	/* 	              $("#payForm #key").val("order");
 					  $("#payForm #methodName").val("orders");
@@ -132,8 +136,8 @@
 							<%-- ${movieOrderline.seatPerformance.time.movie.movieName} 영화이름<br>
 							${movieOrderline.seatPerformance.time.movie.movieAge} 관람연령<br> --%>
 							영화이름 : ${movieName}<br>
-							일시 : 2022. 6. 9. / 오전 9:30:00 <%-- ${timeStart} --%> <p>
-							좌석번호 : B2, B3 
+							일시 : 2022. 6. 15 / 오전 8:40:00 <%-- ${timeStart} --%> <p>
+							좌석번호 : B2, B3
 							<!-- 관람연령 : <br> -->
 							
 							<!-- 예매인원 <br>
@@ -156,7 +160,7 @@
 						<div style="display: inline-block">
 							<%-- ${foodOrderline.food.foodName} 먹거리 이름 <br>  
 							${foodOrderline.food.foodPrice} 먹거리 가격 <br>   --%>
-							먹거리 이름 : 달콤세트 <br>
+							먹거리 이름 : 달콤콤보 <br>
 							먹거리 가격 : 6000원
 							
 					     <!--    달콤콤보<br>
@@ -168,7 +172,7 @@
 			      	<h3><strong>사은품</strong></h3><p><p>
 					<div class="mr-5"style="display: flex; flex-flow: row; ">
 						<div style="display: inline-block">
-							사은품 선택 O<br> 
+							사은품 선택 X<br> 
 						</div>
 					</div>	
 					
@@ -237,6 +241,10 @@
 	</div>
 </div>
 
+<form method="post" action="${pageContext.request.contextPath}/" id="payForm">
+
+
+</form>
 
 </body>
 </html>

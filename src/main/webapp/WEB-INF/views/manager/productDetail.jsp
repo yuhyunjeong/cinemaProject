@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,11 +81,11 @@
 				</tr>
 				<tr>
 					<th>상영시작일</th>
-					<td>${item.movieStartdate}</td>
+					<td><fmt:formatDate value="${item.movieStartdate}" pattern="yyyy-MM-dd"/></td>
 				</tr>
 				<tr>
 					<th>상영종료일</th>
-					<td>${item.movieEnddate}</td>
+					<td><fmt:formatDate value="${item.movieEnddate}" pattern="yyyy-MM-dd"/></td></td>
 				</tr>
 				<tr>
 					<th>관람등급</th>
