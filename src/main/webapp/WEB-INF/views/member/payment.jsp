@@ -41,7 +41,7 @@
 		          merchant_uid: "marchant" + uid,
 		          name: "영화",
 		          amount: 28000,
-		          /* buyer_email: "gildong@gmail.com", */
+		          buyer_email: "",
 		          buyer_name: "이정아",
 		          buyer_tel: "010-1234-1234",
 		          /* buyer_addr: "서울특별시 강남구 신사동", */
