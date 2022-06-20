@@ -16,7 +16,7 @@
 </script>
 </head>
 <body>
-<h1>sales.jsp 매출 조회입니다</h1>
+<h1>매출 조회 중입니다.</h1>
 
 
 <div class="card text-white bg-secondary mb-3" style="max-width: 60rem;">
