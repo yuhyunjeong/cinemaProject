@@ -19,3 +19,5 @@
 </ul>
 
 # <h2> ERD </h2>
+![erd1](https://user-images.githubusercontent.com/88241376/175466836-5b9a4541-495f-4628-a51a-ee87ba5df71c.png)
+![erd2](https://user-images.githubusercontent.com/88241376/175466857-06becc0d-998b-464f-bf9c-f11fff09867d.png)
