@@ -23,20 +23,20 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
 
 # <h2> What I implemented </h2>
 
-Sort by movie condition<p>
-![image](https://user-images.githubusercontent.com/88241376/229090160-391728d6-92f7-4aa8-ae71-94a3f6b800eb.png)
+<h3>Sort by movie condition</h3>h3><p>
+![image](https://user-images.githubusercontent.com/88241376/229090160-391728d6-92f7-4aa8-ae71-94a3f6b800eb.png)<p>
 Movie detail page<p>
-![image](https://user-images.githubusercontent.com/88241376/229090298-6a8803a7-e842-4ab9-bb9b-7cdb6d2698d1.png)
+![image](https://user-images.githubusercontent.com/88241376/229090298-6a8803a7-e842-4ab9-bb9b-7cdb6d2698d1.png)<p>
 Login<p>
 ![로그인실패 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/74348571-8397-4a8a-8cf1-3a5472421fbb)<p>
-Authorization features(header)<p>
-![주소창접근에러 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/a2d0a5d1-c4f1-4c42-865a-17c6fb6366a8)
+Authorization features<p>
+![주소창접근에러 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/a2d0a5d1-c4f1-4c42-865a-17c6fb6366a8)<p>
 Sign up<p>
-![아이디중복체크1 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/7cc07b07-11f1-46f2-8ca0-b2c2b17b4414)
+![아이디중복체크1 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/7cc07b07-11f1-46f2-8ca0-b2c2b17b4414)<p>
 Edit account<p>
-![회원정보수정 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/612e24ff-5fd3-4558-a0e6-9368ea1b7ee0)
+![회원정보수정 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/612e24ff-5fd3-4558-a0e6-9368ea1b7ee0)<p>
 Withdrawal functions<p>
-![비밀번호체크_탈퇴 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/2e75a7a2-d498-474d-8f6c-22fe87d56a7f)
+![비밀번호체크_탈퇴 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/2e75a7a2-d498-474d-8f6c-22fe87d56a7f)<p>
 
 # <h2> ERD </h2>
 ![erd1](https://user-images.githubusercontent.com/88241376/175466836-5b9a4541-495f-4628-a51a-ee87ba5df71c.png)
