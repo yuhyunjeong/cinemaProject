@@ -31,9 +31,12 @@ Login<p>
 ![로그인실패 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/74348571-8397-4a8a-8cf1-3a5472421fbb)<p>
 Authorization features(header)<p>
 ![주소창접근에러 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/a2d0a5d1-c4f1-4c42-865a-17c6fb6366a8)
-
-Sign up, Edit account, and Withdrawal functions<p>
-
+Sign up<p>
+![아이디중복체크1 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/7cc07b07-11f1-46f2-8ca0-b2c2b17b4414)
+Edit account<p>
+![회원정보수정 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/612e24ff-5fd3-4558-a0e6-9368ea1b7ee0)
+Withdrawal functions<p>
+![비밀번호체크_탈퇴 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/2e75a7a2-d498-474d-8f6c-22fe87d56a7f)
 
 # <h2> ERD </h2>
 ![erd1](https://user-images.githubusercontent.com/88241376/175466836-5b9a4541-495f-4628-a51a-ee87ba5df71c.png)
