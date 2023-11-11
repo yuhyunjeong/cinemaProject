@@ -21,7 +21,7 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
   <li><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></li>
 </ul>
 
-# <h2> :white_check_mark: What I implemented </h2>
+# <h2>:white_check_mark: What I implemented </h2>
 
 <h3>Sort by movie condition</h3>
 
