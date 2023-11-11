@@ -23,9 +23,9 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
 
 # <h2> What I implemented </h2>
 
-Sort by movie condition, Movie detail page
-Login/authorization features
-Sign up, Edit account, and Withdrawal functions
+Sort by movie condition, Movie detail page<p>
+Login/authorization features<p>
+Sign up, Edit account, and Withdrawal functions<p>
 
 
 # <h2> ERD </h2>
