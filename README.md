@@ -41,7 +41,7 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
 <h3>Edit account</h3><p>
  
 ![회원정보수정 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/612e24ff-5fd3-4558-a0e6-9368ea1b7ee0) <p>
-<h3>Withdrawal functions</h3><p>
+<h3>Withdrawal</h3><p>
  
 ![비밀번호체크_탈퇴 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/2e75a7a2-d498-474d-8f6c-22fe87d56a7f) <p>
 
