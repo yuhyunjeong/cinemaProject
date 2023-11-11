@@ -49,6 +49,3 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
 ![erd1](https://user-images.githubusercontent.com/88241376/175466836-5b9a4541-495f-4628-a51a-ee87ba5df71c.png)
 ![erd2](https://user-images.githubusercontent.com/88241376/175466857-06becc0d-998b-464f-bf9c-f11fff09867d.png)
 
-# <h2> Detail Pages </h2>
-![image](https://user-images.githubusercontent.com/88241376/229090160-391728d6-92f7-4aa8-ae71-94a3f6b800eb.png)
-![image](https://user-images.githubusercontent.com/88241376/229090298-6a8803a7-e842-4ab9-bb9b-7cdb6d2698d1.png)
