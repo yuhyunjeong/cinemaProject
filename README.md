@@ -29,7 +29,7 @@ Movie detail page<p>
 ![image](https://user-images.githubusercontent.com/88241376/229090298-6a8803a7-e842-4ab9-bb9b-7cdb6d2698d1.png)
 Login<p>
 ![로그인실패 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/74348571-8397-4a8a-8cf1-3a5472421fbb)
-authorization features(header)<p>
+Authorization features(header)<p>
 ![주소창접근에러 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/a2d0a5d1-c4f1-4c42-865a-17c6fb6366a8)
 
 Sign up, Edit account, and Withdrawal functions<p>
