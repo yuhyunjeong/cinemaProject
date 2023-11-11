@@ -1,4 +1,4 @@
-# :movie_camera: KLJ Movie :movie_camera:
+ # :movie_camera: KLJ Movie :movie_camera:
 # <h2> :bulb: Overview</h2>
 
 With the easing of COVID-19 regulations, the revitalization of movie theaters and the increasing demand for food and beverages, we want to provide users with a more "convenient, fast, and easy" service that allows them to do everything from movie reservations to food and beverages with a single payment. In addition, our service will provide "No face-to-face", "Don't wait", and "Go to the movie right away" services to meet the needs of customers who prefer non-face-to-face interactions to face-to-face interactions even though COVID-19 regulations have been eased, and to save time for modern people who are living busy lives.
@@ -27,8 +27,11 @@ Sort by movie condition<p>
 ![image](https://user-images.githubusercontent.com/88241376/229090160-391728d6-92f7-4aa8-ae71-94a3f6b800eb.png)
 Movie detail page<p>
 ![image](https://user-images.githubusercontent.com/88241376/229090298-6a8803a7-e842-4ab9-bb9b-7cdb6d2698d1.png)
+Login<p>
+![로그인실패 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/74348571-8397-4a8a-8cf1-3a5472421fbb)
+authorization features(header)<p>
+![주소창접근에러 PNG](https://github.com/yuhyunjeong/cinemaProject/assets/88241376/a2d0a5d1-c4f1-4c42-865a-17c6fb6366a8)
 
-Login/authorization features<p>
 Sign up, Edit account, and Withdrawal functions<p>
 
 
