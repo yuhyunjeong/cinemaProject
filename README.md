@@ -1,5 +1,8 @@
 # :movie_camera: KLJ Movie :movie_camera:
-# <h2> :bulb: 프로젝트 개요</h2>
+# <h2> :bulb: Overview</h2>
+
+With the easing of COVID-19 regulations, the revitalization of movie theaters and the increasing demand for food and beverages, we want to provide users with a more "convenient, fast, and easy" service that allows them to do everything from movie reservations to food and beverages with a single payment. In addition, our service will provide "No face-to-face", "Don't wait", and "Go to the movie right away" services to meet the needs of customers who prefer non-face-to-face interactions to face-to-face interactions even though COVID-19 regulations have been eased, and to save time for modern people who are living busy lives.
+
 코로나19 규제 완화와 더불어 영화관의 활성화와 먹거리의 수요가 증가함에 있어 이용자들에게 좀 더 "편리하고 빠르고 쉽게" 영화예매에서 먹거리까지 한번의 결제로 모든 것 을 할 수 있는 서비스를 제공하고자 한다. 또한 COVID-19 규제가 완화는 되었으나 대면 보다는 비대면을 선호하는 요즘 고객의 니즈와 바쁘게 생활하는 현대인들에게 시간 절약 할 수 있게 우리의 서비스는 "No face-to-face", "Don't wait", "Go to the movie right away" 서비스를 제공하고자 한다.
 
 # <h2> :calendar: 기간</h2>
