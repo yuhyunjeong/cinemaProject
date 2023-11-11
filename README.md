@@ -22,7 +22,6 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
 </ul>
 
 # <h2> What I implemented </h2>
-
 # <h3>Sort by movie condition</h3>
 ![image](https://user-images.githubusercontent.com/88241376/229090160-391728d6-92f7-4aa8-ae71-94a3f6b800eb.png)
 # <h3>Movie detail page</h3><p>
