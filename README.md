@@ -21,6 +21,13 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
   <li><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></li>
 </ul>
 
+# <h2> What I implemented </h2>
+
+Sort by movie condition, Movie detail page
+Login/authorization features
+Sign up, Edit account, and Withdrawal functions
+
+
 # <h2> ERD </h2>
 ![erd1](https://user-images.githubusercontent.com/88241376/175466836-5b9a4541-495f-4628-a51a-ee87ba5df71c.png)
 ![erd2](https://user-images.githubusercontent.com/88241376/175466857-06becc0d-998b-464f-bf9c-f11fff09867d.png)
