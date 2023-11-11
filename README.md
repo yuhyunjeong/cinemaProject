@@ -24,6 +24,9 @@ With the easing of COVID-19 regulations, the revitalization of movie theaters an
 # <h2> What I implemented </h2>
 
 Sort by movie condition, Movie detail page<p>
+![image](https://user-images.githubusercontent.com/88241376/229090160-391728d6-92f7-4aa8-ae71-94a3f6b800eb.png)
+![image](https://user-images.githubusercontent.com/88241376/229090298-6a8803a7-e842-4ab9-bb9b-7cdb6d2698d1.png)
+
 Login/authorization features<p>
 Sign up, Edit account, and Withdrawal functions<p>
 
