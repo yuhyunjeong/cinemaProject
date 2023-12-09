@@ -1,4 +1,4 @@
- # :movie_camera: KLJ Movie :movie_camera:
+ # 📽️ KLJ Movie 📽️
 # <h2> :bulb: Overview</h2>
 
 With the easing of COVID-19 regulations, the revitalization of movie theaters and the increasing demand for food and beverages, we want to provide users with a more "convenient, fast, and easy" service that allows them to do everything from movie reservations to food and beverages with a single payment. In addition, our service will provide "No face-to-face", "Don't wait", and "Go to the movie right away" services to meet the needs of customers who prefer non-face-to-face interactions to face-to-face interactions even though COVID-19 regulations have been eased, and to save time for modern people who are living busy lives.
